@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportForm", "ReportForm\ReportForm.csproj", "{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{B3AEAD39-1C22-42F3-A4A9-03723427CF96}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportService", "..\Host\ReportService\ReportService.csproj", "{633EC16E-219B-498C-B1E0-EF01AC0B2744}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AEAD39-1C22-42F3-A4A9-03723427CF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AEAD39-1C22-42F3-A4A9-03723427CF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AEAD39-1C22-42F3-A4A9-03723427CF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AEAD39-1C22-42F3-A4A9-03723427CF96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{633EC16E-219B-498C-B1E0-EF01AC0B2744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633EC16E-219B-498C-B1E0-EF01AC0B2744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633EC16E-219B-498C-B1E0-EF01AC0B2744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633EC16E-219B-498C-B1E0-EF01AC0B2744}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

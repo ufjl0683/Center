@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ds" targetNamespace="http://tempuri.org/Ds.xsd" xmlns:mstns="http://tempuri.org/Ds.xsd" xmlns="http://tempuri.org/Ds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Ds" msprop:Generator_DataSetName="Ds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblProcessInfo" msprop:Generator_UserTableName="tblProcessInfo" msprop:Generator_RowDeletedName="tblProcessInfoRowDeleted" msprop:Generator_RowChangedName="tblProcessInfoRowChanged" msprop:Generator_RowClassName="tblProcessInfoRow" msprop:Generator_RowChangingName="tblProcessInfoRowChanging" msprop:Generator_RowEvArgName="tblProcessInfoRowChangeEvent" msprop:Generator_RowEvHandlerName="tblProcessInfoRowChangeEventHandler" msprop:Generator_TableClassName="tblProcessInfoDataTable" msprop:Generator_TableVarName="tabletblProcessInfo" msprop:Generator_RowDeletingName="tblProcessInfoRowDeleting" msprop:Generator_TablePropName="tblProcessInfo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="process_name" msprop:Generator_UserColumnName="process_name" msprop:Generator_ColumnVarNameInTable="columnprocess_name" msprop:Generator_ColumnPropNameInRow="process_name" msprop:Generator_ColumnPropNameInTable="process_nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="console_port" msprop:Generator_UserColumnName="console_port" msprop:Generator_ColumnVarNameInTable="columnconsole_port" msprop:Generator_ColumnPropNameInRow="console_port" msprop:Generator_ColumnPropNameInTable="console_portColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="execute_string" msprop:Generator_UserColumnName="execute_string" msprop:Generator_ColumnVarNameInTable="columnexecute_string" msprop:Generator_ColumnPropNameInRow="execute_string" msprop:Generator_ColumnPropNameInTable="execute_stringColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="state" msprop:Generator_UserColumnName="state" msprop:Generator_ColumnPropNameInRow="state" msprop:Generator_ColumnVarNameInTable="columnstate" msprop:Generator_ColumnPropNameInTable="stateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="cpu_time" msprop:Generator_UserColumnName="cpu_time" msprop:Generator_ColumnPropNameInRow="cpu_time" msprop:Generator_ColumnVarNameInTable="columncpu_time" msprop:Generator_ColumnPropNameInTable="cpu_timeColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="memory" msprop:Generator_UserColumnName="memory" msprop:Generator_ColumnPropNameInRow="memory" msprop:Generator_ColumnVarNameInTable="columnmemory" msprop:Generator_ColumnPropNameInTable="memoryColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="isAlive" msprop:Generator_UserColumnName="isAlive" msprop:Generator_ColumnVarNameInTable="columnisAlive" msprop:Generator_ColumnPropNameInRow="isAlive" msprop:Generator_ColumnPropNameInTable="isAliveColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pid" msprop:Generator_UserColumnName="pid" msprop:Generator_ColumnPropNameInRow="pid" msprop:Generator_ColumnVarNameInTable="columnpid" msprop:Generator_ColumnPropNameInTable="pidColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

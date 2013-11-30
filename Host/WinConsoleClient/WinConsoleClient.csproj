@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1B022081-8A7C-44BE-AD8A-CEFD45EACE01}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinConsoleClient</RootNamespace>
+    <AssemblyName>WinConsoleClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDBQueueMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDBQueueMode.Designer.cs">
+      <DependentUpon>FrmDBQueueMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGetDeviceQueueStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGetDeviceQueueStatus.Designer.cs">
+      <DependentUpon>FrmGetDeviceQueueStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConsole.Designer.cs">
+      <DependentUpon>FrmConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCommDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommDialog.Designer.cs">
+      <DependentUpon>FrmCommDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmJamRangeMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmJamRangeMonitor.Designer.cs">
+      <DependentUpon>FrmJamRangeMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewDialog.Designer.cs">
+      <DependentUpon>FrmNewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProcessManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProcessManager.Designer.cs">
+      <DependentUpon>FrmProcessManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSimulate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSimulate.Designer.cs">
+      <DependentUpon>FrmSimulate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmDBQueueMode.resx">
+      <DependentUpon>FrmDBQueueMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGetDeviceQueueStatus.resx">
+      <DependentUpon>FrmGetDeviceQueueStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConsole.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCommDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmCommDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmJamRangeMonitor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmJamRangeMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmNewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProcessManager.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmProcessManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSimulate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmSimulate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMoniter.resx">
+      <DependentUpon>FrmMoniter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="FrmMoniter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMoniter.Designer.cs">
+      <DependentUpon>FrmMoniter.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RemoteInterface\RemoteInterface.csproj">
+      <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
+      <Name>RemoteInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

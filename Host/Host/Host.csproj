@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{12EC66B5-08D3-41DE-83E2-FFC916EECFEA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Host</RootNamespace>
+    <AssemblyName>Host</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\..\..\..\Source Example\neuro_src\neuro_src\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro">
+      <HintPath>..\..\..\..\Source Example\neuro_src\neuro_src\Release\AForge.Neuro.dll</HintPath>
+    </Reference>
+    <Reference Include="AID, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\AID.dll</HintPath>
+    </Reference>
+    <Reference Include="DBConnect, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DBConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Execution, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Execution.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AVI\AVIManager.cs" />
+    <Compile Include="AVI\AVISection.cs" />
+    <Compile Include="CCTV\CCTV_Manager.cs" />
+    <Compile Include="CCTV\LockWindows.cs" />
+    <Compile Include="ETC\EtcSection.cs" />
+    <Compile Include="ETC\ETC_Manager.cs" />
+    <Compile Include="Event\APID\APIDRangeData.cs" />
+    <Compile Include="Event\APID\APIDManager.cs" />
+    <Compile Include="Event\APID\Neural.cs" />
+    <Compile Include="Event\APID\TrainData.cs" />
+    <Compile Include="Event\CSLSControl\CSLSControlEventManager.cs" />
+    <Compile Include="Event\CSLSControl\CSLSControlRange.cs" />
+    <Compile Include="Event\Event.cs" />
+    <Compile Include="Event\EventManager.cs" />
+    <Compile Include="Event\IID\IIDCAmData.cs" />
+    <Compile Include="Event\IID\IIDManager.cs" />
+    <Compile Include="Event\IID\IIDRange.cs" />
+    <Compile Include="Event\Jam\JamManager.cs" />
+    <Compile Include="Event\Jam\JamRange12.cs" />
+    <Compile Include="Event\Jam\JamRange.cs" />
+    <Compile Include="Event\Jam\RampJamRange.cs" />
+    <Compile Include="Event\Jam\RampVDData.cs" />
+    <Compile Include="Event\Jam\JamRangeOld.cs" />
+    <Compile Include="Event\Jam\JamManagerOld.cs" />
+    <Compile Include="Event\LTR\LTR_Range.cs" />
+    <Compile Include="Event\LTR\LTR_Manager.cs" />
+    <Compile Include="Event\ManualRange.cs" />
+    <Compile Include="Event\MetroNetwork\MetroNetworkManager.cs" />
+    <Compile Include="Event\MetroNetwork\MetroNetworkRange.cs" />
+    <Compile Include="Event\MovingConstruct\MovingConstructRange.cs" />
+    <Compile Include="Event\RampControl\RampControl_Manager.cs" />
+    <Compile Include="Event\RampControl\RampControlRang.cs" />
+    <Compile Include="Event\Range.cs" />
+    <Compile Include="Event\Redirect\RouteRedirectManager.cs" />
+    <Compile Include="Event\Redirect\RouteRedirectRange.cs" />
+    <Compile Include="Event\ServiceArea\RstRange.cs" />
+    <Compile Include="Event\ServiceArea\ServiceAreaManager.cs" />
+    <Compile Include="Event\TEM\TemRangeData.cs" />
+    <Compile Include="Event\TEM\TemManager.cs" />
+    <Compile Include="Event\Weather\WeatherRange.cs" />
+    <Compile Include="Event\Weather\WeatherManager.cs" />
+    <Compile Include="FiveMinTask.cs" />
+    <Compile Include="FiveMinVDAVGDataManager.cs" />
+    <Compile Include="InOutStastic.cs" />
+    <Compile Include="InterSection.cs" />
+    <Compile Include="I_Positionable.cs" />
+    <Compile Include="Line.cs" />
+    <Compile Include="LineManager.cs" />
+    <Compile Include="Event\MovingConstruct\MovingConstructManager.cs" />
+    <Compile Include="OneMinTask.cs" />
+    <Compile Include="OutputDevicFetchManager.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RGS_PolygonSectionMapping.cs" />
+    <Compile Include="Schedule\ScheduleManager.cs" />
+    <Compile Include="Schedule\Scheduler.cs" />
+    <Compile Include="Schedule\Schedule.cs" />
+    <Compile Include="Schedule\ScheduleJob.cs" />
+    <Compile Include="Schedule\SchedulerException.cs" />
+    <Compile Include="Schedule\ScheduleTypes.cs" />
+    <Compile Include="Section.cs" />
+    <Compile Include="TC\AVIDeviceWrapper.cs" />
+    <Compile Include="TC\CCTVDeviceWrapper.cs" />
+    <Compile Include="TC\CSLS_Comparer.cs" />
+    <Compile Include="TC\FS_Comparer.cs" />
+    <Compile Include="TC\MAS_Comparer.cs" />
+    <Compile Include="TC\RMS_Comparer.cs" />
+    <Compile Include="TC\CMSDeviceWrapper.cs" />
+    <Compile Include="TC\CSLSDeviceWrapper.cs" />
+    <Compile Include="TC\DevcieManager.cs" />
+    <Compile Include="Ds.cs">
+      <DependentUpon>Ds.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ds.designer.cs">
+      <DependentUpon>Ds.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="HC_Comm_Robj.cs" />
+    <Compile Include="HC_FWIS_Robj.cs" />
+    <Compile Include="Matrix.cs" />
+    <Compile Include="MFCC\MFCC_Object.cs" />
+    <Compile Include="MFCC\MFCC_Manager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptsManager.cs" />
+    <Compile Include="TC\DeviceBaseWrapper.cs" />
+    <Compile Include="TC\ETTUDeviceWrapper.cs" />
+    <Compile Include="TC\FSDeviceWrapper.cs" />
+    <Compile Include="TC\IIDDeviceWrapper.cs" />
+    <Compile Include="TC\LCSDeviceWrapper.cs" />
+    <Compile Include="TC\MASDeviceWrapper.cs" />
+    <Compile Include="TC\OutPutDeviceBase.cs" />
+    <Compile Include="TC\RDDeviceWrapper.cs" />
+    <Compile Include="TC\RGSDeviceWrapper.cs" />
+    <Compile Include="TC\RMSDeviceWrapper.cs" />
+    <Compile Include="TC\TravelDisplaySetiingData.cs" />
+    <Compile Include="TC\TTSDeviceWrapper.cs" />
+    <Compile Include="TC\VDDeviceWrapper.cs" />
+    <Compile Include="TC\WDDeviceWrapper.cs" />
+    <Compile Include="TC\WISDeviceWrapper.cs" />
+    <Compile Include="TC\VIDeviceWrapper.cs" />
+    <Compile Include="TC\LSDeviceWrapper.cs" />
+    <Compile Include="TC\TEMDeviceWrapper.cs" />
+    <Compile Include="TC\CMSRSTDeviceWrapper.cs" />
+    <Compile Include="TC\BSDeviceWrapper.cs" />
+    <Compile Include="TC\SCMDeviceWrapper.cs" />
+    <Compile Include="TC\WIS_Comparer.cs" />
+    <Compile Include="TIMCC\InvalidTrafficDataException.cs" />
+    <Compile Include="TIMCC\OutOfLineException.cs" />
+    <Compile Include="TIMCC\SectionTrafficData.cs" />
+    <Compile Include="TIMCC\TIMCC_Factory.cs" />
+    <Compile Include="TIMCC\TIMCC_SectionManager.cs" />
+    <Compile Include="TIMCC\TravelData.cs" />
+    <Compile Include="TravelModule.cs" />
+    <Compile Include="SectionTravelTimeWeightSegnment.cs" />
+    <Compile Include="UnitRoad.cs" />
+    <Compile Include="VDJamEvalue.cs" />
+    <Compile Include="XmlWeatherManager.cs" />
+    <Compile Include="Web References\WebReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RemoteInterface\RemoteInterface.csproj">
+      <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
+      <Name>RemoteInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V2DLE\V2DLE.csproj">
+      <Project>{759C6C3E-0C2A-456F-AC3C-42D8B9329566}</Project>
+      <Name>V2DLE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerFactory\ServerFactory.csproj">
+      <Project>{EC3E10E8-E954-4A7B-B4DC-A750D35C6D15}</Project>
+      <Name>ServerFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AForge.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AForge.Neuro.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AID.dll" />
+    <Content Include="DBConnect.dll" />
+    <Content Include="Execution.dll" />
+    <Content Include="Scripts\F311Z-CSLS-20091004.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F311Z-LSD-20090908.txt" />
+    <Content Include="Scripts\F601C-Script-PAN-LCS-.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F601C-Script-PAN-RGS-20090622.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\SCM-20100531.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\VD-v3.0-20090628.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\VI-v3.0-20090628.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\WIS-v3.0-20090524.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="section_traffic_data.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="temp.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="aidtraindata.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Web References\WebReference\Service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Ds.xsc">
+      <DependentUpon>Ds.xsd</DependentUpon>
+    </None>
+    <None Include="Ds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Ds.xss">
+      <DependentUpon>Ds.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RGS_Config.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Web References\WebReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WebReference\Service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.21.50.25/Service/Service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebReference\</RelPath>
+      <UpdateFromURL>http://10.21.50.25/Service/Service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Host_WebReference_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ErrLogs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

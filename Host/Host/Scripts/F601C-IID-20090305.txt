@@ -1,0 +1,21 @@
+[DeviceInfo]
+Version=3.0
+DeviceType=IID
+IP=10.21.50.218
+port=1001
+DeviceID=0xffff
+
+[Command]
+cmd=0x16
+description="Report IID Event"
+class=N
+func_name="report_iid_event"
+type=Report
+send=cam_id(1:0-255)hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+     year(2:2000-3000) month(1:1-12) day (1:1-31)hour(1:0-23)minute(1:0-59)second(1:0-59)event_id(1:1"1_wait",2"2_",3"3_",4"4_",5"5_",6"6_",7"7_")
+     action_type(1:0"0_normal",1"1_start")event_lane_count(1:0-6){lane_id(1:0-255)}
+return=
+test=
+
+
+@Signature=92D49003067706C722C4424792CFE376D461B40FF347C954

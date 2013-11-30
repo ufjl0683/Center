@@ -1,0 +1,31 @@
+[DeviceInfo]
+
+Version=2.0
+DeviceType=BS
+IP=10.21.50.10
+port=1001
+DeviceID=0xFFFF
+
+
+
+[Command]
+cmd=0x10
+description= "Set system time"
+class=A
+func_name="set_system_time"
+type=Set
+send=year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59) 
+return=
+test=@cmd year(2010)  month(10)  day(22) hour(12) minute(7)  second(0)
+
+[Command]
+cmd=0x11
+description= "Report system time"
+class=A
+func_name="report_system_time"
+type=Query
+send= 
+return=year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+test=
+
+

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet1" msprop:Generator_DataSetName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblVD5Min" msprop:Generator_UserTableName="tblVD5Min" msprop:Generator_RowDeletedName="tblVD5MinRowDeleted" msprop:Generator_RowChangedName="tblVD5MinRowChanged" msprop:Generator_RowClassName="tblVD5MinRow" msprop:Generator_RowChangingName="tblVD5MinRowChanging" msprop:Generator_RowEvArgName="tblVD5MinRowChangeEvent" msprop:Generator_RowEvHandlerName="tblVD5MinRowChangeEventHandler" msprop:Generator_TableClassName="tblVD5MinDataTable" msprop:Generator_TableVarName="tabletblVD5Min" msprop:Generator_RowDeletingName="tblVD5MinRowDeleting" msprop:Generator_TablePropName="tblVD5Min">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Speed" msprop:Generator_UserColumnName="Speed" msprop:Generator_ColumnPropNameInRow="Speed" msprop:Generator_ColumnVarNameInTable="columnSpeed" msprop:Generator_ColumnPropNameInTable="SpeedColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Vol" msprop:Generator_UserColumnName="Vol" msprop:Generator_ColumnPropNameInRow="Vol" msprop:Generator_ColumnVarNameInTable="columnVol" msprop:Generator_ColumnPropNameInTable="VolColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Occupancy" msprop:Generator_UserColumnName="Occupancy" msprop:Generator_ColumnPropNameInRow="Occupancy" msprop:Generator_ColumnVarNameInTable="columnOccupancy" msprop:Generator_ColumnPropNameInTable="OccupancyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Length" msprop:Generator_UserColumnName="Length" msprop:Generator_ColumnPropNameInRow="Length" msprop:Generator_ColumnVarNameInTable="columnLength" msprop:Generator_ColumnPropNameInTable="LengthColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Interval" msprop:Generator_UserColumnName="Interval" msprop:Generator_ColumnPropNameInRow="Interval" msprop:Generator_ColumnVarNameInTable="columnInterval" msprop:Generator_ColumnPropNameInTable="IntervalColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVI5Min" msprop:Generator_UserTableName="tblVI5Min" msprop:Generator_RowDeletedName="tblVI5MinRowDeleted" msprop:Generator_RowChangedName="tblVI5MinRowChanged" msprop:Generator_RowClassName="tblVI5MinRow" msprop:Generator_RowChangingName="tblVI5MinRowChanging" msprop:Generator_RowEvArgName="tblVI5MinRowChangeEvent" msprop:Generator_RowEvHandlerName="tblVI5MinRowChangeEventHandler" msprop:Generator_TableClassName="tblVI5MinDataTable" msprop:Generator_TableVarName="tabletblVI5Min" msprop:Generator_RowDeletingName="tblVI5MinRowDeleting" msprop:Generator_TablePropName="tblVI5Min">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Distance" msprop:Generator_UserColumnName="Distance" msprop:Generator_ColumnPropNameInRow="Distance" msprop:Generator_ColumnVarNameInTable="columnDistance" msprop:Generator_ColumnPropNameInTable="DistanceColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Degree" msprop:Generator_UserColumnName="Degree" msprop:Generator_ColumnPropNameInRow="Degree" msprop:Generator_ColumnVarNameInTable="columnDegree" msprop:Generator_ColumnPropNameInTable="DegreeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRD5Min" msprop:Generator_UserTableName="tblRD5Min" msprop:Generator_RowDeletedName="tblRD5MinRowDeleted" msprop:Generator_RowChangedName="tblRD5MinRowChanged" msprop:Generator_RowClassName="tblRD5MinRow" msprop:Generator_RowChangingName="tblRD5MinRowChanging" msprop:Generator_RowEvArgName="tblRD5MinRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRD5MinRowChangeEventHandler" msprop:Generator_TableClassName="tblRD5MinDataTable" msprop:Generator_TableVarName="tabletblRD5Min" msprop:Generator_RowDeletingName="tblRD5MinRowDeleting" msprop:Generator_TablePropName="tblRD5Min">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="pluviometric" msprop:Generator_UserColumnName="pluviometric" msprop:Generator_ColumnVarNameInTable="columnpluviometric" msprop:Generator_ColumnPropNameInRow="pluviometric" msprop:Generator_ColumnPropNameInTable="pluviometricColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Degree" msprop:Generator_UserColumnName="Degree" msprop:Generator_ColumnVarNameInTable="columnDegree" msprop:Generator_ColumnPropNameInRow="Degree" msprop:Generator_ColumnPropNameInTable="DegreeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblWD5Min" msprop:Generator_UserTableName="tblWD5Min" msprop:Generator_RowDeletedName="tblWD5MinRowDeleted" msprop:Generator_RowChangedName="tblWD5MinRowChanged" msprop:Generator_RowClassName="tblWD5MinRow" msprop:Generator_RowChangingName="tblWD5MinRowChanging" msprop:Generator_RowEvArgName="tblWD5MinRowChangeEvent" msprop:Generator_RowEvHandlerName="tblWD5MinRowChangeEventHandler" msprop:Generator_TableClassName="tblWD5MinDataTable" msprop:Generator_TableVarName="tabletblWD5Min" msprop:Generator_RowDeletingName="tblWD5MinRowDeleting" msprop:Generator_TablePropName="tblWD5Min">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="average_wind_speed" msprop:Generator_UserColumnName="average_wind_speed" msprop:Generator_ColumnVarNameInTable="columnaverage_wind_speed" msprop:Generator_ColumnPropNameInRow="average_wind_speed" msprop:Generator_ColumnPropNameInTable="average_wind_speedColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="average_wind_direction" msprop:Generator_UserColumnName="average_wind_direction" msprop:Generator_ColumnVarNameInTable="columnaverage_wind_direction" msprop:Generator_ColumnPropNameInRow="average_wind_direction" msprop:Generator_ColumnPropNameInTable="average_wind_directionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="max_wind_speed" msprop:Generator_UserColumnName="max_wind_speed" msprop:Generator_ColumnVarNameInTable="columnmax_wind_speed" msprop:Generator_ColumnPropNameInRow="max_wind_speed" msprop:Generator_ColumnPropNameInTable="max_wind_speedColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="max_wind_direction" msprop:Generator_UserColumnName="max_wind_direction" msprop:Generator_ColumnVarNameInTable="columnmax_wind_direction" msprop:Generator_ColumnPropNameInRow="max_wind_direction" msprop:Generator_ColumnPropNameInTable="max_wind_directionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Degree" msprop:Generator_UserColumnName="Degree" msprop:Generator_ColumnVarNameInTable="columnDegree" msprop:Generator_ColumnPropNameInRow="Degree" msprop:Generator_ColumnPropNameInTable="DegreeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblLSData" msprop:Generator_UserTableName="tblLSData" msprop:Generator_RowDeletedName="tblLSDataRowDeleted" msprop:Generator_RowChangedName="tblLSDataRowChanged" msprop:Generator_RowClassName="tblLSDataRow" msprop:Generator_RowChangingName="tblLSDataRowChanging" msprop:Generator_RowEvArgName="tblLSDataRowChangeEvent" msprop:Generator_RowEvHandlerName="tblLSDataRowChangeEventHandler" msprop:Generator_TableClassName="tblLSDataDataTable" msprop:Generator_TableVarName="tabletblLSData" msprop:Generator_RowDeletingName="tblLSDataRowDeleting" msprop:Generator_TablePropName="tblLSData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="mon_var" msprop:Generator_UserColumnName="mon_var" msprop:Generator_ColumnVarNameInTable="columnmon_var" msprop:Generator_ColumnPropNameInRow="mon_var" msprop:Generator_ColumnPropNameInTable="mon_varColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="day_var" msprop:Generator_UserColumnName="day_var" msprop:Generator_ColumnVarNameInTable="columnday_var" msprop:Generator_ColumnPropNameInRow="day_var" msprop:Generator_ColumnPropNameInTable="day_varColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Degree" msprop:Generator_UserColumnName="Degree" msprop:Generator_ColumnVarNameInTable="columnDegree" msprop:Generator_ColumnPropNameInRow="Degree" msprop:Generator_ColumnPropNameInTable="DegreeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblBSData" msprop:Generator_UserTableName="tblBSData" msprop:Generator_RowDeletedName="tblBSDataRowDeleted" msprop:Generator_TableClassName="tblBSDataDataTable" msprop:Generator_RowChangedName="tblBSDataRowChanged" msprop:Generator_RowClassName="tblBSDataRow" msprop:Generator_RowChangingName="tblBSDataRowChanging" msprop:Generator_RowEvArgName="tblBSDataRowChangeEvent" msprop:Generator_RowEvHandlerName="tblBSDataRowChangeEventHandler" msprop:Generator_TablePropName="tblBSData" msprop:Generator_TableVarName="tabletblBSData" msprop:Generator_RowDeletingName="tblBSDataRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_UserColumnName="DeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="slope" msprop:Generator_UserColumnName="slope" msprop:Generator_ColumnPropNameInRow="slope" msprop:Generator_ColumnVarNameInTable="columnslope" msprop:Generator_ColumnPropNameInTable="slopeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="shift" msprop:Generator_UserColumnName="shift" msprop:Generator_ColumnPropNameInRow="shift" msprop:Generator_ColumnVarNameInTable="columnshift" msprop:Generator_ColumnPropNameInTable="shiftColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="sink" msprop:Generator_UserColumnName="sink" msprop:Generator_ColumnPropNameInRow="sink" msprop:Generator_ColumnVarNameInTable="columnsink" msprop:Generator_ColumnPropNameInTable="sinkColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Degree" msprop:Generator_UserColumnName="Degree" msprop:Generator_ColumnPropNameInRow="Degree" msprop:Generator_ColumnVarNameInTable="columnDegree" msprop:Generator_ColumnPropNameInTable="DegreeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

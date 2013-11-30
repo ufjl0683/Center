@@ -1,0 +1,547 @@
+[DeviceInfo]
+
+Version=2.0
+DeviceType=VD
+IP=192.168.3.11	
+port=1001
+DeviceID=0xffff
+
+
+[command]
+cmd=0x00
+description= "Restart Device"
+class=A
+func_name="set_dev_restart"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x01
+description= "Get Hw Status"
+class=C
+func_name="get_HW_Status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x02
+description= "Set Date Time And Query Different"
+class=A
+func_name="set_datetime_report"
+type=Query
+send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+return=second_diff(1:0-255)
+test=@cmd year(2009) month(7) day(9) hour(17) minute(30) second(00)
+
+
+[Command]
+ cmd=0x04 
+ description="get date time"
+ class=A
+ func_name="get_date_time"
+ type=Query
+ send= protocol_code(1:2-2)
+ return=  hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+ test=@cmd protocol_code(2)
+ 
+
+[Command]
+cmd=0x03
+description= "Set Trasmiission cycle"
+class=A
+func_name="set_transmission_cycle"
+type=Set
+send=  device_type(1:0 "0_VD Cycle",1 "1_VD Event",2 "2_VD RealTime",18 "18_Other")  transmission_cycle(1:1-255) transmit_mode(1:0 "0_Polling",1 "1_Active" ) hwcyc(1: 0 "0_State change" ,1 "1_5sec",2 "2_10Sec",3 "3_20sec",4 "4_1min",5 "5_5min")
+return=
+test=@cmd device_type(0) transmission_cycle(1) transmit_mode(1) hwcyc(1),
+     @Cmd device_type(1) transmission_cycle(10) transmit_mode(1) hwcyc(5),
+     @Cmd device_type(2) transmission_cycle(30) transmit_mode(1) hwcyc(1)
+     
+     
+ [Command]
+ cmd=0x04 
+ description="Get Trasmiission cycle"
+ class=A
+ func_name="get_transmission_cycle"
+ type=Query
+ send= protocol_code(1:3-3) device_type(1:0 "0_VD Cycle",1 "1_VD Event",2 "2_VD RealTime",18 "18_Other")
+ return= hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3)  device_type(1:0 "0_VD Cycle",1 "1_VD Event",2 "2_VD RealTime",18 "18_Other")  transmission_cycle(1:1-255) transmit_mode(1:0 "0_Polling",1 "1_Active" ) hwcyc(1: 0 "0_State change" ,1 "1_5sec",2 "2_10Sec",3 "3_20sec",4 "4_1min",5 "5_5min")
+ test=@cmd  protocol_code(3)  device_type(0), @Cmd  protocol_code(3)  device_type(1),@Cmd protocol_code(3)  device_type(2)
+     
+[Command]
+cmd=0x05
+description=" set and Get Loop Test Result"
+class=A
+func_name="set_loop_test_report"
+type=Query
+send=message_length(1:1-255) {message(1:1-255)}
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
+test=@cmd message_length(1) {message(1)}
+
+[Command]
+cmd=0x06
+description=" set LC Self Test"
+class=A
+func_name="set_self_test"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x07
+description=" set Control's Manual Mode"
+class=A
+func_name="set_manual_mode"
+type=Set
+send=local_operation_flag(1:0 "allow",1 "reject" )
+return=
+test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+
+[command]
+cmd=0x07
+description=" Report Manul State or Ask Manual Control"
+class=N
+func_name="report_manual_state"
+type=Report
+send=local_operation(1:1 "ask_manual_operation",2 "end_manual_mode" )
+return=
+test=
+[Command]
+ cmd=0x04 
+ description=" get Control's Manual Mode"
+ class=A
+ func_name="get_manual_mode"
+ type=Query
+ send= protocol_code(1:7-7) 
+ return=   hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:7-7) local_operation_flag(1:0 "allow",1 "reject" )
+ test=@cmd protocol_code(7) 
+
+[Command]
+cmd=0x08
+description="Get_Test_result"
+class=A
+func_name="get_test_result"
+type=Query
+send=protocol_code(1:0"00H",6"06H",12"0CH") 
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
+test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+
+[Command]
+cmd=0x09
+description="Set daylight seg"
+class=B
+func_name="set_daylight_seg"
+type=Set
+send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+return=
+test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
+[Command]
+ cmd=0x04 
+ description="get daylight seg"
+ class=A
+ func_name="get_daylight_seg"
+ type=Query
+ send= protocol_code(1:9-9) 
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+ test=@cmd protocol_code(9)
+ 
+[Command]
+cmd=0x0A
+description="Set Bright Control Mode"
+class=A
+func_name="set_bright_ctl_mode"
+type=Set
+send= bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+return=
+test=@cmd bright_ctrl_mode(1)
+
+[Command]
+ cmd=0x04 
+ description="get Bright Control Mode"
+ class=A
+ func_name="get_bright_ctl_mode"
+ type=Query
+ send=protocol_code(1:10-10) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:10-10) bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+ test=@cmd protocol_code(10) 
+
+[Command]
+cmd=0x0A
+description="Report Hw Fail"
+class=N
+func_name="report_hw_fail"
+type=Report
+send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x0B
+description="Get Device Status"
+class=B
+func_name="get_devcie_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+test=@cmd
+
+
+[Command]
+cmd=0x0C
+description=" Reset Communication"
+class=A
+func_name="set_comm_reset"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x0E
+description=" Get FirmwareVersion and Device id"
+class=B
+func_name="get_version_device_id"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
+       description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
+       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x0F 0x00
+description=" Set Local React Control Mode"
+class=A
+func_name="set_local_react_ctl_mode"
+type=Set
+send=on_off(1:0 "start",1 "stop")
+return=
+test=@cmd on_off(0)
+
+[Command]
+cmd=0x0F 0x00
+description=" ReportLocal React Control State"
+class=N
+func_name="report_local_react_ctl_mode"
+type=Report
+send=on_off(1:0 "start",1 "stop")
+return=on_off(1:0 "start",1 "stop")
+test=
+
+[Command]
+cmd=0x0F 0x01
+description=" Set Local React Control"
+class=A
+func_name="set_local_react_ctl"
+type=Set
+send= event(1:0-255)
+return=
+test=@cmd event(0)
+
+[Command]
+cmd=0x0F 0x01
+description=" report Local React Control"
+class=N
+func_name="report_local_react_ctl"
+type=Report
+send= event(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x10
+description="get cycle data"
+class=B
+func_name="get_cycle_data"
+type=Query
+send= request_type(1:1 "polling",2 "manual",3 "simulation")
+return=response_type(1:1"cycle_polling",2 "manual" , 5 "cycle_simulation" ,21 "first_cycle_simulation_data" ,245 "last_cycle_simulation_data")
+ hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+ day(1:1-31)  hour(1:0-23) minute(1:0-59)  lane_count(1:1-6)
+ {small_car_volume(1:0-250) small_car_speed(1:0-250) small_car_length(1:0-250) big_car_volume(1:0-250) big_car_speed(1:0-250)
+  big_car_length(1:0-250) connect_car_volume(1:0-250) connect_car_speed(1:0-250) connect_car_length(1:0-250) 
+  average_car_interval(2:0-65530) average_occupancy(1:0-100)}
+test=@cmd request_type(1),@cmd request_type(2),@cmd request_type(3) 
+
+[Command]
+cmd=0x10
+description="report cycle  Data"
+class=N
+func_name="report_cycle_data"
+type=Report
+send=
+return=response_type(1:0 "cycle_data",4 "cycle_simulation" , 20 "first_cycle_simulation_data" ,244 "last_cycle_simulation_data")
+ hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+ day(1:1-31)  hour(1:0-23) minute(1:0-59)  lane_count(1:1-6)
+ {small_car_volume(1:0-250) small_car_speed(1:0-250) small_car_length(1:0-250) big_car_volume(1:0-250) big_car_speed(1:0-250)
+  big_car_length(1:0-250) connect_car_volume(1:0-250) connect_car_speed(1:0-250) connect_car_length(1:0-250) 
+  average_car_interval(2:0-65530) average_occupancy(2:0-100)}
+test=
+
+
+[Command]
+cmd=0x11
+description="set real time data Configuration"
+class=C
+func_name="set_real_time_data_conf"
+type=Set
+send= lane_id(1:0-255)
+return=
+test=@cmd lane_id(1)
+
+
+[Command]
+ cmd=0x04 
+ description="get real time data Configuration"
+ class=A
+ func_name="get_real_time_data_conf"
+ type=Query
+ send=protocol_code(1:17-17)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:17-17) lane_id(1:0-255)
+ test=@cmd protocol_code(17) 
+
+[Command]
+cmd=0x12
+description="Set Vehicle parameter"
+class=A
+func_name="set_vehicle_param"
+type=Set
+send= small_car_max_length(1:0-250)   big_car_max_length(1:0-250)
+return=
+test=@cmd small_car_max_length(100) big_car_max_length(200)
+
+
+[Command]
+ cmd=0x04 
+ description="Get Vehicle parameter"
+ class=A
+ func_name="get_vehicle_param"
+ type=Query
+ send=protocol_code(1:18-18)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:18-18) small_car_max_length(1:0-250)   big_car_max_length(1:0-250)
+ test=@cmd protocol_code(18)
+
+[Command]
+cmd=0x13
+description="set VD simulation data"
+class=C
+func_name="set_simulate_data"
+type=Set
+send= data_type(1:1 "cycle_data",2 "event_data") data_count(2:1-720) data_sno(2:1-720) lane_count(1:1-6)
+      {small_car_volume(1:0-250) small_car_speed(1:0-250)
+       small_car_length(1:0-250) big_car_volume(1:0-250)
+       big_car_speed(1:0-250) big_car_length(1:0-250)
+       connect_car_volume(1:0-250) connect_car_speed(1:0-250)
+       connect_car_length(1:0-250)  average_car_interval(2:0-65530)
+       average_occupancy(1:0-100) }
+return=
+test=@cmd data_type(1) data_count(1) data_sno(1) lane_count(6) { small_car_volume(100) small_car_speed(90) small_car_length(100) big_car_volume(100)
+	  big_car_speed(100) big_car_length(100)  connect_car_volume(100) connect_car_speed(100) connect_car_length(100) average_car_interval(1000)
+         average_occupancy(100)}
+
+[Command]
+cmd=0x14
+description="get unread data count"
+class=C
+func_name="get_unread_data_count"
+type=Query
+send= 
+return=response_type(1:1 "Polling") hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+        data_count(2:0-65530) year(2:2000-3000)  month(1:1-12) day(1:1-31)  hour(1:0-23)  minute(1:0-59)
+test=@cmd 
+
+[Command]
+cmd=0x14
+description="Report unread data count"
+class=N
+func_name="report_unread_data_count"
+type=Report
+send= response_type(1:0 "Active") hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+        data_count(2:0-65530) year(2:2000-3000)  month(1:1-12) day(1:1-31)  hour(1:0-23)  minute(1:0-59)
+return=
+test=
+
+[Command]
+cmd=0x15
+description="get unread data"
+class=C
+func_name="get_unread_data"
+type=Query
+send= day(1:1-31) hour(1:0-23) minute(1:0-59)
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59)  lane_count(1:1-6)
+       {small_car_volume(1:0-250) small_car_speed(1:0-250) small_car_length(1:0-250) 
+        big_car_volume(1:0-250) big_car_speed(1:0-250)big_car_length(1:0-250) 
+        connect_car_volume(1:0-250) connect_car_speed(1:0-250) connect_car_length(1:0-250) 
+       average_car_interval(2:0-65530) average_occupancy(1:0-100)}
+
+test=@cmd day(9) hour(10) minute(5)
+
+[Command]
+cmd=0x16
+description="Set Config param"
+class=A
+func_name="set_config_param"
+type=Set
+send= length(1:1-255) loop_dist_lane_0(2:1-65530) loop_dist_lane_1(2:1-65530) loop_dist_lane_2(2:1-65530) loop_dist_lane_3(2:1-65530) loop_dist_lane_4(2:1-65530) loop_dist_lane_5(2:1-65530) 
+		lane_0(2:1-65530) lane_1(2:1-65530) lane_2(2:1-65530) lane_3(2:1-65530) lane_4(2:1-65530) lane_5(2:1-65530) 
+		small_car_max_length(2:1-65530) big_car_max_length(2:1-65535) vehicle_min_length(2:1-65530) vehicle_max_length(2:1-65530)
+		max_speed(2:1-65530) lane_cnt(1:1-6) delay_const(1:0-100)
+return=
+test=@cmd length(100) loop_dist_lane_0(100) loop_dist_lane_1(100) loop_dist_lane_2(100) loop_dist_lane_3(100) loop_dist_lane_4(1000) loop_dist_lane_5(100) 
+		lane_0(100) lane_1(100) lane_2(100) lane_3(100) lane_4(100) lane_5(100) 
+		small_car_max_length(100) big_car_max_length(100) vehicle_min_length(100) vehicle_max_length(100)
+		max_speed(100) lane_cnt(6) delay_const(50)
+
+
+[Command]
+ cmd=0x04
+ description="get Config param"
+ class=A
+ func_name="get_config_param"
+ type=Query
+ send=protocol_code(1:22-22)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:22-22)   length(1:1-255) loop_dist_lane_0(2:1-65530) loop_dist_lane_1(2:1-65530) loop_dist_lane_2(2:1-65530) loop_dist_lane_3(2:1-65530) loop_dist_lane_4(2:1-65530) loop_dist_lane_5(2:1-65530) 
+		lane_0(2:1-65530) lane_1(2:1-65530) lane_2(2:1-65530) lane_3(2:1-65530) lane_4(2:1-65530) lane_5(2:1-65530) 
+		small_car_max_length(2:1-65530) big_car_max_length(2:1-65535) vehicle_min_length(2:1-65530) vehicle_max_length(2:1-65530)
+		max_speed(2:1-65530) lane_cnt(1:1-6) delay_const(1:0-100)
+ test=@cmd protocol_code(22)
+
+[Command]
+cmd=0x17
+description="Get Event data"
+class=A
+func_name="get_event_data"
+type=Query
+send= request_type(1:1 "polling",2 "manual",3 "simulation")
+return=response_type(1:1"cycle_polling",2 "manual" , 5 "cycle_simulation" ,21 "first_cycle_simulation_data" ,245 "last_cycle_simulation_data")
+ hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+ day(1:1-31)  hour(1:0-23) minute(1:0-59)  second(1:0-59) lane_count(1:1-6)
+ {small_car_volume(1:0-250) small_car_speed(1:0-250) small_car_length(1:0-250) big_car_volume(1:0-250) big_car_speed(1:0-250)
+  big_car_length(1:0-250) connect_car_volume(1:0-250) connect_car_speed(1:0-250) connect_car_length(1:0-250) 
+  average_car_interval(2:0-65530) average_occupancy(1:0-100)}
+
+test=@cmd request_type(1)
+
+[Command]
+cmd=0x17
+description="report Query Event data"
+class=N
+func_name="report_event_data"
+type=Report
+send=response_type(1:0 "cycle_data",4 "cycle_simulation" , 20 "first_cycle_simulation_data" ,244 "last_cycle_simulation_data")
+ hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+ day(1:1-31)  hour(1:0-23) minute(1:0-59)  second(1:0-59) lane_count(1:1-6)
+ {small_car_volume(1:0-250) small_car_speed(1:0-250) small_car_length(1:0-250) big_car_volume(1:0-250) big_car_speed(1:0-250)
+  big_car_length(1:0-250) connect_car_volume(1:0-250) connect_car_speed(1:0-250) connect_car_length(1:0-250) 
+  average_car_interval(2:0-65530) average_occupancy(1:0-100)}
+
+return=
+test=
+
+[Command]
+cmd=0x18
+description="Get Real time data"
+class=C
+func_name="get_real_time_data"
+type=Query
+send= request_type(1:1 "polling",2 "manual") lan_id(1:1-6)
+return=  response_type(1:1 "pooling" ,2 "manual")   hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+         lane_id(1:1-6) car_volume(1:0-250) {day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)  car_speed(1:0-250)  car_length(1:0-250)  car_interval(2:0-65530)car_class(1:1-3)}
+test=@cmd  request_type(2) lan_id(1)
+
+[Command]
+cmd=0x18
+description="Report Real time data"
+class=N
+func_name="report_real_time_data"
+type=Report
+send=  response_type(1:0 "Active report")hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       lane_id(1:1-6) car_volume(1:0-250) {day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)  car_speed(1:0-250)  car_length(1:0-250)  car_interval(2:0-65530) car_class(1:1-3)}  
+return= 
+test=
+
+[Command]
+cmd=0x19
+description="Set simulation action"
+class=C
+func_name="set_simulation_action"
+type=Set
+send= action(1:0 "stop simulation",1 "start_simulation", 2 "stop_time" ,3 "start_time")
+      data_type(1:1 "cycle" ,2 "event") data_count(2:1-720) lane_count(1:1-6) year(2:2000-3000) 
+      month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+return=
+test=@cmd action(0)
+      data_type(1) data_count(1) lane_count(6) year(2009) 
+      month(1) day(20) hour(1) minute(1)
+
+
+[Command]
+cmd=0x1A
+description="Set trigger config"
+class=C
+func_name="set_trig_config"
+type=Set
+send= lane_count(1:1-6) {lane_id(1:1-6) occ_time_limit(1:0-255)}
+return=
+test=@cmd lane_count(1) {lane_id(1) occ_time_limit(100)}  
+
+[Command]
+cmd=0x1A
+description="report_trig_data"
+class=N
+func_name="report_trigger_data"
+type=Report
+send= response_type(1:1 "raise loop occup event",2"realse loop occup event",3 "immediate trug") 
+      hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+      day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59) lane_id(1:1-6) occ_time(2:0-65530)
+return=
+test= 
+
+[Command]
+ cmd=0x04 
+ description="Get trigger config"
+ class=A
+ func_name="get_trig_config"
+ type=Query
+ send=protocol_code(1:26-26)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530)  protocol_code(1:26-26) lane_count(1:1-6) {lane_id(1:1-6) occ_time_limit(1:0-255)}
+ test=@cmd protocol_code(26)
+
+[Command]
+cmd=0x1B
+description="Set Lane Count and direction"
+class=A
+func_name="set_lane_count_direction"
+type=Set
+send= lane_count(1:1-6) detmap(1:0-255)
+return=
+test=@cmd lane_count(1) detmap(0)
+
+[Command]
+ cmd=0x04 
+ description="Get Lane Count and direction"
+ class=A
+ func_name="get_lane_count_direction"
+ type=Query
+ send=protocol_code(1:27-27)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530)  protocol_code(1:27-27) lane_count(1:1-6) detmap(1:0-255)
+ test=@cmd protocol_code(27)
+
+
+
+
+
+
+
+
+
+@Signature=9CDD7DDF6757E5DD9B2B475AEF95C691DC6AE3BD96F727A0

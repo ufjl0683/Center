@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ds" targetNamespace="http://tempuri.org/Ds.xsd" xmlns:mstns="http://tempuri.org/Ds.xsd" xmlns="http://tempuri.org/Ds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Ds" msprop:Generator_DataSetName="Ds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblFileAttr" msprop:Generator_UserTableName="tblFileAttr" msprop:Generator_RowDeletedName="tblFileAttrRowDeleted" msprop:Generator_RowChangedName="tblFileAttrRowChanged" msprop:Generator_RowClassName="tblFileAttrRow" msprop:Generator_RowChangingName="tblFileAttrRowChanging" msprop:Generator_RowEvArgName="tblFileAttrRowChangeEvent" msprop:Generator_RowEvHandlerName="tblFileAttrRowChangeEventHandler" msprop:Generator_TableClassName="tblFileAttrDataTable" msprop:Generator_TableVarName="tabletblFileAttr" msprop:Generator_RowDeletingName="tblFileAttrRowDeleting" msprop:Generator_TablePropName="tblFileAttr">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="time" msprop:Generator_UserColumnName="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnPropNameInTable="timeColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblSecTrafficData" msprop:Generator_UserTableName="tblSecTrafficData" msprop:Generator_RowDeletedName="tblSecTrafficDataRowDeleted" msprop:Generator_RowChangedName="tblSecTrafficDataRowChanged" msprop:Generator_RowClassName="tblSecTrafficDataRow" msprop:Generator_RowChangingName="tblSecTrafficDataRowChanging" msprop:Generator_RowEvArgName="tblSecTrafficDataRowChangeEvent" msprop:Generator_RowEvHandlerName="tblSecTrafficDataRowChangeEventHandler" msprop:Generator_TableClassName="tblSecTrafficDataDataTable" msprop:Generator_TableVarName="tabletblSecTrafficData" msprop:Generator_RowDeletingName="tblSecTrafficDataRowDeleting" msprop:Generator_TablePropName="tblSecTrafficData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="freewayId" msprop:Generator_UserColumnName="freewayId" msprop:Generator_ColumnVarNameInTable="columnfreewayId" msprop:Generator_ColumnPropNameInRow="freewayId" msprop:Generator_ColumnPropNameInTable="freewayIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="expresswayId" msprop:Generator_UserColumnName="expresswayId" msprop:Generator_ColumnVarNameInTable="columnexpresswayId" msprop:Generator_ColumnPropNameInRow="expresswayId" msprop:Generator_ColumnPropNameInTable="expresswayIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="directionId" msprop:Generator_UserColumnName="directionId" msprop:Generator_ColumnVarNameInTable="columndirectionId" msprop:Generator_ColumnPropNameInRow="directionId" msprop:Generator_ColumnPropNameInTable="directionIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="from_location" msprop:Generator_UserColumnName="from_location" msprop:Generator_ColumnVarNameInTable="columnfrom_location" msprop:Generator_ColumnPropNameInRow="from_location" msprop:Generator_ColumnPropNameInTable="from_locationColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="from_milepost" msprop:Generator_UserColumnName="from_milepost" msprop:Generator_ColumnVarNameInTable="columnfrom_milepost" msprop:Generator_ColumnPropNameInRow="from_milepost" msprop:Generator_ColumnPropNameInTable="from_milepostColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="end_location" msprop:Generator_UserColumnName="end_location" msprop:Generator_ColumnVarNameInTable="columnend_location" msprop:Generator_ColumnPropNameInRow="end_location" msprop:Generator_ColumnPropNameInTable="end_locationColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="end_milepost" msprop:Generator_UserColumnName="end_milepost" msprop:Generator_ColumnVarNameInTable="columnend_milepost" msprop:Generator_ColumnPropNameInRow="end_milepost" msprop:Generator_ColumnPropNameInTable="end_milepostColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="section_upper_limit" msprop:Generator_UserColumnName="section_upper_limit" msprop:Generator_ColumnVarNameInTable="columnsection_upper_limit" msprop:Generator_ColumnPropNameInRow="section_upper_limit" msprop:Generator_ColumnPropNameInTable="section_upper_limitColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="section_lower_limit" msprop:Generator_UserColumnName="section_lower_limit" msprop:Generator_ColumnVarNameInTable="columnsection_lower_limit" msprop:Generator_ColumnPropNameInRow="section_lower_limit" msprop:Generator_ColumnPropNameInTable="section_lower_limitColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="travel_time" msprop:Generator_UserColumnName="travel_time" msprop:Generator_ColumnVarNameInTable="columntravel_time" msprop:Generator_ColumnPropNameInRow="travel_time" msprop:Generator_ColumnPropNameInTable="travel_timeColumn" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRGS_Config" msprop:Generator_UserTableName="tblRGS_Config" msprop:Generator_RowDeletedName="tblRGS_ConfigRowDeleted" msprop:Generator_RowChangedName="tblRGS_ConfigRowChanged" msprop:Generator_RowClassName="tblRGS_ConfigRow" msprop:Generator_RowChangingName="tblRGS_ConfigRowChanging" msprop:Generator_RowEvArgName="tblRGS_ConfigRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRGS_ConfigRowChangeEventHandler" msprop:Generator_TableClassName="tblRGS_ConfigDataTable" msprop:Generator_TableVarName="tabletblRGS_Config" msprop:Generator_RowDeletingName="tblRGS_ConfigRowDeleting" msprop:Generator_TablePropName="tblRGS_Config">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rgs_name" msprop:Generator_UserColumnName="rgs_name" msprop:Generator_ColumnVarNameInTable="columnrgs_name" msprop:Generator_ColumnPropNameInRow="rgs_name" msprop:Generator_ColumnPropNameInTable="rgs_nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ip" msprop:Generator_UserColumnName="ip" msprop:Generator_ColumnVarNameInTable="columnip" msprop:Generator_ColumnPropNameInRow="ip" msprop:Generator_ColumnPropNameInTable="ipColumn" type="xs:string" />
+              <xs:element name="port" msprop:Generator_UserColumnName="port" msprop:Generator_ColumnVarNameInTable="columnport" msprop:Generator_ColumnPropNameInRow="port" msprop:Generator_ColumnPropNameInTable="portColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="deviec_id" msprop:Generator_UserColumnName="deviec_id" msprop:Generator_ColumnVarNameInTable="columndeviec_id" msprop:Generator_ColumnPropNameInRow="deviec_id" msprop:Generator_ColumnPropNameInTable="deviec_idColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="display_part" msprop:Generator_UserColumnName="display_part" msprop:Generator_ColumnVarNameInTable="columndisplay_part" msprop:Generator_ColumnPropNameInRow="display_part" msprop:Generator_ColumnPropNameInTable="display_partColumn" type="xs:unsignedByte" />
+              <xs:element name="freewayId" msprop:Generator_UserColumnName="freewayId" msprop:Generator_ColumnVarNameInTable="columnfreewayId" msprop:Generator_ColumnPropNameInRow="freewayId" msprop:Generator_ColumnPropNameInTable="freewayIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="location" msprop:Generator_UserColumnName="location" msprop:Generator_ColumnVarNameInTable="columnlocation" msprop:Generator_ColumnPropNameInRow="location" msprop:Generator_ColumnPropNameInTable="locationColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="direction" msprop:Generator_UserColumnName="direction" msprop:Generator_ColumnVarNameInTable="columndirection" msprop:Generator_ColumnPropNameInRow="direction" msprop:Generator_ColumnPropNameInTable="directionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="from_milepost" msprop:Generator_UserColumnName="from_milepost" msprop:Generator_ColumnVarNameInTable="columnfrom_milepost" msprop:Generator_ColumnPropNameInRow="from_milepost" msprop:Generator_ColumnPropNameInTable="from_milepostColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="end_milepost" msprop:Generator_UserColumnName="end_milepost" msprop:Generator_ColumnVarNameInTable="columnend_milepost" msprop:Generator_ColumnPropNameInRow="end_milepost" msprop:Generator_ColumnPropNameInTable="end_milepostColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="iconid" msprop:Generator_UserColumnName="iconid" msprop:Generator_ColumnVarNameInTable="columniconid" msprop:Generator_ColumnPropNameInRow="iconid" msprop:Generator_ColumnPropNameInTable="iconidColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="msg_temp1" msprop:Generator_UserColumnName="msg_temp1" msprop:Generator_ColumnPropNameInRow="msg_temp1" msprop:Generator_ColumnVarNameInTable="columnmsg_temp1" msprop:Generator_ColumnPropNameInTable="msg_temp1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="msg_temp2" msprop:Generator_UserColumnName="msg_temp2" msprop:Generator_ColumnPropNameInRow="msg_temp2" msprop:Generator_ColumnVarNameInTable="columnmsg_temp2" msprop:Generator_ColumnPropNameInTable="msg_temp2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="message1" msprop:Generator_UserColumnName="message1" msprop:Generator_ColumnPropNameInRow="message1" msprop:Generator_ColumnVarNameInTable="columnmessage1" msprop:Generator_ColumnPropNameInTable="message1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="message2" msprop:Generator_UserColumnName="message2" msprop:Generator_ColumnPropNameInRow="message2" msprop:Generator_ColumnVarNameInTable="columnmessage2" msprop:Generator_ColumnPropNameInTable="message2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="mode" msprop:Generator_UserColumnName="mode" msprop:Generator_ColumnPropNameInRow="mode" msprop:Generator_ColumnVarNameInTable="columnmode" msprop:Generator_ColumnPropNameInTable="modeColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="ficon" msprop:Generator_UserColumnName="ficon" msprop:Generator_ColumnPropNameInRow="ficon" msprop:Generator_ColumnVarNameInTable="columnficon" msprop:Generator_ColumnPropNameInTable="ficonColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="finput1" msprop:Generator_UserColumnName="finput1" msprop:Generator_ColumnPropNameInRow="finput1" msprop:Generator_ColumnVarNameInTable="columnfinput1" msprop:Generator_ColumnPropNameInTable="finput1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="finput2" msprop:Generator_UserColumnName="finput2" msprop:Generator_ColumnPropNameInRow="finput2" msprop:Generator_ColumnVarNameInTable="columnfinput2" msprop:Generator_ColumnPropNameInTable="finput2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="traveltime" msprop:Generator_UserColumnName="traveltime" msprop:Generator_ColumnVarNameInTable="columntraveltime" msprop:Generator_ColumnPropNameInRow="traveltime" msprop:Generator_ColumnPropNameInTable="traveltimeColumn" type="xs:float" minOccurs="0" />
+              <xs:element name="lowerlimit" msprop:Generator_UserColumnName="lowerlimit" msprop:Generator_ColumnVarNameInTable="columnlowerlimit" msprop:Generator_ColumnPropNameInRow="lowerlimit" msprop:Generator_ColumnPropNameInTable="lowerlimitColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="upperlimit" msprop:Generator_UserColumnName="upperlimit" msprop:Generator_ColumnVarNameInTable="columnupperlimit" msprop:Generator_ColumnPropNameInRow="upperlimit" msprop:Generator_ColumnPropNameInTable="upperlimitColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="messageColor1" msdata:Caption="message_color1" msprop:Generator_UserColumnName="messageColor1" msprop:Generator_ColumnVarNameInTable="columnmessageColor1" msprop:Generator_ColumnPropNameInRow="messageColor1" msprop:Generator_ColumnPropNameInTable="messageColor1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="messageColor2" msprop:Generator_UserColumnName="messageColor2" msprop:Generator_ColumnVarNameInTable="columnmessageColor2" msprop:Generator_ColumnPropNameInRow="messageColor2" msprop:Generator_ColumnPropNameInTable="messageColor2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="finputColor1" msprop:Generator_UserColumnName="finputColor1" msprop:Generator_ColumnVarNameInTable="columnfinputColor1" msprop:Generator_ColumnPropNameInRow="finputColor1" msprop:Generator_ColumnPropNameInTable="finputColor1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="finputColor2" msprop:Generator_UserColumnName="finputColor2" msprop:Generator_ColumnVarNameInTable="columnfinputColor2" msprop:Generator_ColumnPropNameInRow="finputColor2" msprop:Generator_ColumnPropNameInTable="finputColor2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="curr_icon" msprop:Generator_UserColumnName="curr_icon" msprop:Generator_ColumnPropNameInRow="curr_icon" msprop:Generator_ColumnVarNameInTable="columncurr_icon" msprop:Generator_ColumnPropNameInTable="curr_iconColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="curr_msg1" msprop:Generator_UserColumnName="curr_msg1" msprop:Generator_ColumnPropNameInRow="curr_msg1" msprop:Generator_ColumnVarNameInTable="columncurr_msg1" msprop:Generator_ColumnPropNameInTable="curr_msg1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="curr_msg2" msprop:Generator_UserColumnName="curr_msg2" msprop:Generator_ColumnPropNameInRow="curr_msg2" msprop:Generator_ColumnVarNameInTable="columncurr_msg2" msprop:Generator_ColumnPropNameInTable="curr_msg2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="connected" msprop:Generator_UserColumnName="connected" msprop:Generator_ColumnPropNameInRow="connected" msprop:Generator_ColumnVarNameInTable="columnconnected" msprop:Generator_ColumnPropNameInTable="connectedColumn" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblIcons" msprop:Generator_UserTableName="tblIcons" msprop:Generator_RowDeletedName="tblIconsRowDeleted" msprop:Generator_RowChangedName="tblIconsRowChanged" msprop:Generator_RowClassName="tblIconsRow" msprop:Generator_RowChangingName="tblIconsRowChanging" msprop:Generator_RowEvArgName="tblIconsRowChangeEvent" msprop:Generator_RowEvHandlerName="tblIconsRowChangeEventHandler" msprop:Generator_TableClassName="tblIconsDataTable" msprop:Generator_TableVarName="tabletblIcons" msprop:Generator_RowDeletingName="tblIconsRowDeleting" msprop:Generator_TablePropName="tblIcons">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="iconId" msprop:Generator_UserColumnName="iconId" msprop:Generator_ColumnVarNameInTable="columniconId" msprop:Generator_ColumnPropNameInRow="iconId" msprop:Generator_ColumnPropNameInTable="iconIdColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="description" msprop:Generator_UserColumnName="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRGSMain" msprop:Generator_UserTableName="tblRGSMain" msprop:Generator_RowDeletedName="tblRGSMainRowDeleted" msprop:Generator_RowChangedName="tblRGSMainRowChanged" msprop:Generator_RowClassName="tblRGSMainRow" msprop:Generator_RowChangingName="tblRGSMainRowChanging" msprop:Generator_RowEvArgName="tblRGSMainRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRGSMainRowChangeEventHandler" msprop:Generator_TableClassName="tblRGSMainDataTable" msprop:Generator_TableVarName="tabletblRGSMain" msprop:Generator_RowDeletingName="tblRGSMainRowDeleting" msprop:Generator_TablePropName="tblRGSMain">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rgs_name" msprop:Generator_UserColumnName="rgs_name" msprop:Generator_ColumnPropNameInRow="rgs_name" msprop:Generator_ColumnVarNameInTable="columnrgs_name" msprop:Generator_ColumnPropNameInTable="rgs_nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ip" msprop:Generator_UserColumnName="ip" msprop:Generator_ColumnPropNameInRow="ip" msprop:Generator_ColumnVarNameInTable="columnip" msprop:Generator_ColumnPropNameInTable="ipColumn" type="xs:string" />
+              <xs:element name="location" msprop:Generator_UserColumnName="location" msprop:Generator_ColumnVarNameInTable="columnlocation" msprop:Generator_ColumnPropNameInRow="location" msprop:Generator_ColumnPropNameInTable="locationColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="freewayId" msprop:Generator_UserColumnName="freewayId" msprop:Generator_ColumnVarNameInTable="columnfreewayId" msprop:Generator_ColumnPropNameInRow="freewayId" msprop:Generator_ColumnPropNameInTable="freewayIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="direction" msprop:Generator_UserColumnName="direction" msprop:Generator_ColumnVarNameInTable="columndirection" msprop:Generator_ColumnPropNameInRow="direction" msprop:Generator_ColumnPropNameInTable="directionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="port" msprop:Generator_UserColumnName="port" msprop:Generator_ColumnVarNameInTable="columnport" msprop:Generator_ColumnPropNameInRow="port" msprop:Generator_ColumnPropNameInTable="portColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="deviec_id" msprop:Generator_UserColumnName="deviec_id" msprop:Generator_ColumnPropNameInRow="deviec_id" msprop:Generator_ColumnVarNameInTable="columndeviec_id" msprop:Generator_ColumnPropNameInTable="deviec_idColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="connected" msprop:Generator_UserColumnName="connected" msprop:Generator_ColumnPropNameInRow="connected" msprop:Generator_ColumnVarNameInTable="columnconnected" msprop:Generator_ColumnPropNameInTable="connectedColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="hwstatus1" msprop:Generator_UserColumnName="hwstatus1" msprop:Generator_ColumnPropNameInRow="hwstatus1" msprop:Generator_ColumnVarNameInTable="columnhwstatus1" msprop:Generator_ColumnPropNameInTable="hwstatus1Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus2" msprop:Generator_UserColumnName="hwstatus2" msprop:Generator_ColumnPropNameInRow="hwstatus2" msprop:Generator_ColumnVarNameInTable="columnhwstatus2" msprop:Generator_ColumnPropNameInTable="hwstatus2Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus3" msprop:Generator_UserColumnName="hwstatus3" msprop:Generator_ColumnPropNameInRow="hwstatus3" msprop:Generator_ColumnVarNameInTable="columnhwstatus3" msprop:Generator_ColumnPropNameInTable="hwstatus3Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus4" msprop:Generator_UserColumnName="hwstatus4" msprop:Generator_ColumnPropNameInRow="hwstatus4" msprop:Generator_ColumnVarNameInTable="columnhwstatus4" msprop:Generator_ColumnPropNameInTable="hwstatus4Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="DeviceErr" msprop:Generator_UserColumnName="DeviceErr" msprop:Generator_ColumnVarNameInTable="columnDeviceErr" msprop:Generator_ColumnPropNameInRow="DeviceErr" msprop:Generator_ColumnPropNameInTable="DeviceErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CabineteOpen" msprop:Generator_UserColumnName="CabineteOpen" msprop:Generator_ColumnVarNameInTable="columnCabineteOpen" msprop:Generator_ColumnPropNameInRow="CabineteOpen" msprop:Generator_ColumnPropNameInTable="CabineteOpenColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LED_ModuleErr" msprop:Generator_UserColumnName="LED_ModuleErr" msprop:Generator_ColumnVarNameInTable="columnLED_ModuleErr" msprop:Generator_ColumnPropNameInRow="LED_ModuleErr" msprop:Generator_ColumnPropNameInTable="LED_ModuleErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DownLinkErr" msprop:Generator_UserColumnName="DownLinkErr" msprop:Generator_ColumnVarNameInTable="columnDownLinkErr" msprop:Generator_ColumnPropNameInRow="DownLinkErr" msprop:Generator_ColumnPropNameInTable="DownLinkErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DisplayErr" msprop:Generator_UserColumnName="DisplayErr" msprop:Generator_ColumnVarNameInTable="columnDisplayErr" msprop:Generator_ColumnPropNameInRow="DisplayErr" msprop:Generator_ColumnPropNameInTable="DisplayErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UplinkErr" msprop:Generator_UserColumnName="UplinkErr" msprop:Generator_ColumnVarNameInTable="columnUplinkErr" msprop:Generator_ColumnPropNameInRow="UplinkErr" msprop:Generator_ColumnPropNameInTable="UplinkErrColumn" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRGSMode" msprop:Generator_UserTableName="tblRGSMode" msprop:Generator_RowDeletedName="tblRGSModeRowDeleted" msprop:Generator_RowChangedName="tblRGSModeRowChanged" msprop:Generator_RowClassName="tblRGSModeRow" msprop:Generator_RowChangingName="tblRGSModeRowChanging" msprop:Generator_RowEvArgName="tblRGSModeRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRGSModeRowChangeEventHandler" msprop:Generator_TableClassName="tblRGSModeDataTable" msprop:Generator_TableVarName="tabletblRGSMode" msprop:Generator_RowDeletingName="tblRGSModeRowDeleting" msprop:Generator_TablePropName="tblRGSMode">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="display" msprop:Generator_UserColumnName="display" msprop:Generator_ColumnPropNameInRow="display" msprop:Generator_ColumnVarNameInTable="columndisplay" msprop:Generator_ColumnPropNameInTable="displayColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRmsConfig" msprop:Generator_UserTableName="tblRmsConfig" msprop:Generator_RowDeletedName="tblRmsConfigRowDeleted" msprop:Generator_RowChangedName="tblRmsConfigRowChanged" msprop:Generator_RowClassName="tblRmsConfigRow" msprop:Generator_RowChangingName="tblRmsConfigRowChanging" msprop:Generator_RowEvArgName="tblRmsConfigRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRmsConfigRowChangeEventHandler" msprop:Generator_TableClassName="tblRmsConfigDataTable" msprop:Generator_TableVarName="tabletblRmsConfig" msprop:Generator_RowDeletingName="tblRmsConfigRowDeleting" msprop:Generator_TablePropName="tblRmsConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rms_name" msprop:Generator_UserColumnName="rms_name" msprop:Generator_ColumnPropNameInRow="rms_name" msprop:Generator_ColumnVarNameInTable="columnrms_name" msprop:Generator_ColumnPropNameInTable="rms_nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="intersection" msprop:Generator_UserColumnName="intersection" msprop:Generator_ColumnPropNameInRow="intersection" msprop:Generator_ColumnVarNameInTable="columnintersection" msprop:Generator_ColumnPropNameInTable="intersectionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ip" msprop:Generator_UserColumnName="ip" msprop:Generator_ColumnPropNameInRow="ip" msprop:Generator_ColumnVarNameInTable="columnip" msprop:Generator_ColumnPropNameInTable="ipColumn" type="xs:string" />
+              <xs:element name="port" msprop:Generator_UserColumnName="port" msprop:Generator_ColumnPropNameInRow="port" msprop:Generator_ColumnVarNameInTable="columnport" msprop:Generator_ColumnPropNameInTable="portColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="device_id" msprop:Generator_UserColumnName="device_id" msprop:Generator_ColumnVarNameInTable="columndevice_id" msprop:Generator_ColumnPropNameInRow="device_id" msprop:Generator_ColumnPropNameInTable="device_idColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ctl_mode" msprop:Generator_UserColumnName="ctl_mode" msprop:Generator_ColumnVarNameInTable="columnctl_mode" msprop:Generator_ColumnPropNameInRow="ctl_mode" msprop:Generator_ColumnPropNameInTable="ctl_modeColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="planno" msprop:Generator_UserColumnName="planno" msprop:Generator_ColumnVarNameInTable="columnplanno" msprop:Generator_ColumnPropNameInRow="planno" msprop:Generator_ColumnPropNameInTable="plannoColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="rmsrate" msprop:Generator_UserColumnName="rmsrate" msprop:Generator_ColumnVarNameInTable="columnrmsrate" msprop:Generator_ColumnPropNameInRow="rmsrate" msprop:Generator_ColumnPropNameInTable="rmsrateColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="vehno" msprop:Generator_UserColumnName="vehno" msprop:Generator_ColumnVarNameInTable="columnvehno" msprop:Generator_ColumnPropNameInRow="vehno" msprop:Generator_ColumnPropNameInTable="vehnoColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="ctl_mode_setting" msprop:Generator_UserColumnName="ctl_mode_setting" msprop:Generator_ColumnVarNameInTable="columnctl_mode_setting" msprop:Generator_ColumnPropNameInRow="ctl_mode_setting" msprop:Generator_ColumnPropNameInTable="ctl_mode_settingColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="rmsrate_setting" msprop:Generator_UserColumnName="rmsrate_setting" msprop:Generator_ColumnVarNameInTable="columnrmsrate_setting" msprop:Generator_ColumnPropNameInRow="rmsrate_setting" msprop:Generator_ColumnPropNameInTable="rmsrate_settingColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="vehno_setting" msprop:Generator_UserColumnName="vehno_setting" msprop:Generator_ColumnVarNameInTable="columnvehno_setting" msprop:Generator_ColumnPropNameInRow="vehno_setting" msprop:Generator_ColumnPropNameInTable="vehno_settingColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="planno_setting" msprop:Generator_UserColumnName="planno_setting" msprop:Generator_ColumnVarNameInTable="columnplanno_setting" msprop:Generator_ColumnPropNameInRow="planno_setting" msprop:Generator_ColumnPropNameInTable="planno_settingColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="connected" msprop:Generator_UserColumnName="connected" msprop:Generator_ColumnVarNameInTable="columnconnected" msprop:Generator_ColumnPropNameInRow="connected" msprop:Generator_ColumnPropNameInTable="connectedColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="hwstatus1" msprop:Generator_UserColumnName="hwstatus1" msprop:Generator_ColumnVarNameInTable="columnhwstatus1" msprop:Generator_ColumnPropNameInRow="hwstatus1" msprop:Generator_ColumnPropNameInTable="hwstatus1Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus2" msprop:Generator_UserColumnName="hwstatus2" msprop:Generator_ColumnVarNameInTable="columnhwstatus2" msprop:Generator_ColumnPropNameInRow="hwstatus2" msprop:Generator_ColumnPropNameInTable="hwstatus2Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus3" msprop:Generator_UserColumnName="hwstatus3" msprop:Generator_ColumnVarNameInTable="columnhwstatus3" msprop:Generator_ColumnPropNameInRow="hwstatus3" msprop:Generator_ColumnPropNameInTable="hwstatus3Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="hwstatus4" msprop:Generator_UserColumnName="hwstatus4" msprop:Generator_ColumnVarNameInTable="columnhwstatus4" msprop:Generator_ColumnPropNameInRow="hwstatus4" msprop:Generator_ColumnPropNameInTable="hwstatus4Column" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="DeviceErr" msprop:Generator_UserColumnName="DeviceErr" msprop:Generator_ColumnPropNameInRow="DeviceErr" msprop:Generator_ColumnVarNameInTable="columnDeviceErr" msprop:Generator_ColumnPropNameInTable="DeviceErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CabineteOpen" msprop:Generator_UserColumnName="CabineteOpen" msprop:Generator_ColumnPropNameInRow="CabineteOpen" msprop:Generator_ColumnVarNameInTable="columnCabineteOpen" msprop:Generator_ColumnPropNameInTable="CabineteOpenColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LED_ModuleErr" msprop:Generator_UserColumnName="LED_ModuleErr" msprop:Generator_ColumnPropNameInRow="LED_ModuleErr" msprop:Generator_ColumnVarNameInTable="columnLED_ModuleErr" msprop:Generator_ColumnPropNameInTable="LED_ModuleErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DownLinkErr" msprop:Generator_UserColumnName="DownLinkErr" msprop:Generator_ColumnPropNameInRow="DownLinkErr" msprop:Generator_ColumnVarNameInTable="columnDownLinkErr" msprop:Generator_ColumnPropNameInTable="DownLinkErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UplinkErr" msprop:Generator_UserColumnName="UplinkErr" msprop:Generator_ColumnPropNameInRow="UplinkErr" msprop:Generator_ColumnVarNameInTable="columnUplinkErr" msprop:Generator_ColumnPropNameInTable="UplinkErrColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DisplayErr" msprop:Generator_UserColumnName="DisplayErr" msprop:Generator_ColumnPropNameInRow="DisplayErr" msprop:Generator_ColumnVarNameInTable="columnDisplayErr" msprop:Generator_ColumnPropNameInTable="DisplayErrColumn" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRMSMode" msprop:Generator_UserTableName="tblRMSMode" msprop:Generator_RowDeletedName="tblRMSModeRowDeleted" msprop:Generator_RowChangedName="tblRMSModeRowChanged" msprop:Generator_RowClassName="tblRMSModeRow" msprop:Generator_RowChangingName="tblRMSModeRowChanging" msprop:Generator_RowEvArgName="tblRMSModeRowChangeEvent" msprop:Generator_RowEvHandlerName="tblRMSModeRowChangeEventHandler" msprop:Generator_TableClassName="tblRMSModeDataTable" msprop:Generator_TableVarName="tabletblRMSMode" msprop:Generator_RowDeletingName="tblRMSModeRowDeleting" msprop:Generator_TablePropName="tblRMSMode">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="display" msprop:Generator_UserColumnName="display" msprop:Generator_ColumnVarNameInTable="columndisplay" msprop:Generator_ColumnPropNameInRow="display" msprop:Generator_ColumnPropNameInTable="displayColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="RGS_ConfigKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblRGS_Config" />
+      <xs:field xpath="mstns:ip" />
+      <xs:field xpath="mstns:display_part" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblRGSMain" />
+      <xs:field xpath="mstns:ip" />
+    </xs:unique>
+    <xs:unique name="tblRmsConfig_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblRmsConfig" />
+      <xs:field xpath="mstns:ip" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="tblRGSMain_tblRGS_Config" msdata:parent="tblRGSMain" msdata:child="tblRGS_Config" msdata:parentkey="ip" msdata:childkey="ip" msprop:Generator_UserRelationName="tblRGSMain_tblRGS_Config" msprop:Generator_RelationVarName="relationtblRGSMain_tblRGS_Config" msprop:Generator_UserChildTable="tblRGS_Config" msprop:Generator_UserParentTable="tblRGSMain" msprop:Generator_ParentPropName="tblRGSMainRow" msprop:Generator_ChildPropName="GettblRGS_ConfigRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

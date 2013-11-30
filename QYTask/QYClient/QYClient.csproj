@@ -1,0 +1,350 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1DEA063E-1E7B-41BB-9066-A934EE294A43}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QYClient</RootNamespace>
+    <AssemblyName>QYClient</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmIcons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIcons.Designer.cs">
+      <DependentUpon>FrmIcons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCurrentSectionData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCurrentSectionData.Designer.cs">
+      <DependentUpon>FrmCurrentSectionData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRGSConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRGSConfig.Designer.cs">
+      <DependentUpon>FrmRGSConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRgsCustomInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRgsCustomInput.Designer.cs">
+      <DependentUpon>FrmRgsCustomInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRGSDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRGSDisplay.Designer.cs">
+      <DependentUpon>FrmRGSDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRGSStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRGSStatus.Designer.cs">
+      <DependentUpon>FrmRGSStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRmsConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRmsConfig.Designer.cs">
+      <DependentUpon>FrmRmsConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRmsModeSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRmsModeSetting.Designer.cs">
+      <DependentUpon>FrmRmsModeSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRmsStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRmsStatus.Designer.cs">
+      <DependentUpon>FrmRmsStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTravelTimeDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTravelTimeDetail.Designer.cs">
+      <DependentUpon>FrmTravelTimeDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmIcons.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmIcons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCurrentSectionData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmCurrentSectionData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRGSConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRGSConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRgsCustomInput.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRgsCustomInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRGSDisplay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRGSDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRGSStatus.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRGSStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRmsConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRmsConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRmsModeSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRmsModeSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRmsStatus.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRmsStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTravelTimeDetail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmTravelTimeDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RgsGenericCtl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RgsGenericCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RgsGenericCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RgsGenericCtl.Designer.cs">
+      <DependentUpon>RgsGenericCtl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Remoting\RemoteInterface\RemoteInterface.csproj">
+      <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
+      <Name>RemoteInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comm\Comm.csproj">
+      <Project>{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}</Project>
+      <Name>Comm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QYSerevr\QYServer.csproj">
+      <Project>{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}</Project>
+      <Name>QYServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon33.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon34.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon35.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon36.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon37.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon38.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon39.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon48.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon65.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon66.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon67.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon68.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon69.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon70.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon71.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon72.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon73.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon74.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon75.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon76.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon77.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon78.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon79.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon80.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon81.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon82.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon83.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon84.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon97.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon98.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon99.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon100.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon101.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon102.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon103.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon104.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon105.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon106.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon107.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon108.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon109.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon110.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon111.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon112.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon113.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon114.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon119.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon120.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

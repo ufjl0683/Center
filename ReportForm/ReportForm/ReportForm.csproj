@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0817FBB1-9E4B-42DF-A031-D22A63F44DF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReportForm</RootNamespace>
+    <AssemblyName>ReportForm</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data3, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.Data3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Tutorials, Version=1.2.10.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.Tutorials.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils3, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.Utils3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars3, Version=3.7.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraBars3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars3.Design, Version=3.7.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraBars3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.Installer, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraEditors.Installer.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors3, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraEditors3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors3.Design, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraEditors3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid3, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraGrid3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid3.Design, Version=3.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraGrid3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar3, Version=2.7.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraNavBar3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar3.Design, Version=2.7.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraNavBar3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid3, Version=1.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraPivotGrid3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid3.Design, Version=1.2.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraPivotGrid3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting3, Version=1.12.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraPrinting3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting3.Design, Version=1.12.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraPrinting3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports3, Version=1.12.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraReports3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports3.Design, Version=1.12.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraReports3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports3.Import, Version=1.12.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraReports3.Import.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler3, Version=1.1.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraScheduler3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler3.Design, Version=1.1.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraScheduler3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler3.OutlookExchange, Version=1.1.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraScheduler3.OutlookExchange.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler3.VCalendarExchange, Version=1.1.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraScheduler3.VCalendarExchange.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList3, Version=1.11.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraTreeList3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList3.Design, Version=1.11.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraTreeList3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid3, Version=1.6.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraVerticalGrid3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid3.Design, Version=1.6.1.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TCS\TCS\dll\DevExpress.XtraVerticalGrid3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2, Version=9.0.0.2, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=MSIL" />
+    <Reference Include="IBM.Data.Informix, Version=9.0.0.2, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsDBRpt.cs" />
+    <Compile Include="clsNewsPaper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="clsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CommClass\Father\CommClass.cs" />
+    <Compile Include="CommClass\Father\Handler.cs" />
+    <Compile Include="CommClass\Father\Interface.cs" />
+    <Compile Include="CommClass\Handler\HadKindHandler.cs" />
+    <Compile Include="CommClass\Handler\NonKindHandler.cs" />
+    <Compile Include="CommClass\Main\VDReportMaim.cs" />
+    <Compile Include="CommClass\Minor\HadKindMinor.cs" />
+    <Compile Include="CommClass\Minor\NonKindMinor.cs" />
+    <Compile Include="CommClass\Minor\VDReportMinor.cs" />
+    <Compile Include="CommClass\Father\MTable.cs" />
+    <Compile Include="CommClass\Handler\VDReportHandler.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="clsNewsPaper.resx">
+      <DependentUpon>clsNewsPaper.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clsReport.resx">
+      <DependentUpon>clsReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

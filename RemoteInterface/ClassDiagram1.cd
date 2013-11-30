@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="新細明體" Size="9" />
+  <Class Name="RemoteInterface.ChangeIP" Collapsed="true">
+    <Position X="12.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ClassChangeIP.cs</FileName>
+      <HashCode>AAAABAAAIAAAAAAAAAAABQAAAAAAAAQAAAAAAAIAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.EventNotifyClient" Collapsed="true">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EventNotifyClient.cs</FileName>
+      <HashCode>AAACCIBAAAAABEAAQEAAAAAEEAAEAAgAgIAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.NotifyEventObject" Collapsed="true">
+    <Position X="17.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NotifyEventClass.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.RemoteClassBase" Collapsed="true">
+    <Position X="12.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RemoteBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.RemoteBuilder" Collapsed="true">
+    <Position X="19.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RemoteBuilder.cs</FileName>
+      <HashCode>AAACEiBAAAABAAAAgAAAQAAAAAAAAAAAEMAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.RemoteException" Collapsed="true">
+    <Position X="14" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RemoteException.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.HWStatus.CMS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\CMS_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RemoteInterface.HWStatus.RGS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\RGS_HW_StausDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RemoteInterface.HWStatus.RMS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\RMS_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RemoteInterface.HWStatus.VD_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\VD_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RemoteInterface.HWStatus.WIS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\WIS_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_Generic_ICON_Data">
+    <Position X="15.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_Generic_ICON_Data.cs</FileName>
+      <HashCode>AABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_Generic_Message_Data">
+    <Position X="17.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_Generic_Message_Data.cs</FileName>
+      <HashCode>AAAAAAABAAAAAAAAggAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_Generic_Section_Data">
+    <Position X="19.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_Generic_Section_Data.cs</FileName>
+      <HashCode>AAQAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_GenericDisplay_Data">
+    <Position X="12.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_GenericDisplay_Data.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAACAgAAAAAAAAAAAQAAAAACACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_Ploygon">
+    <Position X="17.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_Ploygon.cs</FileName>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.MFCC.RGS_PolygonData">
+    <Position X="19.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RGS_PolygonData.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RemoteInterface.I_HW_Status_Desc" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>I_HW_Status_Desc.cs</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.I_ProcessManager" Collapsed="true">
+    <Position X="15.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>I_ProcessManager.cs</FileName>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.I_RGS_HW_Status_Event_Data" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NotifyEventClass.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.HC.I_HC_Comm" Collapsed="true">
+    <Position X="12.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HC\I_HC_Comm.cs</FileName>
+      <HashCode>AAAAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.HC.I_HC_FWIS" Collapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HC\I_HC_FIWS.cs</FileName>
+      <HashCode>AAAAAAQAAAAJAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_Base" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_Base.cs</FileName>
+      <HashCode>AEAAEBAAAAAAAEAAAAAAAAgAAAAAAAAIAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_CMS" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_CMS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_RGS" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_RGS.cs</FileName>
+      <HashCode>AAAABAAAAACAgAIAAAAAAAAAAAAAQAAAIAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_RMS" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_RMS.cs</FileName>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_VD" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_VD.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RemoteInterface.MFCC.I_MFCC_WIS" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\I_MFCC_WIS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RemoteInterface.EventEnumType" Collapsed="true">
+    <Position X="15.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>NotifyEventClass.cs</FileName>
+      <HashCode>AAQAAACAABAAAAAAQAAAAAABAAAiAAAAAEAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.NotifyServerPortEnum" Collapsed="true">
+    <Position X="17.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PortConstants.cs</FileName>
+      <HashCode>AIoIAAAIAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.RemotingPortEnum" Collapsed="true">
+    <Position X="19.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PortConstants.cs</FileName>
+      <HashCode>AIoIAAAIAAAAAEAAAAABAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.ConsolePortEnum" Collapsed="true">
+    <Position X="14" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PortConstants.cs</FileName>
+      <HashCode>AIoIAAAAAAAAAAAAAAABAAEAAAAACAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.HWStatus.CMS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="12.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\CMS_HW_StatusDesc.cs</FileName>
+      <HashCode>AADBAYAEAMBgQCAQAACAAFggBAAAAAgmBBAAAQOAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.HWStatus.RGS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="12.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\RGS_HW_StausDesc.cs</FileName>
+      <HashCode>AADBAYAEAMBgQCAQAACAAFggBAAAAAgmBBAAAQOAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.HWStatus.RMS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="14" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\RMS_HW_StatusDesc.cs</FileName>
+      <HashCode>ABFAAJAEAEAAcABEAICAAEAgAAAAAAEgBFAAAQCAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.HWStatus.VD_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="15.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\VD_HW_StatusDesc.cs</FileName>
+      <HashCode>AAQzCIQEEECoIDAAAAAAACEAAgAAEAYgBRAACQGAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RemoteInterface.HWStatus.WIS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="17.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>HWStatus\WIS_HW_StatusDesc.cs</FileName>
+      <HashCode>AADBAYAEAMBgQCAQAACAAFggBAAAAAgmBBAAAQOAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="RemoteInterface.NotifyEventHandler" Collapsed="true">
+    <Position X="12.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EventNotifyClient.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAIAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RemoteInterface.OnConnectEventHandler" Collapsed="true">
+    <Position X="14" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EventNotifyClient.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RemoteInterface.StopEventHandler" Collapsed="true">
+    <Position X="15.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RemoteBuilder.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QYServer", "QYSerevr\QYServer.csproj", "{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteInterface", "..\..\Remoting\RemoteInterface\RemoteInterface.csproj", "{1A247E62-83B0-4E0F-B813-F95E3485DEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QYClient", "QYClient\QYClient.csproj", "{1DEA063E-1E7B-41BB-9066-A934EE294A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2DLE", "..\V2DLE\V2DLE.csproj", "{759C6C3E-0C2A-456F-AC3C-42D8B9329566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleServer", "ConsoleServer\ConsoleServer.csproj", "{7D792BEC-1BBA-4DF2-A11E-C37BE7A38CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comm", "Comm\Comm.csproj", "{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE66708-C2D2-43CF-8294-E2CEE0E13CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A247E62-83B0-4E0F-B813-F95E3485DEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A247E62-83B0-4E0F-B813-F95E3485DEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A247E62-83B0-4E0F-B813-F95E3485DEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A247E62-83B0-4E0F-B813-F95E3485DEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DEA063E-1E7B-41BB-9066-A934EE294A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DEA063E-1E7B-41BB-9066-A934EE294A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DEA063E-1E7B-41BB-9066-A934EE294A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DEA063E-1E7B-41BB-9066-A934EE294A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759C6C3E-0C2A-456F-AC3C-42D8B9329566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759C6C3E-0C2A-456F-AC3C-42D8B9329566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759C6C3E-0C2A-456F-AC3C-42D8B9329566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759C6C3E-0C2A-456F-AC3C-42D8B9329566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D792BEC-1BBA-4DF2-A11E-C37BE7A38CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D792BEC-1BBA-4DF2-A11E-C37BE7A38CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D792BEC-1BBA-4DF2-A11E-C37BE7A38CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D792BEC-1BBA-4DF2-A11E-C37BE7A38CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

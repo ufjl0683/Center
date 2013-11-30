@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{759C6C3E-0C2A-456F-AC3C-42D8B9329566}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Comm</RootNamespace>
+    <AssemblyName>V2DLE</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CalithaLib, Version=1.13.2403.14266, Culture=neutral, PublicKeyToken=6fe80ec331a66ec8, processorArchitecture=MSIL" />
+    <Reference Include="GoldParserEngine, Version=1.13.2403.14266, Culture=neutral, PublicKeyToken=6fe80ec331a66ec8, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.Vsa" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AckPackage.cs" />
+    <Compile Include="Cmd.cs" />
+    <Compile Include="CmdItem.cs" />
+    <Compile Include="Controller\ControllerBase.cs" />
+    <Compile Include="Controller\SSHDataController.cs" />
+    <Compile Include="DataStore\DataStorage.cs" />
+    <Compile Include="SensorConfig\GPSControllerConfig.cs" />
+    <Compile Include="SensorConfig\SensorConfigBase.cs" />
+    <Compile Include="PropertyBag.cs" />
+    <Compile Include="SensorBase.cs" />
+    <Compile Include="ETTUDLE.cs" />
+    <Compile Include="ETTUDLE1.cs" />
+    <Compile Include="I_DLE.cs" />
+    <Compile Include="NakPackage.cs" />
+    <Compile Include="Protocol.cs" />
+    <Compile Include="RGS30_Extend.cs" />
+    <Compile Include="SelectValue.cs" />
+    <Compile Include="SendPackage.cs" />
+    <Compile Include="SensorConfig\ControllerConfigBase.cs" />
+    <Compile Include="SensorConfig\GPSSensorConfig.cs" />
+    <Compile Include="SensorConfig\SensorValueConfigBase.cs" />
+    <Compile Include="SensorConfig\SensoValuerRuleConfigBase.cs" />
+    <Compile Include="SensorConfig\TiltSensorConfig.cs" />
+    <Compile Include="SirfDLE.cs" />
+    <Compile Include="TestValue.cs" />
+    <Compile Include="TextPackage.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="V20Parser.cs" />
+    <Compile Include="V2DLE.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TCDLE30.cs" />
+    <Compile Include="TCDLE30AckPackage.cs" />
+    <Compile Include="TCDLE30 NakPackage.cs" />
+    <Compile Include="Controller\DeviceV2DLE.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CalithaLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GoldParserEngine.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="V20.cgt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteInterface\RemoteInterface.csproj">
+      <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
+      <Name>RemoteInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

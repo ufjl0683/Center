@@ -1,0 +1,69 @@
+[DeviceInfo]
+
+Version=3.0
+DeviceType=SVWS
+IP=192.168.22.130
+port=6013
+DeviceID=0xffff
+
+
+
+[Command]
+cmd=0x10
+description="Get Digital signal Status"
+class=C
+func_name="get_digital_signal_status"
+type=Query
+send=place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:0-255)
+return=place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:1-255)run_status(1:0-255)hw_status(1:0-1)
+test=@cmd place(1)group(3)kind(1)dir(1)
+
+[Command]
+cmd=0x10
+description=" Report Digital signal Status"
+class=N
+func_name="report_digital_signal_status"
+type=Report
+send=place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:1-255)run_status(1:0-255)hw_status(1:0-1)
+return=
+test=
+
+[Command]
+cmd=0x11
+description="Get Analogy signal Status"
+class=B
+func_name="get_analogy_signal_status"
+type=Query
+send= place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:0-255)
+return=place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:1-255)density(2:0-65535)level(1:0-4)
+test=
+
+[Command]
+cmd=0x11
+description=" Report Analogy signal Status"
+class=N
+func_name="report_analogy_signal_status"
+type=Report
+send=place(1:0-255)group(1:0-255)kind(1:0-255)dir(1:1-255)density(2:0-65535)level(1:0-4)
+return=
+test=
+
+[Command]
+cmd=0x12
+description="To Synchronize"
+class=N
+func_name="report_to_synchronize"
+type=Report
+send=
+return=year(2:0-3000) month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+test=
+[Command]
+cmd=0x13
+description="PD Signal Status Reports"
+class=N
+func_name="PD_signal_status_reports"
+type=Report
+send=place(1:0-255)no(1:0-255)group(1:0-255)kind(1:0-255)dir(1:1-255)run_status(1:0-1)hw_status(1:0-1)
+return=
+test=
+@Signature=413C61323F3475762016373E8ED1F89A88FFF98FAC97E933

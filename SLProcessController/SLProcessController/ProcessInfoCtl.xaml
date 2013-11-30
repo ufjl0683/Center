@@ -1,0 +1,133 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SLProcessController_ProcessService="clr-namespace:SLProcessController.ProcessService" xmlns:local="clr-namespace:SLProcessController" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" x:Name="userControl" x:Class="SLProcessController.ProcessInfoCtl"
+    d:DesignHeight="41" mc:Ignorable="d" d:DesignWidth="774">
+    
+	<UserControl.Resources>
+		
+		<local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+		
+		<local:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter"/>
+		
+		<SLProcessController_ProcessService:ProcessInfo IsAlive="True"  x:Key="ProcessInfoDataSource" d:IsDataSource="True"/>
+	
+	
+		<Storyboard x:Name="btnRunClick">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="path">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="path">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="btnStopClick">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="rectangle">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="rectangle">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="run" RepeatBehavior="Forever">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="path">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="360"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF19E71C"/>
+				<EasingColorKeyFrame KeyTime="0:0:2" Value="#FF16ED19"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="stop">
+			<ColorAnimation Duration="0" To="#FFED6516" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" d:IsOptimized="True"/>
+		</Storyboard>
+	
+	</UserControl.Resources>
+    
+    <StackPanel x:Name="LayoutRoot" Orientation="Horizontal" >
+    	<VisualStateManager.CustomVisualStateManager>
+    		<ei:ExtendedVisualStateManager/>
+    	</VisualStateManager.CustomVisualStateManager>
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.5">
+    					<ei:ExtendedVisualStateManager.TransitionEffect>
+    						<ee:PixelateTransitionEffect/>
+    					</ei:ExtendedVisualStateManager.TransitionEffect>
+    				</VisualTransition>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="Normal"/>
+    			<VisualState x:Name="Stop"/>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+    	<StackPanel.Projection>
+    		<PlaneProjection/>
+    	</StackPanel.Projection>
+		<Path x:Name="path"  Data="M10.1665,0 L11.417914,2.3314738 L12.430972,4.6803961 L15.034113,3.7807069 L17.355301,2.9655437 L16.517303,5.2979798 L15.63342,7.8697715 L17.787672,9.0304041 L20.333,10.125 L17.927887,11.224767 L15.63342,12.380229 L16.648611,14.839112 L17.355301,17.284456 L14.519577,16.423492 L12.430972,15.569604 L11.380605,17.984694 L10.1665,20.25 L8.9750185,17.544521 L7.9020276,15.569604 L5.3566036,16.575918 L2.977699,17.284456 L3.6892798,15.042622 L4.6995802,12.380229 L2.0306056,11.097913 L0,10.125 L2.1878107,9.0156078 L4.6995802,7.8697715 L3.7165518,4.6504831 L2.977699,2.9655437 L5.8364596,4.0301056 L7.9020276,4.6803961 L8.8647423,2.5386486 z" Fill="#FF16ED19" HorizontalAlignment="Left" Margin="0,10,0,5" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" Width="20.333" Height="20">
+    		<Path.Effect>
+    			<ee:SwirlEffect/>
+    		</Path.Effect>
+    		<ed:GeometryEffect.GeometryEffect>
+    			<ed:SketchGeometryEffect/>
+    		</ed:GeometryEffect.GeometryEffect>
+    		<Path.Projection>
+    			<PlaneProjection/>
+    		</Path.Projection>
+    		<Path.RenderTransform>
+    			<CompositeTransform/>
+    		</Path.RenderTransform>
+    	</Path>
+		<TextBlock HorizontalAlignment="Left" Margin="5,6,0,5" Width="169" Text="{Binding ProcessName}" FontSize="16" Height="30"/>
+		<TextBlock HorizontalAlignment="Left" Margin="1,6,0,5" Width="148"  Text="{Binding Mermory, StringFormat=記憶體:\{0:#\,000\,\,\}MB}"  FontSize="16" Height="30"/>
+		<TextBlock x:Name="txtDbqCnt" Margin="1,6,0,5" Width="168" TextAlignment="Right" FontSize="16"  Text="{Binding DataQueueCnt, StringFormat=DbQueue:\{0\}}" Height="30"/>
+		<TextBlock Margin="1,8,0,5" TextWrapping="Wrap" Text="/" Width="13" FontSize="16" TextAlignment="Center"/>
+		<TextBlock x:Name="txtMax" Margin="1,8,0,3" TextWrapping="Wrap" Text="TextBlock" Width="84" FontSize="16" Height="30"/>
+	<ProgressBar Width="141" Margin="0,6,0,5" Value="{Binding DataQueueCnt}" Maximum="1000"  ToolTipService.ToolTip="{Binding DataQueueCnt,StringFormat=DbQueueCnt:\{0\}}" Name="ProgressBar">
+			<ProgressBar.Foreground>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFD62C06" Offset="0"/>
+					<GradientStop Color="#FFD62C06" Offset="1"/>
+					<GradientStop Color="#FFEFEBEB" Offset="0.515"/>
+				</LinearGradientBrush>
+			</ProgressBar.Foreground>
+		</ProgressBar>
+		<Border Width="30" Margin="0,0,0,2" Cursor="Hand">
+			<Grid Margin="0,1,0,0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="0.667*"/>
+					<RowDefinition Height="0.333*"/>
+				</Grid.RowDefinitions>
+				<Rectangle x:Name="rectangle" Visibility="{Binding IsAlive, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="4,3,4,4" Fill="#FFEF0808" Grid.RowSpan="2" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" RenderTransformOrigin="0.5,0.5">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseLeftButtonDown">
+							<ei:ControlStoryboardAction Storyboard="{StaticResource btnStopClick}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<Rectangle.RenderTransform>
+						<CompositeTransform/>
+					</Rectangle.RenderTransform>
+					<Rectangle.Effect>
+						<DropShadowEffect/>
+					</Rectangle.Effect>
+				</Rectangle>
+				<Path  Data="M0.5,0.5 L26,14 L0.5,24.5 z" Fill="#FF50FF03" Margin="4.5,8,4,0" Stretch="Fill" UseLayoutRounding="False" Visibility="{Binding IsAlive, Converter={StaticResource InvertBooleanToVisibilityConverter}}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.91,-0.078" MouseLeftButtonDown="Path_MouseLeftButtonDown">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseLeftButtonDown">
+							<ei:ControlStoryboardAction Storyboard="{StaticResource btnRunClick}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<Path.RenderTransform>
+						<CompositeTransform/>
+					</Path.RenderTransform>
+					<Path.Effect>
+						<DropShadowEffect/>
+					</Path.Effect>
+				</Path>
+			</Grid>
+		</Border>
+	</StackPanel>	
+    	
+</UserControl>

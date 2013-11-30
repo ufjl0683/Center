@@ -1,0 +1,3 @@
+ rgs_name,ip,port,devideId,display_part,freewayId,location,direction,from_milepost,end_milepost,iconid,message1,message2
+RGS-TEST-232,192.168.22.232,4660,0xffff,1,1,203790,S,203790,243800,1,至雲林系統,約@分
+RGS-TEST-232,192.168.22.232,4660,0xffff,2,0,203790,S,0,0,0,,

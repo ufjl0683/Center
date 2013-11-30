@@ -1,0 +1,692 @@
+[DeviceInfo]
+
+Version=3.0
+DeviceType=CMS
+IP=192.168.22.237
+port=1003
+DeviceID=0xffff
+
+[command]
+cmd=0x00
+description= "Restart Device"
+class=A
+func_name="set_dev_restart"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x01
+description= "Get Hw Status"
+class=C
+func_name="get_HW_Status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x02
+description= "Set Date Time And Query Different"
+class=A
+func_name="set_datetime_report"
+type=Query
+send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+return=second_diff(1:0-255)
+test=@cmd year(2009) month(2) day(20) hour(12) minute(1) second(20)
+
+
+[Command]
+cmd=0x04 
+description="get date time"
+class=A
+func_name="get_date_time"
+type=Query
+send=protocol_code(1:2-2)
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+test=@cmd protocol_code(2)
+ 
+[Command]
+cmd=0x03
+description= "Set Trasmiission cycle"
+class=A
+func_name="set_transmission_cycle"
+type=Set
+send=device_type(1:18 "other")  transmission_cycle(1:0-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+return=
+test=@cmd device_type(18) transmission_cycle(0) transmit_mode(1) hwcyc(1)
+     
+ [Command]
+ cmd=0x04 
+ description="Get Trasmiission cycle"
+ class=A
+ func_name="get_transmission_cycle"
+ type=Query
+ send= protocol_code(1:3-3) device_type(1:18 "other")
+ return= hw_status_1(1:0-255)  hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3)  device_type(1:18"other")  transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+ test=@cmd  protocol_code(3) device_type(18)
+     
+
+ 
+[Command]
+cmd=0x05
+description=" set and Get Loop Test Result"
+class=A
+func_name="set_loop_test_report"
+type=Query
+send=message_length(1:1-255) {message(1:1-255)}
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
+test=@cmd message_length(1) {message(1)}
+
+[Command]
+cmd=0x06
+description=" set LC Self Test"
+class=A
+func_name="set_self_test"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x07
+description=" set Control's Manual Mode"
+class=A
+func_name="set_manual_mode"
+type=Set
+send=local_operation_flag(1:0 "allow",1 "reject" )
+return=
+test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+
+[command]
+cmd=0x07
+description=" Report Manul State or Ask Manual Control"
+class=N
+func_name="report_manual_state"
+type=Report
+send=local_operation(1:1 "ask_manual_operation",2 "end_manual_mode" )
+return=
+test=
+[Command]
+ cmd=0x04 
+ description=" get Control's Manual Mode"
+ class=A
+ func_name="get_manual_mode"
+ type=Query
+ send= protocol_code(1:7-7) 
+ return=   hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:7-7) local_operation_flag(1:0 "allow",1 "reject" )
+ test=@cmd protocol_code(7) 
+
+[Command]
+cmd=0x08
+description=" Get_Test_result"
+class=A
+func_name="get_test_result"
+type=Query
+send=protocol_code(1:0"00H",6"06H",12"0CH") 
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
+test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+
+[Command]
+cmd=0x09
+description="Set daylight seg"
+class=B
+func_name="set_daylight_seg"
+type=Set
+send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+return=
+test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
+
+[Command]
+ cmd=0x04 
+ description="get daylight seg"
+ class=A
+ func_name="get_daylight_seg"
+ type=Query
+ send= protocol_code(1:9-9) 
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+ test=@cmd protocol_code(9)
+ 
+[Command]
+cmd=0x0A
+description="Set Bright Control Mode"
+class=A
+func_name="set_bright_ctl_mode"
+type=Set
+send= bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+return=
+test=@cmd bright_ctrl_mode(1)
+
+[Command]
+ cmd=0x04 
+ description="get Bright Control Mode"
+ class=A
+ func_name="get_bright_ctl_mode"
+ type=Query
+ send=protocol_code(1:10-10) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:10-10) bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+ test=@cmd protocol_code(10) 
+
+[Command]
+cmd=0x0A
+description="Report Hw Fail"
+class=N
+func_name="report_hw_fail"
+type=Report
+send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x0B
+description=" Get Device Status"
+class=B
+func_name="get_devcie_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+test=@cmd
+
+
+[Command]
+cmd=0x0C
+description=" Reset Communication"
+class=A
+func_name="set_comm_reset"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x0E
+description=" Get FirmwareVersion and Device id"
+class=B
+func_name="get_version_device_id"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
+       description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
+       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x0F 0x00
+description=" Set Local React Control Mode"
+class=A
+func_name="set_local_react_ctl_mode"
+type=Set
+send=on_off(1:0 "start",1 "stop")
+return=
+test=@cmd on_off(0)
+
+[Command]
+cmd=0x0F 0x00
+description=" ReportLocal React Control State"
+class=N
+func_name="report_local_react_ctl_mode"
+type=Report
+send=on_off(1:0 "start",1 "stop")
+return=on_off(1:0 "start",1 "stop")
+test=
+
+[Command]
+cmd=0x0F 0x01
+description=" Set Local React Control"
+class=A
+func_name="set_local_react_ctl"
+type=Set
+send= event(1:0-255)
+return=
+test=@cmd event(0)
+
+[Command]
+cmd=0x0F 0x01
+description=" report Local React Control"
+class=N
+func_name="report_local_react_ctl"
+type=Report
+send= event(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x50
+description="set new text pattern"
+class=A
+func_name="set_new_text_pattern"
+type=Set
+send= code_id(2:0-65535)  row(1:0-255)  column(1:0-255)  pattern_cnt(0:0-65535){pattern(1:0-255)}
+return=
+test=@cmd code_id(64068) row(64) column(64) pattern_cnt(512){pattern(255)}
+
+[Command]
+cmd=0x04
+description="get new text pattern"
+class=A
+func_name="get_new_text_pattern"
+type=Query
+send= protocol_code(1:80-80) code_id(2:0-65535)  
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:80-80) code_id(2:0-65535)  row(1:0-255)  column(1:0-255)  pattern_cnt(0:0-255){pattern(1:0-255)}
+test=@cmd protocol_code(80)  code_id(64068) 
+
+[Command]
+cmd=0x51
+description="set new graph pattern"
+class=A
+func_name="set_new_graph_pattern"
+type=Set
+send=  g_code_id(1:0-255) frame_no(1:0-255) frame_id(1:0-255) g_width(2:0-65535) g_height(2:0-65535) g_desc1(1:0-255) g_desc2(1:0-255) g_desc3(1:0-255) g_desc4(1:0-255) g_desc5(1:0-255) g_desc6(1:0-255) g_desc7(1:0-255) g_desc8(1:0-255) g_desc9(1:0-255) g_desc10(1:0-255) g_desc11(1:0-255) g_desc12(1:0-255) g_desc13(1:0-255) g_desc14(1:0-255) g_desc15(1:0-255) g_desc16(1:0-255) g_desc17(1:0-255) g_desc18(1:0-255) g_desc19(1:0-255) g_desc20(1:0-255) g_desc21(1:0-255) g_desc22(1:0-255) g_desc23(1:0-255) g_desc24(1:0-255) g_desc25(1:0-255) g_desc26(1:0-255) g_desc27(1:0-255) g_desc28(1:0-255) g_desc29(1:0-255) g_desc30(1:0-255) g_desc31(1:0-255) g_desc32(1:0-255) 
+g_pattern_color1(1:0-255) g_pattern_color2(1:0-255) g_pattern_color3(1:0-255) g_pattern_color4(1:0-255) g_pattern_color5(1:0-255) g_pattern_color6(1:0-255) g_pattern_color7(1:0-255) g_pattern_color8(1:0-255) g_pattern_color9(1:0-255) g_pattern_color10(1:0-255) g_pattern_color11(1:0-255) g_pattern_color12(1:0-255) g_pattern_color13(1:0-255) g_pattern_color14(1:0-255) g_pattern_color15(1:0-255) g_pattern_color16(1:0-255) g_pattern_color17(1:0-255) g_pattern_color18(1:0-255) g_pattern_color19(1:0-255) g_pattern_color20(1:0-255) g_pattern_color21(1:0-255) g_pattern_color22(1:0-255) g_pattern_color23(1:0-255) g_pattern_color24(1:0-255) g_pattern_color25(1:0-255) g_pattern_color26(1:0-255) g_pattern_color27(1:0-255) g_pattern_color28(1:0-255) g_pattern_color29(1:0-255) g_pattern_color30(1:0-255) g_pattern_color31(1:0-255) g_pattern_color32(1:0-255) g_pattern_color33(1:0-255) g_pattern_color34(1:0-255) g_pattern_color35(1:0-255) g_pattern_color36(1:0-255) g_pattern_color37(1:0-255) g_pattern_color38(1:0-255) g_pattern_color39(1:0-255) g_pattern_color40(1:0-255) g_pattern_color41(1:0-255) g_pattern_color42(1:0-255) g_pattern_color43(1:0-255) g_pattern_color44(1:0-255) g_pattern_color45(1:0-255) g_pattern_color46(1:0-255) g_pattern_color47(1:0-255) g_pattern_color48(1:0-255) g_pattern_color49(1:0-255) g_pattern_color50(1:0-255) g_pattern_color51(1:0-255) g_pattern_color52(1:0-255) g_pattern_color53(1:0-255) g_pattern_color54(1:0-255) g_pattern_color55(1:0-255) g_pattern_color56(1:0-255) g_pattern_color57(1:0-255) g_pattern_color58(1:0-255) g_pattern_color59(1:0-255) g_pattern_color60(1:0-255) g_pattern_color61(1:0-255) g_pattern_color62(1:0-255) g_pattern_color63(1:0-255) g_pattern_color64(1:0-255) g_pattern_color65(1:0-255) g_pattern_color66(1:0-255) g_pattern_color67(1:0-255) g_pattern_color68(1:0-255) g_pattern_color69(1:0-255) g_pattern_color70(1:0-255) g_pattern_color71(1:0-255) g_pattern_color72(1:0-255) g_pattern_color73(1:0-255) g_pattern_color74(1:0-255) g_pattern_color75(1:0-255) g_pattern_color76(1:0-255) g_pattern_color77(1:0-255) g_pattern_color78(1:0-255) g_pattern_color79(1:0-255) g_pattern_color80(1:0-255) g_pattern_color81(1:0-255) g_pattern_color82(1:0-255) g_pattern_color83(1:0-255) g_pattern_color84(1:0-255) g_pattern_color85(1:0-255) g_pattern_color86(1:0-255) g_pattern_color87(1:0-255) g_pattern_color88(1:0-255) g_pattern_color89(1:0-255) g_pattern_color90(1:0-255) g_pattern_color91(1:0-255) g_pattern_color92(1:0-255) g_pattern_color93(1:0-255) g_pattern_color94(1:0-255) g_pattern_color95(1:0-255) g_pattern_color96(1:0-255) g_pattern_color97(1:0-255) g_pattern_color98(1:0-255) g_pattern_color99(1:0-255) g_pattern_color100(1:0-255) g_pattern_color101(1:0-255) g_pattern_color102(1:0-255) g_pattern_color103(1:0-255) g_pattern_color104(1:0-255) g_pattern_color105(1:0-255) g_pattern_color106(1:0-255) g_pattern_color107(1:0-255) g_pattern_color108(1:0-255) g_pattern_color109(1:0-255) g_pattern_color110(1:0-255) g_pattern_color111(1:0-255) g_pattern_color112(1:0-255) g_pattern_color113(1:0-255) g_pattern_color114(1:0-255) g_pattern_color115(1:0-255) g_pattern_color116(1:0-255) g_pattern_color117(1:0-255) g_pattern_color118(1:0-255) g_pattern_color119(1:0-255) g_pattern_color120(1:0-255) g_pattern_color121(1:0-255) g_pattern_color122(1:0-255) g_pattern_color123(1:0-255) g_pattern_color124(1:0-255) g_pattern_color125(1:0-255) g_pattern_color126(1:0-255) g_pattern_color127(1:0-255) g_pattern_color128(1:0-255) g_pattern_color129(1:0-255) g_pattern_color130(1:0-255) g_pattern_color131(1:0-255) g_pattern_color132(1:0-255) g_pattern_color133(1:0-255) g_pattern_color134(1:0-255) g_pattern_color135(1:0-255) g_pattern_color136(1:0-255) g_pattern_color137(1:0-255) g_pattern_color138(1:0-255) g_pattern_color139(1:0-255) g_pattern_color140(1:0-255) g_pattern_color141(1:0-255) g_pattern_color142(1:0-255) g_pattern_color143(1:0-255) g_pattern_color144(1:0-255) g_pattern_color145(1:0-255) g_pattern_color146(1:0-255) g_pattern_color147(1:0-255) g_pattern_color148(1:0-255) g_pattern_color149(1:0-255) g_pattern_color150(1:0-255) g_pattern_color151(1:0-255) g_pattern_color152(1:0-255) g_pattern_color153(1:0-255) g_pattern_color154(1:0-255) g_pattern_color155(1:0-255) g_pattern_color156(1:0-255) g_pattern_color157(1:0-255) g_pattern_color158(1:0-255) g_pattern_color159(1:0-255) g_pattern_color160(1:0-255) g_pattern_color161(1:0-255) g_pattern_color162(1:0-255) g_pattern_color163(1:0-255) g_pattern_color164(1:0-255) g_pattern_color165(1:0-255) g_pattern_color166(1:0-255) g_pattern_color167(1:0-255) g_pattern_color168(1:0-255) g_pattern_color169(1:0-255) g_pattern_color170(1:0-255) g_pattern_color171(1:0-255) g_pattern_color172(1:0-255) g_pattern_color173(1:0-255) g_pattern_color174(1:0-255) g_pattern_color175(1:0-255) g_pattern_color176(1:0-255) g_pattern_color177(1:0-255) g_pattern_color178(1:0-255) g_pattern_color179(1:0-255) g_pattern_color180(1:0-255) g_pattern_color181(1:0-255) g_pattern_color182(1:0-255) g_pattern_color183(1:0-255) g_pattern_color184(1:0-255) g_pattern_color185(1:0-255) g_pattern_color186(1:0-255) g_pattern_color187(1:0-255) g_pattern_color188(1:0-255) g_pattern_color189(1:0-255) g_pattern_color190(1:0-255) g_pattern_color191(1:0-255) g_pattern_color192(1:0-255) g_pattern_color193(1:0-255) g_pattern_color194(1:0-255) g_pattern_color195(1:0-255) g_pattern_color196(1:0-255) g_pattern_color197(1:0-255) g_pattern_color198(1:0-255) g_pattern_color199(1:0-255) g_pattern_color200(1:0-255) g_pattern_color201(1:0-255) g_pattern_color202(1:0-255) g_pattern_color203(1:0-255) g_pattern_color204(1:0-255) g_pattern_color205(1:0-255) g_pattern_color206(1:0-255) g_pattern_color207(1:0-255) g_pattern_color208(1:0-255) g_pattern_color209(1:0-255) g_pattern_color210(1:0-255) g_pattern_color211(1:0-255) g_pattern_color212(1:0-255) g_pattern_color213(1:0-255) g_pattern_color214(1:0-255) g_pattern_color215(1:0-255) g_pattern_color216(1:0-255) g_pattern_color217(1:0-255) g_pattern_color218(1:0-255) g_pattern_color219(1:0-255) g_pattern_color220(1:0-255) g_pattern_color221(1:0-255) g_pattern_color222(1:0-255) g_pattern_color223(1:0-255) g_pattern_color224(1:0-255) g_pattern_color225(1:0-255) g_pattern_color226(1:0-255) g_pattern_color227(1:0-255) g_pattern_color228(1:0-255) g_pattern_color229(1:0-255) g_pattern_color230(1:0-255) g_pattern_color231(1:0-255) g_pattern_color232(1:0-255) g_pattern_color233(1:0-255) g_pattern_color234(1:0-255) g_pattern_color235(1:0-255) g_pattern_color236(1:0-255) g_pattern_color237(1:0-255) g_pattern_color238(1:0-255) g_pattern_color239(1:0-255) g_pattern_color240(1:0-255) g_pattern_color241(1:0-255) g_pattern_color242(1:0-255) g_pattern_color243(1:0-255) g_pattern_color244(1:0-255) g_pattern_color245(1:0-255) g_pattern_color246(1:0-255) g_pattern_color247(1:0-255) g_pattern_color248(1:0-255) g_pattern_color249(1:0-255) g_pattern_color250(1:0-255) g_pattern_color251(1:0-255) g_pattern_color252(1:0-255) g_pattern_color253(1:0-255) g_pattern_color254(1:0-255) g_pattern_color255(1:0-255) g_pattern_color256(1:0-255) g_pattern_color257(1:0-255) g_pattern_color258(1:0-255) g_pattern_color259(1:0-255) g_pattern_color260(1:0-255) g_pattern_color261(1:0-255) g_pattern_color262(1:0-255) g_pattern_color263(1:0-255) g_pattern_color264(1:0-255) g_pattern_color265(1:0-255) g_pattern_color266(1:0-255) g_pattern_color267(1:0-255) g_pattern_color268(1:0-255) g_pattern_color269(1:0-255) g_pattern_color270(1:0-255) g_pattern_color271(1:0-255) g_pattern_color272(1:0-255) g_pattern_color273(1:0-255) g_pattern_color274(1:0-255) g_pattern_color275(1:0-255) g_pattern_color276(1:0-255) g_pattern_color277(1:0-255) g_pattern_color278(1:0-255) g_pattern_color279(1:0-255) g_pattern_color280(1:0-255) g_pattern_color281(1:0-255) g_pattern_color282(1:0-255) g_pattern_color283(1:0-255) g_pattern_color284(1:0-255) g_pattern_color285(1:0-255) g_pattern_color286(1:0-255) g_pattern_color287(1:0-255) g_pattern_color288(1:0-255) g_pattern_color289(1:0-255) g_pattern_color290(1:0-255) g_pattern_color291(1:0-255) g_pattern_color292(1:0-255) g_pattern_color293(1:0-255) g_pattern_color294(1:0-255) g_pattern_color295(1:0-255) g_pattern_color296(1:0-255) g_pattern_color297(1:0-255) g_pattern_color298(1:0-255) g_pattern_color299(1:0-255) g_pattern_color300(1:0-255) g_pattern_color301(1:0-255) g_pattern_color302(1:0-255) g_pattern_color303(1:0-255) g_pattern_color304(1:0-255) g_pattern_color305(1:0-255) g_pattern_color306(1:0-255) g_pattern_color307(1:0-255) g_pattern_color308(1:0-255) g_pattern_color309(1:0-255) g_pattern_color310(1:0-255) g_pattern_color311(1:0-255) g_pattern_color312(1:0-255) g_pattern_color313(1:0-255) g_pattern_color314(1:0-255) g_pattern_color315(1:0-255) g_pattern_color316(1:0-255) g_pattern_color317(1:0-255) g_pattern_color318(1:0-255) g_pattern_color319(1:0-255) g_pattern_color320(1:0-255) g_pattern_color321(1:0-255) g_pattern_color322(1:0-255) g_pattern_color323(1:0-255) g_pattern_color324(1:0-255) g_pattern_color325(1:0-255) g_pattern_color326(1:0-255) g_pattern_color327(1:0-255) g_pattern_color328(1:0-255) g_pattern_color329(1:0-255) g_pattern_color330(1:0-255) g_pattern_color331(1:0-255) g_pattern_color332(1:0-255) g_pattern_color333(1:0-255) g_pattern_color334(1:0-255) g_pattern_color335(1:0-255) g_pattern_color336(1:0-255) g_pattern_color337(1:0-255) g_pattern_color338(1:0-255) g_pattern_color339(1:0-255) g_pattern_color340(1:0-255) g_pattern_color341(1:0-255) g_pattern_color342(1:0-255) g_pattern_color343(1:0-255) g_pattern_color344(1:0-255) g_pattern_color345(1:0-255) g_pattern_color346(1:0-255) g_pattern_color347(1:0-255) g_pattern_color348(1:0-255) g_pattern_color349(1:0-255) g_pattern_color350(1:0-255) g_pattern_color351(1:0-255) g_pattern_color352(1:0-255) g_pattern_color353(1:0-255) g_pattern_color354(1:0-255) g_pattern_color355(1:0-255) g_pattern_color356(1:0-255) g_pattern_color357(1:0-255) g_pattern_color358(1:0-255) g_pattern_color359(1:0-255) g_pattern_color360(1:0-255) g_pattern_color361(1:0-255) g_pattern_color362(1:0-255) g_pattern_color363(1:0-255) g_pattern_color364(1:0-255) g_pattern_color365(1:0-255) g_pattern_color366(1:0-255) g_pattern_color367(1:0-255) g_pattern_color368(1:0-255) g_pattern_color369(1:0-255) g_pattern_color370(1:0-255) g_pattern_color371(1:0-255) g_pattern_color372(1:0-255) g_pattern_color373(1:0-255) g_pattern_color374(1:0-255) g_pattern_color375(1:0-255) g_pattern_color376(1:0-255) g_pattern_color377(1:0-255) g_pattern_color378(1:0-255) g_pattern_color379(1:0-255) g_pattern_color380(1:0-255) g_pattern_color381(1:0-255) g_pattern_color382(1:0-255) g_pattern_color383(1:0-255) g_pattern_color384(1:0-255) g_pattern_color385(1:0-255) g_pattern_color386(1:0-255) g_pattern_color387(1:0-255) g_pattern_color388(1:0-255) g_pattern_color389(1:0-255) g_pattern_color390(1:0-255) g_pattern_color391(1:0-255) g_pattern_color392(1:0-255) g_pattern_color393(1:0-255) g_pattern_color394(1:0-255) g_pattern_color395(1:0-255) g_pattern_color396(1:0-255) g_pattern_color397(1:0-255) g_pattern_color398(1:0-255) g_pattern_color399(1:0-255) g_pattern_color400(1:0-255) g_pattern_color401(1:0-255) g_pattern_color402(1:0-255) g_pattern_color403(1:0-255) g_pattern_color404(1:0-255) g_pattern_color405(1:0-255) g_pattern_color406(1:0-255) g_pattern_color407(1:0-255) g_pattern_color408(1:0-255) g_pattern_color409(1:0-255) g_pattern_color410(1:0-255) g_pattern_color411(1:0-255) g_pattern_color412(1:0-255) g_pattern_color413(1:0-255) g_pattern_color414(1:0-255) g_pattern_color415(1:0-255) g_pattern_color416(1:0-255) g_pattern_color417(1:0-255) g_pattern_color418(1:0-255) g_pattern_color419(1:0-255) g_pattern_color420(1:0-255) g_pattern_color421(1:0-255) g_pattern_color422(1:0-255) g_pattern_color423(1:0-255) g_pattern_color424(1:0-255) g_pattern_color425(1:0-255) g_pattern_color426(1:0-255) g_pattern_color427(1:0-255) g_pattern_color428(1:0-255) g_pattern_color429(1:0-255) g_pattern_color430(1:0-255) g_pattern_color431(1:0-255) g_pattern_color432(1:0-255) g_pattern_color433(1:0-255) g_pattern_color434(1:0-255) g_pattern_color435(1:0-255) g_pattern_color436(1:0-255) g_pattern_color437(1:0-255) g_pattern_color438(1:0-255) g_pattern_color439(1:0-255) g_pattern_color440(1:0-255) g_pattern_color441(1:0-255) g_pattern_color442(1:0-255) g_pattern_color443(1:0-255) g_pattern_color444(1:0-255) g_pattern_color445(1:0-255) g_pattern_color446(1:0-255) g_pattern_color447(1:0-255) g_pattern_color448(1:0-255) g_pattern_color449(1:0-255) g_pattern_color450(1:0-255) g_pattern_color451(1:0-255) g_pattern_color452(1:0-255) g_pattern_color453(1:0-255) g_pattern_color454(1:0-255) g_pattern_color455(1:0-255) g_pattern_color456(1:0-255) g_pattern_color457(1:0-255) g_pattern_color458(1:0-255) g_pattern_color459(1:0-255) g_pattern_color460(1:0-255) g_pattern_color461(1:0-255) g_pattern_color462(1:0-255) g_pattern_color463(1:0-255) g_pattern_color464(1:0-255) g_pattern_color465(1:0-255) g_pattern_color466(1:0-255) g_pattern_color467(1:0-255) g_pattern_color468(1:0-255) g_pattern_color469(1:0-255) g_pattern_color470(1:0-255) g_pattern_color471(1:0-255) g_pattern_color472(1:0-255) g_pattern_color473(1:0-255) g_pattern_color474(1:0-255) g_pattern_color475(1:0-255) g_pattern_color476(1:0-255) g_pattern_color477(1:0-255) g_pattern_color478(1:0-255) g_pattern_color479(1:0-255) g_pattern_color480(1:0-255) g_pattern_color481(1:0-255) g_pattern_color482(1:0-255) g_pattern_color483(1:0-255) g_pattern_color484(1:0-255) g_pattern_color485(1:0-255) g_pattern_color486(1:0-255) g_pattern_color487(1:0-255) g_pattern_color488(1:0-255) g_pattern_color489(1:0-255) g_pattern_color490(1:0-255) g_pattern_color491(1:0-255) g_pattern_color492(1:0-255) g_pattern_color493(1:0-255) g_pattern_color494(1:0-255) g_pattern_color495(1:0-255) g_pattern_color496(1:0-255) g_pattern_color497(1:0-255) g_pattern_color498(1:0-255) g_pattern_color499(1:0-255) g_pattern_color500(1:0-255) g_pattern_color501(1:0-255) g_pattern_color502(1:0-255) g_pattern_color503(1:0-255) g_pattern_color504(1:0-255) g_pattern_color505(1:0-255) g_pattern_color506(1:0-255) g_pattern_color507(1:0-255) g_pattern_color508(1:0-255) g_pattern_color509(1:0-255) g_pattern_color510(1:0-255) g_pattern_color511(1:0-255) g_pattern_color512(1:0-255) 
+return=
+test=@cmd g_code_id(31) frame_no(0) frame_id(0) g_width(64) g_height(32) 
+     g_desc1(32) g_desc2(5) g_desc3(155) g_desc4(15) g_desc5(155) 
+     g_desc6(55) g_desc7(5) g_desc8(155) g_desc9(15) g_desc10(120) 
+     g_desc11(10) g_desc12(255) g_desc13(15) g_desc14(105) g_desc15(15) 
+     g_desc16(10) g_desc17(255) g_desc18(15) g_desc19(105) g_desc20(15) 
+     g_desc21(10) g_desc22(255) g_desc23(15) g_desc24(105) g_desc25(15) 
+     g_desc26(10) g_desc27(255) g_desc28(15) g_desc29(105) g_desc30(15) 
+     g_desc31(10) g_desc32(255) 
+     g_pattern_color1(155) g_pattern_color2(15) g_pattern_color3(55) g_pattern_color4(125) g_pattern_color5(15) 
+     g_pattern_color6(155) g_pattern_color7(15) g_pattern_color8(55) g_pattern_color9(125) g_pattern_color10(10) 
+     g_pattern_color11(1) g_pattern_color12(1) g_pattern_color13(15) g_pattern_color14(15) g_pattern_color15(15) 
+     g_pattern_color16(1) g_pattern_color17(1) g_pattern_color18(15) g_pattern_color19(15) g_pattern_color20(15) 
+     g_pattern_color21(1) g_pattern_color22(1) g_pattern_color23(15) g_pattern_color24(15) g_pattern_color25(15) 
+     g_pattern_color26(1) g_pattern_color27(1) g_pattern_color28(15) g_pattern_color29(15) g_pattern_color30(15) 
+     g_pattern_color31(1) g_pattern_color32(1) g_pattern_color33(15) g_pattern_color34(15) g_pattern_color35(15) 
+     g_pattern_color36(1) g_pattern_color37(1) g_pattern_color38(15) g_pattern_color39(15) g_pattern_color40(15) 
+     g_pattern_color41(1) g_pattern_color42(1) g_pattern_color43(15) g_pattern_color44(15) g_pattern_color45(15) 
+     g_pattern_color46(1) g_pattern_color47(1) g_pattern_color48(15) g_pattern_color49(15) g_pattern_color50(15) 
+     g_pattern_color51(1) g_pattern_color52(1) g_pattern_color53(15) g_pattern_color54(15) g_pattern_color55(15) 
+     g_pattern_color56(1) g_pattern_color57(1) g_pattern_color58(15) g_pattern_color59(15) g_pattern_color60(15) 
+     g_pattern_color61(1) g_pattern_color62(1) g_pattern_color63(15) g_pattern_color64(15) g_pattern_color65(15) 
+     g_pattern_color66(1) g_pattern_color67(1) g_pattern_color68(15) g_pattern_color69(15) g_pattern_color70(15) 
+     g_pattern_color71(1) g_pattern_color72(1) g_pattern_color73(15) g_pattern_color74(15) g_pattern_color75(15) 
+     g_pattern_color76(1) g_pattern_color77(1) g_pattern_color78(15) g_pattern_color79(15) g_pattern_color80(15) 
+     g_pattern_color81(1) g_pattern_color82(1) g_pattern_color83(15) g_pattern_color84(15) g_pattern_color85(15) 
+     g_pattern_color86(1) g_pattern_color87(1) g_pattern_color88(15) g_pattern_color89(15) g_pattern_color90(15) 
+     g_pattern_color91(1) g_pattern_color92(1) g_pattern_color93(15) g_pattern_color94(15) g_pattern_color95(15) 
+     g_pattern_color96(1) g_pattern_color97(1) g_pattern_color98(10) g_pattern_color99(12) g_pattern_color100(125) 
+     g_pattern_color101(15) g_pattern_color102(15) g_pattern_color103(15) g_pattern_color104(15) g_pattern_color105(15) 
+     g_pattern_color106(15) g_pattern_color107(15) g_pattern_color108(15) g_pattern_color109(15) g_pattern_color110(15) 
+     g_pattern_color111(15) g_pattern_color112(15) g_pattern_color113(15) g_pattern_color114(15) g_pattern_color115(15) 
+     g_pattern_color116(15) g_pattern_color117(15) g_pattern_color118(15) g_pattern_color119(15) g_pattern_color120(15) 
+     g_pattern_color121(15) g_pattern_color122(15) g_pattern_color123(15) g_pattern_color124(15) g_pattern_color125(15) 
+     g_pattern_color126(15) g_pattern_color127(15) g_pattern_color128(15) g_pattern_color129(15) g_pattern_color130(15) 
+     g_pattern_color131(15) g_pattern_color132(15) g_pattern_color133(15) g_pattern_color134(15) g_pattern_color135(15) 
+     g_pattern_color136(15) g_pattern_color137(15) g_pattern_color138(15) g_pattern_color139(15) g_pattern_color140(15) 
+     g_pattern_color141(15) g_pattern_color142(15) g_pattern_color143(15) g_pattern_color144(15) g_pattern_color145(15) 
+     g_pattern_color146(15) g_pattern_color147(15) g_pattern_color148(15) g_pattern_color149(15) g_pattern_color150(15) 
+     g_pattern_color151(15) g_pattern_color152(15) g_pattern_color153(15) g_pattern_color154(15) g_pattern_color155(15) 
+     g_pattern_color156(15) g_pattern_color157(15) g_pattern_color158(15) g_pattern_color159(15) g_pattern_color160(15) 
+     g_pattern_color161(15) g_pattern_color162(15) g_pattern_color163(15) g_pattern_color164(15) g_pattern_color165(15) 
+     g_pattern_color166(15) g_pattern_color167(15) g_pattern_color168(15) g_pattern_color169(15) g_pattern_color170(15) 
+     g_pattern_color171(15) g_pattern_color172(15) g_pattern_color173(15) g_pattern_color174(15) g_pattern_color175(15) 
+     g_pattern_color176(15) g_pattern_color177(15) g_pattern_color178(15) g_pattern_color179(15) g_pattern_color180(15) 
+     g_pattern_color181(15) g_pattern_color182(15) g_pattern_color183(15) g_pattern_color184(15) g_pattern_color185(15) 
+     g_pattern_color186(15) g_pattern_color187(15) g_pattern_color188(15) g_pattern_color189(15) g_pattern_color190(15) 
+     g_pattern_color191(15) g_pattern_color192(15) g_pattern_color193(15) g_pattern_color194(15) g_pattern_color195(15) 
+     g_pattern_color196(15) g_pattern_color197(15) g_pattern_color198(15) g_pattern_color199(15) g_pattern_color200(15) 
+     g_pattern_color201(15) g_pattern_color202(15) g_pattern_color203(15) g_pattern_color204(15) g_pattern_color205(15) 
+     g_pattern_color206(15) g_pattern_color207(15) g_pattern_color208(15) g_pattern_color209(15) g_pattern_color210(15) 
+     g_pattern_color211(15) g_pattern_color212(15) g_pattern_color213(15) g_pattern_color214(15) g_pattern_color215(15) 
+     g_pattern_color216(15) g_pattern_color217(15) g_pattern_color218(15) g_pattern_color219(15) g_pattern_color220(15) 
+     g_pattern_color221(15) g_pattern_color222(15) g_pattern_color223(15) g_pattern_color224(15) g_pattern_color225(15) 
+     g_pattern_color226(15) g_pattern_color227(15) g_pattern_color228(15) g_pattern_color229(15) g_pattern_color230(15) 
+     g_pattern_color231(15) g_pattern_color232(15) g_pattern_color233(15) g_pattern_color234(15) g_pattern_color235(15) 
+     g_pattern_color236(15) g_pattern_color237(15) g_pattern_color238(15) g_pattern_color239(15) g_pattern_color240(15) 
+     g_pattern_color241(15) g_pattern_color242(15) g_pattern_color243(15) g_pattern_color244(15) g_pattern_color245(15) 
+     g_pattern_color246(15) g_pattern_color247(15) g_pattern_color248(15) g_pattern_color249(15) g_pattern_color250(15) 
+     g_pattern_color251(15) g_pattern_color252(15) g_pattern_color253(15) g_pattern_color254(15) g_pattern_color255(15) 
+     g_pattern_color256(15) g_pattern_color257(15) g_pattern_color258(15) g_pattern_color259(15) g_pattern_color260(15) 
+     g_pattern_color261(15) g_pattern_color262(15) g_pattern_color263(15) g_pattern_color264(15) g_pattern_color265(15) 
+     g_pattern_color266(15) g_pattern_color267(15) g_pattern_color268(15) g_pattern_color269(15) g_pattern_color270(15) 
+     g_pattern_color271(15) g_pattern_color272(15) g_pattern_color273(15) g_pattern_color274(15) g_pattern_color275(15) 
+     g_pattern_color276(15) g_pattern_color277(15) g_pattern_color278(15) g_pattern_color279(15) g_pattern_color280(15) 
+     g_pattern_color281(15) g_pattern_color282(15) g_pattern_color283(15) g_pattern_color284(15) g_pattern_color285(15) 
+     g_pattern_color286(15) g_pattern_color287(15) g_pattern_color288(15) g_pattern_color289(15) g_pattern_color290(15) 
+     g_pattern_color291(15) g_pattern_color292(15) g_pattern_color293(15) g_pattern_color294(15) g_pattern_color295(15) 
+     g_pattern_color296(15) g_pattern_color297(15) g_pattern_color298(15) g_pattern_color299(15) g_pattern_color300(15) 
+     g_pattern_color301(15) g_pattern_color302(15) g_pattern_color303(15) g_pattern_color304(15) g_pattern_color305(15) 
+     g_pattern_color306(15) g_pattern_color307(15) g_pattern_color308(15) g_pattern_color309(15) g_pattern_color310(15) 
+     g_pattern_color311(15) g_pattern_color312(15) g_pattern_color313(15) g_pattern_color314(15) g_pattern_color315(15) 
+     g_pattern_color316(15) g_pattern_color317(15) g_pattern_color318(15) g_pattern_color319(15) g_pattern_color320(15) 
+     g_pattern_color321(15) g_pattern_color322(15) g_pattern_color323(15) g_pattern_color324(15) g_pattern_color325(15) 
+     g_pattern_color326(15) g_pattern_color327(15) g_pattern_color328(15) g_pattern_color329(15) g_pattern_color330(15) 
+     g_pattern_color331(15) g_pattern_color332(15) g_pattern_color333(15) g_pattern_color334(15) g_pattern_color335(15) 
+     g_pattern_color336(15) g_pattern_color337(15) g_pattern_color338(15) g_pattern_color339(15) g_pattern_color340(15) 
+     g_pattern_color341(15) g_pattern_color342(15) g_pattern_color343(15) g_pattern_color344(15) g_pattern_color345(15) 
+     g_pattern_color346(15) g_pattern_color347(15) g_pattern_color348(15) g_pattern_color349(15) g_pattern_color350(15) 
+     g_pattern_color351(15) g_pattern_color352(15) g_pattern_color353(15) g_pattern_color354(15) g_pattern_color355(15) 
+     g_pattern_color356(15) g_pattern_color357(15) g_pattern_color358(15) g_pattern_color359(15) g_pattern_color360(15) 
+     g_pattern_color361(15) g_pattern_color362(15) g_pattern_color363(15) g_pattern_color364(15) g_pattern_color365(15) 
+     g_pattern_color366(15) g_pattern_color367(15) g_pattern_color368(15) g_pattern_color369(15) g_pattern_color370(15) 
+     g_pattern_color371(15) g_pattern_color372(15) g_pattern_color373(15) g_pattern_color374(15) g_pattern_color375(15) 
+     g_pattern_color376(15) g_pattern_color377(15) g_pattern_color378(15) g_pattern_color379(15) g_pattern_color380(15) 
+     g_pattern_color381(15) g_pattern_color382(15) g_pattern_color383(15) g_pattern_color384(15) g_pattern_color385(15) 
+     g_pattern_color386(15) g_pattern_color387(15) g_pattern_color388(15) g_pattern_color389(15) g_pattern_color390(15) 
+     g_pattern_color391(15) g_pattern_color392(15) g_pattern_color393(15) g_pattern_color394(15) g_pattern_color395(15) 
+     g_pattern_color396(15) g_pattern_color397(15) g_pattern_color398(15) g_pattern_color399(15) g_pattern_color400(15) 
+     g_pattern_color401(15) g_pattern_color402(15) g_pattern_color403(15) g_pattern_color404(15) g_pattern_color405(15) 
+     g_pattern_color406(15) g_pattern_color407(15) g_pattern_color408(15) g_pattern_color409(15) g_pattern_color410(15) 
+     g_pattern_color411(15) g_pattern_color412(15) g_pattern_color413(15) g_pattern_color414(15) g_pattern_color415(15) 
+     g_pattern_color416(15) g_pattern_color417(15) g_pattern_color418(15) g_pattern_color419(15) g_pattern_color420(15) 
+     g_pattern_color421(15) g_pattern_color422(15) g_pattern_color423(15) g_pattern_color424(15) g_pattern_color425(15) 
+     g_pattern_color426(15) g_pattern_color427(15) g_pattern_color428(15) g_pattern_color429(15) g_pattern_color430(15) 
+     g_pattern_color431(15) g_pattern_color432(15) g_pattern_color433(15) g_pattern_color434(15) g_pattern_color435(15) 
+     g_pattern_color436(15) g_pattern_color437(15) g_pattern_color438(15) g_pattern_color439(15) g_pattern_color440(15) 
+     g_pattern_color441(15) g_pattern_color442(15) g_pattern_color443(15) g_pattern_color444(15) g_pattern_color445(15) 
+     g_pattern_color446(15) g_pattern_color447(15) g_pattern_color448(15) g_pattern_color449(15) g_pattern_color450(15) 
+     g_pattern_color451(15) g_pattern_color452(15) g_pattern_color453(15) g_pattern_color454(15) g_pattern_color455(15) 
+     g_pattern_color456(15) g_pattern_color457(15) g_pattern_color458(15) g_pattern_color459(15) g_pattern_color460(15) 
+     g_pattern_color461(15) g_pattern_color462(15) g_pattern_color463(15) g_pattern_color464(15) g_pattern_color465(15) 
+     g_pattern_color466(15) g_pattern_color467(15) g_pattern_color468(15) g_pattern_color469(15) g_pattern_color470(15) 
+     g_pattern_color471(15) g_pattern_color472(15) g_pattern_color473(15) g_pattern_color474(15) g_pattern_color475(15) 
+     g_pattern_color476(15) g_pattern_color477(15) g_pattern_color478(15) g_pattern_color479(15) g_pattern_color480(15) 
+     g_pattern_color481(15) g_pattern_color482(15) g_pattern_color483(15) g_pattern_color484(15) g_pattern_color485(15) 
+     g_pattern_color486(15) g_pattern_color487(15) g_pattern_color488(15) g_pattern_color489(15) g_pattern_color490(15) 
+     g_pattern_color491(15) g_pattern_color492(15) g_pattern_color493(15) g_pattern_color494(15) g_pattern_color495(15) 
+     g_pattern_color496(15) g_pattern_color497(15) g_pattern_color498(15) g_pattern_color499(15) g_pattern_color500(15) 
+     g_pattern_color501(15) g_pattern_color502(15) g_pattern_color503(15) g_pattern_color504(15) g_pattern_color505(15) 
+     g_pattern_color506(15) g_pattern_color507(15) g_pattern_color508(15) g_pattern_color509(15) g_pattern_color510(15) 
+     g_pattern_color511(15) g_pattern_color512(15) 
+
+[Command]
+cmd=0x04
+description="get new graph pattern"
+class=A
+func_name="get_new_graph_pattern"
+type=Query
+send= protocol_code(1:81-81) g_code_id(1:0-255)  frame_no(1:0-255) frame_id(1:0-255)
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  
+        protocol_length(2:0-65530) protocol_code(1:81-81) 
+        g_code_id(1:0-255)  frame_no(1:0-255) frame_id(1:1-255) 
+        g_width(2:0-65535) g_height(2:0-65535) g_desc1(1:0-255) g_desc2(1:0-255) g_desc3(1:0-255) g_desc4(1:0-255) g_desc5(1:0-255) g_desc6(1:0-255) g_desc7(1:0-255) g_desc8(1:0-255) g_desc9(1:0-255) g_desc10(1:0-255) g_desc11(1:0-255) g_desc12(1:0-255) g_desc13(1:0-255) g_desc14(1:0-255) g_desc15(1:0-255) g_desc16(1:0-255) g_desc17(1:0-255) g_desc18(1:0-255) g_desc19(1:0-255) g_desc20(1:0-255) g_desc21(1:0-255) g_desc22(1:0-255) g_desc23(1:0-255) g_desc24(1:0-255) g_desc25(1:0-255) g_desc26(1:0-255) g_desc27(1:0-255) g_desc28(1:0-255) g_desc29(1:0-255) g_desc30(1:0-255) g_desc31(1:0-255) g_desc32(1:0-255) 
+        g_pattern_color1(1:0-255) g_pattern_color2(1:0-255) g_pattern_color3(1:0-255) g_pattern_color4(1:0-255) g_pattern_color5(1:0-255) g_pattern_color6(1:0-255) g_pattern_color7(1:0-255) g_pattern_color8(1:0-255) g_pattern_color9(1:0-255) g_pattern_color10(1:0-255) g_pattern_color11(1:0-255) g_pattern_color12(1:0-255) g_pattern_color13(1:0-255) g_pattern_color14(1:0-255) g_pattern_color15(1:0-255) g_pattern_color16(1:0-255) g_pattern_color17(1:0-255) g_pattern_color18(1:0-255) g_pattern_color19(1:0-255) g_pattern_color20(1:0-255) g_pattern_color21(1:0-255) g_pattern_color22(1:0-255) g_pattern_color23(1:0-255) g_pattern_color24(1:0-255) g_pattern_color25(1:0-255) g_pattern_color26(1:0-255) g_pattern_color27(1:0-255) g_pattern_color28(1:0-255) g_pattern_color29(1:0-255) g_pattern_color30(1:0-255) g_pattern_color31(1:0-255) g_pattern_color32(1:0-255) g_pattern_color33(1:0-255) g_pattern_color34(1:0-255) g_pattern_color35(1:0-255) g_pattern_color36(1:0-255) g_pattern_color37(1:0-255) g_pattern_color38(1:0-255) g_pattern_color39(1:0-255) g_pattern_color40(1:0-255) g_pattern_color41(1:0-255) g_pattern_color42(1:0-255) g_pattern_color43(1:0-255) g_pattern_color44(1:0-255) g_pattern_color45(1:0-255) g_pattern_color46(1:0-255) g_pattern_color47(1:0-255) g_pattern_color48(1:0-255) g_pattern_color49(1:0-255) g_pattern_color50(1:0-255) g_pattern_color51(1:0-255) g_pattern_color52(1:0-255) g_pattern_color53(1:0-255) g_pattern_color54(1:0-255) g_pattern_color55(1:0-255) g_pattern_color56(1:0-255) g_pattern_color57(1:0-255) g_pattern_color58(1:0-255) g_pattern_color59(1:0-255) g_pattern_color60(1:0-255) g_pattern_color61(1:0-255) g_pattern_color62(1:0-255) g_pattern_color63(1:0-255) g_pattern_color64(1:0-255) g_pattern_color65(1:0-255) g_pattern_color66(1:0-255) g_pattern_color67(1:0-255) g_pattern_color68(1:0-255) g_pattern_color69(1:0-255) g_pattern_color70(1:0-255) g_pattern_color71(1:0-255) g_pattern_color72(1:0-255) g_pattern_color73(1:0-255) g_pattern_color74(1:0-255) g_pattern_color75(1:0-255) g_pattern_color76(1:0-255) g_pattern_color77(1:0-255) g_pattern_color78(1:0-255) g_pattern_color79(1:0-255) g_pattern_color80(1:0-255) g_pattern_color81(1:0-255) g_pattern_color82(1:0-255) g_pattern_color83(1:0-255) g_pattern_color84(1:0-255) g_pattern_color85(1:0-255) g_pattern_color86(1:0-255) g_pattern_color87(1:0-255) g_pattern_color88(1:0-255) g_pattern_color89(1:0-255) g_pattern_color90(1:0-255) g_pattern_color91(1:0-255) g_pattern_color92(1:0-255) g_pattern_color93(1:0-255) g_pattern_color94(1:0-255) g_pattern_color95(1:0-255) g_pattern_color96(1:0-255) g_pattern_color97(1:0-255) g_pattern_color98(1:0-255) g_pattern_color99(1:0-255) g_pattern_color100(1:0-255) g_pattern_color101(1:0-255) g_pattern_color102(1:0-255) g_pattern_color103(1:0-255) g_pattern_color104(1:0-255) g_pattern_color105(1:0-255) g_pattern_color106(1:0-255) g_pattern_color107(1:0-255) g_pattern_color108(1:0-255) g_pattern_color109(1:0-255) g_pattern_color110(1:0-255) g_pattern_color111(1:0-255) g_pattern_color112(1:0-255) g_pattern_color113(1:0-255) g_pattern_color114(1:0-255) g_pattern_color115(1:0-255) g_pattern_color116(1:0-255) g_pattern_color117(1:0-255) g_pattern_color118(1:0-255) g_pattern_color119(1:0-255) g_pattern_color120(1:0-255) g_pattern_color121(1:0-255) g_pattern_color122(1:0-255) g_pattern_color123(1:0-255) g_pattern_color124(1:0-255) g_pattern_color125(1:0-255) g_pattern_color126(1:0-255) g_pattern_color127(1:0-255) g_pattern_color128(1:0-255) g_pattern_color129(1:0-255) g_pattern_color130(1:0-255) g_pattern_color131(1:0-255) g_pattern_color132(1:0-255) g_pattern_color133(1:0-255) g_pattern_color134(1:0-255) g_pattern_color135(1:0-255) g_pattern_color136(1:0-255) g_pattern_color137(1:0-255) g_pattern_color138(1:0-255) g_pattern_color139(1:0-255) g_pattern_color140(1:0-255) g_pattern_color141(1:0-255) g_pattern_color142(1:0-255) g_pattern_color143(1:0-255) g_pattern_color144(1:0-255) g_pattern_color145(1:0-255) g_pattern_color146(1:0-255) g_pattern_color147(1:0-255) g_pattern_color148(1:0-255) g_pattern_color149(1:0-255) g_pattern_color150(1:0-255) g_pattern_color151(1:0-255) g_pattern_color152(1:0-255) g_pattern_color153(1:0-255) g_pattern_color154(1:0-255) g_pattern_color155(1:0-255) g_pattern_color156(1:0-255) g_pattern_color157(1:0-255) g_pattern_color158(1:0-255) g_pattern_color159(1:0-255) g_pattern_color160(1:0-255) g_pattern_color161(1:0-255) g_pattern_color162(1:0-255) g_pattern_color163(1:0-255) g_pattern_color164(1:0-255) g_pattern_color165(1:0-255) g_pattern_color166(1:0-255) g_pattern_color167(1:0-255) g_pattern_color168(1:0-255) g_pattern_color169(1:0-255) g_pattern_color170(1:0-255) g_pattern_color171(1:0-255) g_pattern_color172(1:0-255) g_pattern_color173(1:0-255) g_pattern_color174(1:0-255) g_pattern_color175(1:0-255) g_pattern_color176(1:0-255) g_pattern_color177(1:0-255) g_pattern_color178(1:0-255) g_pattern_color179(1:0-255) g_pattern_color180(1:0-255) g_pattern_color181(1:0-255) g_pattern_color182(1:0-255) g_pattern_color183(1:0-255) g_pattern_color184(1:0-255) g_pattern_color185(1:0-255) g_pattern_color186(1:0-255) g_pattern_color187(1:0-255) g_pattern_color188(1:0-255) g_pattern_color189(1:0-255) g_pattern_color190(1:0-255) g_pattern_color191(1:0-255) g_pattern_color192(1:0-255) g_pattern_color193(1:0-255) g_pattern_color194(1:0-255) g_pattern_color195(1:0-255) g_pattern_color196(1:0-255) g_pattern_color197(1:0-255) g_pattern_color198(1:0-255) g_pattern_color199(1:0-255) g_pattern_color200(1:0-255) g_pattern_color201(1:0-255) g_pattern_color202(1:0-255) g_pattern_color203(1:0-255) g_pattern_color204(1:0-255) g_pattern_color205(1:0-255) g_pattern_color206(1:0-255) g_pattern_color207(1:0-255) g_pattern_color208(1:0-255) g_pattern_color209(1:0-255) g_pattern_color210(1:0-255) g_pattern_color211(1:0-255) g_pattern_color212(1:0-255) g_pattern_color213(1:0-255) g_pattern_color214(1:0-255) g_pattern_color215(1:0-255) g_pattern_color216(1:0-255) g_pattern_color217(1:0-255) g_pattern_color218(1:0-255) g_pattern_color219(1:0-255) g_pattern_color220(1:0-255) g_pattern_color221(1:0-255) g_pattern_color222(1:0-255) g_pattern_color223(1:0-255) g_pattern_color224(1:0-255) g_pattern_color225(1:0-255) g_pattern_color226(1:0-255) g_pattern_color227(1:0-255) g_pattern_color228(1:0-255) g_pattern_color229(1:0-255) g_pattern_color230(1:0-255) g_pattern_color231(1:0-255) g_pattern_color232(1:0-255) g_pattern_color233(1:0-255) g_pattern_color234(1:0-255) g_pattern_color235(1:0-255) g_pattern_color236(1:0-255) g_pattern_color237(1:0-255) g_pattern_color238(1:0-255) g_pattern_color239(1:0-255) g_pattern_color240(1:0-255) g_pattern_color241(1:0-255) g_pattern_color242(1:0-255) g_pattern_color243(1:0-255) g_pattern_color244(1:0-255) g_pattern_color245(1:0-255) g_pattern_color246(1:0-255) g_pattern_color247(1:0-255) g_pattern_color248(1:0-255) g_pattern_color249(1:0-255) g_pattern_color250(1:0-255) g_pattern_color251(1:0-255) g_pattern_color252(1:0-255) g_pattern_color253(1:0-255) g_pattern_color254(1:0-255) g_pattern_color255(1:0-255) g_pattern_color256(1:0-255) g_pattern_color257(1:0-255) g_pattern_color258(1:0-255) g_pattern_color259(1:0-255) g_pattern_color260(1:0-255) g_pattern_color261(1:0-255) g_pattern_color262(1:0-255) g_pattern_color263(1:0-255) g_pattern_color264(1:0-255) g_pattern_color265(1:0-255) g_pattern_color266(1:0-255) g_pattern_color267(1:0-255) g_pattern_color268(1:0-255) g_pattern_color269(1:0-255) g_pattern_color270(1:0-255) g_pattern_color271(1:0-255) g_pattern_color272(1:0-255) g_pattern_color273(1:0-255) g_pattern_color274(1:0-255) g_pattern_color275(1:0-255) g_pattern_color276(1:0-255) g_pattern_color277(1:0-255) g_pattern_color278(1:0-255) g_pattern_color279(1:0-255) g_pattern_color280(1:0-255) g_pattern_color281(1:0-255) g_pattern_color282(1:0-255) g_pattern_color283(1:0-255) g_pattern_color284(1:0-255) g_pattern_color285(1:0-255) g_pattern_color286(1:0-255) g_pattern_color287(1:0-255) g_pattern_color288(1:0-255) g_pattern_color289(1:0-255) g_pattern_color290(1:0-255) g_pattern_color291(1:0-255) g_pattern_color292(1:0-255) g_pattern_color293(1:0-255) g_pattern_color294(1:0-255) g_pattern_color295(1:0-255) g_pattern_color296(1:0-255) g_pattern_color297(1:0-255) g_pattern_color298(1:0-255) g_pattern_color299(1:0-255) g_pattern_color300(1:0-255) g_pattern_color301(1:0-255) g_pattern_color302(1:0-255) g_pattern_color303(1:0-255) g_pattern_color304(1:0-255) g_pattern_color305(1:0-255) g_pattern_color306(1:0-255) g_pattern_color307(1:0-255) g_pattern_color308(1:0-255) g_pattern_color309(1:0-255) g_pattern_color310(1:0-255) g_pattern_color311(1:0-255) g_pattern_color312(1:0-255) g_pattern_color313(1:0-255) g_pattern_color314(1:0-255) g_pattern_color315(1:0-255) g_pattern_color316(1:0-255) g_pattern_color317(1:0-255) g_pattern_color318(1:0-255) g_pattern_color319(1:0-255) g_pattern_color320(1:0-255) g_pattern_color321(1:0-255) g_pattern_color322(1:0-255) g_pattern_color323(1:0-255) g_pattern_color324(1:0-255) g_pattern_color325(1:0-255) g_pattern_color326(1:0-255) g_pattern_color327(1:0-255) g_pattern_color328(1:0-255) g_pattern_color329(1:0-255) g_pattern_color330(1:0-255) g_pattern_color331(1:0-255) g_pattern_color332(1:0-255) g_pattern_color333(1:0-255) g_pattern_color334(1:0-255) g_pattern_color335(1:0-255) g_pattern_color336(1:0-255) g_pattern_color337(1:0-255) g_pattern_color338(1:0-255) g_pattern_color339(1:0-255) g_pattern_color340(1:0-255) g_pattern_color341(1:0-255) g_pattern_color342(1:0-255) g_pattern_color343(1:0-255) g_pattern_color344(1:0-255) g_pattern_color345(1:0-255) g_pattern_color346(1:0-255) g_pattern_color347(1:0-255) g_pattern_color348(1:0-255) g_pattern_color349(1:0-255) g_pattern_color350(1:0-255) g_pattern_color351(1:0-255) g_pattern_color352(1:0-255) g_pattern_color353(1:0-255) g_pattern_color354(1:0-255) g_pattern_color355(1:0-255) g_pattern_color356(1:0-255) g_pattern_color357(1:0-255) g_pattern_color358(1:0-255) g_pattern_color359(1:0-255) g_pattern_color360(1:0-255) g_pattern_color361(1:0-255) g_pattern_color362(1:0-255) g_pattern_color363(1:0-255) g_pattern_color364(1:0-255) g_pattern_color365(1:0-255) g_pattern_color366(1:0-255) g_pattern_color367(1:0-255) g_pattern_color368(1:0-255) g_pattern_color369(1:0-255) g_pattern_color370(1:0-255) g_pattern_color371(1:0-255) g_pattern_color372(1:0-255) g_pattern_color373(1:0-255) g_pattern_color374(1:0-255) g_pattern_color375(1:0-255) g_pattern_color376(1:0-255) g_pattern_color377(1:0-255) g_pattern_color378(1:0-255) g_pattern_color379(1:0-255) g_pattern_color380(1:0-255) g_pattern_color381(1:0-255) g_pattern_color382(1:0-255) g_pattern_color383(1:0-255) g_pattern_color384(1:0-255) g_pattern_color385(1:0-255) g_pattern_color386(1:0-255) g_pattern_color387(1:0-255) g_pattern_color388(1:0-255) g_pattern_color389(1:0-255) g_pattern_color390(1:0-255) g_pattern_color391(1:0-255) g_pattern_color392(1:0-255) g_pattern_color393(1:0-255) g_pattern_color394(1:0-255) g_pattern_color395(1:0-255) g_pattern_color396(1:0-255) g_pattern_color397(1:0-255) g_pattern_color398(1:0-255) g_pattern_color399(1:0-255) g_pattern_color400(1:0-255) g_pattern_color401(1:0-255) g_pattern_color402(1:0-255) g_pattern_color403(1:0-255) g_pattern_color404(1:0-255) g_pattern_color405(1:0-255) g_pattern_color406(1:0-255) g_pattern_color407(1:0-255) g_pattern_color408(1:0-255) g_pattern_color409(1:0-255) g_pattern_color410(1:0-255) g_pattern_color411(1:0-255) g_pattern_color412(1:0-255) g_pattern_color413(1:0-255) g_pattern_color414(1:0-255) g_pattern_color415(1:0-255) g_pattern_color416(1:0-255) g_pattern_color417(1:0-255) g_pattern_color418(1:0-255) g_pattern_color419(1:0-255) g_pattern_color420(1:0-255) g_pattern_color421(1:0-255) g_pattern_color422(1:0-255) g_pattern_color423(1:0-255) g_pattern_color424(1:0-255) g_pattern_color425(1:0-255) g_pattern_color426(1:0-255) g_pattern_color427(1:0-255) g_pattern_color428(1:0-255) g_pattern_color429(1:0-255) g_pattern_color430(1:0-255) g_pattern_color431(1:0-255) g_pattern_color432(1:0-255) g_pattern_color433(1:0-255) g_pattern_color434(1:0-255) g_pattern_color435(1:0-255) g_pattern_color436(1:0-255) g_pattern_color437(1:0-255) g_pattern_color438(1:0-255) g_pattern_color439(1:0-255) g_pattern_color440(1:0-255) g_pattern_color441(1:0-255) g_pattern_color442(1:0-255) g_pattern_color443(1:0-255) g_pattern_color444(1:0-255) g_pattern_color445(1:0-255) g_pattern_color446(1:0-255) g_pattern_color447(1:0-255) g_pattern_color448(1:0-255) g_pattern_color449(1:0-255) g_pattern_color450(1:0-255) g_pattern_color451(1:0-255) g_pattern_color452(1:0-255) g_pattern_color453(1:0-255) g_pattern_color454(1:0-255) g_pattern_color455(1:0-255) g_pattern_color456(1:0-255) g_pattern_color457(1:0-255) g_pattern_color458(1:0-255) g_pattern_color459(1:0-255) g_pattern_color460(1:0-255) g_pattern_color461(1:0-255) g_pattern_color462(1:0-255) g_pattern_color463(1:0-255) g_pattern_color464(1:0-255) g_pattern_color465(1:0-255) g_pattern_color466(1:0-255) g_pattern_color467(1:0-255) g_pattern_color468(1:0-255) g_pattern_color469(1:0-255) g_pattern_color470(1:0-255) g_pattern_color471(1:0-255) g_pattern_color472(1:0-255) g_pattern_color473(1:0-255) g_pattern_color474(1:0-255) g_pattern_color475(1:0-255) g_pattern_color476(1:0-255) g_pattern_color477(1:0-255) g_pattern_color478(1:0-255) g_pattern_color479(1:0-255) g_pattern_color480(1:0-255) g_pattern_color481(1:0-255) g_pattern_color482(1:0-255) g_pattern_color483(1:0-255) g_pattern_color484(1:0-255) g_pattern_color485(1:0-255) g_pattern_color486(1:0-255) g_pattern_color487(1:0-255) g_pattern_color488(1:0-255) g_pattern_color489(1:0-255) g_pattern_color490(1:0-255) g_pattern_color491(1:0-255) g_pattern_color492(1:0-255) g_pattern_color493(1:0-255) g_pattern_color494(1:0-255) g_pattern_color495(1:0-255) g_pattern_color496(1:0-255) g_pattern_color497(1:0-255) g_pattern_color498(1:0-255) g_pattern_color499(1:0-255) g_pattern_color500(1:0-255) g_pattern_color501(1:0-255) g_pattern_color502(1:0-255) g_pattern_color503(1:0-255) g_pattern_color504(1:0-255) g_pattern_color505(1:0-255) g_pattern_color506(1:0-255) g_pattern_color507(1:0-255) g_pattern_color508(1:0-255) g_pattern_color509(1:0-255) g_pattern_color510(1:0-255) g_pattern_color511(1:0-255) g_pattern_color512(1:0-255) 
+test=@cmd protocol_code(81)  g_code_id(31) frame_no(0) frame_id(0)
+
+
+[Command]
+cmd=0x52
+description="Get current Display frame no "
+class=A
+func_name="get_current_display_frame_no"
+type=Query
+send= 
+return=frame_no(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x52
+description="Get current Display "
+class=A
+func_name="get_current_display_by_frame_id"
+type=Query
+send= frame_id(1:0-255)
+return=frame_no(1:0-255) frame_id(1:1-255) g_width(2:0-65535)  g_height(2:0-65535)
+g_pattern_color1(1:0-255) g_pattern_color2(1:0-255) g_pattern_color3(1:0-255) g_pattern_color4(1:0-255) g_pattern_color5(1:0-255) g_pattern_color6(1:0-255) g_pattern_color7(1:0-255) g_pattern_color8(1:0-255) g_pattern_color9(1:0-255) g_pattern_color10(1:0-255) g_pattern_color11(1:0-255) g_pattern_color12(1:0-255) g_pattern_color13(1:0-255) g_pattern_color14(1:0-255) g_pattern_color15(1:0-255) g_pattern_color16(1:0-255) g_pattern_color17(1:0-255) g_pattern_color18(1:0-255) g_pattern_color19(1:0-255) g_pattern_color20(1:0-255) g_pattern_color21(1:0-255) g_pattern_color22(1:0-255) g_pattern_color23(1:0-255) g_pattern_color24(1:0-255) g_pattern_color25(1:0-255) g_pattern_color26(1:0-255) g_pattern_color27(1:0-255) g_pattern_color28(1:0-255) g_pattern_color29(1:0-255) g_pattern_color30(1:0-255) g_pattern_color31(1:0-255) g_pattern_color32(1:0-255) g_pattern_color33(1:0-255) g_pattern_color34(1:0-255) g_pattern_color35(1:0-255) g_pattern_color36(1:0-255) g_pattern_color37(1:0-255) g_pattern_color38(1:0-255) g_pattern_color39(1:0-255) g_pattern_color40(1:0-255) g_pattern_color41(1:0-255) g_pattern_color42(1:0-255) g_pattern_color43(1:0-255) g_pattern_color44(1:0-255) g_pattern_color45(1:0-255) g_pattern_color46(1:0-255) g_pattern_color47(1:0-255) g_pattern_color48(1:0-255) g_pattern_color49(1:0-255) g_pattern_color50(1:0-255) g_pattern_color51(1:0-255) g_pattern_color52(1:0-255) g_pattern_color53(1:0-255) g_pattern_color54(1:0-255) g_pattern_color55(1:0-255) g_pattern_color56(1:0-255) g_pattern_color57(1:0-255) g_pattern_color58(1:0-255) g_pattern_color59(1:0-255) g_pattern_color60(1:0-255) g_pattern_color61(1:0-255) g_pattern_color62(1:0-255) g_pattern_color63(1:0-255) g_pattern_color64(1:0-255) g_pattern_color65(1:0-255) g_pattern_color66(1:0-255) g_pattern_color67(1:0-255) g_pattern_color68(1:0-255) g_pattern_color69(1:0-255) g_pattern_color70(1:0-255) g_pattern_color71(1:0-255) g_pattern_color72(1:0-255) g_pattern_color73(1:0-255) g_pattern_color74(1:0-255) g_pattern_color75(1:0-255) g_pattern_color76(1:0-255) g_pattern_color77(1:0-255) g_pattern_color78(1:0-255) g_pattern_color79(1:0-255) g_pattern_color80(1:0-255) g_pattern_color81(1:0-255) g_pattern_color82(1:0-255) g_pattern_color83(1:0-255) g_pattern_color84(1:0-255) g_pattern_color85(1:0-255) g_pattern_color86(1:0-255) g_pattern_color87(1:0-255) g_pattern_color88(1:0-255) g_pattern_color89(1:0-255) g_pattern_color90(1:0-255) g_pattern_color91(1:0-255) g_pattern_color92(1:0-255) g_pattern_color93(1:0-255) g_pattern_color94(1:0-255) g_pattern_color95(1:0-255) g_pattern_color96(1:0-255) g_pattern_color97(1:0-255) g_pattern_color98(1:0-255) g_pattern_color99(1:0-255) g_pattern_color100(1:0-255) g_pattern_color101(1:0-255) g_pattern_color102(1:0-255) g_pattern_color103(1:0-255) g_pattern_color104(1:0-255) g_pattern_color105(1:0-255) g_pattern_color106(1:0-255) g_pattern_color107(1:0-255) g_pattern_color108(1:0-255) g_pattern_color109(1:0-255) g_pattern_color110(1:0-255) g_pattern_color111(1:0-255) g_pattern_color112(1:0-255) g_pattern_color113(1:0-255) g_pattern_color114(1:0-255) g_pattern_color115(1:0-255) g_pattern_color116(1:0-255) g_pattern_color117(1:0-255) g_pattern_color118(1:0-255) g_pattern_color119(1:0-255) g_pattern_color120(1:0-255) g_pattern_color121(1:0-255) g_pattern_color122(1:0-255) g_pattern_color123(1:0-255) g_pattern_color124(1:0-255) g_pattern_color125(1:0-255) g_pattern_color126(1:0-255) g_pattern_color127(1:0-255) g_pattern_color128(1:0-255) g_pattern_color129(1:0-255) g_pattern_color130(1:0-255) g_pattern_color131(1:0-255) g_pattern_color132(1:0-255) g_pattern_color133(1:0-255) g_pattern_color134(1:0-255) g_pattern_color135(1:0-255) g_pattern_color136(1:0-255) g_pattern_color137(1:0-255) g_pattern_color138(1:0-255) g_pattern_color139(1:0-255) g_pattern_color140(1:0-255) g_pattern_color141(1:0-255) g_pattern_color142(1:0-255) g_pattern_color143(1:0-255) g_pattern_color144(1:0-255) g_pattern_color145(1:0-255) g_pattern_color146(1:0-255) g_pattern_color147(1:0-255) g_pattern_color148(1:0-255) g_pattern_color149(1:0-255) g_pattern_color150(1:0-255) g_pattern_color151(1:0-255) g_pattern_color152(1:0-255) g_pattern_color153(1:0-255) g_pattern_color154(1:0-255) g_pattern_color155(1:0-255) g_pattern_color156(1:0-255) g_pattern_color157(1:0-255) g_pattern_color158(1:0-255) g_pattern_color159(1:0-255) g_pattern_color160(1:0-255) g_pattern_color161(1:0-255) g_pattern_color162(1:0-255) g_pattern_color163(1:0-255) g_pattern_color164(1:0-255) g_pattern_color165(1:0-255) g_pattern_color166(1:0-255) g_pattern_color167(1:0-255) g_pattern_color168(1:0-255) g_pattern_color169(1:0-255) g_pattern_color170(1:0-255) g_pattern_color171(1:0-255) g_pattern_color172(1:0-255) g_pattern_color173(1:0-255) g_pattern_color174(1:0-255) g_pattern_color175(1:0-255) g_pattern_color176(1:0-255) g_pattern_color177(1:0-255) g_pattern_color178(1:0-255) g_pattern_color179(1:0-255) g_pattern_color180(1:0-255) g_pattern_color181(1:0-255) g_pattern_color182(1:0-255) g_pattern_color183(1:0-255) g_pattern_color184(1:0-255) g_pattern_color185(1:0-255) g_pattern_color186(1:0-255) g_pattern_color187(1:0-255) g_pattern_color188(1:0-255) g_pattern_color189(1:0-255) g_pattern_color190(1:0-255) g_pattern_color191(1:0-255) g_pattern_color192(1:0-255) g_pattern_color193(1:0-255) g_pattern_color194(1:0-255) g_pattern_color195(1:0-255) g_pattern_color196(1:0-255) g_pattern_color197(1:0-255) g_pattern_color198(1:0-255) g_pattern_color199(1:0-255) g_pattern_color200(1:0-255) g_pattern_color201(1:0-255) g_pattern_color202(1:0-255) g_pattern_color203(1:0-255) g_pattern_color204(1:0-255) g_pattern_color205(1:0-255) g_pattern_color206(1:0-255) g_pattern_color207(1:0-255) g_pattern_color208(1:0-255) g_pattern_color209(1:0-255) g_pattern_color210(1:0-255) g_pattern_color211(1:0-255) g_pattern_color212(1:0-255) g_pattern_color213(1:0-255) g_pattern_color214(1:0-255) g_pattern_color215(1:0-255) g_pattern_color216(1:0-255) g_pattern_color217(1:0-255) g_pattern_color218(1:0-255) g_pattern_color219(1:0-255) g_pattern_color220(1:0-255) g_pattern_color221(1:0-255) g_pattern_color222(1:0-255) g_pattern_color223(1:0-255) g_pattern_color224(1:0-255) g_pattern_color225(1:0-255) g_pattern_color226(1:0-255) g_pattern_color227(1:0-255) g_pattern_color228(1:0-255) g_pattern_color229(1:0-255) g_pattern_color230(1:0-255) g_pattern_color231(1:0-255) g_pattern_color232(1:0-255) g_pattern_color233(1:0-255) g_pattern_color234(1:0-255) g_pattern_color235(1:0-255) g_pattern_color236(1:0-255) g_pattern_color237(1:0-255) g_pattern_color238(1:0-255) g_pattern_color239(1:0-255) g_pattern_color240(1:0-255) g_pattern_color241(1:0-255) g_pattern_color242(1:0-255) g_pattern_color243(1:0-255) g_pattern_color244(1:0-255) g_pattern_color245(1:0-255) g_pattern_color246(1:0-255) g_pattern_color247(1:0-255) g_pattern_color248(1:0-255) g_pattern_color249(1:0-255) g_pattern_color250(1:0-255) g_pattern_color251(1:0-255) g_pattern_color252(1:0-255) g_pattern_color253(1:0-255) g_pattern_color254(1:0-255) g_pattern_color255(1:0-255) g_pattern_color256(1:0-255) g_pattern_color257(1:0-255) g_pattern_color258(1:0-255) g_pattern_color259(1:0-255) g_pattern_color260(1:0-255) g_pattern_color261(1:0-255) g_pattern_color262(1:0-255) g_pattern_color263(1:0-255) g_pattern_color264(1:0-255) g_pattern_color265(1:0-255) g_pattern_color266(1:0-255) g_pattern_color267(1:0-255) g_pattern_color268(1:0-255) g_pattern_color269(1:0-255) g_pattern_color270(1:0-255) g_pattern_color271(1:0-255) g_pattern_color272(1:0-255) g_pattern_color273(1:0-255) g_pattern_color274(1:0-255) g_pattern_color275(1:0-255) g_pattern_color276(1:0-255) g_pattern_color277(1:0-255) g_pattern_color278(1:0-255) g_pattern_color279(1:0-255) g_pattern_color280(1:0-255) g_pattern_color281(1:0-255) g_pattern_color282(1:0-255) g_pattern_color283(1:0-255) g_pattern_color284(1:0-255) g_pattern_color285(1:0-255) g_pattern_color286(1:0-255) g_pattern_color287(1:0-255) g_pattern_color288(1:0-255) g_pattern_color289(1:0-255) g_pattern_color290(1:0-255) g_pattern_color291(1:0-255) g_pattern_color292(1:0-255) g_pattern_color293(1:0-255) g_pattern_color294(1:0-255) g_pattern_color295(1:0-255) g_pattern_color296(1:0-255) g_pattern_color297(1:0-255) g_pattern_color298(1:0-255) g_pattern_color299(1:0-255) g_pattern_color300(1:0-255) g_pattern_color301(1:0-255) g_pattern_color302(1:0-255) g_pattern_color303(1:0-255) g_pattern_color304(1:0-255) g_pattern_color305(1:0-255) g_pattern_color306(1:0-255) g_pattern_color307(1:0-255) g_pattern_color308(1:0-255) g_pattern_color309(1:0-255) g_pattern_color310(1:0-255) g_pattern_color311(1:0-255) g_pattern_color312(1:0-255) g_pattern_color313(1:0-255) g_pattern_color314(1:0-255) g_pattern_color315(1:0-255) g_pattern_color316(1:0-255) g_pattern_color317(1:0-255) g_pattern_color318(1:0-255) g_pattern_color319(1:0-255) g_pattern_color320(1:0-255) g_pattern_color321(1:0-255) g_pattern_color322(1:0-255) g_pattern_color323(1:0-255) g_pattern_color324(1:0-255) g_pattern_color325(1:0-255) g_pattern_color326(1:0-255) g_pattern_color327(1:0-255) g_pattern_color328(1:0-255) g_pattern_color329(1:0-255) g_pattern_color330(1:0-255) g_pattern_color331(1:0-255) g_pattern_color332(1:0-255) g_pattern_color333(1:0-255) g_pattern_color334(1:0-255) g_pattern_color335(1:0-255) g_pattern_color336(1:0-255) g_pattern_color337(1:0-255) g_pattern_color338(1:0-255) g_pattern_color339(1:0-255) g_pattern_color340(1:0-255) g_pattern_color341(1:0-255) g_pattern_color342(1:0-255) g_pattern_color343(1:0-255) g_pattern_color344(1:0-255) g_pattern_color345(1:0-255) g_pattern_color346(1:0-255) g_pattern_color347(1:0-255) g_pattern_color348(1:0-255) g_pattern_color349(1:0-255) g_pattern_color350(1:0-255) g_pattern_color351(1:0-255) g_pattern_color352(1:0-255) g_pattern_color353(1:0-255) g_pattern_color354(1:0-255) g_pattern_color355(1:0-255) g_pattern_color356(1:0-255) g_pattern_color357(1:0-255) g_pattern_color358(1:0-255) g_pattern_color359(1:0-255) g_pattern_color360(1:0-255) g_pattern_color361(1:0-255) g_pattern_color362(1:0-255) g_pattern_color363(1:0-255) g_pattern_color364(1:0-255) g_pattern_color365(1:0-255) g_pattern_color366(1:0-255) g_pattern_color367(1:0-255) g_pattern_color368(1:0-255) g_pattern_color369(1:0-255) g_pattern_color370(1:0-255) g_pattern_color371(1:0-255) g_pattern_color372(1:0-255) g_pattern_color373(1:0-255) g_pattern_color374(1:0-255) g_pattern_color375(1:0-255) g_pattern_color376(1:0-255) g_pattern_color377(1:0-255) g_pattern_color378(1:0-255) g_pattern_color379(1:0-255) g_pattern_color380(1:0-255) g_pattern_color381(1:0-255) g_pattern_color382(1:0-255) g_pattern_color383(1:0-255) g_pattern_color384(1:0-255) g_pattern_color385(1:0-255) g_pattern_color386(1:0-255) g_pattern_color387(1:0-255) g_pattern_color388(1:0-255) g_pattern_color389(1:0-255) g_pattern_color390(1:0-255) g_pattern_color391(1:0-255) g_pattern_color392(1:0-255) g_pattern_color393(1:0-255) g_pattern_color394(1:0-255) g_pattern_color395(1:0-255) g_pattern_color396(1:0-255) g_pattern_color397(1:0-255) g_pattern_color398(1:0-255) g_pattern_color399(1:0-255) g_pattern_color400(1:0-255) g_pattern_color401(1:0-255) g_pattern_color402(1:0-255) g_pattern_color403(1:0-255) g_pattern_color404(1:0-255) g_pattern_color405(1:0-255) g_pattern_color406(1:0-255) g_pattern_color407(1:0-255) g_pattern_color408(1:0-255) g_pattern_color409(1:0-255) g_pattern_color410(1:0-255) g_pattern_color411(1:0-255) g_pattern_color412(1:0-255) g_pattern_color413(1:0-255) g_pattern_color414(1:0-255) g_pattern_color415(1:0-255) g_pattern_color416(1:0-255) g_pattern_color417(1:0-255) g_pattern_color418(1:0-255) g_pattern_color419(1:0-255) g_pattern_color420(1:0-255) g_pattern_color421(1:0-255) g_pattern_color422(1:0-255) g_pattern_color423(1:0-255) g_pattern_color424(1:0-255) g_pattern_color425(1:0-255) g_pattern_color426(1:0-255) g_pattern_color427(1:0-255) g_pattern_color428(1:0-255) g_pattern_color429(1:0-255) g_pattern_color430(1:0-255) g_pattern_color431(1:0-255) g_pattern_color432(1:0-255) g_pattern_color433(1:0-255) g_pattern_color434(1:0-255) g_pattern_color435(1:0-255) g_pattern_color436(1:0-255) g_pattern_color437(1:0-255) g_pattern_color438(1:0-255) g_pattern_color439(1:0-255) g_pattern_color440(1:0-255) g_pattern_color441(1:0-255) g_pattern_color442(1:0-255) g_pattern_color443(1:0-255) g_pattern_color444(1:0-255) g_pattern_color445(1:0-255) g_pattern_color446(1:0-255) g_pattern_color447(1:0-255) g_pattern_color448(1:0-255) g_pattern_color449(1:0-255) g_pattern_color450(1:0-255) g_pattern_color451(1:0-255) g_pattern_color452(1:0-255) g_pattern_color453(1:0-255) g_pattern_color454(1:0-255) g_pattern_color455(1:0-255) g_pattern_color456(1:0-255) g_pattern_color457(1:0-255) g_pattern_color458(1:0-255) g_pattern_color459(1:0-255) g_pattern_color460(1:0-255) g_pattern_color461(1:0-255) g_pattern_color462(1:0-255) g_pattern_color463(1:0-255) g_pattern_color464(1:0-255) g_pattern_color465(1:0-255) g_pattern_color466(1:0-255) g_pattern_color467(1:0-255) g_pattern_color468(1:0-255) g_pattern_color469(1:0-255) g_pattern_color470(1:0-255) g_pattern_color471(1:0-255) g_pattern_color472(1:0-255) g_pattern_color473(1:0-255) g_pattern_color474(1:0-255) g_pattern_color475(1:0-255) g_pattern_color476(1:0-255) g_pattern_color477(1:0-255) g_pattern_color478(1:0-255) g_pattern_color479(1:0-255) g_pattern_color480(1:0-255) g_pattern_color481(1:0-255) g_pattern_color482(1:0-255) g_pattern_color483(1:0-255) g_pattern_color484(1:0-255) g_pattern_color485(1:0-255) g_pattern_color486(1:0-255) g_pattern_color487(1:0-255) g_pattern_color488(1:0-255) g_pattern_color489(1:0-255) g_pattern_color490(1:0-255) g_pattern_color491(1:0-255) g_pattern_color492(1:0-255) g_pattern_color493(1:0-255) g_pattern_color494(1:0-255) g_pattern_color495(1:0-255) g_pattern_color496(1:0-255) g_pattern_color497(1:0-255) g_pattern_color498(1:0-255) g_pattern_color499(1:0-255) g_pattern_color500(1:0-255) g_pattern_color501(1:0-255) g_pattern_color502(1:0-255) g_pattern_color503(1:0-255) g_pattern_color504(1:0-255) g_pattern_color505(1:0-255) g_pattern_color506(1:0-255) g_pattern_color507(1:0-255) g_pattern_color508(1:0-255) g_pattern_color509(1:0-255) g_pattern_color510(1:0-255) g_pattern_color511(1:0-255) g_pattern_color512(1:0-255) 
+test=@cmd frame_id(1) 
+
+[Command]
+cmd=0x53
+description="set display off "
+class=A
+func_name="set_display_off"
+type=Set
+send= 
+return=
+test=@cmd
+
+[Command]
+cmd=0x54
+description="set react  default graphic message "
+class=A
+func_name="set_react_default_graph_msg"
+type=Set
+send= event_no(1:0 "fire",1"over height")  data_type(1:1-1)  g_code_id(1:0-255) 
+return=
+test=@cmd event_no(0)  data_type(1)  g_code_id(1) 
+
+
+
+
+[Command]
+cmd=0x54
+description="set react  default text message "
+class=A
+func_name="set_react_default_text_msg"
+type=Query
+send= event_no(1:0 "fire",1"over height")  data_type(1:0-0)  msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}  hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)}  colorcnt(0:0-255) {color(1:0-255)}
+return=
+test= @cmd event_no(1) data_type(0) msg_length(1) ver_no(1) {ver_space(16)} hor_space(16) msgcnt(1){message(0)} colorcnt(1){color(48)}
+
+
+[Command]
+cmd=0x04
+description="get react  default  message "
+class=A
+func_name="get_react_default_msg"
+type=Query
+send=protocol_code(1:84-84) event_no(1:0 "fire",1"over height")  
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:84-84)
+event_no(1:0 "fire",1"over height")  data_type(1:0"text",1 "graph")  g_code_id(1:0-255)  g_desc1(1:0-255) g_desc2(1:0-255) g_desc3(1:0-255) g_desc4(1:0-255) g_desc5(1:0-255) g_desc6(1:0-255) g_desc7(1:0-255) g_desc8(1:0-255) g_desc9(1:0-255) g_desc10(1:0-255) g_desc11(1:0-255) g_desc12(1:0-255) g_desc13(1:0-255) g_desc14(1:0-255) g_desc15(1:0-255) g_desc16(1:0-255) g_desc17(1:0-255) g_desc18(1:0-255) g_desc19(1:0-255) g_desc20(1:0-255) g_desc21(1:0-255) g_desc22(1:0-255) g_desc23(1:0-255) g_desc24(1:0-255) g_desc25(1:0-255) g_desc26(1:0-255) g_desc27(1:0-255) g_desc28(1:0-255) g_desc29(1:0-255) g_desc30(1:0-255) g_desc31(1:0-255) g_desc32(1:0-255) 
+msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}  hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)}  colorcnt(0:0-255) {color(1:0-255)}
+test=@cmd protocol_code(84)  event_no(0) ,@cmd protocol_code(84)  event_no(1)
+
+
+[Command]
+cmd=0x55
+description="get cms status "
+class=A
+func_name="get_CMS_status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+data_type(1:0"text",1 "graph")  g_code_id(1:0-255)  g_desc1(1:0-255) g_desc2(1:0-255) g_desc3(1:0-255) g_desc4(1:0-255) g_desc5(1:0-255) g_desc6(1:0-255) g_desc7(1:0-255) g_desc8(1:0-255) g_desc9(1:0-255) g_desc10(1:0-255) g_desc11(1:0-255) g_desc12(1:0-255) g_desc13(1:0-255) g_desc14(1:0-255) g_desc15(1:0-255) g_desc16(1:0-255) g_desc17(1:0-255) g_desc18(1:0-255) g_desc19(1:0-255) g_desc20(1:0-255) g_desc21(1:0-255) g_desc22(1:0-255) g_desc23(1:0-255) g_desc24(1:0-255) g_desc25(1:0-255) g_desc26(1:0-255) g_desc27(1:0-255) g_desc28(1:0-255) g_desc29(1:0-255) g_desc30(1:0-255) g_desc31(1:0-255) g_desc32(1:0-255) 
+msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}  hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)}  colorcnt(0:0-255) {color(1:0-255)}
+test= @cmd
+
+[Command]
+cmd=0x56
+description="get cms led  test  report"
+class=A
+func_name="get_LED_test_report"
+type=Query
+send= 
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  badsetno(2:0-65535)  {x(1:0-255)  y(1:0-255)}
+test= @cmd
+
+
+[Command]
+cmd=0x57
+description="set CMS  display graphic "
+class=A
+func_name="set_display_graph"
+type=Set
+send= data_type(1:1-1)  g_code_id(1:0-255) 
+return=
+test= @cmd  data_type(1)  g_code_id(1) 
+
+[Command]
+cmd=0x57
+description="set CMS  display text "
+class=A
+func_name="set_display_text"
+type=Set
+send=data_type(1:0-0)msg_length(1:0-255)ver_no(1:0-255){ver_space(1:0-255)}hor_space(2:0-65535) msgcnt(0:0-255){message(1:0-255)}colorcnt(0:0-255){color(1:0-255)}
+return= 
+test= @cmd data_type(0) msg_length(2) ver_no(1) {ver_space(2)} hor_space(16) msgcnt(2){message(164)} colorcnt(1){color(48)}
+
+[Command]
+cmd=0x04
+description="Get CMS  display "
+class=A
+func_name="get_CMS_display"
+type=Query
+send=protocol_code(1:87-87) 
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:0-255) 
+       data_type(1:0"text",1 "graph")g_code_id(1:0-255) 
+       msg_length(1:0-255)ver_no(1:0-255){ver_space(1:0-255)}hor_space(2:0-65535) msgcnt(0:0-255){message(1:0-255)}colorcnt(0:0-255){color(1:0-255)}
+test=@cmd protocol_code(87)
+
+
+[Command]
+cmd=0x58
+description="get_new_pattern_list "
+class=A
+func_name="get_new_pattern_list"
+type=Query
+send= 
+return=char_no(1:0-255)  {code_id(2:0-65535)}
+test= @cmd 
+
+[Command]
+cmd=0x59
+description="get_graph_list "
+class=A
+func_name="get_graph_list"
+type=Query
+send=
+return=graph_no(1:0-255) {g_code_id(1:0-255)}
+test= @cmd 
+
+[Command]
+cmd=0x5A
+description="report cms display change  "
+class=N
+func_name="report_CMS_display_change"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-255)
+     data_type(1:0"text",1 "graph")  
+     g_code_id(1:0-255)  g_desc1(1:0-255) g_desc2(1:0-255) g_desc3(1:0-255) g_desc4(1:0-255) g_desc5(1:0-255) g_desc6(1:0-255) g_desc7(1:0-255) g_desc8(1:0-255) g_desc9(1:0-255) g_desc10(1:0-255) g_desc11(1:0-255) g_desc12(1:0-255) g_desc13(1:0-255) g_desc14(1:0-255) g_desc15(1:0-255) g_desc16(1:0-255) g_desc17(1:0-255) g_desc18(1:0-255) g_desc19(1:0-255) g_desc20(1:0-255) g_desc21(1:0-255) g_desc22(1:0-255) g_desc23(1:0-255) g_desc24(1:0-255) g_desc25(1:0-255) g_desc26(1:0-255) g_desc27(1:0-255) g_desc28(1:0-255) g_desc29(1:0-255) g_desc30(1:0-255) g_desc31(1:0-255) g_desc32(1:0-255) 
+     msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}  hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)}  colorcnt(0:0-255) {color(1:0-255)}
+return=
+test=
+
+[Command]
+cmd=0x5B
+description="new report cms display change  "
+class=N
+func_name="new_report_CMS_display_change"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-255)
+     data_type(1:0"text",1 "graph")icon_code_id(1:0-255)g_code_id(1:0-255) msg_length(1:0-255)ver_no(1:0-255) {ver_space(1:0-255)}hor_space(2:0-65535)msgcnt(0:0-255) {message(1:0-255)}  colorcnt(0:0-255) {color(1:0-255)}
+return=
+test=
+
+[Command]
+cmd=0x5f 0x01
+description="Set Flash Yellow Light"
+class=A
+func_name="set_flash_yellow_light"
+type=Set
+send=color(1:0 "off" , 1 "green" , 2 "red" , 3 "yellow") 
+     flash(1:0 "3min_close_and_50times_1min" , 1 "3min_close_and_60times_1min" , 128 "No_close_and_50times_1min" , 129 "No_close_and_60times_1min") 
+return=
+test=@cmd color(0) flash(0),
+     @cmd color(0) flash(1),
+     @cmd color(0) flash(128),
+     @cmd color(0) flash(129),
+     @cmd color(1) flash(0),
+     @cmd color(1) flash(1),
+     @cmd color(1) flash(128),
+     @cmd color(1) flash(129),
+     @cmd color(2) flash(0),
+     @cmd color(2) flash(1),
+     @cmd color(2) flash(128),
+     @cmd color(2) flash(129),
+     @cmd color(3) flash(0),
+     @cmd color(3) flash(1),
+     @cmd color(3) flash(128),
+     @cmd color(3) flash(129)
+
+
+[Command]
+ cmd=0x04 
+ description="Get Flash Yellow Light"
+ class=A
+ func_name="get_flash_yellow_light"
+ type=Query
+ send=protocol_code(2:24321-24321)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  
+        protocol_length(2:0-65530) protocol_code(2:24321-24321)
+        color(1:0 "off" , 1 "green" , 2 "red" , 3 "yellow") 
+        flash(1:0 "3min_close_and_50times_1min" , 1 "3min_close_and_60times_1min" , 128 "No_close_and_50times_1min" , 129 "No_close_and_60times_1min") 
+ test=@cmd protocol_code(24321)
+
+
+
+[Command]
+cmd=0x5f 0x55
+description="Get Current Display"
+class=A
+func_name="get_current_display"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       comm_state(1:1 "online",2 "local",3 "offline",4 "initial" ) 
+       op_status(1:0-255) op_mode(1:0-7)
+       data_type(1:0 "text" , 1 "graph" , 2 "full_color_graph_and_background_and_text" , 3 "cycle_display")  g_code_id(1:0-255) icon_code_id(1:1-255)  
+       msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}  
+       hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)}  
+       colorcnt(0:0-255) {color(1:0-255)}
+test=@cmd
+
+
+[Command]
+cmd=0x5f 0x57
+description="Set Display Control"
+class=A
+func_name="set_display_control"
+type=Set
+send=data_type(1:1 "1_Icon+Text(2x6)",2 "2_Icon+Text+Graph(2x6)",3 "3_Text(2x6)",4 "4_Text(2x8)",5 "5_Text(2x6)+graph(2x6)",6 "6_text(2x8)+graph(2x8)",7 "7_graph_4_Color(2x6)",8 "8_graph_4_Color(2x8)",9 "9_text+graph",10 "10_Icon+text+graph(MAX_2*8)" ) 
+     icon_code_id(1:0-255) g_code_id(1:0-255)msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)} colorcnt(0:0-255) {color(1:0-255)}
+return=
+test=@cmd  data_type(1) icon_code_id(0) g_code_id(1) msg_length(3) ver_no(1) {ver_space(0)} hor_space(0) msgcnt(3) {message(13)} colorcnt(0) {color(42)}
+
+ [Command]
+ cmd=0x04 
+ description="Get Display Control"
+ class=A
+ func_name="get_display_control"
+ type=Query
+ send=protocol_code(2:24407-24407) 
+ return=hw_status_1(1:0-255)  hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65535) protocol_code(2:24407-24407)
+        data_type(1:1 "1_Icon+Text(2x6)",2 "2_Icon+Text+Graph(2x6)",3 "3_Text(2x6)",4 "4_Text(2x8)",5 "5_Text(2x6)+graph(2x6)",6 "6_text(2x8)+graph(2x8)",7 "7_graph_4_Color(2x6)",8 "8_graph_4_Color(2x8)",9 "9_text+graph",10 "10_Icon+text+graph(MAX_2*8)" ) 
+        icon_code_id(1:0-255) g_code_id(1:0-255)msg_length(1:0-255)  ver_no(1:0-255) {ver_space(1:0-255)}hor_space(2:0-65535)  msgcnt(0:0-255) {message(1:0-255)} colorcnt(0:0-255) {color(1:0-255)}  
+ test=@cmd protocol_code(24407) 
+        
+
+[Command]
+cmd=0x5f 0x59
+description="Get Full Color Graph List"
+class=A
+func_name="get_full_color_graph_lst"
+type=Query
+send=
+return= icon_code_count(1:0-255) {icon_code_id(1:1-255) 
+        icon_code_desc1(1:0-255) icon_code_desc2(1:0-255) icon_code_desc3(1:0-255) icon_code_desc4(1:0-255) icon_code_desc5(1:0-255) 
+        icon_code_desc6(1:0-255) icon_code_desc7(1:0-255) icon_code_desc8(1:0-255) icon_code_desc9(1:0-255) icon_code_desc10(1:0-255) 
+        icon_code_desc11(1:0-255) icon_code_desc12(1:0-255) icon_code_desc13(1:0-255) icon_code_desc14(1:0-255) icon_code_desc15(1:0-255) 
+        icon_code_desc16(1:0-255) icon_code_desc17(1:0-255) icon_code_desc18(1:0-255) icon_code_desc19(1:0-255) icon_code_desc20(1:0-255) 
+        icon_code_desc21(1:0-255) icon_code_desc22(1:0-255) icon_code_desc23(1:0-255) icon_code_desc24(1:0-255) icon_code_desc25(1:0-255) 
+        icon_code_desc26(1:0-255) icon_code_desc27(1:0-255) icon_code_desc28(1:0-255) icon_code_desc29(1:0-255) icon_code_desc30(1:0-255) 
+        icon_code_desc31(1:0-255) icon_code_desc32(1:0-255)}
+test=@cmd
+
+
+
+
+
+
+
+
+
+
+
+
+@Signature=F762E0AC69D58D150E344F2F14F15C218392C7105C721804

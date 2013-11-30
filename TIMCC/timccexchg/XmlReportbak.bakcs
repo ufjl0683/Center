@@ -1,0 +1,1281 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+using IBM.Data.DB2;
+using IBM.Data.DB2Types;
+using System.Xml;
+using System.IO;
+using RemoteInterface.HC;
+using RemoteInterface.MFCC;
+namespace timccexchg
+{
+    public class XmlReport
+    {
+        static string DBSchema = "db2inst1.";
+
+        static string HostIP = "10.21.50.4";        
+
+        static I_HC_FWIS robj = (RemoteInterface.HC.I_HC_FWIS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(RemoteInterface.HC.I_HC_FWIS)
+             , RemoteInterface.RemoteBuilder.getRemoteUri(HostIP, (int)RemoteInterface.RemotingPortEnum.HOST, "FWIS"));  //HOST
+
+        #region "VD一分鐘資料--改版新寫法"
+        public static void one_min_vd_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            DataTable tableDT;
+            string Strdt = string.Empty;
+            string Var = string.Empty;
+            string commstatus = string.Empty;
+            string Math65535 = "65535";
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");
+            tableDT = LoadVdDataJoin("tblVdData1Min", Strdt, dbonnectStr);
+            tableDT.TableName = "tblVdData1Min";
+            tableDT = Changeto65535(tableDT, 4, 121);                  //給與欄位大小
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = ("    ");
+
+            using (XmlWriter writer = XmlWriter.Create(currpathFileName, settings))           //VD基本資料
+            {
+                writer.WriteStartElement("file_attribute");
+                writer.WriteAttributeString("file_name", "1min_vd_data.xml");
+                writer.WriteAttributeString("control_center_id", Math65535);
+                writer.WriteAttributeString("time", Strdt);
+                writer.WriteStartElement("onemin_vd_data");
+
+                foreach (DataRow Rows in tableDT.Rows)
+                {
+                    switch (Rows["DATAVALIDITY"].ToString().ToUpper())                                                              //判別有、無效、不完整資料
+                    {
+                        case "I": { Var = "0"; commstatus = "1"; break; }
+                        case "V": { Var = "1"; commstatus = "0"; break; }
+                        case "L": { Var = "2"; commstatus = "0"; break; }
+                        default: { Var = "0"; commstatus = "1"; break; }
+                    }
+
+                    writer.WriteStartElement("traffic_data");
+                    writer.WriteAttributeString("eqId", Rows["DEVICENAME"].ToString());
+                    writer.WriteAttributeString("eq_comm_status", commstatus);
+                    writer.WriteAttributeString("lanes", Rows["Lane_Count"].ToString());
+
+                    for (int x = 0; x < Convert.ToInt32(Rows["Lane_Count"]); x++)                                                                                                 //取得車道資料
+                    {
+                        double lane_total_car_volume = 0;
+                        double smallvolume = 0, smallspeed = 0, bigvolume = 0, bigspeed = 0, connectvolume = 0, connectspeed = 0;
+                        int averagespeed = 0;
+
+                        smallvolume = Convert.ToDouble(Rows[4 + x]);
+                        smallspeed = Convert.ToDouble(Rows[32 + x]);
+                        bigvolume = Convert.ToDouble(Rows[11 + x]);
+                        bigspeed = Convert.ToDouble(Rows[39 + x]);
+                        connectvolume = Convert.ToDouble(Rows[18 + x]);
+                        connectspeed = Convert.ToDouble(Rows[46 + x]);
+
+                        if (Var == "1")
+                        {
+                            lane_total_car_volume = Convert.ToDouble(Rows[4 + x]) + Convert.ToDouble(Rows[11 + x]) + Convert.ToDouble(Rows[18 + x]); //計算車道總流量
+                            if (smallvolume + bigvolume + connectvolume != 0)
+                                averagespeed = Convert.ToInt32((smallvolume * smallspeed + bigvolume * bigspeed + connectvolume * connectspeed) / (smallvolume + bigvolume + connectvolume));//計算平均速度
+                            else
+                                averagespeed = 0;
+                        }
+                        else
+                        {
+                            lane_total_car_volume = Convert.ToInt32(Math65535);
+                            averagespeed = Convert.ToInt32(Math65535);
+                        }
+                        writer.WriteStartElement("land");
+                        writer.WriteAttributeString("landId", Convert.ToInt16(x + 1).ToString());
+                        writer.WriteAttributeString("is_data_valid", Var);
+                        writer.WriteAttributeString("small_car_volume", Rows[4 + x].ToString());
+                        writer.WriteAttributeString("small_car_average_speed", Rows[32 + x].ToString());
+                        writer.WriteAttributeString("small_car_average_length", Rows[60 + x].ToString());
+                        writer.WriteAttributeString("big_car_volume", Rows[11 + x].ToString());
+                        writer.WriteAttributeString("big_car_average_speed", Rows[39 + x].ToString());
+                        writer.WriteAttributeString("big_car_average_length", Rows[67 + x].ToString());
+                        writer.WriteAttributeString("connect_car_volume", Rows[18 + x].ToString());
+                        writer.WriteAttributeString("connect_car_average_speed", Rows[46 + x].ToString());
+                        writer.WriteAttributeString("connect_car_average_length", Rows[74 + x].ToString());
+                        writer.WriteAttributeString("lane_total_car_volume", lane_total_car_volume.ToString());
+                        writer.WriteAttributeString("lane_average_car_speed", averagespeed.ToString());
+                        writer.WriteAttributeString("lane_average_car_interval", Rows[88 + x].ToString());
+                        writer.WriteAttributeString("lane_average_occupancy", Rows[95 + x].ToString());
+                        writer.WriteEndElement();
+                    }
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            if (File.Exists(currpathFileName) && (hisPathFilenname != ""))
+            { File.Copy(currpathFileName, hisPathFilenname, true); }
+        }
+        #endregion
+
+        #region "VD五分鐘資料--改版新寫法"
+        public static void five_min_vd_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            DataTable tableDT;
+            string Strdt = string.Empty;
+            string Var = string.Empty;
+            string commstatus = string.Empty;
+            string math65535 = "65535";
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");   //設定時間格式
+            //Strdt = "2009-11-17 09:00:00";            
+            tableDT = LoadVdDataJoin("tblVdData5Min", Strdt, dbonnectStr);
+
+            tableDT.TableName = "TBLVDDATA5MIN";                    //給與TableName 不給予無法轉成XML
+
+            tableDT = Changeto65535(tableDT, 4, 122);               //將-1轉65535  需設定欄位起始位置
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = ("    ");
+
+            using (XmlWriter writer = XmlWriter.Create(currpathFileName, settings))           //VD基本資料
+            {
+                writer.WriteStartElement("file_attribute");
+                writer.WriteAttributeString("file_name", "5min_vd_data.xml");
+                writer.WriteAttributeString("control_center_id", math65535);
+                writer.WriteAttributeString("time", Strdt);
+                writer.WriteStartElement("fivemin_vd_data");
+                foreach (DataRow Rows in tableDT.Rows)
+                {
+                    switch (Rows["DATAVALIDITY"].ToString().ToUpper())                                                                 //判別有、無效、不完整資料
+                    {
+                        case "I": { Var = "0"; commstatus = "1"; break; }
+                        case "V": { Var = "1"; commstatus = "0"; break; }
+                        case "L": { Var = "2"; commstatus = "0"; break; }
+                        default: { Var = "0"; commstatus = "1"; break; }
+                    }
+
+                    writer.WriteStartElement("traffic_data");
+                    writer.WriteAttributeString("eqId", Rows["DEVICENAME"].ToString());
+                    writer.WriteAttributeString("eq_comm_status", commstatus);
+                    writer.WriteAttributeString("lanes", Rows["Lane_Count"].ToString());
+                    writer.WriteAttributeString("congestion_level", Rows["Level"].ToString());
+
+                    for (int x = 0; x < Convert.ToInt32(Rows["Lane_Count"]); x++)                                                                                                 //取得車道資料
+                    {
+                        double lane_total_car_volume = 0;
+                        int lane_use_rate = 0;
+                        double smallvolume = 0, smallspeed = 0, bigvolume = 0, bigspeed = 0, connectvolume = 0, connectspeed = 0;
+                        int averagespeed = 0;
+
+                        smallvolume = Convert.ToDouble(Rows[5 + x]);
+                        smallspeed = Convert.ToDouble(Rows[33 + x]);
+                        bigvolume = Convert.ToDouble(Rows[12 + x]);
+                        bigspeed = Convert.ToDouble(Rows[40 + x]);
+                        connectvolume = Convert.ToDouble(Rows[19 + x]);
+                        connectspeed = Convert.ToDouble(Rows[47 + x]);
+
+                        if (Var == "1")
+                        {
+                            lane_total_car_volume = Convert.ToDouble(Rows[5 + x]) + Convert.ToDouble(Rows[12 + x]) + Convert.ToDouble(Rows[19 + x]); //計算車道總流量
+                            if (smallvolume + bigvolume + connectvolume != 0)
+                                averagespeed = Convert.ToInt32((smallvolume * smallspeed + bigvolume * bigspeed + connectvolume * connectspeed) / (smallvolume + bigvolume + connectvolume));//計算平均速度
+                            else
+                                averagespeed = 0;
+                            if (Convert.ToInt64(Rows[107]) != 0)
+                                lane_use_rate = Convert.ToInt32((lane_total_car_volume / Convert.ToInt64(Rows[107])) * 100);
+                            else
+                                lane_use_rate = 0;                                                   //計算車道使用率
+                        }
+                        else
+                        {
+                            lane_use_rate = 65535;
+                            averagespeed = 65535;
+                            lane_total_car_volume = 65535;
+                        }
+                        writer.WriteStartElement("land");
+                        writer.WriteAttributeString("landId", Convert.ToInt16(x + 1).ToString());
+                        writer.WriteAttributeString("is_data_valid", Var);
+                        writer.WriteAttributeString("small_car_volume", Rows[5 + x].ToString());
+                        writer.WriteAttributeString("small_car_average_speed", Rows[33 + x].ToString());
+                        writer.WriteAttributeString("small_car_average_length", Rows[61 + x].ToString());
+                        writer.WriteAttributeString("big_car_volume", Rows[12 + x].ToString());
+                        writer.WriteAttributeString("big_car_average_speed", Rows[40 + x].ToString());
+                        writer.WriteAttributeString("big_car_average_length", Rows[68 + x].ToString());
+                        writer.WriteAttributeString("connect_car_volume", Rows[19 + x].ToString());
+                        writer.WriteAttributeString("connect_car_average_speed", Rows[47 + x].ToString());
+                        writer.WriteAttributeString("connect_car_average_length", Rows[75 + x].ToString());
+                        writer.WriteAttributeString("lane_total_car_volume", lane_total_car_volume.ToString());
+                        writer.WriteAttributeString("lane_average_car_speed", averagespeed.ToString());
+                        writer.WriteAttributeString("lane_average_car_interval", Rows[89 + x].ToString());
+                        writer.WriteAttributeString("lane_average_occupancy", Rows[96 + x].ToString());
+                        writer.WriteAttributeString("lane_use_rate", lane_use_rate.ToString());
+                        writer.WriteEndElement();
+                    }
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            if (File.Exists(currpathFileName) && (hisPathFilenname != ""))
+            { File.Copy(currpathFileName, hisPathFilenname, true); }
+        }
+        #endregion
+
+        #region "VD路段資料--修正旅行時間上下限值為空值的問題"
+        public static void section_traffic_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            DataTable tableDT;
+            string Strdt = "";
+            string XmlHead = "", XmlTail = "";
+            int bodycount = 0;
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");                               //設定時間格式            
+            //Strdt = "2009-11-17 18:10:00";
+            tableDT = LoadviewData("VWXML_SECTION_GOWAY", Strdt, dbonnectStr);        //讀取DB資料            
+
+            tableDT.TableName = "TBLSECTION";                                         //給與TableName 不給予無法轉成XML          
+
+            tableDT = ChangeNullto65535(tableDT, 9, 24);                              //將null轉65535  需設定欄位起始位置
+            tableDT = Changeto65535(tableDT, 23, 24);                                 //將-1轉65535  需設定欄位起始位置            
+
+            XmlDocument doc = new XmlDocument();
+
+            XmlHead = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                    "<file_attribute file_name= \"section_traffic_data.xml\" control_center_id=\"" + "65535" + "\" time=\"" + Strdt + "\">" +
+                    "<section_traffic_data>";
+
+            XmlTail = "</section_traffic_data>" +
+                    "</file_attribute>";
+
+            string[] XmlBody = new string[tableDT.Rows.Count];
+
+            foreach (DataRow row in tableDT.Rows)                                                           //不同路段
+            {
+
+                string freeewayld = "", expresswayld = "";
+
+                Free_Expressway(row["lineid"].ToString(), ref freeewayld, ref expresswayld);                //判別所在主線
+                string direction = direct(row["Direction"].ToString());                                     //判別主線方向                                     
+
+                XmlBody[bodycount] = "<traffic_data freewayId=\"" + freeewayld +
+                         "\" expresswayId=\"" + expresswayld +
+                         "\" directionId=\"" + direction +
+                         "\" from_location=\"" + row["FROM_LOCATION"].ToString() +
+                         "\" from_milepost=\"" + row["FROM_MILEPOST"].ToString() +
+                         "\" end_location= \"" + row["END_LOCATION"].ToString() +
+                         "\" end_milepost=\"" + row["END_MILEPOST"].ToString() +
+                         "\" section_upper_limit=\"" + row["UPPERTRAVELTIME"].ToString() +
+                         "\" section_lower_limit=\"" + row["LOWERTRAVELTIME"].ToString() +
+                         "\" section_total_car_volume=\"" + row["total_car_volume"] +
+                         "\" section_small_car_volume=\"" + row["small_car_volume"] +
+                         "\" section_big_car_volume=\"" + row["big_car_volume"] +
+                         "\" section_connect_car_volume=\"" + row["connect_car_volume"] +
+                         "\" section_car_average_speed=\"" + row["average_speed"] +
+                         "\" section_small_car_average_speed=\"" + row["small_car_speed"] +
+                         "\" section_big_car_average_speed=\"" + row["big_car_speed"] +
+                         "\" section_connect_car_average_speed=\"" + row["connect_car_speed"] +
+                         "\" section_average_occupancy=\"" + row["average_occupancy"] +
+                         "\" travel_time=\"" + row["TRAVELTIME"].ToString() +                              //旅行時間
+                         "\" section_congestion_level=\"" + row["level"].ToString() +                      //壅塞程度
+                         "\" section_ramp_in_total_volume=\"" + row["in_total_volume"] +
+                         "\" section_ramp_out_total_volume=\"" + row["out_total_volume"] +
+                         "\" lanes=\"" + row["lanes"].ToString() +
+                         "\">" +
+                         "</traffic_data>";
+
+                bodycount++;
+            }
+
+            string XmlAllBody = string.Empty;
+            foreach (string tmpStr in XmlBody)
+                XmlAllBody += tmpStr;
+
+            try
+            {
+                doc.LoadXml(XmlHead + XmlAllBody + XmlTail);                   //寫入XML            
+
+                doc.Save(currpathFileName);                                    //將XML存檔
+                if (hisPathFilenname != "")
+                { doc.Save(hisPathFilenname); }                                //將XML存檔
+            }
+            catch (Exception ex)
+            { Console.WriteLine(ex.Message); }
+        }
+        #endregion     
+
+        #region "設備建構狀態--修正control_center_id為null"
+        public static void one_day_eq_config_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            DataTable tableDT = SelectFromDB("VWXML_DEVICECONFIG", "*", "", dbonnectStr);
+            string Strdt = "";
+            string math65535 = "65535";
+            string XmlHead = "", XmlTail = "";
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");   //設定時間格式
+            XmlDocument doc = new XmlDocument();
+
+            XmlHead = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                    "<file_attribute file_name= \"1day_eq_config_data.xml\" control_center_id=\"" + math65535 + "\" time=\"" + Strdt + "\">" +
+                    "<oneday_eq_config_data>";
+
+            XmlTail = "</oneday_eq_config_data>" +
+                    "</file_attribute>";
+
+            DataRow[] rowDevTypes = SelectFromDB("tblDeviceConfig", "DISTINCT DEVICE_TYPE", "", dbonnectStr).Select();       //取得設備type  ex:cms rgs vd...
+            string[] XmlBody = new string[rowDevTypes.Length];
+            int tmpInt = 0;
+
+            foreach (DataRow row in rowDevTypes)
+            {
+                string dev_type = row["device_type"].ToString().ToLower();
+                XmlBody[tmpInt] = GetEqConfigData(dev_type.ToLower(), tableDT.Select("device_type = '" + row[0].ToString() + "'"));   //將相同設備的資料傳入
+                ++tmpInt;
+            }
+            string XmlAllBody = string.Empty;
+            foreach (string tmpStr in XmlBody)
+                XmlAllBody += tmpStr;
+
+            try
+            {
+                doc.LoadXml(XmlHead + XmlAllBody + XmlTail);                   //寫入XML            
+
+                doc.Save(currpathFileName);
+                //將XML存檔
+                if (hisPathFilenname != "")
+                    doc.Save(hisPathFilenname);                                    //將XML存檔
+            }
+            catch (Exception ex)
+            { Console.WriteLine(ex.Message); }
+
+        }
+
+        private static string GetEqConfigData(string p, DataRow[] dataRow)
+        {
+            string freeewayld = "", expresswayld = "";
+            string allStr = string.Empty;
+            allStr += "<" + p + "_data>";
+            string strnull = "65535";
+
+            switch (p)
+            {
+                case "cms":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);      //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                         //判別主線方向
+                        string eqLocation = eqLocat(tmpRow["eq_Location"].ToString());                       //判別在主線或出入口匝道
+                        string cmsType = cmstypechange(tmpRow["cms_type"].ToString());                       //判別cms類型
+                        string interchange = "0";
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                                     "\" milepost= \" " + tmpRow["milepost"].ToString() + "\" interchange= \"" + interchange + "\" eq_location= \"" + eqLocation +
+                                                                     "\" cms_type= \"" + cmsType + "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "lcs":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);        //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                           //判別主線方向
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                           "\" milepost= \" " + tmpRow["milepost"].ToString() + "\" lanes= \"" + tmpRow["Lanes"].ToString() +
+                                                           "\" boards= \"" + strnull +
+                                                           "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "rms":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);        //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                           //判別主線方向
+                        string eqLocation = eqLocat(tmpRow["eq_Location"].ToString());                         //判別在主線或出入口匝道
+                        string ramp = string.Empty;
+                        if (eqLocation == "2")
+                        { ramp = tmpRow["interchange"].ToString(); }
+                        else
+                        { ramp = "0"; }
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                                     "\" ramp= \"" + ramp +
+                                                                     "\" milepost= \" " + tmpRow["milepost"].ToString() + "\" ramp_lanes= \"" + tmpRow["ramp_lanes"].ToString() +
+                                                                     "\" cap_down= \"" + strnull + "\" cap_down_discount= \"" + strnull +
+                                                                      "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() +
+                                                                     "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "tts":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);        //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                           //判別主線方向
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                                     "\" milepost= \" " + tmpRow["milepost"].ToString() +
+                                                                     "\" city1_name=\"" + tmpRow["city1_name"].ToString() + "\" city1_milepost=\"" + tmpRow["city1_milepost"].ToString() +
+                                                                     "\" city2_name=\"" + tmpRow["city2_name"].ToString() + "\" city2_milepost=\"" + tmpRow["city2_milepost"].ToString() +
+                                                                     "\" city3_name=\"" + tmpRow["city3_name"].ToString() + "\" city3_milepost=\"" + tmpRow["city3_milepost"].ToString() +
+                                                                     "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "vd":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);        //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                           //判別主線方向
+                        string category = VDCategory(tmpRow["VD_category"].ToString());                        //判別VD類別
+                        string eqLocation = eqLocat(tmpRow["eq_Location"].ToString());                         //判別在主線或出入口匝道
+                        string interchange = string.Empty;
+                        if (eqLocation == "1")
+                        { interchange = "0"; }
+                        else
+                        { interchange = tmpRow["interchange"].ToString(); }                                    //判別在那個交流道                        
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                                     "\" eq_location= \"" + eqLocation + "\" interchange= \"" + interchange +
+                                                                     "\" milepost= \"" + tmpRow["milepost"].ToString() + "\" lanes= \"" + tmpRow["lanes"].ToString() +
+                                                                     "\" vd_category= \"" + category +
+                                                                      "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "csls":
+                case "fla":
+                case "fs":
+                case "fwl":
+                case "wis":
+                case "rgs":
+                case "wss":
+                case "vi":
+                case "rd":
+                case "am":
+                case "iid":
+                case "avi":
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        Free_Expressway(tmpRow["lineid"].ToString(), ref freeewayld, ref expresswayld);      //判別所在主線
+                        string direction = direct(tmpRow["DirectionID"].ToString());                           //判別主線方向
+
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" freeewayld= \"" + freeewayld + "\" expresswayld= \"" + expresswayld + "\" directionld= \"" + direction +
+                                                                     "\" milepost= \" " + tmpRow["milepost"].ToString() +
+                                                                      "\" longitude= \"" + tmpRow["longitude"].ToString() + "\" latitude= \"" + tmpRow["latitude"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                default:
+                    allStr = string.Empty;
+                    break;
+            }
+            return allStr;
+        }
+        #endregion
+
+        #region "1968VD交換資料--20091119"
+        public static void VD_1968_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname, string currpath2FileName, string hisPath2Filenname)
+        {
+            DataTable tableDT;
+            string Strdt = "";
+            string Rid = string.Empty;
+            int VDno = 1;
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");   //設定時間格式            
+            tableDT = LoadDBData("VWXML_1968VDDATA_GOWAY", Strdt, dbonnectStr);      //讀取DB資料
+
+            tableDT.TableName = "VWXML_1968VDDATA";                 //給與TableName 不給予無法轉成XML
+
+            tableDT = Changeto65535(tableDT, 5, 6);                 //將-1轉65535  需設定欄位起始位置
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = ("    ");
+
+            using (XmlWriter writer = XmlWriter.Create(currpathFileName, settings))           //VD基本資料
+            {
+                writer.WriteStartElement("F2Change", "http://www.freeway.gov.tw/v1/f2change");
+                writer.WriteStartElement("Import");
+                writer.WriteStartElement("vdImportDefGroup");
+                writer.WriteAttributeString("time", Strdt);
+
+                foreach (DataRow row in tableDT.Rows)
+                {
+                    Rid = selectlin_dir(row["Lineid"].ToString(), row["direction"].ToString());
+                    writer.WriteStartElement("vdef");
+                    writer.WriteAttributeString("id", VDno.ToString());
+                    writer.WriteAttributeString("rid", Rid);
+                    writer.WriteAttributeString("meter", row["mile_m"].ToString());
+                    writer.WriteEndElement();
+                    VDno++;
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+
+            XmlWriterSettings settings2 = new XmlWriterSettings();
+            settings2.Indent = true;
+            settings2.IndentChars = ("    ");
+
+            VDno = 1;
+            using (XmlWriter writer = XmlWriter.Create(currpath2FileName, settings2))           //VD 速度與流量
+            {
+                writer.WriteStartElement("F2Change", "http://www.freeway.gov.tw/v1/f2change");
+                writer.WriteStartElement("Import");
+                writer.WriteStartElement("vdImportDefGroup");
+                writer.WriteAttributeString("time", Strdt);
+
+                foreach (DataRow row in tableDT.Rows)
+                {
+                    writer.WriteStartElement("vdef");
+                    writer.WriteAttributeString("id", VDno.ToString());
+                    writer.WriteAttributeString("speed", row["car_speed"].ToString());
+                    writer.WriteAttributeString("vol", row["car_volume"].ToString());
+                    writer.WriteEndElement();
+                    VDno++;
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            if (File.Exists(currpathFileName))
+            {
+                if (hisPathFilenname != "")
+                    File.Copy(currpathFileName, hisPathFilenname, true);
+            }
+
+            if (File.Exists(currpath2FileName))
+            {
+                if (hisPath2Filenname != "")
+                    File.Copy(currpath2FileName, hisPath2Filenname, true);
+            }
+        }
+        #endregion
+
+        #region "事件資料及交控策略--20091119"
+        public static void one_min_incident_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            DataTable tableDT;
+            string Strdt = "";
+            string Str65535 = "65535";
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");   //設定時間格式           
+            tableDT = SelectDBEvent("TBLIIPEVENT", "INC_TIME", Strdt, dbonnectStr);
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = ("    ");
+            using (XmlWriter writer = XmlWriter.Create(currpathFileName, settings))
+            {
+                writer.WriteStartElement("file_attribute");
+                writer.WriteAttributeString("file_name", "1_min_incident_data.xml");
+                writer.WriteAttributeString("control_center_id", Str65535);
+                writer.WriteAttributeString("time", Strdt);
+                writer.WriteStartElement("onemin_incident_data");
+                foreach (DataRow row in tableDT.Rows)
+                {                    
+                    writer.WriteStartElement("incident_data");
+                    writer.WriteStartElement("incident");
+                    writer.WriteAttributeString("inc_type_name", row["inc_type_name"].ToString());
+                    writer.WriteAttributeString("inc_name", row["inc_name"].ToString());
+                    writer.WriteAttributeString("inc_time", row["inc_time"].ToString());
+                    writer.WriteAttributeString("incidentId", row["incidentId"].ToString());
+                    writer.WriteAttributeString("freeewayId", Str65535);
+                    writer.WriteAttributeString("expresswayId", Str65535);
+                    writer.WriteAttributeString("directionId", Str65535);
+                    writer.WriteAttributeString("inc_location", row["inc_location"].ToString());
+                    writer.WriteAttributeString("from_milepost", row["from_milepost"].ToString());
+                    writer.WriteAttributeString("to_milepost", row["to_milepost"].ToString());
+                    writer.WriteAttributeString("interchange", Str65535);
+                    writer.WriteAttributeString("inc_blockage", row["inc_blockage"].ToString());
+                    writer.WriteAttributeString("inc_severity", row["inc_serverity"].ToString());
+                    writer.WriteAttributeString("inc_notify_time", row["inc_notify_time"].ToString());
+                    writer.WriteAttributeString("inc_notify_mode", row["inc_notify_mode"].ToString());
+                    writer.WriteAttributeString("inc_end_time", row["inc_end_time"].ToString());
+                    writer.WriteAttributeString("inc_spreadNews", row["inc_spreadNews"].ToString());
+                    writer.WriteAttributeString("inc_stepNo", row["inc_stepNo"].ToString());
+                    writer.WriteAttributeString("inc_step_time", row["inc_step_times"].ToString());
+                    writer.WriteStartElement("response_data");
+                    for (int i = 0; i < 1; i++)  //迴圈數量可改變，目前先寫1
+                    {
+                        writer.WriteStartElement("eq_asp");
+                        writer.WriteAttributeString("eqId", Str65535);
+                        writer.WriteAttributeString("freewayId", Str65535);
+                        writer.WriteAttributeString("expresswayId", Str65535);
+                        writer.WriteAttributeString("direetionId", Str65535);
+                        writer.WriteAttributeString("milepost", Str65535);
+                        writer.WriteAttributeString("message", Str65535);
+                        writer.WriteEndElement();
+                    }
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    
+                }//foreach
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+        }
+        #endregion "事件資料及交控策略"
+
+        #region "設備運作狀態--尚未放至FTP空間"
+        public static void one_min_eq_operation_data(string dbonnectStr, DateTime dt, string currpathFileName, string hisPathFilenname)
+        {
+            #region --- HOST、MFCC註冊 ---
+
+            //I_MFCC_CMS[] mfcc_CMS = new I_MFCC_CMS[1];      //MFCC物件 CMS
+            //I_MFCC_WIS[] mfcc_WIS = new I_MFCC_WIS[1];      //MFCC物件 WIS
+            //I_MFCC_RGS[] mfcc_RGS = new I_MFCC_RGS[1];      //MFCC物件 RGS
+            //I_MFCC_RMS[] mfcc_RMS = new I_MFCC_RMS[1];      //MFCC物件 RMS
+            //I_MFCC_LCS[] mfcc_LCS = new I_MFCC_LCS[1];      //MFCC物件 LCS
+            //I_MFCC_CSLS[] mfcc_CSLS = new I_MFCC_CSLS[1];   //MFCC物件 LCS
+            //mfcc_CMS[0] = (I_MFCC_CMS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_CMS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_CMS, "MFCC_CMS"));
+            //mfcc_RGS[0] = (I_MFCC_RGS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_RGS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_RGS, "MFCC_RGS"));
+            //mfcc_WIS[0] = (I_MFCC_WIS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_WIS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_WIS, "MFCC_WIS"));
+            //mfcc_RMS[0] = (I_MFCC_RMS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_RMS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_RMS, "MFCC_RMS"));
+            //mfcc_LCS[0] = (I_MFCC_LCS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_LCS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_LCS, "MFCC_LCS"));
+            //mfcc_CSLS[0] = (I_MFCC_CSLS)RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(I_MFCC_CSLS)
+            //                                , RemoteBuilder.getRemoteUri(HostIP, (int)RemotingPortEnum.MFCC_CSLS, "MFCC_CSLS"));
+            #endregion --- HOST、MFCC註冊 ---
+            DataTable tableDT = SelectFromDB("VWXML_EQ_OPERATION_Jiun", "*", "DEVICENAME is not null order by devicename,device_type,timestamp desc", dbonnectStr);
+            string Strdt = "";
+
+            string XmlHead = "", XmlTail = "";
+
+            Strdt = dt.ToString("yyyy-MM-dd HH:mm:ss");   //設定時間格式            
+            XmlDocument doc = new XmlDocument();
+
+            XmlHead = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                    "<file_attribute file_name= \"1min_eq_operation_data.xml\" control_center_id=\"" + "65535" + "\" time=\"" + Strdt + "\">" +
+                    "<onemin_eq_operation_data>";
+
+            XmlTail = "</onemin_eq_operation_data>" +
+                    "</file_attribute>";
+
+            DataRow[] rowDevTypes = tableDT.Select();
+            string[] XmlBody = new string[rowDevTypes.Length];
+            int tmpInt = 0;
+            string devType = string.Empty;
+            foreach (DataRow row in rowDevTypes)
+            {
+                if (devType != rowDevTypes[tmpInt]["Device_type"].ToString().ToLower())
+                    devType = rowDevTypes[tmpInt]["Device_type"].ToString().ToLower();
+                else
+                {
+                    ++tmpInt;
+                    continue;
+                }
+                XmlBody[tmpInt] = Get1MinEqOPData(devType.ToLower(), tableDT.Select("Device_type = '" + row["Device_type"].ToString() + "'"), robj);
+                ++tmpInt;
+            }
+            string XmlAllBody = string.Empty;
+            foreach (string tmpStr in XmlBody)
+                XmlAllBody += tmpStr;
+
+            doc.LoadXml(XmlHead + XmlAllBody + XmlTail);                   //寫入XML            
+            doc.Save(currpathFileName);
+
+            if (hisPathFilenname != "") //將XML存檔
+                doc.Save(hisPathFilenname);                                    //將XML存檔
+        }
+
+        private static string Get1MinEqOPData(string p, DataRow[] dataRow, I_HC_FWIS robj)
+        {
+            string allStr = string.Empty;
+            allStr += "<" + p + "_data>";
+            string devName = string.Empty;
+            string devType = string.Empty;
+            int priority = 0;
+            switch (p)
+            {
+                case "cms":
+                    //I_MFCC_CMS mfcc_CMS = (I_MFCC_CMS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType)
+                            continue;
+
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        CMSOutputData mydata = (CMSOutputData)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" message = \"" + GetCMSMessage(mydata) + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "wis":
+                    //I_MFCC_WIS mfcc_WIS = (I_MFCC_WIS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType)
+                            continue;
+
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        CMSOutputData mydata = (CMSOutputData)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" message = \"" + GetWISMessage(mydata) + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "rgs":
+                    //I_MFCC_RGS mfcc_RGS = (I_MFCC_RGS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType)
+                            continue;
+
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        RGS_GenericDisplay_Data mydata = (RGS_GenericDisplay_Data)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" message = \"" + GetRGSMessage(mydata) + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "rms":
+                    //I_MFCC_RMS mfcc_RMS = (I_MFCC_RMS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType)
+                            continue;
+
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        RMSOutputData mydata = (RMSOutputData)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" " +
+                            "rms_control_mode = \"" + tmpRow["CONTROLMODE"].ToString() + "\" rms_rate = \" " + tmpRow["RMSRATE"].ToString() + "\" " +
+                            "rms_queue_mode = \"" + tmpRow["QUEUEMODE"].ToString() + "\" rms_merge_mode = \"" + tmpRow["MERGEMODE"].ToString() + "\" " +
+                            "rms_checkio_mode = \"" + tmpRow["CHECKIOMODE"].ToString() + "\" " +
+                            "bos1_message = \"" + tmpRow["BOS1MESSAGE"].ToString() + "\" bos2_message = \"" + tmpRow["BOS2MESSAGE"].ToString() + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "lcs":
+                    //I_MFCC_LCS mfcc_LCS = (I_MFCC_LCS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType)
+                            continue;
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        LCSOutputData mydata = (LCSOutputData)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" boards = \"" + tmpRow["lane_count"].ToString() + "\">";
+                        for (int i = 0; i < Convert.ToInt32(tmpRow["lane_count"].ToString()); i++)
+                            allStr += "<board boardId = \"" + i.ToString() + "\" board_hw_status = \"" + HW_Status(tmpRow) + "\" message = \"" + GetLCSMessage(mydata, i) + "\"></board>";
+                        allStr += "</" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "csls":
+                    //I_MFCC_CSLS mfcc_CSLS = (I_MFCC_CSLS)myObj;
+                    foreach (DataRow tmpRow in dataRow)
+                    {
+                        if (tmpRow["DeviceName"].ToString() == devName && tmpRow["device_type"].ToString() == devType) continue;
+
+                        devName = tmpRow["DeviceName"].ToString();
+                        devType = tmpRow["device_type"].ToString();
+                        CSLSOutputData mydata = (CSLSOutputData)robj.GetCurrentOutput(devName, ref priority);
+                        allStr += "<" + p + " eqId = \"" + tmpRow["DeviceName"].ToString() + "\" eq_comm_status = \"" + EQ_Comm_Status(tmpRow) + "\" eq_hw_status = \"" + HW_Status(tmpRow) + "\" message = \"" + GetCSLSMessage(mydata) + "\"></" + p + ">";
+                    }
+                    allStr += "</" + p + "_data>";
+                    break;
+                case "tts":
+                case "iid":
+                case "avi":
+                default:
+                    allStr = string.Empty;
+                    break;
+            }
+            return allStr;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+        //funcation-------------------------------------------       
+        #region "設備建構"
+        #region --- 查詢 ---
+        public static DataTable SelectFromDB(string table, string field, string conditionStr, string dbonnectStr)  //傳入值說明  (表格名，欄位名，搜尋條件)
+        {
+            DB2Connection conn;
+            DB2DataAdapter da;
+            conn = new DB2Connection(dbonnectStr);
+            string selectCmd = "";
+
+            selectCmd += "SELECT " + field + " FROM " + table + " ";
+            if (dbonnectStr != "")
+                selectCmd += "WHERE " + conditionStr + ";";
+
+            da = new DB2DataAdapter(selectCmd, conn);
+            DataTable DT = new DataTable();
+            da.Fill(DT);
+
+            da.Dispose();
+            return DT;
+        }
+        #endregion --- 查詢 ---
+
+        #region "判別主線編號"
+        private static void Free_Expressway(string lineid, ref string freeewayld, ref string expresswayld)
+        {
+            freeewayld = "0";
+            expresswayld = "0";
+            switch (lineid.ToString().ToUpper())
+            {
+                case "N1": { freeewayld = "1"; break; }
+                case "N3": { freeewayld = "3"; break; }
+                case "N4": { freeewayld = "4"; break; }
+                case "N6": { freeewayld = "6"; break; }
+                case "T72": { expresswayld = "72"; break; }
+                case "T74": { expresswayld = "74"; break; }
+                case "T76": { expresswayld = "76"; break; }
+                case "T78": { expresswayld = "78"; break; }
+                default: { freeewayld = "99"; break; }
+            }
+        }
+        #endregion
+
+        #region "判別主線方向"
+        private static string direct(string strdirect)
+        {
+            switch (strdirect.ToString().ToUpper())
+            {
+                case "東向": { strdirect = "1"; break; }
+                case "西向": { strdirect = "2"; break; }
+                case "南向": { strdirect = "3"; break; }
+                case "北向": { strdirect = "4"; break; }
+                case "E": { strdirect = "1"; break; }
+                case "W": { strdirect = "2"; break; }
+                case "S": { strdirect = "3"; break; }
+                case "N": { strdirect = "4"; break; }
+            }
+            return strdirect;
+        }
+        #endregion
+
+        #region "判別主線或匝道上"
+        private static string eqLocat(string Location)
+        {
+            switch (Location.ToString().ToUpper())
+            {
+                case "I": { Location = "2"; break; }
+                case "O": { Location = "3"; break; }
+                default: { Location = "1"; break; }
+            }
+            return Location;
+        }
+        #endregion
+
+        #region "判別cms類型"
+        private static string cmstypechange(string cmsmode)
+        {
+            switch (cmsmode.ToString().ToUpper())
+            {
+                case "2X8":
+                case "2X8A":
+                case "2X8B":
+                    { cmsmode = "1"; break; }
+                case "5X2": { cmsmode = "4"; break; }
+                case "8X2": { cmsmode = "6"; break; }
+                case "3X6": { cmsmode = "7"; break; }
+                case "8X1": { cmsmode = "65535"; break; }        //北交控未定義8x1
+            }
+            return cmsmode;
+        }
+        #endregion
+
+        #region "判別vd類型"
+        private static string VDCategory(string category)
+        {
+            switch (category.ToString().ToUpper())
+            {
+                case "環路線圈式": { category = "1"; break; }
+                case "路側式": { category = "2"; break; }
+                case "高架式": { category = "3"; break; }
+            }
+            return category;
+        }
+        #endregion
+        #endregion
+
+        #region "1&5分鐘"
+        #region "結合VDconfig 和VDdata"
+        public static DataTable LoadVdDataJoin(string TableName, string DataTime, string dbonnectStr)
+        {
+            DB2Connection conn;
+            DB2DataAdapter da;
+            conn = new DB2Connection(dbonnectStr);
+            string selectCmd = "";
+
+            selectCmd += "Select data.*,con.LANE_COUNT";
+            selectCmd += " From " + DBSchema + "tblvdconfig" + " con ";
+            selectCmd += " left join " + DBSchema + TableName + " data on con.DEVICENAME=data.DEVICENAME";
+            if (DataTime != "")
+            {
+                selectCmd += " WHERE DATE(TIMESTAMP) = DATE('" + DataTime + "')";
+                selectCmd += " AND   HOUR(TIMESTAMP) = HOUR('" + DataTime + "')";
+                selectCmd += " AND   MINUTE(TIMESTAMP) = MINUTE('" + DataTime + "');";
+            }
+
+            da = new DB2DataAdapter(selectCmd, conn);
+            DataTable DT = new DataTable();
+            da.Fill(DT);
+
+            da.Dispose();
+            return DT;
+        }
+        #endregion
+        
+        #region "將-1欄位轉成65535"        //麻煩老師取代舊的
+        public static DataTable Changeto65535(DataTable VDdatasource, int Start, int End)
+        {
+            foreach (DataRow row in VDdatasource.Rows)
+            {
+                for (int i = Start; i <= End; i++)
+                {
+                    if (row[i] != null)
+                    {
+                        if (Convert.ToInt64(row[i]) == -1) { row[i] = 65535; }
+                    }
+                }
+            }
+            return VDdatasource;
+        }
+        #endregion
+
+        #region "讀取table資料"        //麻煩老師取代舊的
+        public static DataTable LoadDBData(string TableName, string DataTime, string dbonnectStr)
+        {
+            DB2Connection conn;
+            DB2DataAdapter da;
+            conn = new DB2Connection(dbonnectStr);
+            string selectCmd = "";
+
+            selectCmd += "Select *";
+            selectCmd += " From " + DBSchema + TableName + " a ";
+            if (DataTime != "")
+            {
+                selectCmd += " WHERE DATE(TIMESTAMP) = DATE('" + DataTime + "')";
+                selectCmd += " AND   HOUR(TIMESTAMP) = HOUR('" + DataTime + "')";
+                selectCmd += " AND   MINUTE(TIMESTAMP) = MINUTE('" + DataTime + "');";
+            }
+
+            da = new DB2DataAdapter(selectCmd, conn);
+            DataTable DT = new DataTable();
+            da.Fill(DT);
+
+            da.Dispose();
+            return DT;
+        }
+        #endregion
+        #endregion
+
+        #region "1968vd資料"
+        #region "判別國道與方向"
+        public static string selectlin_dir(string lineid, string direction)
+        {
+            string ID = string.Empty;
+            switch (lineid.ToUpper())
+            {
+                case "N1":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "S": ID = "1"; break;
+                            case "N": ID = "2"; break;
+                        }
+                        break;
+                    }
+                case "N3":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "S": ID = "3"; break;
+                            case "N": ID = "4"; break;
+                        }
+                        break;
+                    }
+                case "N4":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "13"; break;
+                            case "E": ID = "14"; break;
+                        }
+                        break;
+                    }
+                case "T72":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "27"; break;
+                            case "E": ID = "28"; break;
+                        }
+                        break;
+                    }
+                case "T74":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "29"; break;
+                            case "E": ID = "30"; break;
+                        }
+                        break;
+                    }
+                case "T76":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "31"; break;
+                            case "E": ID = "32"; break;
+                        }
+                        break;
+                    }
+                case "T78":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "33"; break;
+                            case "E": ID = "34"; break;
+                        }
+                        break;
+                    }
+                case "N6":
+                    {
+                        switch (direction.ToUpper())
+                        {
+                            case "W": ID = "47"; break;
+                            case "E": ID = "48"; break;
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        ID = "99";
+                        break;
+                    }
+            }
+            return ID;
+        }
+        #endregion
+        #endregion
+
+        #region "設備運作"
+        #region "設備運作"
+        public static DataTable SelectDBEvent(string table, string Happentime, string DataTime, string dbonnectStr)
+        {
+            DB2Connection conn;
+            DB2DataAdapter da;
+            conn = new DB2Connection(dbonnectStr);
+            string selectCmd = "";
+
+            selectCmd += "Select *";
+            selectCmd += " From " + DBSchema + table + " a ";
+            if (DataTime != "")
+            {
+                selectCmd += " WHERE DATE(" + Happentime + ") = DATE('" + DataTime + "')";
+                selectCmd += " AND   HOUR(" + Happentime + ") = HOUR('" + DataTime + "')";
+                selectCmd += " AND   MINUTE(" + Happentime + ") = MINUTE('" + DataTime + "');";
+            }
+
+            da = new DB2DataAdapter(selectCmd, conn);
+            DataTable DT = new DataTable();
+            da.Fill(DT);
+
+            da.Dispose();
+            return DT;
+        }
+
+        #region --- 連線狀態 ---
+        public static string EQ_Comm_Status(DataRow row)
+        {
+            string commStatus = "65535";
+            if (row["CONNECTSTATUS"].ToString() == "Y")
+                commStatus = "0";
+            else
+                commStatus = "1";
+            return commStatus;  // 0:通訊正常  1:通訊中斷  2:停用
+        }
+        #endregion --- 連線狀態 ---
+
+        #region --- 硬體狀態 ---
+        public static string HW_Status(DataRow row)
+        {
+            string hwStatus = "65535";
+            string[] tmpStr = new string[2];
+            tmpStr[0] = Convert.ToString(Convert.ToInt32(row["HW_STATUS_1"].ToString()), 2).PadLeft(8, '0');
+            tmpStr[1] = Convert.ToString(Convert.ToInt32(row["HW_STATUS_2"].ToString()), 2).PadLeft(8, '0');
+            char c0 = tmpStr[0][7];  //正常
+            char c1 = tmpStr[1][5];  //終端控制器與下層連線異常
+            char c2 = tmpStr[1][7];  //顯示設備故障
+            if (c1 == '1')
+                hwStatus = "1";
+            else if (c2 == '1')
+                hwStatus = "2";
+            else if (c0 == '0')
+                hwStatus = "0";
+
+            return hwStatus;  //0:正常  1:終端控制器與下層連線異常  2:顯示設備故障  3:偵測器故障  4:環路線圈故障
+        }
+        #endregion --- 硬體狀態 ---
+
+        #region --- CMS Message ---
+        public static string GetCMSMessage(CMSOutputData data)
+        {
+            string message = "65535";
+            if (data != null)
+            {
+                message = data.icon_id.ToString();
+                message += "+0+" + data.mesg;
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- CMS Message ---
+
+        #region --- WIS Message ---
+        public static string GetWISMessage(CMSOutputData data)
+        {
+            string message = "65535";
+            if (data != null)
+            {
+                message = data.mesg;
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- WIS Message ---
+
+        #region --- RGS Message ---
+        public static string GetRGSMessage(RGS_GenericDisplay_Data data)
+        {
+            string message = string.Empty;
+            if (data != null)
+            {
+                int tmp = data.icons.Length;                                       //icon_num
+                message = tmp.ToString() + "+";
+                for (int i = 0; i < tmp; i++)                                      //icon
+                { message += "[" + data.icons[i].icon_code_id.ToString() + "+" + data.icons[i].x.ToString() + "+" + data.icons[i].y.ToString() + "]"; }
+
+                if (data.graph_code_id == 0)                                       //graph_num
+                { tmp = 0; }
+                else
+                { tmp = 1; }
+                message += "+" + tmp.ToString() + "+";
+                message += "[" + data.graph_code_id.ToString() + "+" + "0" + "+" + "0" + "]";
+
+                tmp = data.msgs.Length;                                            //message_num
+                message += "+" + tmp.ToString() + "+";
+                for (int i = 0; i < tmp; i++)
+                { message += "[" + data.msgs[i].messgae.ToString() + "+" + data.msgs[i].x.ToString() + "+" + data.msgs[i].y.ToString() + "]"; }
+
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- RGS Message ---
+
+        #region --- RMS Message ---
+        public static string GetRMSMessage(RMSOutputData data)
+        {
+            string message = "65535";
+            if (data != null)
+            {
+
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- RMS Message ---
+
+        #region --- LCS Message ---
+        public static string GetLCSMessage(LCSOutputData data, int boardID)
+        {
+            string message = "65535";
+            if (data != null)
+            {
+                message = data.dataset.Tables[0].Rows[boardID]["sign_cnt"].ToString();
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- LCS Message ---
+
+        #region --- CSLS Message ---
+        public static string GetCSLSMessage(CSLSOutputData data)
+        {
+            string message = "65535";
+            if (data != null)
+            {
+                message = data.dataset.Tables[0].Rows[0]["speed"].ToString();
+            }
+            else message = "關";
+            return message;
+        }
+        #endregion --- CSLS Message ---
+        #endregion "設備運作"
+        #endregion
+
+        #region "VD路段資料"
+        #region "將Null欄位轉成65535"
+        public static DataTable ChangeNullto65535(DataTable VDdatasource, int Start, int End)
+        {
+            foreach (DataRow row in VDdatasource.Rows)
+            {
+                for (int i = Start; i <= End; i++)
+                {
+                    if (row[i].ToString() == "") { row[i] = 65535; }
+                }
+            }
+            return VDdatasource;
+        }
+        #endregion
+
+        #region "讀取table資料"
+        public static DataTable LoadviewData(string TableName, string DataTime, string dbonnectStr)
+        {
+            DB2Connection conn;
+            DB2DataAdapter da;
+            conn = new DB2Connection(dbonnectStr);
+            string selectCmd = "";
+
+            selectCmd += "Select *";
+            selectCmd += " From " + DBSchema + TableName + " a ";
+            if (DataTime != "")
+            {
+                selectCmd += " WHERE DATE(a.TIMESTAMP) = DATE('" + DataTime + "')";
+                selectCmd += " AND   HOUR(a.TIMESTAMP) = HOUR('" + DataTime + "')";
+                selectCmd += " AND   MINUTE(a.TIMESTAMP) = MINUTE('" + DataTime + "')";
+                selectCmd += " or   a.timestamp is null ";
+            }
+
+            da = new DB2DataAdapter(selectCmd, conn);
+            DataTable DT = new DataTable();
+            da.Fill(DT);
+
+            da.Dispose();
+            return DT;
+        }
+        #endregion
+        #endregion
+    }
+
+
+
+
+    
+
+}

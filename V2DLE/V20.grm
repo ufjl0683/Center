@@ -1,0 +1,102 @@
+"Name"     = 'V2.0 Script File'
+"Author"   = 'Chen Chih'
+"Version"  = '1.0'
+"About"    = 'A short description of the grammar'
+
+"Start Symbol" = <Program>
+
+! ------------------------------------------------- Sets
+
+!{String Chars} = {Printable} + {HT} - ["]
+{String Chars} = {All Valid} + {HT} - ["]
+
+{Hex}={Digit}+[ABCDEFabcdef]
+{Character}={AlphaNumeric}+ [_]
+! ------------------------------------------------- Terminals
+Identifier    = {Letter}{Character}* 
+Number ={Number}+
+Float ={Number}+.{Number}+
+StringLiteral = '"' {String Chars}* '"'
+IP={Digit}+.{Digit}+.{Digit}+.{Digit}+
+
+HexDigits=0x{Hex}+
+DeviceID=0x{Hex}{Hex}{Hex}{Hex}
+Cmd=0x{Hex}{Hex}
+
+CmdType='Query' | 'Set' | 'Report'
+CmdClass='A' | 'B' | 'C' | 'D' | 'N'
+!-------------------Example
+![Device Info]
+!DeviceType=VD
+!IP=192.192.78.1
+!port=1001
+
+![Command]
+!cmd=0x01
+!description= "set Date Time"
+!func_name=SetDateTime
+!type=Query
+!send=Cmd  
+!return=Cmd 
+
+! ------------------------------------------------- Rules 
+
+
+<Program> ::= <DeviceInfo> <CommandList>
+
+<DeviceInfo> ::= '[DeviceInfo]' <Version> <DeviceType> <IP> <Port> <DeviceId> 
+<Version>::= 'Version=' Float
+<DeviceType> ::= 'DeviceType=' Identifier
+<DeviceID> ::= 'DeviceID=' DeviceID
+<IP> ::= 'IP=' IP 
+<CmdClass>::= 'class=' CmdClass
+<Port> ::= 'Port=' Number
+<Cmd> ::='cmd=' Cmd <SubCmd>
+<SubCmd> ::= | Cmd
+<Description>::= 'description=' StringLiteral
+<CmdType>::='type=' CmdType
+<CmdTitle>::='[Command]'
+<FuncName>::='func_name=' StringLiteral
+<CommandList> ::=      | <Command> <CommandList> 
+
+
+<Command> ::=  <CmdTitle> <Cmd>  <Description> <CmdClass> <FuncName>  <CmdType>  <SendExpress>   <ReturnExpress> <TestGroupExpress>
+<SendExpress> ::= 'send=' |'send=' <ExpressList>
+
+<ExpressList> ::=  <ExpressItem> |  <ExpressItem> <ExpressList> 
+<RepeatExpress> ::= <ExpressItem> '{' <ExpressList> '}'
+<ExpressItem> ::=  <RangeItem> | <SelectItem>  |  <RepeatExpress> 
+
+
+<RangeItem> ::=   Identifier '(' <RangeValue> ')' 
+
+<RangeValue> ::= <Bytes> ':' <LValue> '-' <HValue> 
+<Lvalue>::= Number
+<HValue>::= Number
+<Bytes>::= Number
+<SelectItem> ::=  Identifier '(' <SelectValues> ')'
+<SelectValues> ::=<Bytes> ':' <NumberList>
+
+<NumberList>::=<SelectValue> |  <NumberList> ','  <SelectValue>
+
+<SelectValue>::=Number <ValueDescription>
+<ValueDescription>::=StringLiteral 
+
+
+<ReturnExpress>::= 'return=' | 'return=' <ExpressList>
+
+<TestGroupExpress> ::= 'test=' | 'test=' <TestExpressList>
+<TestExpressList>::= <TestExpress> | <TestExpressList> ',' <TestExpress>
+<TestExpress>::='@cmd' <TestItemList>
+<TestItemList> ::=  |  <TestItem> <TestItemList>
+<TestItem>::=<TestRangeItem> | <TestSelectItem> | <TestRepeatItems>
+<TestRepeatItems>::=<TestItem> '{' <TestItemList> '}'
+<TestRangeItem> ::= Identifier '(' <LValue> '-' <HValue>  ')'
+<TestSelectItem>::= Identifier '(' <TestSelectValues> ')'
+<TestSelectValues>::=<TestSelectValue> | <TestSelectValues> ',' <TestSelectValue>
+<TestSelectValue>::=Number
+
+
+
+
+

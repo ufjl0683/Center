@@ -1,0 +1,36 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:SLProcessController_ProcessService="clr-namespace:SLProcessController.ProcessService" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" x:Class="SLProcessController.MainPage"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" SizeChanged="UserControl_SizeChanged">
+
+    <toolkit:ExpressionDarkTheme>
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.5">
+    					<ei:ExtendedVisualStateManager.TransitionEffect>
+    						<ee:SlideInTransitionEffect/>
+    					</ei:ExtendedVisualStateManager.TransitionEffect>
+    				</VisualTransition>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="Normal"/>
+    			<VisualState x:Name="Stop"/>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+
+    	<VisualStateManager.CustomVisualStateManager>
+    		<ei:ExtendedVisualStateManager/>
+    	</VisualStateManager.CustomVisualStateManager>
+
+		<Grid x:Name="LayoutRoot">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<toolkit:Accordion VerticalAlignment="Stretch" x:Name="accordion" SelectionMode="ZeroOrMore" SelectionSequence="Simultaneous" HorizontalAlignment="Stretch" />
+		</Grid>
+	</toolkit:ExpressionDarkTheme>
+</UserControl>

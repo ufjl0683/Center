@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="新細明體" Size="9" />
+  <Class Name="Comm.MFCC.MFCC_Base" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\MFCC_Base.cs</FileName>
+      <HashCode>AAAAYBAQQCEAIAAAgCIAABCAAAAAQAAAgAAIIAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.MFCC.RemoteMFCCBase" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\RemoteMFCCBase.cs</FileName>
+      <HashCode>AAAEEBAAAAACAEAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.MFCC.TC_Manager" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\TC_Manager.cs</FileName>
+      <HashCode>CIAAAEAAAAQAAAAACAQAAAAAAEAAAAAAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.RGSTC" Collapsed="true">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RGSTC.cs</FileName>
+      <HashCode>AAAAAAAkAAAABAAAAiAEAAAAgEBAAAAAAEAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.RMSTC" Collapsed="true">
+    <Position X="3.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RMSTC.cs</FileName>
+      <HashCode>IAAAABAAAAAAAAgAAgAEAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.VD_MinAvgData" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VD_MinAvgData.cs</FileName>
+      <HashCode>AAAkAAAAAAQQAAAEAAggACDABAQAAQAAAAACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.VD_OneMinDataStore" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VD_OneMinDataStore.cs</FileName>
+      <HashCode>AAAAAAAAAIBAAAAAAAAgAQBAAAAAAQEAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.VDTC" Collapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VDTC.cs</FileName>
+      <HashCode>AEAAAAIAAASAAAAAADAAAkABAAAAAABACEiACAAZwIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TCBase" Collapsed="true">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>EIQAABABAASAgABMQGBAAKABMAhAAAhgAAJIHAAASAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="Comm.MFCC.OnTC_HWStatusCHangedHandler" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\TC_Manager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.MFCC.OnTC_ConnectStatusChangedHandler" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\TC_Manager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.TC.FiveMinAvgEventHandler" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VDTC.cs</FileName>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.TC.OnRealTimeEventHandler" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VDTC.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.ConnectStatusChangeHandler" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.HWStatusChangeHandler" Collapsed="true">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.OnTCReportHandler" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

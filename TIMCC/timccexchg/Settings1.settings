@@ -1,0 +1,78 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="timccexchg" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="OneMinVDCurrPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current</Value>
+    </Setting>
+    <Setting Name="OneMinVDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vd1min</Value>
+    </Setting>
+    <Setting Name="FiveMinVDCurrPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current</Value>
+    </Setting>
+    <Setting Name="FiveMinVDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vd5min</Value>
+    </Setting>
+    <Setting Name="dbConnectStr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Database=TCS;UserID=db2inst1;Password=db2inst1;Server=10.21.50.31:50000</Value>
+    </Setting>
+    <Setting Name="EpConfCurrPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current</Value>
+    </Setting>
+    <Setting Name="SecDataCurrPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current</Value>
+    </Setting>
+    <Setting Name="SecDataHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\secdata</Value>
+    </Setting>
+    <Setting Name="CommCurrPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current</Value>
+    </Setting>
+    <Setting Name="OneHourVDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vd1hour</Value>
+    </Setting>
+    <Setting Name="OneDayVDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vd1day</Value>
+    </Setting>
+    <Setting Name="FiveMinRDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\rd5min</Value>
+    </Setting>
+    <Setting Name="TenMinWDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\wd10min</Value>
+    </Setting>
+    <Setting Name="FiveMinVIHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vi5min</Value>
+    </Setting>
+    <Setting Name="OneMinAVIPlateHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\aviplate1min</Value>
+    </Setting>
+    <Setting Name="OneMinAVISectionHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\avisec1min</Value>
+    </Setting>
+    <Setting Name="OneDayVDUnUseHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\vd_usable_rate_data_1day</Value>
+    </Setting>
+    <Setting Name="OneDayRampTrafficDataHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\ramp_traffic_data_1day</Value>
+    </Setting>
+    <Setting Name="OneHourRampTrafficDataHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\ramp_traffic_data_1hour</Value>
+    </Setting>
+    <Setting Name="OneMinSectionVDHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\secvd1min</Value>
+    </Setting>
+    <Setting Name="OneMinVDMiaoLiHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\miaoli\vd1min</Value>
+    </Setting>
+    <Setting Name="OneMinSectionMiaoLiHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\miaoli\sec1min</Value>
+    </Setting>
+    <Setting Name="OneMinCMSMiaoLiHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\miaoli\cms1min</Value>
+    </Setting>
+    <Setting Name="OneMinRspPlanDataHistPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\current\hist\rsp_plan_data_1min</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

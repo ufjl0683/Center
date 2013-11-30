@@ -1,0 +1,829 @@
+[DeviceInfo]
+
+Version=1.0
+DeviceType=SCM
+IP=10.21.50.221
+port=1001
+DeviceID=0xffff
+
+[command]
+cmd=0x0f 0x80
+description="Report Message Valid"
+class=B
+func_name="report_message_valid"
+type=Report
+send=commandid(2:0-65535)
+return=
+test=
+
+[command]
+cmd=0x0f 0x81
+description="Report Message Invalid"
+class=B
+func_name="report_message_invalid"
+type=Report
+send=commandid(2:0-65535)errororcode(1:1-255) parameternumber(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x0f 0x8f
+description="Message Replace Upload"
+class=N
+func_name="message_replace_upload"
+type=Query
+send=address(2:0-65535) commandid(2:0-65535) 
+return=commandid(2:0-65535)errororcode(1:1-255) parameternumber(1:0-255)
+test=
+
+[command]
+cmd=0x0f 0x8e
+description="Query Message Replace Upload"
+class=A
+func_name="query_message_replace_upload"
+type=Query
+send=address(2:0-65535) commandid(2:0-65535) 
+return=commandid(2:0-65535) 
+test=
+
+
+[command]
+cmd=0x0f 0x10
+description="Reset Device"
+class=B
+func_name="reset_device"
+type=Query
+send= reset_1(1:82-82) reset_2(1:82-82)
+return=reset_1(1:0-255) reset_2(1:0-255)
+test=@cmd reset_1(82) reset_2(82)
+
+
+
+
+[command]
+cmd=0x0f 0x40
+description="Query Device Code"
+class=C
+func_name="query_device_code"
+type=Query
+send=equipmentno(1:0-255)
+return=equipmentno(1:0-255)subcount(1:0-255)subeqipmentno(1:0-255)equipmentid(1:0-255)
+test=
+
+
+[command]
+cmd=0x0f 0x00
+description="Report Power Cut"
+class=N
+func_name="report_power_cut"
+type=Report
+send= month(1:0-12) day(1:1-31) hour(1:0-23) min(1:0-59)
+return=
+test=
+
+[command]
+cmd=0x0f 0x11
+description="Reset Device Communication"
+class=B
+func_name="reset_device_communication"
+type=Query
+send= 
+return=
+test=
+
+[command]
+cmd=0x0f 0x41
+description="Query Device Status"
+class=B
+func_name="query_device_status"
+type=Query
+send= 
+return=hardwarestatus(2:0-65535)
+test=
+
+[command]
+cmd=0x0f 0xc1
+description="Report Device Status"
+class=B
+func_name="report_device_status"
+type=Report
+send=hardwarestatus(2:0-65535) 
+return= 
+test=
+
+
+[command]
+cmd=0x0f 0x12
+description="Set Date And Time"
+class=B
+func_name="set_date_and_time"
+type=Query
+send= year(1:0-255) month(1:1-12) day(1:1-31) week(1:1-7) hour(1:0-23) min(1:0-59) sec(1:0-59)
+return=secdif(1:0-255)
+test=@cmd year(99) month(5) day(19) week(3) hour(13) min(30) sec(0)
+
+
+
+
+[command]
+cmd=0x0f 0x42
+description="Query Date And Time"
+class=C
+func_name="query_date_and_time"
+type=Query
+send=
+return=year(1:0-255)month(1:1-12) day(1:1-31) week(1:1-7) hour(1:0-23) min(1:0-59) sec(1:0-59)
+test=
+
+
+
+[command]
+cmd=0x0f 0x02
+description="Report Manual Change Time"
+class=N
+func_name="report_manual_change_time"
+type=Report
+send= 
+return= 
+test=
+
+[command]
+cmd=0x0f 0x13
+description="Set Device Message Level"
+class=B
+func_name="set_device_message_level"
+type=Set
+send= commandset(1:0-3)
+return= 
+test=
+
+[command]
+cmd=0x0f 0x43
+description="Query Firmware Information"
+class=B
+func_name="query_firmware_information"
+type=Query
+send= 
+return= year(1:0-255) month(1:1-12) day(1:1-31) companyid(1:0-255) version(1:0-255) commandset(1:0-3)
+test=
+
+[command]
+cmd=0x0f 0xc3
+description="Report Firmware Information"
+class=N
+func_name="report_firmware_information"
+type=Report
+send= year(1:0-255) month(1:1-12) day(1:1-31) companyid(1:0-255) version(1:0-255) commandset(1:0-3)
+return= 
+test=
+
+[command]
+cmd=0x0f 0x14
+description="Set Report HardwareCycle"
+class=B
+func_name="set_report_hardwarecycle"
+type=Set
+send=hardwarecycle(1:0-5)
+return=
+test=
+
+[command]
+cmd=0x0f 0x44
+description="Query Device Report Status Transmission Cycle"
+class=B
+func_name="query_device_report_status_transmission_cycle"
+type=Query
+send= 
+return=hardwarecycle(1:0-5)
+test=
+
+[command]
+cmd=0x0f 0xc4
+description="Report Device Status Transmission Cycle"
+class=N
+func_name="report_device_status_transmission_cycle"
+type=Report
+send=hardwarecycle(1:0-5)
+return= 
+test=
+
+[command]
+cmd=0x0f 0x04
+description="Device Report Status"
+class=N
+func_name="device_report_status"
+type=Report
+send= hardwarestatus(2:0-65535)
+return= 
+test=
+
+[command]
+cmd=0x0f 0x15
+description="Set Device Control Password"
+class=B
+func_name="set_device_control_password"
+type=Set
+send= password1(1:0-255) password2(1:0-255) password3(1:0-255) password4(1:0-255) password5(1:0-255) password6(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x0f 0x45
+description="Query Device Control Password"
+class=B
+func_name="query_device_control_password"
+type=Query
+send= 
+return= password1(1:0-255) password2(1:0-255) password3(1:0-255) password4(1:0-255) password5(1:0-255) password6(1:0-255)
+test=
+
+
+[command]
+cmd=0x0f 0x16
+description="Set Or Remove Db Lock"
+class=C
+func_name="set_or_remove_db_lock"
+type=Set
+send= lockdb(1:0-2)
+return= 
+test=
+
+[command]
+cmd=0x0f 0x46
+description="Query Db Lock"
+class=C
+func_name="query_db_lock"
+type=Query
+send= 
+return=lockdb(1:0-255)
+test=
+
+
+[command]
+cmd=0x0f 0x47
+description="Query Communication Report Message"
+class=C
+func_name="query_communication_report_message"
+type=Query
+send=protocol1(1:0-255) protocol2(1:0-255)
+return= protocol1(1:0-255) protocol2(1:0-255) response(1:0-1)
+test=
+
+
+[command]
+cmd=0x5f 0x10
+description="Set Control Content"
+class=A
+func_name="set_control_content"
+type=Set
+send=controlstrategy(1:0-255) effecttime(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x5f 0x40
+description="Query Control Content"
+class=A
+func_name="query_control_content"
+type=Query
+send= 
+return=controlstrategy(1:0-255) effecttime(1:0-255)
+test=
+
+
+
+[command]
+cmd=0x5f 0x00
+description="Active Report Control Content"
+class=N
+func_name="active_report_control_content"
+type=Report
+send=controlstrategy(1:0-7) beginend(1:0-3)
+return=
+test=
+
+[command]
+cmd=0x5f 0x11
+description="Set General Day Lane Control Parametric"
+class=A
+func_name="set_general_day_lane_control_parametric"
+type=Set
+send= direct1(1:0-10) starthour1(1:0-23) startmin1(1:0-59) stophour1(1:0-23) stopmin1(1:0-59) direct2(1:0-10) starthour2(1:0-23) startmin2(1:0-59) stophour2(1:0-23) stopmin2(1:0-59) cleartime(1:0-255) flashgreen(1:0-255) greentime(1:0-255) reversetimetype(1:1-3) numweekday(1:1-14){weekday(1:1-17)}
+return=
+test=
+
+[command]
+cmd=0x5f 0x41
+description="Query General Day Lane Control Parametric"
+class=A
+func_name="query_general_day_lane_control_parametric"
+type=Query
+send= reversetimetype(1:1-255) weekday(1:1-17)
+return=direct1(1:0-10) starthour1(1:0-23) startmin1(1:0-59) stophour1(1:0-23) stopmin1(1:0-59) direct2(1:0-10) starthour2(1:0-23) startmin2(1:0-59) stophour2(1:0-23) stopmin2(1:0-59) cleartime(1:0-255) flashgreen(1:0-255) greentime(1:0-255) reversetimetype(1:1-3) numweekday(1:1-14){weekday(1:1-17)}
+test=
+
+
+[command]
+cmd=0x5f 0x01
+description="Active Report General Day Lane Control Start Quit"
+class=N
+func_name="active_report_general_day_lane_control_start_quit"
+type=Report
+send= beginend(1:0-3)
+return=
+test=
+
+[command]
+cmd=0x5f 0x12
+description="Set Special Day Lane Control Parametric"
+class=A
+func_name="set_special_day_lane_control_parametric"
+type=Set
+send=direct1(1:0-10) starthour1(1:0-23) startmin1(1:0-59) stophour1(1:0-23) stopmin1(1:0-59) direct2(1:0-10) starthour2(1:0-23) startmin2(1:0-59) stophour2(1:0-23) stopmin2(1:0-59) cleartime(1:0-255) flashgreen(1:0-255) greentime(1:0-255) reversetimetype(1:4-6) startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+return=
+test=
+
+[command]
+cmd=0x5f 0x42
+description="Query Special Day Lane Control Parametric"
+class=A
+func_name="query_special_day_lane_control_parametric"
+type=Query
+send= reversetimetype(1:1-255)
+return=direct1(1:0-10) starthour1(1:0-23) startmin1(1:0-59) stophour1(1:0-23) stopmin1(1:0-59) direct2(1:0-10) starthour2(1:0-23) startmin2(1:0-59) stophour2(1:0-23) stopmin2(1:0-59) cleartime(1:0-255) flashgreen(1:0-255) greentime(1:0-255) reversetimetype(1:4-6) startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+test=
+ 
+
+[command]
+cmd=0x5f 0x02
+description="Active Report Special Day Lane Control Start Quit"
+class=N
+func_name="active_report_special_day_lane_control_start_quit"
+type=Report
+send= beginend(1:0-3)
+return=
+test=
+
+[command]
+cmd=0x5f 0x13
+description="Set Scm Phase Array"
+class=B
+func_name="set_scm_phase_array"
+type=Set
+send= phaseorder(1:0-254) signalmap(1:0-7) signalcount(1:1-8) subphasecount(1:1-8) signalstatus(1:0-7)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x43
+description="Query Scm Phase Array"
+class=B
+func_name="query_scm_phase_array"
+type=Query
+send= phaseorder(1:0-254)
+return= phaseorder(1:0-254) signalmap(1:0-7) signalcount(1:1-8) subphasecount(1:1-8){signalcount(1:1-8){signalstatus(1:0-7)}}
+test=
+
+[command]
+cmd=0x5f 0x03
+description="Active Report Scm Step Change Data"
+class=N
+func_name="active_report_scm_step_change_data"
+type=Report
+send= phaseorder(1:0-254) signalmap(1:0-7) signalcount(1:1-8) subphaseid(1:1-8) stepid(1:1-254) stepsec(2:0-65535) signalstatus(1:0-7)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x14
+description="Set Time Plan Parametric"
+class=B
+func_name="set_time_plan_parametric"
+type=Set
+send=planid(1:0-48) subphasecount(1:1-8){mingreen(1:0-255) maxgreen(2:0-8190) yellow(1:0-9) allred(1:0-9) pedgreenflash(1:0-99) pedred(1:0-99)}
+return=
+test=
+
+[command]
+cmd=0x5f 0x44
+description="Query Time Plan Parametric"
+class=B
+func_name="query_time_plan_parametric"
+type=Query
+send= planid(1:0-48)
+return=planid(1:0-48) subphasecount(1:1-8){mingreen(1:0-255) maxgreen(2:0-8190) yellow(1:0-9) allred(1:0-9) pedgreenflash(1:0-99) pedred(1:0-99)}
+test=
+
+
+
+
+[command]
+cmd=0x5f 0x15
+description="Set Time Plan Content"
+class=B
+func_name="set_time_plan_content"
+type=Set
+send= planid(1:0-48) direct(1:0-10) phaseorder(1:0-254) subphasecount(1:1-8){green(2:0-8190)} cycletime(2:0-65535) offset(2:0-65535)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x45
+description="Query Time Plan Content"
+class=B
+func_name="query_time_plan_content"
+type=Query
+send= planid(1:0-48)
+return=planid(1:0-48) direct(1:0-10) phaseorder(1:0-254) subphasecount(1:1-8){green(2:0-8190)} cycletime(2:0-65535) offset(2:0-65535)
+test=
+
+
+
+
+[command]
+cmd=0x5f 0x16
+description="Set General Day Time State"
+class=B
+func_name="set_general_day_time_state"
+type=Set
+send= segmenttype(1:0-7) segmentcount(1:0-32){hour(1:0-23) min(1:0-59) planid(1:1-40)} numweekday(1:1-14){weekday(1:1-17)}
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x46
+description="Query General Day Time State"
+class=B
+func_name="query_general_day_time_state"
+type=Query
+send= segmenttype(1:0-255) weekday(1:1-17)
+return=segmenttype(1:0-7) segmentcount(1:0-32){hour(1:0-23) min(1:0-59) planid(1:1-40)} numweekday(1:1-14){weekday(1:1-17)}
+test=
+
+[command]
+cmd=0x5f 0x17
+description="Set Special Day Time State"
+class=B
+func_name="set_special_day_time_state"
+type=Set
+send= segmenttype(1:8-20) segmentcount(1:0-32){hour(1:0-23) min(1:0-59) planid(1:1-40)} startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+return=
+test=
+
+[command]
+cmd=0x5f 0x47
+description="Query Special Day Time State"
+class=B
+func_name="query_special_day_time_state"
+type=Query
+send=segmenttype(1:8-20) 
+return= segmenttype(1:8-20) segmentcount(1:0-32){hour(1:0-23) min(1:0-59) planid(1:1-40)} startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+test=
+
+
+[command]
+cmd=0x5f 0x18
+description="Select Execute Time Plan"
+class=B
+func_name="select_execute_time_plan"
+type=Set
+send= planid(1:1-40)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x48
+description="Query Time Plan Content Now"
+class=B
+func_name="query_time_plan_content_now"
+type=Query
+send=  
+return=planid(1:0-48) direct(1:0-10) phaseorder(1:0-254) subphasecount(1:1-8){green(2:0-8190)} cycletime(2:0-65535) offset(2:0-65535)
+test=
+
+
+
+[command]
+cmd=0x5f 0x19
+description="Set Actuate Control Type"
+class=A
+func_name="set_actuate_control_type"
+type=Set
+send= subphaseid(1:1-8) actuatetype(1:0-7) timeextend(1:1-255) actuatedata1(1:0-255) actuatedata2(1:0-255)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x49
+description="Query Actuate Control Type Content"
+class=A
+func_name="query_actuate_control_type_content"
+type=Query
+send= actuatetype(1:0-7) 
+return=subphaseid(1:1-255) actuatetype(1:0-7) timeextend(1:1-255) actuatedata1(1:0-255) actuatedata2(1:0-255)
+test=
+
+
+
+[command]
+cmd=0x5f 0x09
+description="Active Report Actuate Control Process"
+class=N
+func_name="active_report_actuate_control_process"
+type=Report
+send= actuatetype(1:0-7) actuatedata1(1:0-255) 
+return=
+test=
+
+[command]
+cmd=0x5f 0x1a
+description="Set General Day Actuate Segment Type"
+class=A
+func_name="set_general_day_actuate_segment_type"
+type=Set
+send= segmenttype(1:0-255) segmentcount(1:0-7){hour(1:0-23) min(1:0-59) actuatetype(1:0-7)} numweekday(1:1-14){weekday(1:1-17)}
+return=
+test=
+
+[command]
+cmd=0x5f 0x4a
+description="Query General Day Actuate Segment Type"
+class=A
+func_name="query_general_day_actuate_segment_type"
+type=Query
+send= segmenttype(1:0-255) weekday(1:1-17)
+return=segmenttype(1:0-255) segmentcount(1:0-7){hour(1:0-23) min(1:0-59) actuatetype(1:0-7)} numweekday(1:1-14){weekday(1:1-17)}
+test=
+
+
+
+[command]
+cmd=0x5f 0x1b
+description="Set Special Day Actuate Segment Type"
+class=A
+func_name="set_special_day_actuate_segment_type"
+type=Set
+send= segmenttype(1:8-14) segmentcount(1:0-7){hour(1:0-23) min(1:0-59) actuatetype(1:0-7)} startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+return=
+test=
+
+[command]
+cmd=0x5f 0x4b
+description="Query Special Day Actuate Segment Type"
+class=A
+func_name="query_special_day_actuate_segment_type"
+type=Query
+send= segmenttype(1:8-14) 
+return=segmenttype(1:8-14) segmentcount(1:0-7){hour(1:0-23) min(1:0-59) actuatetype(1:0-7)} startyear(1:0-255) startmonth(1:1-12) startday(1:1-31) stopyear(1:0-255) stopmonth(1:1-12) stopday(1:1-31)
+test=
+
+
+
+[command]
+cmd=0x5f 0x1c
+description="Set Phase Or Step Change Control"
+class=C
+func_name="set_phase_or_step_change_control"
+type=Set
+send= subphaseid(1:1-8) stepid(1:0-8) effecttime(1:0-255)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x4c
+description="Query Phase And Step Now"
+class=C
+func_name="query_phase_and_step_now"
+type=Query
+send= 
+return=controlstrategy(1:0-7) subphaseid(1:0-8) stepid(1:0-8) second(2:0-65535)
+test=
+
+
+[command]
+cmd=0x5f 0x0c
+description="Active Report Phase And Step Now"
+class=N
+func_name="active_report_phase_and_step_now"
+type=Report
+send= controlstrategy(1:0-7) subphaseid(1:0-8) stepid(1:0-8)
+return=
+test=
+
+[command]
+cmd=0x5f 0x1d
+description="Set Critical Intersection Control"
+class=C
+func_name="set_critical_intersection_control"
+type=Set
+send= subphasecount(1:1-8) cycletime(2:0-65535) offset(2:0-65535) green(2:0-8190){subphasecount(1:1-8)}
+return=
+test=
+
+[command]
+cmd=0x5f 0x1e
+description="Set Vip Parametric"
+class=C
+func_name="set_vip_parametric"
+type=Set
+send= direct_1(1:0-8) direct_2(1:0-8) starthour(1:0-23) starmin(1:0-59) stophour(1:0-23) stopmin(1:0-59)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x4e
+description="Query Vip Parametric"
+class=C
+func_name="query_vip_parametric"
+type=Query
+send=
+return=direct_1(1:0-8) direct_2(1:0-8) starthour(1:0-23) starmin(1:0-59) stophour(1:0-23) stopmin(1:0-59)
+test=
+
+[command]
+cmd=0x5f 0x2f
+description="Set Phase Order"
+class=A
+func_name="set_phase_order"
+type=Set
+send=phaseorder(1:0-254) signalmap(1:0-7) signalcount(1:1-8) subphasecount(1:1-8) stepcount(1:1-8) signalstatus(1:0-7)
+return=
+test=
+
+[command]
+cmd=0x5f 0x5f
+description="Query Phase Order"
+class=A
+func_name="query_phase_order"
+type=Query
+send= phaseorder(1:0-254)
+return=phaseorder(1:0-254) signalmap(1:0-7) signalcount(1:1-8) subphasecount(1:1-8) stepcount(1:1-8) signalstatus(1:0-7)
+test=
+
+
+[command]
+cmd=0x5f 0x31
+description="Set Mother Out Type"
+class=C
+func_name="set_mother_out_type"
+type=Set
+send= manual(1:0-1) tod(1:0-2) childno(1:1-2){startsubphaseid(1:0-8) endsubphaseid(1:0-8)} 
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x61
+description="Query Mother Out Type"
+class=C
+func_name="query_mother_out_type"
+type=Query
+send= 
+return=manual(1:0-255) tod(1:0-255) childno(1:0-255){startsubphaseid(1:0-255) endsubphaseid(1:0-255)}
+test=
+
+
+[command]
+cmd=0x5f 0x32
+description="Set Child Type"
+class=C
+func_name="set_child_type"
+type=Set
+send= startsubphaseid(1:0-8) endsubphaseid(1:0-8) 
+return=
+test=
+
+[command]
+cmd=0x5f 0x62
+description="Query Child Type"
+class=C
+func_name="query_child_type"
+type=Query
+send=  
+return=startsubphaseid(1:0-8) endsubphaseid(1:0-8)
+test=
+
+[command]
+cmd=0x5f 0x33
+description="Set Child Control Type"
+class=C
+func_name="set_child_control_type"
+type=Set
+send= childno(1:1-2) planid(1:0-48) startoffset(2:0-65535) endoffset(2:0-65535)
+return=
+test=
+
+
+
+[command]
+cmd=0x5f 0x63
+description="Query Child Control Type"
+class=C
+func_name="query_child_control_type"
+type=Query
+send= childno(1:1-2) planid(1:0-48) 
+return=childno(1:1-2) planid(1:0-48) startoffset(2:0-65535) endoffset(2:0-65535)
+test=
+
+
+[command]
+cmd=0x5f 0x08
+description="Active Report Field Operate"
+class=N
+func_name="acteve_report_field_operate"
+type=Report
+send= fieldoperate(1:0-255)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x0a
+description="Active Report Field Data Change"
+class=N
+func_name="acteve_report_field_data_change"
+type=Report
+send= updatedb(1:0-255) subdb_id(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x5f 0x0b
+description="Active Report Request Cc Load Data"
+class=N
+func_name="active_report_request_cc_load_data"
+type=Report
+send= updatedb(1:0-255) 
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x3f
+description="Set Data Report Transmission Cycle"
+class=C
+func_name="set_data_report_transmission_cycle"
+type=Set
+send= transmittype(1:1-2) transmitcycle(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x5f 0x6f
+description="Query Tc Transmission Cycle"
+class=C
+func_name="query_tc_transmission_cycle"
+type=Query
+send= transmittype(1:1-2)
+return=transmittype(1:1-2) transmitcycle(1:0-255)
+test=
+
+[command]
+cmd=0x5f 0x0f
+description="Active Report Signal Map"
+class=N
+func_name="acteve_report_signal_map"
+type=Report
+send= signalmap(1:0-255) greensignalmap(1:0-255) yellowsignalmap(1:0-255) redsignalmap(1:0-255)
+return=
+test=
+
+[command]
+cmd=0x5f 0x3e
+description="Set Bright Control"
+class=C
+func_name="set_bright_control"
+type=Set
+send= bright(1:0-255) starthour(1:0-23) starmin(1:0-59) stophour(1:0-23) stopmin(1:0-59)
+return=
+test=
+
+
+[command]
+cmd=0x5f 0x6e
+description="Query Bright Control"
+class=C
+func_name="query_bright_control"
+type=Query
+send= 
+return=bright(1:0-255) starthour(1:0-23) starmin(1:0-59) stophour(1:0-23) stopmin(1:0-59)
+test=
+
+[command]
+cmd=0x5f 0x0e
+description="Active Report Bright Begin End"
+class=N
+func_name="acteve_report_bright_begin_end"
+type=Report
+send= beginend(1:0-1)
+return=
+test=
+@Signature=1DD10E8A99A1652F012EB8DAB50B6A2C53569B5E5F5119CF

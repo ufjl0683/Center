@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QYTask" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="TIMC_uri_bak" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.4.4/section_traffic_data.xml</Value>
+    </Setting>
+    <Setting Name="TIMCC_uri_bak1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">file:///home/fortech/Server/section_traffic_data.xml</Value>
+    </Setting>
+    <Setting Name="TIMCC_uri_bak2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">file:///D:/backd\中部高速公路中心/Center/QYTask/QYSerevr/section_traffic_data.xml</Value>
+    </Setting>
+    <Setting Name="TIMCC_uri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.4.4/section_traffic_data.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

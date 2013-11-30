@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Comm</RootNamespace>
+    <AssemblyName>Comm</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServerFactory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Host\ServerFactory\bin\Release\ServerFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="V2DLE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\V2DLE\bin\Release\V2DLE.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB2\Db2.cs" />
+    <Compile Include="I_DB_able.cs" />
+    <Compile Include="MFCC\MFCC_Base.cs" />
+    <Compile Include="MFCC\MFCC_DataColloetBase.cs" />
+    <Compile Include="MFCC\RemoteMFCCBase.cs" />
+    <Compile Include="MFCC\TC_Manager.cs" />
+    <Compile Include="MFCC\TC_Status.cs" />
+    <Compile Include="OutputTCBase.cs" />
+    <Compile Include="TCBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TC\ETTUTC.cs" />
+    <Compile Include="TC\IIDTC.cs" />
+    <Compile Include="TC\MASTC.cs" />
+    <Compile Include="TC\SCMTC.cs" />
+    <Compile Include="TC\TTSTC.cs" />
+    <Compile Include="TC\WDTC.cs" />
+    <Compile Include="TC\AVITC.cs" />
+    <Compile Include="TC\CMSTC.cs" />
+    <Compile Include="TC\CSLSTC.cs" />
+    <Compile Include="TC\LCSTC.cs" />
+    <Compile Include="TC\RDTC.cs" />
+    <Compile Include="TC\VDDataValidCheck.cs" />
+    <Compile Include="TC\VD_MinAvgData.cs" />
+    <Compile Include="TC\VD_OneMinDataStore.cs" />
+    <Compile Include="TC\RGSTC.cs" />
+    <Compile Include="TC\RMSTC.cs" />
+    <Compile Include="TC\VDTC.cs" />
+    <Compile Include="TC\VD_SpotSpeedData.cs" />
+    <Compile Include="TC\VITC.cs" />
+    <Compile Include="WISTC.cs" />
+    <Compile Include="TC\FSTC.cs" />
+    <Compile Include="TC\LSTC.cs" />
+    <Compile Include="TC\TEMTC.cs" />
+    <Compile Include="TC\CMSRSTTC.cs" />
+    <Compile Include="TC\BSTC.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RemoteInterface\RemoteInterface.csproj">
+      <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
+      <Name>RemoteInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

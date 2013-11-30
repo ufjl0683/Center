@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="新細明體" Size="9" />
+  <Class Name="RemoteInterface.ConsoleServer">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ConsoleServer.cs</FileName>
+      <HashCode>AAAAAAAAACIAAAAIAEAAgQAAQAAAAEAAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.EventNotifyServer" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EventNotifyServer.cs</FileName>
+      <HashCode>AAACAABAAAAAAAAAAAAAAAAAAAEIQAAAAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.ClientConnection" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EventNotifyServer.cs</FileName>
+      <HashCode>AAAGAAAAAAAAAAAAAAAAAAAAAAABACAACAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.ServerFactory">
+    <Position X="1.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>ServerFactory.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAAAAAACCAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RemoteInterface.Util">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Util.cs</FileName>
+      <HashCode>AAIAIACIAAAAAAAgAAIAgAAAAAQAAAEAAIACAAQAABg=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="RemoteInterface.Util.SYSTEMTIME" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Util.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+  </Class>
+</ClassDiagram>

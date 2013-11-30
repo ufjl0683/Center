@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="新細明體" Size="9" />
+  <Class Name="Execution.Category.AEvent" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\AEvent.cs</FileName>
+      <HashCode>AAAQAAAAAAAgAQCAAACAAQAAEBABAABAAAAAAAAgACA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.GenEvent" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\GenEvent.cs</FileName>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAQBAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.ObsEvent" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\ObsEvent.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.OthEvent" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\OthEvent.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.ResEvent" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\ResEvent.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.TunEvent" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\TunEvent.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.WeaEvent" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Category\WeaEvent.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.ADevice" Collapsed="true">
+    <Position X="18.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\ADevice.cs</FileName>
+      <HashCode>AAAAAFDAEAAAA4CAAAAAAgAFgACAEACAAACIAAIgEAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.CCTV" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\CCTV.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.CMS" Collapsed="true">
+    <Position X="29" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\CMS.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAAEEAAAAAEAAAAEAAAAAAAEAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.CSLS" Collapsed="true">
+    <Position X="17.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\CSLS.cs</FileName>
+      <HashCode>AAAAAAEIAAAAAAQAAAAAAAAAEAAAAAAAAABAAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.FS" Collapsed="true">
+    <Position X="19.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\FS.cs</FileName>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.LCS" Collapsed="true">
+    <Position X="21.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\LCS.cs</FileName>
+      <HashCode>AYAABCAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RGS" Collapsed="true">
+    <Position X="32.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RGS.cs</FileName>
+      <HashCode>CCEAAAgAAAAAAIQAAAAABAAAFAAAAAAAAAAQAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RGSData">
+    <Position X="10.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RGS.cs</FileName>
+      <HashCode>AAICAAAAAAAAAAAEgAAAABAAAAQAAIAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RGSDeviceList" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RGS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RMS" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\RMS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAAQAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.DeviceData">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RMS.cs</FileName>
+      <HashCode>AAIAAAAAAAAAIAAAACAACAAAAggAAAAAAAAIAAASAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RMSData">
+    <Position X="8.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RMS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAQAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RMSMode" Collapsed="true">
+    <Position X="25.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RMS.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAQAAAAEA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.RMSDeviceList" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Device\RMS.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Category.WIS" Collapsed="true">
+    <Position X="23.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <FileName>Device\WIS.cs</FileName>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Command.GetInsertCmd" Collapsed="true">
+    <Position X="30.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Command\GetInsertCommand.cs</FileName>
+      <HashCode>BAIAAAAAAABAABAAAAAAAAAAAACABBAAAAAAABBAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Command.GetSelectCmd" Collapsed="true">
+    <Position X="32.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Command\GetSelectCommand.cs</FileName>
+      <HashCode>AQIAEEBAABAAHAMgAACCAAAAAiIABAAAAAAEAQQAgCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Command.GetUpdateCmd" Collapsed="true">
+    <Position X="25.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Command\GetUpdateCommand.cs</FileName>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAACABBAAACAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.EasyClient" Collapsed="true">
+    <Position X="30.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EasyClient.cs</FileName>
+      <HashCode>IAIABAAAQAAAAAAIAAAAAQAAACgFAAgCIgAAAAAAAII=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.BlockMeg1" Collapsed="true">
+    <Position X="25.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\BlockMeg1.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAQgAAAAAAAAgAAAAIABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.BlockMegAndColor" Collapsed="true">
+    <Position X="27.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\BlockMegAndColor.cs</FileName>
+      <HashCode>AAAAAQAAAAAAAAAAgAAAAQAAAAAAAACIAAEAoQABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.ExecutionObj" Collapsed="true">
+    <Position X="29" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\ExecutionObj.cs</FileName>
+      <HashCode>ACAAIBAhAEAAAgCAAIIAZAQVAUKQAIBCsAAAAAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.LiaiseUnit" Collapsed="true">
+    <Position X="27.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\LiaiseUnit.cs</FileName>
+      <HashCode>IACEAEAAAAAAAAAAAAAAQAAAAAIAQgCgAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Line" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\Line.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Location" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\Location.cs</FileName>
+      <HashCode>AAADAAAABQAAIAQEACAAAAAAAAAEAAAQAAAAEAAAQgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Section" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\Section.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Tunnel" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\Tunnel.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAABQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.EventObj" Collapsed="true">
+    <Position X="25.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\Tunnel.cs</FileName>
+      <HashCode>IAIAACAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.TunnelList" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\Location\TunnelList.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.MessColor" Collapsed="true">
+    <Position X="29" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\MessColor.cs</FileName>
+      <HashCode>AAAAAAAAAAAAggAAAAIAAAAAAAAAAAABAAEAAQABAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.MoveData" Collapsed="true">
+    <Position X="30.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\MoveData.cs</FileName>
+      <HashCode>AiABAAIgBCAAIAQkgCAACAAAAAgAAIAQAAAAEAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.MyList&lt;T&gt;" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\MyList.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAAAAAAAABAQgAAAIAAACCAAAAgBUAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.RSPMegColor" Collapsed="true">
+    <Position X="29" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\RSPMegColor.cs</FileName>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAQAAAAAAAACAAAEAoQABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.RSPDataTbl" Collapsed="true">
+    <Position X="27.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\TblData.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAACAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.TunnelData" Collapsed="true">
+    <Position X="30.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\TunnelData.cs</FileName>
+      <HashCode>AAAAAGAAAAAAAAAAAAAAACQAAAAAAAAAECAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.EvenInput" Collapsed="true">
+    <Position X="32.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EvenInput.cs</FileName>
+      <HashCode>AAAAACAAAAAAAAAQAAAIIiAAEAAAAAAAACAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Execution.Execution" Collapsed="true">
+    <Position X="27.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Execution.cs</FileName>
+      <HashCode>CAAAECAAAAAAAAAAAAAAACQABAAgAFAAACAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Execution.I_Event" Collapsed="true">
+    <Position X="25.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Encapsulate\I_Event.cs</FileName>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Execution.LCSLight" Collapsed="true">
+    <Position X="32.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAgAEAAAAAABAAAAg=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.DeviceType" Collapsed="true">
+    <Position X="29" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>CAAAAAIAAAAAAAQCAEAAgAAAAAAAAAAAAAAAAAAABgA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.CategoryType" Collapsed="true">
+    <Position X="25.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AgAAAAAAAAAEAIQAAAAAAAAAAAACAAAAAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.Degree" Collapsed="true">
+    <Position X="27.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFaAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.MegType" Collapsed="true">
+    <Position X="27.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAACAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.EventStatus" Collapsed="true">
+    <Position X="30.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAIAAAAAAAAAACQAAAAAAAAAAAQEAAAAAAAEAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.Notifier" Collapsed="true">
+    <Position X="29" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAQBAAAAgAAAAAAAAAAAAAAAACAAgAAACAAACA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.RenewData" Collapsed="true">
+    <Position X="30.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Execution.LoginMode" Collapsed="true">
+    <Position X="25.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MyEnum.cs</FileName>
+      <HashCode>AAAAAAAAQIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

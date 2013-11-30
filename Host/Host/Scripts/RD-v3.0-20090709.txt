@@ -1,0 +1,361 @@
+[DeviceInfo]
+
+Version=3.0
+DeviceType=RD
+IP=192.168.1.180
+port=1001
+DeviceID=0xFFFF
+
+
+[command]
+cmd=0x00
+description= "Restart Device"
+class=A
+func_name="set_dev_restart"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x01
+description= "Get Hw Status"
+class=C
+func_name="get_HW_Status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x02
+description= "Set Date Time And Query Different"
+class=A
+func_name="set_datetime_report"
+type=Query
+send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+return=second_diff(1:0-255)
+test=@cmd year(2009) month(2) day(20) hour(12) minute(1) second(20)
+
+
+[Command]
+ cmd=0x04 
+ description="get date time"
+ class=A
+ func_name="get_date_time"
+ type=Query
+ send= protocol_code(1:2-2)
+ return=  hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+ test=@cmd protocol_code(2)
+ 
+
+[Command]
+cmd=0x03
+description= "Set Trasmiission cycle"
+class=A
+func_name="set_transmission_cycle"
+type=Set
+send=device_type(1:8 "8_RD Cycle") transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+return=
+test=@cmd device_type(8) transmission_cycle(5) transmit_mode(1) hwcyc(1)
+     
+     
+ [Command]
+ cmd=0x04 
+ description="Get Trasmiission cycle"
+ class=A
+ func_name="get_transmission_cycle"
+ type=Query
+ send= protocol_code(1:3-3) device_type(1:8 "8_RD Cycle")
+ return= hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3)  device_type(1:8 "RD Cycle")  transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+ test=@cmd  protocol_code(3)  device_type(8), @Cmd  protocol_code(3)  device_type(8),@Cmd protocol_code(3)  device_type(8)
+     
+[Command]
+cmd=0x05
+description=" set and Get Loop Test Result"
+class=A
+func_name="set_loop_test_report"
+type=Query
+send=message_length(1:1-255) {message(1:1-255)}
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
+test=@cmd message_length(1) {message(1)}
+
+[Command]
+cmd=0x06
+description=" set LC Self Test"
+class=A
+func_name="set_self_test"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x07
+description=" set Control's Manual Mode"
+class=A
+func_name="set_manual_mode"
+type=Set
+send=local_operation_flag(1:0 "allow",1 "reject" )
+return=
+test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+
+[command]
+cmd=0x07
+description=" Report Manul State or Ask Manual Control"
+class=N
+func_name="report_manual_state"
+type=Report
+send=local_operation(1:1 "ask_manual_operation",2 "end_manual_mode" )
+return=
+test=
+[Command]
+ cmd=0x04 
+ description=" get Control's Manual Mode"
+ class=A
+ func_name="get_manual_mode"
+ type=Query
+ send= protocol_code(1:7-7) 
+ return=   hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:7-7) local_operation_flag(1:0 "allow",1 "reject" )
+ test=@cmd protocol_code(7) 
+
+[Command]
+cmd=0x08
+description=" Get_Test_result"
+class=A
+func_name="get_test_result"
+type=Query
+send=protocol_code(1:0"00H",6"06H",12"0CH") 
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
+test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+
+[Command]
+cmd=0x09
+description="Set daylight seg"
+class=B
+func_name="set_daylight_seg"
+type=Set
+send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+return=
+test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
+[Command]
+ cmd=0x04 
+ description="get daylight seg"
+ class=A
+ func_name="get_daylight_seg"
+ type=Query
+ send= protocol_code(1:9-9) 
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+ test=@cmd protocol_code(9)
+ 
+[Command]
+cmd=0x0A
+description="Set Bright Control Mode"
+class=A
+func_name="set_bright_ctl_mode"
+type=Set
+send= bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+return=
+test=@cmd bright_ctrl_mode(1)
+
+[Command]
+ cmd=0x04 
+ description="get Bright Control Mode"
+ class=A
+ func_name="get_bright_ctl_mode"
+ type=Query
+ send=protocol_code(1:10-10) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:10-10) bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+ test=@cmd protocol_code(10) 
+
+[Command]
+cmd=0x0A
+description="Report Hw Fail"
+class=N
+func_name="report_hw_fail"
+type=Report
+send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x0B
+description=" Get Device Status"
+class=B
+func_name="get_devcie_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+test=@cmd
+
+
+[Command]
+cmd=0x0C
+description=" Reset Communication"
+class=A
+func_name="set_comm_reset"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x0E
+description=" Get FirmwareVersion and Device id"
+class=B
+func_name="get_version_device_id"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
+       description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
+       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x0F 0x00
+description=" Set Local React Control Mode"
+class=A
+func_name="set_local_react_ctl_mode"
+type=Set
+send=on_off(1:0 "start",1 "stop")
+return=
+test=@cmd on_off(0)
+
+[Command]
+cmd=0x0F 0x00
+description=" ReportLocal React Control State"
+class=N
+func_name="report_local_react_ctl_mode"
+type=Report
+send=on_off(1:0 "start",1 "stop")
+return=on_off(1:0 "start",1 "stop")
+test=
+
+[Command]
+cmd=0x0F 0x01
+description=" Set Local React Control"
+class=A
+func_name="set_local_react_ctl"
+type=Set
+send= event(1:0-255)
+return=
+test=@cmd event(0)
+
+[Command]
+cmd=0x0F 0x01
+description=" report Local React Control"
+class=N
+func_name="report_local_react_ctl"
+type=Report
+send= event(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x48
+description="get cycle data"
+class=B
+func_name="get_cycle_data"
+type=Query
+send= request_type(1:1 "1_polling",2 "2_manual",3 "3_simulation")
+return=response_type(1:0 "0_cycle_polling",1 "1_cycle_passive",2 "2_manual",4 "4_cycle_simulation_polling" ,5 "5_cycle_simulation_passive", 20 "20_first_cycle_simulation_data_polling" ,21 "21_first_cycle_simulation_data_passive",244 "244_last_cycle_simulation_data_polling",245 "245_last_cycle_simulation_data_passiv")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59) current_pluviometric(2:0-2500) acc_pluviometric(2:0-1000) rd_degree(1:0-3)
+test=@cmd request_type(1),@cmd request_type(2),@cmd request_type(3) 
+
+[Command]
+cmd=0x48
+description="report cycle Data"
+class=N
+func_name="report_cycle_data"
+type=Report
+send=
+return=response_type(1:0 "0_cycle_polling",1 "1_cycle_passive",2 "2_manual",4 "4_cycle_simulation_polling" ,5 "5_cycle_simulation_passive", 20 "20_first_cycle_simulation_data_polling" ,21 "21_first_cycle_simulation_data_passive",244 "244_last_cycle_simulation_data_polling",245 "245_last_cycle_simulation_data_passiv")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59)current_pluviometric(2:0-2500) acc_pluviometric(2:0-10000) rd_degree(1:0-3)
+test=@cmd
+
+
+
+
+[Command]
+cmd=0x49
+description="set rain degree estimate parameter"
+class=A
+func_name="set_rain_degree_estimate_para"
+type=Set
+send=d0(1:0-250) d1(1:0-250) d2(1:0-250) nn(1:1-120)
+return=
+test=@cmd d0(0) d1(0) d2(0) nn(1)
+
+[Command]
+ cmd=0x04 
+ description="get rain degree estimate parameter"
+ class=A
+ func_name="get_rain_degree_estimate_para"
+ type=Query
+ send=protocol_code(1:73-73)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:73-73)
+        d0(1:0-250) d1(1:0-250) d2(1:0-250) nn(1:1-120)
+ test=@cmd protocol_code(73) 
+
+
+
+
+[Command]
+cmd=0x4B
+description="set simulation input"
+class=C
+func_name="set_simulation_input"
+type=Set
+send=data_count(2:1-720) data_sno(2:1-720) current_pluviometric(1:0-250)
+return=
+test=@cmd data_count(2) data_sno(2) current_pluviometric(250)
+
+
+[Command]
+cmd=0x4C
+description="get temp count"
+class=C
+func_name="get_temp_count"
+type=Query
+send=
+return=response_type(1:0 "active",1 "passive")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       data_count(2:1-65530) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+test=@cmd
+
+[Command]
+cmd=0x4D
+description="get a temp data"
+class=C
+func_name="get_a_temp_data"
+type=Query
+send=day(1:1-31) hour(1:0-23) minute(1:0-59)
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59)current_pluviometric(2:0-2500)acc_pluviometic(2:0-10000)rd_degree(1:0-3)
+test=@cmd day(9) hour(17) minute(10)
+
+[Command]
+cmd=0x4E
+description="Set simulation action"
+class=C
+func_name="set_simulation_action"
+type=Set
+send= action(1:0 "stop simulation",1 "start_simulation", 2 "stop_time" ,3 "start_time")
+      data_count(2:1-720) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+return=
+test=@cmd action(0) data_count(1) year(2009) month(7) day(9) hour(14) minute(1)
+
+
+
+
+
+
+
+
+
+
+@Signature=BA491CD4BF26E64F977F94C760AEB506F420461141DE5A54

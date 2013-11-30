@@ -1,0 +1,2 @@
+QYServer,8000,notepad.exe, ,端午節任務伺服器
+QYServer1,8000,notepad.exe,MFCC_RMS2,端午節任務伺服器

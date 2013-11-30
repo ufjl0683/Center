@@ -1,0 +1,382 @@
+[DeviceInfo]
+
+Version=2.0
+DeviceType=FS
+IP=192.168.30.35
+port=5201
+DeviceID=0xffff
+
+
+[command]
+cmd=0x00
+description= "Restart Device"
+class=A
+func_name="set_dev_restart"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x01
+description= "Get Hw Status"
+class=C
+func_name="get_HW_Status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x02
+description= "Set Date Time And Query Different"
+class=A
+func_name="set_datetime_report"
+type=Query
+send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+return=second_diff(1:0-255)
+test=@cmd year(2009) month(2) day(20) hour(12) minute(1) second(20)
+
+
+[Command]
+cmd=0x04 
+description="get date time"
+class=A
+func_name="get_date_time"
+type=Query
+send=protocol_code(1:2-2)
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+test=@cmd protocol_code(2)
+ 
+[Command]
+cmd=0x03
+description= "Set Trasmiission cycle"
+class=A
+func_name="set_transmission_cycle"
+type=Set
+send=device_type(1:10"10_Other",13 "13_F537_FSTC",18 "18_F311_FSTC")  transmission_cycle(1:0-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+return=
+test=@cmd device_type(13) transmission_cycle(0) transmit_mode(0) hwcyc(0)
+     
+ [Command]
+ cmd=0x04 
+ description="Get Trasmiission cycle"
+ class=A
+ func_name="get_transmission_cycle"
+ type=Query
+ send= protocol_code(1:3-3) device_type(1:10"10_Other",13 "13_F537_FSTC",18 "18_F311_FSTC")
+ return= hw_status_1(1:0-255)  hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3) device_type(1:10"10_Other",13 "13_F537_FSTC",18 "18_F311_FSTC")transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+ test=@cmd  protocol_code(3) device_type(13)
+     
+
+ 
+[Command]
+cmd=0x05
+description=" set and Get Loop Test Result"
+class=A
+func_name="set_loop_test_report"
+type=Query
+send=message_length(1:1-255) {message(1:1-255)}
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
+test=@cmd message_length(1) {message(1)}
+
+[Command]
+cmd=0x06
+description=" set LC Self Test"
+class=A
+func_name="set_self_test"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x07
+description=" set Control's Manual Mode"
+class=A
+func_name="set_manual_mode"
+type=Set
+send=local_operation_flag(1:0 "allow",1 "reject" )
+return=
+test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+
+[command]
+cmd=0x07
+description=" Report Manul State or Ask Manual Control"
+class=N
+func_name="report_manual_state"
+type=Report
+send=local_operation(1:1 "ask_manual_operation",2 "end_manual_mode" )
+return=
+test=
+[Command]
+ cmd=0x04 
+ description=" get Control's Manual Mode"
+ class=A
+ func_name="get_manual_mode"
+ type=Query
+ send= protocol_code(1:7-7) 
+ return=   hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:7-7) local_operation_flag(1:0 "allow",1 "reject" )
+ test=@cmd protocol_code(7) 
+
+[Command]
+cmd=0x08
+description=" Get_Test_result"
+class=A
+func_name="get_test_result"
+type=Query
+send=protocol_code(1:0"00H",6"06H",12"0CH") 
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
+test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+
+[Command]
+cmd=0x09
+description="Set daylight seg"
+class=B
+func_name="set_daylight_seg"
+type=Set
+send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+return=
+test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
+
+[Command]
+ cmd=0x04 
+ description="get daylight seg"
+ class=A
+ func_name="get_daylight_seg"
+ type=Query
+ send= protocol_code(1:9-9) 
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+ test=@cmd protocol_code(9)
+ 
+[Command]
+cmd=0x0A
+description="Set Bright Control Mode"
+class=A
+func_name="set_bright_ctl_mode"
+type=Set
+send= bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+return=
+test=@cmd bright_ctrl_mode(1)
+
+[Command]
+ cmd=0x04 
+ description="get Bright Control Mode"
+ class=A
+ func_name="get_bright_ctl_mode"
+ type=Query
+ send=protocol_code(1:10-10) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:10-10) bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+ test=@cmd protocol_code(10) 
+
+[Command]
+cmd=0x0A
+description="Report Hw Fail"
+class=N
+func_name="report_hw_fail"
+type=Report
+send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x0B
+description=" Get Device Status"
+class=B
+func_name="get_devcie_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+test=@cmd
+
+
+[Command]
+cmd=0x0C
+description=" Reset Communication"
+class=A
+func_name="set_comm_reset"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x0E
+description=" Get FirmwareVersion and Device id"
+class=B
+func_name="get_version_device_id"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
+       description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
+       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x0F 0x00
+description=" Set Local React Control Mode"
+class=A
+func_name="set_local_react_ctl_mode"
+type=Set
+send=on_off(1:0 "start",1 "stop")
+return=
+test=@cmd on_off(0)
+
+[Command]
+cmd=0x0F 0x00
+description=" ReportLocal React Control State"
+class=N
+func_name="report_local_react_ctl_mode"
+type=Report
+send=on_off(1:0 "start",1 "stop")
+return=on_off(1:0 "start",1 "stop")
+test=
+
+[Command]
+cmd=0x0F 0x01
+description=" Set Local React Control"
+class=A
+func_name="set_local_react_ctl"
+type=Set
+send= event(1:0-255)
+return=
+test=@cmd event(0)
+
+[Command]
+cmd=0x0F 0x01
+description=" report Local React Control"
+class=N
+func_name="report_local_react_ctl"
+type=Report
+send= event(1:0-255)
+return=
+test=
+
+
+[command]
+cmd=0xD0
+description= "Set Display"
+class=A
+func_name="set_display"
+type=Set
+send=on_off(1:0"off",1"on")
+return=
+test=@cmd on_off(1),@cmd on_off(0)
+
+[Command]
+ cmd=0x04 
+ description="Get Display"
+ class=A
+ func_name="get_display"
+ type=Query
+ send=protocol_code(1:208-208)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530)  protocol_code(1:208-208) 
+        on_off(1:0"off",1"on")
+ test=@cmd protocol_code(208)
+
+[command]
+cmd=0xD1
+description= "Get Test FS LED"
+class=A
+func_name="get_test_fs_led"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       sign_flash(1:0-7) sign_cnt(1:0-255)
+       {led_status_1(1:1-240)led_status_2(1:1-240)led_status_3(1:1-240)led_status_4(1:1-240)led_status_5(1:1-240)
+       led_status_6(1:1-240)led_status_7(1:1-240)led_status_8(1:1-240)led_status_9(1:1-240)led_status_10(1:1-240)
+       led_status_11(1:1-240)led_status_12(1:1-240)led_status_13(1:1-240)led_status_14(1:1-240)led_status_15(1:1-240)
+       led_status_16(1:1-240)led_status_17(1:1-240)led_status_18(1:1-240)led_status_19(1:1-240)led_status_20(1:1-240)
+       led_status_21(1:1-240)led_status_22(1:1-240)led_status_23(1:1-240)led_status_24(1:1-240)led_status_25(1:1-240)
+       led_status_26(1:1-240)led_status_27(1:1-240)led_status_28(1:1-240)led_status_29(1:1-240)led_status_30(1:1-240)}
+test=@cmd
+
+[command]
+cmd=0xD2
+description="Set Display Type"
+class=A
+func_name="set_display_type"
+type=Set
+send=display_type(1:1 "1_VI",2"2_AM",3 "3_RD")
+return=
+test=@cmd display_type(1),@cmd display_type(2),@cmd display_type(3)
+
+[Command]
+ cmd=0x04 
+ description="Get Display Type"
+ class=A
+ func_name="get_display_type"
+ type=Query
+ send=protocol_code(1:210-210)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530)  protocol_code(1:210-210) 
+        display_type(1:0"0_null",1 "1_VI",2"2_AM",3 "3_RD")
+ test=@cmd protocol_code(210)
+
+
+
+[command]
+cmd=0xD3
+description= "Get Status"
+class=A
+func_name="get_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       comm_status(1:0-255) op_status(1:0-255) op_made(1:0-255) on_off(1:0 "off",1"on")
+test=@cmd
+
+
+[command]
+cmd=0xD5
+description= "Set flashfreq type"
+class=A
+func_name="set_flashfreq_type"
+type=Set
+send=falshfreq_type(1:0 "0_50/min",1 "1_51/min",2 "2_52/min",3 "3_53/min",4 "4_54/min",5 "5_55/min",6"6_",7"7_",8"8_",9"9_",10"10_")
+return=
+test=@cmd falshfreq_type(0),@cmd falshfreq_type(1),@cmd falshfreq_type(2),@cmd falshfreq_type(3),@cmd falshfreq_type(4),@cmd falshfreq_type(5),@cmd falshfreq_type(10)
+
+[Command]
+ cmd=0x04 
+ description="get flashfreq type"
+ class=A
+ func_name="get_flashfreq_type"
+ type=Query
+ send=protocol_code(1:213-213)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530)  protocol_code(1:213-213) 
+       falshfreq_type(1:0 "0_50/min",1 "1_51/min",2 "2_52/min",3 "3_53/min",4 "4_54/min",5 "5_55/min",6"6_",7"7_",8"8_",9"9_",10"10_")
+ test=@cmd protocol_code(213)
+
+
+
+[command]
+cmd=0xD6
+description= "Get Status Display Type Frame_id "
+class=A
+func_name="get_status_display_type_Frame_id"
+type=Query 
+send=frame_id(1:0-255)
+return=frame_no(1:0-255) frame_id(1:0-255) g_width(2:0-65535)g_height(2:0-65535)
+       msg1(1:0-255) msg2(1:0-255) msg3(1:0-255) msg4(1:0-255) msg5(1:0-255) msg6(1:0-255) msg7(1:0-255) msg8(1:0-255) msg9(1:0-255) msg10(1:0-255) msg11(1:0-255) msg12(1:0-255) msg13(1:0-255) msg14(1:0-255) msg15(1:0-255) msg16(1:0-255) msg17(1:0-255) msg18(1:0-255) msg19(1:0-255) msg20(1:0-255) msg21(1:0-255) msg22(1:0-255) msg23(1:0-255) msg24(1:0-255) msg25(1:0-255) msg26(1:0-255) msg27(1:0-255) msg28(1:0-255) msg29(1:0-255) msg30(1:0-255) msg31(1:0-255) msg32(1:0-255) msg33(1:0-255) msg34(1:0-255) msg35(1:0-255) msg36(1:0-255) msg37(1:0-255) msg38(1:0-255) msg39(1:0-255) msg40(1:0-255) msg41(1:0-255) msg42(1:0-255) msg43(1:0-255) msg44(1:0-255) msg45(1:0-255) msg46(1:0-255) msg47(1:0-255) msg48(1:0-255) msg49(1:0-255) msg50(1:0-255) msg51(1:0-255) msg52(1:0-255) msg53(1:0-255) msg54(1:0-255) msg55(1:0-255) msg56(1:0-255) msg57(1:0-255) msg58(1:0-255) msg59(1:0-255) msg60(1:0-255) msg61(1:0-255) msg62(1:0-255) msg63(1:0-255) msg64(1:0-255) msg65(1:0-255) msg66(1:0-255) msg67(1:0-255) msg68(1:0-255) msg69(1:0-255) msg70(1:0-255) msg71(1:0-255) msg72(1:0-255) msg73(1:0-255) msg74(1:0-255) msg75(1:0-255) msg76(1:0-255) msg77(1:0-255) msg78(1:0-255) msg79(1:0-255) msg80(1:0-255) msg81(1:0-255) msg82(1:0-255) msg83(1:0-255) msg84(1:0-255) msg85(1:0-255) msg86(1:0-255) msg87(1:0-255) msg88(1:0-255) msg89(1:0-255) msg90(1:0-255) msg91(1:0-255) msg92(1:0-255) msg93(1:0-255) msg94(1:0-255) msg95(1:0-255) msg96(1:0-255) msg97(1:0-255) msg98(1:0-255) msg99(1:0-255) msg100(1:0-255) msg101(1:0-255) msg102(1:0-255) msg103(1:0-255) msg104(1:0-255) msg105(1:0-255) msg106(1:0-255) msg107(1:0-255) msg108(1:0-255) msg109(1:0-255) msg110(1:0-255) msg111(1:0-255) msg112(1:0-255) msg113(1:0-255) msg114(1:0-255) msg115(1:0-255) msg116(1:0-255) msg117(1:0-255) msg118(1:0-255) msg119(1:0-255) msg120(1:0-255) msg121(1:0-255) msg122(1:0-255) msg123(1:0-255) msg124(1:0-255) msg125(1:0-255) msg126(1:0-255) msg127(1:0-255) msg128(1:0-255) msg129(1:0-255) msg130(1:0-255) msg131(1:0-255) msg132(1:0-255) msg133(1:0-255) msg134(1:0-255) msg135(1:0-255) msg136(1:0-255) msg137(1:0-255) msg138(1:0-255) msg139(1:0-255) msg140(1:0-255) msg141(1:0-255) msg142(1:0-255) msg143(1:0-255) msg144(1:0-255) msg145(1:0-255) msg146(1:0-255) msg147(1:0-255) msg148(1:0-255) msg149(1:0-255) msg150(1:0-255) msg151(1:0-255) msg152(1:0-255) msg153(1:0-255) msg154(1:0-255) msg155(1:0-255) msg156(1:0-255) msg157(1:0-255) msg158(1:0-255) msg159(1:0-255) msg160(1:0-255) msg161(1:0-255) msg162(1:0-255) msg163(1:0-255) msg164(1:0-255) msg165(1:0-255) msg166(1:0-255) msg167(1:0-255) msg168(1:0-255) msg169(1:0-255) msg170(1:0-255) msg171(1:0-255) msg172(1:0-255) msg173(1:0-255) msg174(1:0-255) msg175(1:0-255) msg176(1:0-255) msg177(1:0-255) msg178(1:0-255) msg179(1:0-255) msg180(1:0-255) msg181(1:0-255) msg182(1:0-255) msg183(1:0-255) msg184(1:0-255) msg185(1:0-255) msg186(1:0-255) msg187(1:0-255) msg188(1:0-255) msg189(1:0-255) msg190(1:0-255) msg191(1:0-255) msg192(1:0-255) msg193(1:0-255) msg194(1:0-255) msg195(1:0-255) msg196(1:0-255) msg197(1:0-255) msg198(1:0-255) msg199(1:0-255) msg200(1:0-255) msg201(1:0-255) msg202(1:0-255) msg203(1:0-255) msg204(1:0-255) msg205(1:0-255) msg206(1:0-255) msg207(1:0-255) msg208(1:0-255) msg209(1:0-255) msg210(1:0-255) msg211(1:0-255) msg212(1:0-255) msg213(1:0-255) msg214(1:0-255) msg215(1:0-255) msg216(1:0-255) msg217(1:0-255) msg218(1:0-255) msg219(1:0-255) msg220(1:0-255) msg221(1:0-255) msg222(1:0-255) msg223(1:0-255) msg224(1:0-255) msg225(1:0-255) msg226(1:0-255) msg227(1:0-255) msg228(1:0-255) msg229(1:0-255) msg230(1:0-255) msg231(1:0-255) msg232(1:0-255) msg233(1:0-255) msg234(1:0-255) msg235(1:0-255) msg236(1:0-255) msg237(1:0-255) msg238(1:0-255) msg239(1:0-255) msg240(1:0-255) msg241(1:0-255) msg242(1:0-255) msg243(1:0-255) msg244(1:0-255) msg245(1:0-255) msg246(1:0-255) msg247(1:0-255) msg248(1:0-255) msg249(1:0-255) msg250(1:0-255) msg251(1:0-255) msg252(1:0-255) msg253(1:0-255) msg254(1:0-255) msg255(1:0-255) msg256(1:0-255) msg257(1:0-255) msg258(1:0-255) msg259(1:0-255) msg260(1:0-255) msg261(1:0-255) msg262(1:0-255) msg263(1:0-255) msg264(1:0-255) msg265(1:0-255) msg266(1:0-255) msg267(1:0-255) msg268(1:0-255) msg269(1:0-255) msg270(1:0-255) msg271(1:0-255) msg272(1:0-255) msg273(1:0-255) msg274(1:0-255) msg275(1:0-255) msg276(1:0-255) msg277(1:0-255) msg278(1:0-255) msg279(1:0-255) msg280(1:0-255) msg281(1:0-255) msg282(1:0-255) msg283(1:0-255) msg284(1:0-255) msg285(1:0-255) msg286(1:0-255) msg287(1:0-255) msg288(1:0-255) msg289(1:0-255) msg290(1:0-255) msg291(1:0-255) msg292(1:0-255) msg293(1:0-255) msg294(1:0-255) msg295(1:0-255) msg296(1:0-255) msg297(1:0-255) msg298(1:0-255) msg299(1:0-255) msg300(1:0-255) msg301(1:0-255) msg302(1:0-255) msg303(1:0-255) msg304(1:0-255) msg305(1:0-255) msg306(1:0-255) msg307(1:0-255) msg308(1:0-255) msg309(1:0-255) msg310(1:0-255) msg311(1:0-255) msg312(1:0-255) msg313(1:0-255) msg314(1:0-255) msg315(1:0-255) msg316(1:0-255) msg317(1:0-255) msg318(1:0-255) msg319(1:0-255) msg320(1:0-255) msg321(1:0-255) msg322(1:0-255) msg323(1:0-255) msg324(1:0-255) msg325(1:0-255) msg326(1:0-255) msg327(1:0-255) msg328(1:0-255) msg329(1:0-255) msg330(1:0-255) msg331(1:0-255) msg332(1:0-255) msg333(1:0-255) msg334(1:0-255) msg335(1:0-255) msg336(1:0-255) msg337(1:0-255) msg338(1:0-255) msg339(1:0-255) msg340(1:0-255) msg341(1:0-255) msg342(1:0-255) msg343(1:0-255) msg344(1:0-255) msg345(1:0-255) msg346(1:0-255) msg347(1:0-255) msg348(1:0-255) msg349(1:0-255) msg350(1:0-255) msg351(1:0-255) msg352(1:0-255) msg353(1:0-255) msg354(1:0-255) msg355(1:0-255) msg356(1:0-255) msg357(1:0-255) msg358(1:0-255) msg359(1:0-255) msg360(1:0-255) msg361(1:0-255) msg362(1:0-255) msg363(1:0-255) msg364(1:0-255) msg365(1:0-255) msg366(1:0-255) msg367(1:0-255) msg368(1:0-255) msg369(1:0-255) msg370(1:0-255) msg371(1:0-255) msg372(1:0-255) msg373(1:0-255) msg374(1:0-255) msg375(1:0-255) msg376(1:0-255) msg377(1:0-255) msg378(1:0-255) msg379(1:0-255) msg380(1:0-255) msg381(1:0-255) msg382(1:0-255) msg383(1:0-255) msg384(1:0-255) msg385(1:0-255) msg386(1:0-255) msg387(1:0-255) msg388(1:0-255) msg389(1:0-255) msg390(1:0-255) msg391(1:0-255) msg392(1:0-255) msg393(1:0-255) msg394(1:0-255) msg395(1:0-255) msg396(1:0-255) msg397(1:0-255) msg398(1:0-255) msg399(1:0-255) msg400(1:0-255) msg401(1:0-255) msg402(1:0-255) msg403(1:0-255) msg404(1:0-255) msg405(1:0-255) msg406(1:0-255) msg407(1:0-255) msg408(1:0-255) msg409(1:0-255) msg410(1:0-255) msg411(1:0-255) msg412(1:0-255) msg413(1:0-255) msg414(1:0-255) msg415(1:0-255) msg416(1:0-255) msg417(1:0-255) msg418(1:0-255) msg419(1:0-255) msg420(1:0-255) msg421(1:0-255) msg422(1:0-255) msg423(1:0-255) msg424(1:0-255) msg425(1:0-255) msg426(1:0-255) msg427(1:0-255) msg428(1:0-255) msg429(1:0-255) msg430(1:0-255) msg431(1:0-255) msg432(1:0-255) msg433(1:0-255) msg434(1:0-255) msg435(1:0-255) msg436(1:0-255) msg437(1:0-255) msg438(1:0-255) msg439(1:0-255) msg440(1:0-255) msg441(1:0-255) msg442(1:0-255) msg443(1:0-255) msg444(1:0-255) msg445(1:0-255) msg446(1:0-255) msg447(1:0-255) msg448(1:0-255) msg449(1:0-255) msg450(1:0-255) msg451(1:0-255) msg452(1:0-255) msg453(1:0-255) msg454(1:0-255) msg455(1:0-255) msg456(1:0-255) msg457(1:0-255) msg458(1:0-255) msg459(1:0-255) msg460(1:0-255) msg461(1:0-255) msg462(1:0-255) msg463(1:0-255) msg464(1:0-255) msg465(1:0-255) msg466(1:0-255) msg467(1:0-255) msg468(1:0-255) msg469(1:0-255) msg470(1:0-255) msg471(1:0-255) msg472(1:0-255) msg473(1:0-255) msg474(1:0-255) msg475(1:0-255) msg476(1:0-255) msg477(1:0-255) msg478(1:0-255) msg479(1:0-255) msg480(1:0-255) msg481(1:0-255) msg482(1:0-255) msg483(1:0-255) msg484(1:0-255) msg485(1:0-255) msg486(1:0-255) msg487(1:0-255) msg488(1:0-255) msg489(1:0-255) msg490(1:0-255) msg491(1:0-255) msg492(1:0-255) msg493(1:0-255) msg494(1:0-255) msg495(1:0-255) msg496(1:0-255) msg497(1:0-255) msg498(1:0-255) msg499(1:0-255) msg500(1:0-255) msg501(1:0-255) msg502(1:0-255) msg503(1:0-255) msg504(1:0-255) msg505(1:0-255) msg506(1:0-255) msg507(1:0-255) msg508(1:0-255) msg509(1:0-255) msg510(1:0-255) msg511(1:0-255) msg512(1:0-255) 
+test=@cmd  frame_id(1)
+
+
+[Command]
+ cmd=0x04 
+ description="Query static Display"
+ class=A
+ func_name="Query static Display"
+ type=Query
+ send=protocol_code(1:214-214) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530)  protocol_code(1:214-214) frame_no(0:0-255)
+ test=@cmd protocol_code(214) 
+
+
+
+@Signature=7F03A1A5071231E1CDDB025934835A6DE6DBAFF57383A504

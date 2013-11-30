@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="新細明體" Size="9" />
+  <Class Name="Comm.MFCC.MFCC_Base" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MFCC\MFCC_Base.cs</FileName>
+      <HashCode>AAAAIAAAAAAAIAAAgCIAAACAAAAAQAIAgAAIIAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TCBase">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>EIQAABABAACAgABMAEBAAIABMAhAAAhgAAJIDAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.RGS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RGS_HW_StausDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Comm.TC.RGSTC">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RGSTC.cs</FileName>
+      <HashCode>AAAAAAAgAAAABAAAAiAEAAAAAAAAAAAAAEAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.RMS_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RMS_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Comm.TC.RMSTC">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RMSTC.cs</FileName>
+      <HashCode>IAAAABAAAAAAAAgAAgAEAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Comm.TC.VD_HW_StatusDesc" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VD_HW_StatusDesc.cs</FileName>
+      <HashCode>CAABAAAgQAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Comm.TC.VDTC">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VDTC.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Comm.I_HW_Status_Desc" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>I_HW_Status_Desc.cs</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAAQgAAAAAABAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Comm.TC.RGS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RGS_HW_StausDesc.cs</FileName>
+      <HashCode>AADBAYAEAMBgQCAQAACAAFggBAAAAAgmBBAAAQOAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Comm.TC.RMS_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\RMS_HW_StatusDesc.cs</FileName>
+      <HashCode>AABCAIAEAEAAYBAAAACAAAAgAAAAAAQgBBAAAQCAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Comm.TC.VD_HW_Status_Bit_Enum" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TC\VD_HW_StatusDesc.cs</FileName>
+      <HashCode>AAQzCIQEEECoIDAAAAAAACEAAgAAEAYgBRAACQGAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Comm.ConnectStatusChangeHandler" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Comm.HWStatusChangeHandler" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TCBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

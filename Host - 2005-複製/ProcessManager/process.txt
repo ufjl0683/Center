@@ -1,0 +1,1 @@
+QYServer,8000,mono /home/mono/Server/QYServer.exe, 端午節任務伺服器

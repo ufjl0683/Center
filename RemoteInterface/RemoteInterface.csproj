@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RemoteInterface</RootNamespace>
+    <AssemblyName>RemoteInterface</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassChangeIP.cs" />
+    <Compile Include="HC\CSLSOutputData.cs" />
+    <Compile Include="HC\DbChangeNotifyConst.cs" />
+    <Compile Include="HC\FetchDeviceData.cs" />
+    <Compile Include="HC\FSOutputData.cs" />
+    <Compile Include="HC\MASOutputData.cs" />
+    <Compile Include="HC\OutputQueueData.cs" />
+    <Compile Include="HC\RMSOutputData.cs" />
+    <Compile Include="HC\CMSOutputData.cs" />
+    <Compile Include="HC\LCSOutputData.cs" />
+    <Compile Include="HC\ScheduleTask\ReportScheduleTask.cs" />
+    <Compile Include="HC\ScheduleTask\SetTravelModeTask.cs" />
+    <Compile Include="HC\ScheduleTask\VDScheduleTask.cs" />
+    <Compile Include="HC\TIMCC_RespInstruction.cs" />
+    <Compile Include="HC\TTSOutputData.cs" />
+    <Compile Include="HC\VD5MinMovingData.cs" />
+    <Compile Include="HC\WISOutputData.cs" />
+    <Compile Include="HWStatus\WD_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\AVI_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\CMS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\CSLS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\LCS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\RD_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\RGS_HW_StausDesc.cs" />
+    <Compile Include="HWStatus\RMS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\VI_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\WIS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\TTS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\FS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\MAS_HW_StatusDesc.cs">
+    </Compile>
+    <Compile Include="HWStatus\LS_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\SCM_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\CMSRST_HW_StatusDesc.cs" />
+    <Compile Include="HWStatus\BS_HW_StatusDesc.cs" />
+    <Compile Include="I_HW_Status_Desc.cs" />
+    <Compile Include="I_ProcessManager.cs" />
+    <Compile Include="MFCC\AVIPlateData.cs" />
+    <Compile Include="MFCC\I_MFCC_ETTU.cs" />
+    <Compile Include="MFCC\I_MFCC_AVI.cs" />
+    <Compile Include="MFCC\I_MFCC_CMS.cs" />
+    <Compile Include="MFCC\I_MFCC_CSLS.cs" />
+    <Compile Include="MFCC\I_MFCC_IID.cs" />
+    <Compile Include="MFCC\I_MFCC_RD.cs" />
+    <Compile Include="MFCC\I_MFCC_RMS.cs" />
+    <Compile Include="MFCC\I_MFCC_VI.cs" />
+    <Compile Include="MFCC\RD_5Min_Data.cs" />
+    <Compile Include="MFCC\RGS_Generic_Message_Data.cs" />
+    <Compile Include="MFCC\RGS_Generic_Section_Data.cs" />
+    <Compile Include="MFCC\RGS_Generic_ICON_Data.cs" />
+    <Compile Include="MFCC\I_MFCC_Base.cs" />
+    <Compile Include="MFCC\I_MFCC_RGS.cs" />
+    <Compile Include="MFCC\I_MFCC_WIS.cs" />
+    <Compile Include="MFCC\I_MFCC_LCS.cs" />
+    <Compile Include="MFCC\TravelTimeData.cs" />
+    <Compile Include="MFCC\VD1MinCycleEventData.cs" />
+    <Compile Include="MFCC\VI_5Min_Data.cs" />
+    <Compile Include="MFCC\I_MFCC_WD.cs" />
+    <Compile Include="MFCC\WD_10Min_Data.cs" />
+    <Compile Include="MFCC\I_MFCC_TTS.cs" />
+    <Compile Include="MFCC\I_MFCC_FS.cs" />
+    <Compile Include="MFCC\I_MFCC_MAS.cs" />
+    <Compile Include="MFCC\I_MFCC_LS.cs" />
+    <Compile Include="MFCC\I_MFCC_TEM.cs" />
+    <Compile Include="MFCC\I_MFCC_SCM.cs" />
+    <Compile Include="MFCC\I_MFCC_CMSRST.cs" />
+    <Compile Include="MFCC\I_MFCC_BS.cs" />
+    <Compile Include="MFCC\I_MFCC_PBX.cs" />
+    <Compile Include="NCC\FrmMoniter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NCC\FrmMoniter.Designer.cs">
+      <DependentUpon>FrmMoniter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PortConstants.cs" />
+    <Compile Include="HC\I_HC_Comm.cs" />
+    <Compile Include="HC\I_HC_FIWS.cs" />
+    <Compile Include="RemoteBase.cs" />
+    <Compile Include="RemoteBuilder.cs" />
+    <Compile Include="EventNotifyClient.cs" />
+    <Compile Include="NotifyEventClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteException.cs" />
+    <Compile Include="MFCC\I_MFCC_VD.cs" />
+    <Compile Include="HWStatus\VD_HW_StatusDesc.cs" />
+    <Compile Include="MFCC\RGS_GenericDisplay_Data.cs" />
+    <Compile Include="MFCC\RGS_Ploygon.cs" />
+    <Compile Include="MFCC\RGS_PolygonData.cs" />
+    <Compile Include="TEM\AirAlarmData.cs" />
+    <Compile Include="TEM\FireAlarmData.cs" />
+    <Compile Include="TEM\PowerAlarmData.cs" />
+    <Compile Include="TEM\SecurityAlarmData.cs" />
+    <Compile Include="TEM\LightAlarmData.cs" />
+    <Compile Include="TEM\MonitorAlarmData.cs" />
+    <Compile Include="Utils\Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NCC\FrmMoniter.resx">
+      <DependentUpon>FrmMoniter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

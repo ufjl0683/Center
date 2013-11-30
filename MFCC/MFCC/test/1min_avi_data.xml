@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file_attribute file_name="1min_avi_data.xml"
+control_center_id="10" time="2011-02-04 05:50:00">
+<onemin_avi_data>
+	<avi_data eqId="AVI-N1-S-0.000-M" vehNums="6">
+		<plateData catchTime="1" plateNo="3006QX">
+		</plateData>
+		<plateData catchTime="5" plateNo="8352V2">
+		</plateData>
+		<plateData catchTime="30" plateNo="6677YQ">
+		</plateData>
+		<plateData catchTime="42" plateNo="2519P">
+		</plateData>
+		<plateData catchTime="45" plateNo="9807NN">
+		</plateData>
+		<plateData catchTime="47" plateNo="1187DQ">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-12.080-M" vehNums="6">
+		<plateData catchTime="5" plateNo="2690YS">
+		</plateData>
+		<plateData catchTime="19" plateNo="H33686">
+		</plateData>
+		<plateData catchTime="27" plateNo="7468VS">
+		</plateData>
+		<plateData catchTime="31" plateNo="5E0006">
+		</plateData>
+		<plateData catchTime="33" plateNo="0461KL">
+		</plateData>
+		<plateData catchTime="35" plateNo="0435JA">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-24.826-M" vehNums="8">
+		<plateData catchTime="9" plateNo="DI3655">
+		</plateData>
+		<plateData catchTime="15" plateNo="3566YY">
+		</plateData>
+		<plateData catchTime="24" plateNo="5415EF">
+		</plateData>
+		<plateData catchTime="25" plateNo="Q67886">
+		</plateData>
+		<plateData catchTime="27" plateNo="3G6687">
+		</plateData>
+		<plateData catchTime="43" plateNo="0Q17ZE">
+		</plateData>
+		<plateData catchTime="47" plateNo="DD3941">
+		</plateData>
+		<plateData catchTime="54" plateNo="7832VV">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-36.300-M" vehNums="61">
+		<plateData catchTime="1" plateNo="5090EN">
+		</plateData>
+		<plateData catchTime="1" plateNo="5088VQ">
+		</plateData>
+		<plateData catchTime="5" plateNo="ZZ9568">
+		</plateData>
+		<plateData catchTime="5" plateNo="EZ5140">
+		</plateData>
+		<plateData catchTime="8" plateNo="5E6987">
+		</plateData>
+		<plateData catchTime="9" plateNo="8957TR">
+		</plateData>
+		<plateData catchTime="9" plateNo="1821MP">
+		</plateData>
+		<plateData catchTime="11" plateNo="579388">
+		</plateData>
+		<plateData catchTime="12" plateNo="9069MQ">
+		</plateData>
+		<plateData catchTime="12" plateNo="4638EF">
+		</plateData>
+		<plateData catchTime="12" plateNo="9870QY">
+		</plateData>
+		<plateData catchTime="13" plateNo="4356YG">
+		</plateData>
+		<plateData catchTime="14" plateNo="3356VX">
+		</plateData>
+		<plateData catchTime="15" plateNo="3489KF">
+		</plateData>
+		<plateData catchTime="29" plateNo="3121YB">
+		</plateData>
+		<plateData catchTime="32" plateNo="9C2651">
+		</plateData>
+		<plateData catchTime="33" plateNo="8499UW">
+		</plateData>
+		<plateData catchTime="34" plateNo="7419RR">
+		</plateData>
+		<plateData catchTime="36" plateNo="Z52370">
+		</plateData>
+		<plateData catchTime="36" plateNo="DT5632">
+		</plateData>
+		<plateData catchTime="37" plateNo="0983DY">
+		</plateData>
+		<plateData catchTime="39" plateNo="6988FK">
+		</plateData>
+		<plateData catchTime="40" plateNo="6T8650">
+		</plateData>
+		<plateData catchTime="40" plateNo="3289DS">
+		</plateData>
+		<plateData catchTime="42" plateNo="8709EK">
+		</plateData>
+		<plateData catchTime="43" plateNo="0853YU">
+		</plateData>
+		<plateData catchTime="43" plateNo="0679YQ">
+		</plateData>
+		<plateData catchTime="45" plateNo="3721YQ">
+		</plateData>
+		<plateData catchTime="46" plateNo="5536XX">
+		</plateData>
+		<plateData catchTime="47" plateNo="CZ4758">
+		</plateData>
+		<plateData catchTime="48" plateNo="8391VX">
+		</plateData>
+		<plateData catchTime="48" plateNo="7707QY">
+		</plateData>
+		<plateData catchTime="15" plateNo="DF4809">
+		</plateData>
+		<plateData catchTime="16" plateNo="2G6052">
+		</plateData>
+		<plateData catchTime="16" plateNo="3307EM">
+		</plateData>
+		<plateData catchTime="19" plateNo="EK118 ">
+		</plateData>
+		<plateData catchTime="19" plateNo="5D5607">
+		</plateData>
+		<plateData catchTime="19" plateNo="40Q0UU">
+		</plateData>
+		<plateData catchTime="19" plateNo="499922">
+		</plateData>
+		<plateData catchTime="21" plateNo="773FN">
+		</plateData>
+		<plateData catchTime="21" plateNo="AK2371">
+		</plateData>
+		<plateData catchTime="22" plateNo="0656RJ">
+		</plateData>
+		<plateData catchTime="23" plateNo="2605A2">
+		</plateData>
+		<plateData catchTime="23" plateNo="8381QA">
+		</plateData>
+		<plateData catchTime="23" plateNo="8516FL">
+		</plateData>
+		<plateData catchTime="24" plateNo="5978KD">
+		</plateData>
+		<plateData catchTime="25" plateNo="9D7915">
+		</plateData>
+		<plateData catchTime="26" plateNo="B7B10 ">
+		</plateData>
+		<plateData catchTime="26" plateNo="DP5310">
+		</plateData>
+		<plateData catchTime="28" plateNo="7810EY">
+		</plateData>
+		<plateData catchTime="29" plateNo="9686A2">
+		</plateData>
+		<plateData catchTime="49" plateNo="9F8957">
+		</plateData>
+		<plateData catchTime="50" plateNo="7697GU">
+		</plateData>
+		<plateData catchTime="50" plateNo="3A0530">
+		</plateData>
+		<plateData catchTime="52" plateNo="2A8973">
+		</plateData>
+		<plateData catchTime="54" plateNo="3200UX">
+		</plateData>
+		<plateData catchTime="55" plateNo="7823ED">
+		</plateData>
+		<plateData catchTime="57" plateNo="7181JN">
+		</plateData>
+		<plateData catchTime="59" plateNo="1209QD">
+		</plateData>
+		<plateData catchTime="59" plateNo="7N9202">
+		</plateData>
+		<plateData catchTime="0" plateNo="3488TU">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-50.400-M" vehNums="10">
+		<plateData catchTime="1" plateNo="2793TJ">
+		</plateData>
+		<plateData catchTime="5" plateNo="1562WW">
+		</plateData>
+		<plateData catchTime="21" plateNo="5667QY">
+		</plateData>
+		<plateData catchTime="27" plateNo="95350M">
+		</plateData>
+		<plateData catchTime="29" plateNo="0932Y8">
+		</plateData>
+		<plateData catchTime="37" plateNo="3578HY">
+		</plateData>
+		<plateData catchTime="38" plateNo="8811TX">
+		</plateData>
+		<plateData catchTime="42" plateNo="4056VF">
+		</plateData>
+		<plateData catchTime="51" plateNo="0752YO">
+		</plateData>
+		<plateData catchTime="0" plateNo="1167MS">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-63.400-M" vehNums="90">
+		<plateData catchTime="1" plateNo="1426JT">
+		</plateData>
+		<plateData catchTime="2" plateNo="5652EJ">
+		</plateData>
+		<plateData catchTime="2" plateNo="5685KL">
+		</plateData>
+		<plateData catchTime="4" plateNo="7K7185">
+		</plateData>
+		<plateData catchTime="4" plateNo="1723YG">
+		</plateData>
+		<plateData catchTime="5" plateNo="7728KR">
+		</plateData>
+		<plateData catchTime="7" plateNo="1033ES">
+		</plateData>
+		<plateData catchTime="9" plateNo="UO4529">
+		</plateData>
+		<plateData catchTime="9" plateNo="9225VQ">
+		</plateData>
+		<plateData catchTime="10" plateNo="6412YA">
+		</plateData>
+		<plateData catchTime="11" plateNo="9202RY">
+		</plateData>
+		<plateData catchTime="13" plateNo="0876PC">
+		</plateData>
+		<plateData catchTime="13" plateNo="4268DH">
+		</plateData>
+		<plateData catchTime="15" plateNo="AK1360">
+		</plateData>
+		<plateData catchTime="15" plateNo="8129MF">
+		</plateData>
+		<plateData catchTime="15" plateNo="8U3259">
+		</plateData>
+		<plateData catchTime="16" plateNo="6G1278">
+		</plateData>
+		<plateData catchTime="16" plateNo="7U4455">
+		</plateData>
+		<plateData catchTime="17" plateNo="7780VA">
+		</plateData>
+		<plateData catchTime="17" plateNo="UJ4206">
+		</plateData>
+		<plateData catchTime="18" plateNo="9S2368">
+		</plateData>
+		<plateData catchTime="19" plateNo="DX1889">
+		</plateData>
+		<plateData catchTime="20" plateNo="9C6116">
+		</plateData>
+		<plateData catchTime="20" plateNo="WI7260">
+		</plateData>
+		<plateData catchTime="20" plateNo="7T2656">
+		</plateData>
+		<plateData catchTime="21" plateNo="2217TK">
+		</plateData>
+		<plateData catchTime="21" plateNo="1628FP">
+		</plateData>
+		<plateData catchTime="22" plateNo="0491MR">
+		</plateData>
+		<plateData catchTime="23" plateNo="N98063">
+		</plateData>
+		<plateData catchTime="23" plateNo="GK5176">
+		</plateData>
+		<plateData catchTime="24" plateNo="5388YK">
+		</plateData>
+		<plateData catchTime="24" plateNo="0617VU">
+		</plateData>
+		<plateData catchTime="25" plateNo="4731Q8">
+		</plateData>
+		<plateData catchTime="26" plateNo="8Y5080">
+		</plateData>
+		<plateData catchTime="26" plateNo="5885HJ">
+		</plateData>
+		<plateData catchTime="26" plateNo="7T759 ">
+		</plateData>
+		<plateData catchTime="26" plateNo="T75931">
+		</plateData>
+		<plateData catchTime="26" plateNo="3096RU">
+		</plateData>
+		<plateData catchTime="27" plateNo="5161JS">
+		</plateData>
+		<plateData catchTime="28" plateNo="8630QJ">
+		</plateData>
+		<plateData catchTime="30" plateNo="9K4151">
+		</plateData>
+		<plateData catchTime="30" plateNo="2T4566">
+		</plateData>
+		<plateData catchTime="32" plateNo="CQ3572">
+		</plateData>
+		<plateData catchTime="32" plateNo="A83991">
+		</plateData>
+		<plateData catchTime="33" plateNo="CX4009">
+		</plateData>
+		<plateData catchTime="33" plateNo="072FJ">
+		</plateData>
+		<plateData catchTime="33" plateNo="0720FJ">
+		</plateData>
+		<plateData catchTime="34" plateNo="8960XY">
+		</plateData>
+		<plateData catchTime="34" plateNo="V92671">
+		</plateData>
+		<plateData catchTime="34" plateNo="Q28873">
+		</plateData>
+		<plateData catchTime="35" plateNo="EU3572">
+		</plateData>
+		<plateData catchTime="35" plateNo="8N9276">
+		</plateData>
+		<plateData catchTime="36" plateNo="2T4058">
+		</plateData>
+		<plateData catchTime="36" plateNo="2G5945">
+		</plateData>
+		<plateData catchTime="37" plateNo="CW8325">
+		</plateData>
+		<plateData catchTime="37" plateNo="8375QJ">
+		</plateData>
+		<plateData catchTime="38" plateNo="1965YC">
+		</plateData>
+		<plateData catchTime="38" plateNo="462389">
+		</plateData>
+		<plateData catchTime="39" plateNo="2901EL">
+		</plateData>
+		<plateData catchTime="39" plateNo="BU8758">
+		</plateData>
+		<plateData catchTime="40" plateNo="GQ5786">
+		</plateData>
+		<plateData catchTime="41" plateNo="T63287">
+		</plateData>
+		<plateData catchTime="41" plateNo="L78968">
+		</plateData>
+		<plateData catchTime="42" plateNo="1532VU">
+		</plateData>
+		<plateData catchTime="45" plateNo="5068MR">
+		</plateData>
+		<plateData catchTime="45" plateNo="4951WV">
+		</plateData>
+		<plateData catchTime="46" plateNo="2671KL">
+		</plateData>
+		<plateData catchTime="46" plateNo="1360RW">
+		</plateData>
+		<plateData catchTime="47" plateNo="9266GX">
+		</plateData>
+		<plateData catchTime="48" plateNo="6U3239">
+		</plateData>
+		<plateData catchTime="48" plateNo="1505G5">
+		</plateData>
+		<plateData catchTime="48" plateNo="8097HG">
+		</plateData>
+		<plateData catchTime="49" plateNo="2P6725">
+		</plateData>
+		<plateData catchTime="49" plateNo="2G4413">
+		</plateData>
+		<plateData catchTime="51" plateNo="AK7543">
+		</plateData>
+		<plateData catchTime="51" plateNo="EX3920">
+		</plateData>
+		<plateData catchTime="52" plateNo="OV3650">
+		</plateData>
+		<plateData catchTime="54" plateNo="G30772">
+		</plateData>
+		<plateData catchTime="54" plateNo="TL9048">
+		</plateData>
+		<plateData catchTime="55" plateNo="5T565 ">
+		</plateData>
+		<plateData catchTime="55" plateNo="13T31">
+		</plateData>
+		<plateData catchTime="56" plateNo="7550TK">
+		</plateData>
+		<plateData catchTime="56" plateNo="7351QX">
+		</plateData>
+		<plateData catchTime="56" plateNo="DR5797">
+		</plateData>
+		<plateData catchTime="57" plateNo="8626FY">
+		</plateData>
+		<plateData catchTime="58" plateNo="022EH">
+		</plateData>
+		<plateData catchTime="58" plateNo="2022EI">
+		</plateData>
+		<plateData catchTime="58" plateNo="9098VA">
+		</plateData>
+		<plateData catchTime="58" plateNo="Z59382">
+		</plateData>
+		<plateData catchTime="59" plateNo="3E8656">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-81.960-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N1-S-98.000-M" vehNums="73">
+		<plateData catchTime="0" plateNo="5239EK">
+		</plateData>
+		<plateData catchTime="0" plateNo="6698SA">
+		</plateData>
+		<plateData catchTime="1" plateNo="D21DVV">
+		</plateData>
+		<plateData catchTime="1" plateNo="9021DV">
+		</plateData>
+		<plateData catchTime="2" plateNo="0730KR">
+		</plateData>
+		<plateData catchTime="2" plateNo="8003VN">
+		</plateData>
+		<plateData catchTime="4" plateNo="8885UT">
+		</plateData>
+		<plateData catchTime="4" plateNo="9J5807">
+		</plateData>
+		<plateData catchTime="5" plateNo="0752YM">
+		</plateData>
+		<plateData catchTime="6" plateNo="5Q1299">
+		</plateData>
+		<plateData catchTime="7" plateNo="4312A5">
+		</plateData>
+		<plateData catchTime="7" plateNo="1633TK">
+		</plateData>
+		<plateData catchTime="8" plateNo="CL7671">
+		</plateData>
+		<plateData catchTime="9" plateNo="9683KD">
+		</plateData>
+		<plateData catchTime="9" plateNo="L88962">
+		</plateData>
+		<plateData catchTime="11" plateNo="884633">
+		</plateData>
+		<plateData catchTime="13" plateNo="8350YQ">
+		</plateData>
+		<plateData catchTime="14" plateNo="0969VC">
+		</plateData>
+		<plateData catchTime="14" plateNo="3862E8">
+		</plateData>
+		<plateData catchTime="15" plateNo="2287RN">
+		</plateData>
+		<plateData catchTime="16" plateNo="KQ1728">
+		</plateData>
+		<plateData catchTime="17" plateNo="8D5121">
+		</plateData>
+		<plateData catchTime="18" plateNo="0208YA">
+		</plateData>
+		<plateData catchTime="19" plateNo="8U9956">
+		</plateData>
+		<plateData catchTime="20" plateNo="3E0775">
+		</plateData>
+		<plateData catchTime="21" plateNo="7822RV">
+		</plateData>
+		<plateData catchTime="22" plateNo="5T3323">
+		</plateData>
+		<plateData catchTime="23" plateNo="6N7932">
+		</plateData>
+		<plateData catchTime="23" plateNo="7637UE">
+		</plateData>
+		<plateData catchTime="24" plateNo="9157A6">
+		</plateData>
+		<plateData catchTime="25" plateNo="2B8510">
+		</plateData>
+		<plateData catchTime="26" plateNo="0689VP">
+		</plateData>
+		<plateData catchTime="26" plateNo="3050DQ">
+		</plateData>
+		<plateData catchTime="27" plateNo="6632EC">
+		</plateData>
+		<plateData catchTime="28" plateNo="806FQ">
+		</plateData>
+		<plateData catchTime="29" plateNo="8M6223">
+		</plateData>
+		<plateData catchTime="29" plateNo="PG0666">
+		</plateData>
+		<plateData catchTime="30" plateNo="8U0306">
+		</plateData>
+		<plateData catchTime="32" plateNo="L83611">
+		</plateData>
+		<plateData catchTime="33" plateNo="8068KE">
+		</plateData>
+		<plateData catchTime="33" plateNo="0468PN">
+		</plateData>
+		<plateData catchTime="34" plateNo="50Q21">
+		</plateData>
+		<plateData catchTime="35" plateNo="0026WW">
+		</plateData>
+		<plateData catchTime="35" plateNo="5365TQ">
+		</plateData>
+		<plateData catchTime="37" plateNo="Z55297">
+		</plateData>
+		<plateData catchTime="37" plateNo="1009TT">
+		</plateData>
+		<plateData catchTime="38" plateNo="LA6190">
+		</plateData>
+		<plateData catchTime="39" plateNo="DW9217">
+		</plateData>
+		<plateData catchTime="39" plateNo="3H4399">
+		</plateData>
+		<plateData catchTime="41" plateNo="7K4655">
+		</plateData>
+		<plateData catchTime="41" plateNo="4408UZ">
+		</plateData>
+		<plateData catchTime="42" plateNo="LJ8928">
+		</plateData>
+		<plateData catchTime="43" plateNo="3186XX">
+		</plateData>
+		<plateData catchTime="44" plateNo="DG6010">
+		</plateData>
+		<plateData catchTime="45" plateNo="5496DE">
+		</plateData>
+		<plateData catchTime="48" plateNo="7612RF">
+		</plateData>
+		<plateData catchTime="49" plateNo="1968YS">
+		</plateData>
+		<plateData catchTime="49" plateNo="5836YJ">
+		</plateData>
+		<plateData catchTime="51" plateNo="CY0725">
+		</plateData>
+		<plateData catchTime="51" plateNo="9E6652">
+		</plateData>
+		<plateData catchTime="52" plateNo="5761UY">
+		</plateData>
+		<plateData catchTime="53" plateNo="2H0980">
+		</plateData>
+		<plateData catchTime="53" plateNo="1186RY">
+		</plateData>
+		<plateData catchTime="55" plateNo="LP0659">
+		</plateData>
+		<plateData catchTime="55" plateNo="UJ2638">
+		</plateData>
+		<plateData catchTime="55" plateNo="2557HV">
+		</plateData>
+		<plateData catchTime="57" plateNo="2423EU">
+		</plateData>
+		<plateData catchTime="57" plateNo="2E0357">
+		</plateData>
+		<plateData catchTime="58" plateNo="1831EB">
+		</plateData>
+		<plateData catchTime="58" plateNo="C68609">
+		</plateData>
+		<plateData catchTime="59" plateNo="YR4623">
+		</plateData>
+		<plateData catchTime="59" plateNo="0772PN">
+		</plateData>
+		<plateData catchTime="0" plateNo="4195KC">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-0.560-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-13.260-M" vehNums="2">
+		<plateData catchTime="31" plateNo="3752YH">
+		</plateData>
+		<plateData catchTime="35" plateNo="7465YL">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-23.360-M" vehNums="3">
+		<plateData catchTime="2" plateNo="2N0398">
+		</plateData>
+		<plateData catchTime="9" plateNo="DK1867">
+		</plateData>
+		<plateData catchTime="54" plateNo="CZ6085">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-34.170-M" vehNums="2">
+		<plateData catchTime="26" plateNo="2467MX">
+		</plateData>
+		<plateData catchTime="36" plateNo="9020UK">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-43.470-M" vehNums="18">
+		<plateData catchTime="8" plateNo="880FM">
+		</plateData>
+		<plateData catchTime="18" plateNo="7998HY">
+		</plateData>
+		<plateData catchTime="19" plateNo="7200A5">
+		</plateData>
+		<plateData catchTime="23" plateNo="7405YW">
+		</plateData>
+		<plateData catchTime="26" plateNo="039HE">
+		</plateData>
+		<plateData catchTime="33" plateNo="5373VF">
+		</plateData>
+		<plateData catchTime="39" plateNo="9353MF">
+		</plateData>
+		<plateData catchTime="40" plateNo="5419JJ">
+		</plateData>
+		<plateData catchTime="40" plateNo="2H8507">
+		</plateData>
+		<plateData catchTime="45" plateNo="6661VC">
+		</plateData>
+		<plateData catchTime="45" plateNo="8666JU">
+		</plateData>
+		<plateData catchTime="46" plateNo="6430ER">
+		</plateData>
+		<plateData catchTime="48" plateNo="7208JJ">
+		</plateData>
+		<plateData catchTime="51" plateNo="6188TS">
+		</plateData>
+		<plateData catchTime="55" plateNo="DG53U2">
+		</plateData>
+		<plateData catchTime="55" plateNo="8751YC">
+		</plateData>
+		<plateData catchTime="58" plateNo="EV0737">
+		</plateData>
+		<plateData catchTime="59" plateNo="5632ZZ">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-54.200-M" vehNums="23">
+		<plateData catchTime="48" plateNo="4079WY">
+		</plateData>
+		<plateData catchTime="49" plateNo="8Q0909">
+		</plateData>
+		<plateData catchTime="49" plateNo="8855KQ">
+		</plateData>
+		<plateData catchTime="56" plateNo="2G5979">
+		</plateData>
+		<plateData catchTime="0" plateNo="0439UM">
+		</plateData>
+		<plateData catchTime="3" plateNo="5286GG">
+		</plateData>
+		<plateData catchTime="4" plateNo="3977WF">
+		</plateData>
+		<plateData catchTime="6" plateNo="0333UD">
+		</plateData>
+		<plateData catchTime="7" plateNo="Y90823">
+		</plateData>
+		<plateData catchTime="7" plateNo="2297DV">
+		</plateData>
+		<plateData catchTime="8" plateNo="3727EF">
+		</plateData>
+		<plateData catchTime="18" plateNo="BF0116">
+		</plateData>
+		<plateData catchTime="19" plateNo="9DJ9QB">
+		</plateData>
+		<plateData catchTime="30" plateNo="1695WH">
+		</plateData>
+		<plateData catchTime="31" plateNo="0191QB">
+		</plateData>
+		<plateData catchTime="32" plateNo="5157TV">
+		</plateData>
+		<plateData catchTime="33" plateNo="1485ZS">
+		</plateData>
+		<plateData catchTime="34" plateNo="8477YT">
+		</plateData>
+		<plateData catchTime="37" plateNo="H53906">
+		</plateData>
+		<plateData catchTime="39" plateNo="JR0579">
+		</plateData>
+		<plateData catchTime="42" plateNo="5961VI">
+		</plateData>
+		<plateData catchTime="44" plateNo="2809KG">
+		</plateData>
+		<plateData catchTime="44" plateNo="8779TM">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-66.600-M" vehNums="6">
+		<plateData catchTime="1" plateNo="9M6181">
+		</plateData>
+		<plateData catchTime="22" plateNo="8360ND">
+		</plateData>
+		<plateData catchTime="27" plateNo="8527TY">
+		</plateData>
+		<plateData catchTime="27" plateNo="0890VX">
+		</plateData>
+		<plateData catchTime="34" plateNo="7183UV">
+		</plateData>
+		<plateData catchTime="58" plateNo="18969Y">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-85.400-M" vehNums="7">
+		<plateData catchTime="10" plateNo="V39708">
+		</plateData>
+		<plateData catchTime="12" plateNo="CH1495">
+		</plateData>
+		<plateData catchTime="15" plateNo="071QQF">
+		</plateData>
+		<plateData catchTime="16" plateNo="R74571">
+		</plateData>
+		<plateData catchTime="36" plateNo="2981S8">
+		</plateData>
+		<plateData catchTime="55" plateNo="VJ4070">
+		</plateData>
+		<plateData catchTime="58" plateNo="TI5891">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N1-N-100.446-M" vehNums="16">
+		<plateData catchTime="17" plateNo="M76180">
+		</plateData>
+		<plateData catchTime="21" plateNo="5375WN">
+		</plateData>
+		<plateData catchTime="23" plateNo="5612SG">
+		</plateData>
+		<plateData catchTime="27" plateNo="7K3862">
+		</plateData>
+		<plateData catchTime="29" plateNo="5410ZM">
+		</plateData>
+		<plateData catchTime="39" plateNo="SP2987">
+		</plateData>
+		<plateData catchTime="40" plateNo="659988">
+		</plateData>
+		<plateData catchTime="43" plateNo="J79735">
+		</plateData>
+		<plateData catchTime="43" plateNo="9U9310">
+		</plateData>
+		<plateData catchTime="48" plateNo="5213XN">
+		</plateData>
+		<plateData catchTime="50" plateNo="ZF7358">
+		</plateData>
+		<plateData catchTime="52" plateNo="78581L">
+		</plateData>
+		<plateData catchTime="54" plateNo="3559LM">
+		</plateData>
+		<plateData catchTime="57" plateNo="7251XZ">
+		</plateData>
+		<plateData catchTime="3" plateNo="ZX5619">
+		</plateData>
+		<plateData catchTime="13" plateNo="F50787">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N2-E-4.210-M" vehNums="5">
+		<plateData catchTime="1" plateNo="3768YY">
+		</plateData>
+		<plateData catchTime="23" plateNo="2T8657">
+		</plateData>
+		<plateData catchTime="33" plateNo="7617FB">
+		</plateData>
+		<plateData catchTime="55" plateNo="6339VV">
+		</plateData>
+		<plateData catchTime="56" plateNo="7685QV">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N2-W-1.580-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-0.620-M" vehNums="2">
+		<plateData catchTime="0" plateNo="F71150">
+		</plateData>
+		<plateData catchTime="25" plateNo="03838A">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-14.369-M" vehNums="12">
+		<plateData catchTime="3" plateNo="L51493">
+		</plateData>
+		<plateData catchTime="9" plateNo="Q170F8">
+		</plateData>
+		<plateData catchTime="12" plateNo="8117EM">
+		</plateData>
+		<plateData catchTime="20" plateNo="0195VH">
+		</plateData>
+		<plateData catchTime="21" plateNo="7610EF">
+		</plateData>
+		<plateData catchTime="36" plateNo="1933G">
+		</plateData>
+		<plateData catchTime="37" plateNo="DC5781">
+		</plateData>
+		<plateData catchTime="41" plateNo="786795">
+		</plateData>
+		<plateData catchTime="42" plateNo="7B2533">
+		</plateData>
+		<plateData catchTime="45" plateNo="IB7862">
+		</plateData>
+		<plateData catchTime="49" plateNo="5330YL">
+		</plateData>
+		<plateData catchTime="53" plateNo="4375YH">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-25.704-M" vehNums="6">
+		<plateData catchTime="5" plateNo="Z55692">
+		</plateData>
+		<plateData catchTime="7" plateNo="142TW">
+		</plateData>
+		<plateData catchTime="35" plateNo="5165QF">
+		</plateData>
+		<plateData catchTime="39" plateNo="W2169E">
+		</plateData>
+		<plateData catchTime="48" plateNo="7058YN">
+		</plateData>
+		<plateData catchTime="49" plateNo="2478ER">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-41.615-M" vehNums="33">
+		<plateData catchTime="2" plateNo="DQ8512">
+		</plateData>
+		<plateData catchTime="3" plateNo="9E1753">
+		</plateData>
+		<plateData catchTime="5" plateNo="9187D7">
+		</plateData>
+		<plateData catchTime="5" plateNo="1382MS">
+		</plateData>
+		<plateData catchTime="7" plateNo="7236EX">
+		</plateData>
+		<plateData catchTime="8" plateNo="1593ZT">
+		</plateData>
+		<plateData catchTime="10" plateNo="ZV1812">
+		</plateData>
+		<plateData catchTime="12" plateNo="Z29695">
+		</plateData>
+		<plateData catchTime="14" plateNo="AK7140">
+		</plateData>
+		<plateData catchTime="17" plateNo="3N8389">
+		</plateData>
+		<plateData catchTime="18" plateNo="7389RJ">
+		</plateData>
+		<plateData catchTime="22" plateNo="86GV1">
+		</plateData>
+		<plateData catchTime="23" plateNo="6730EF">
+		</plateData>
+		<plateData catchTime="25" plateNo="3J568A">
+		</plateData>
+		<plateData catchTime="59" plateNo="Q68663">
+		</plateData>
+		<plateData catchTime="26" plateNo="DP3373">
+		</plateData>
+		<plateData catchTime="28" plateNo="9997GW">
+		</plateData>
+		<plateData catchTime="29" plateNo="5101DU">
+		</plateData>
+		<plateData catchTime="30" plateNo="AQ0070">
+		</plateData>
+		<plateData catchTime="32" plateNo="5093VE">
+		</plateData>
+		<plateData catchTime="34" plateNo="7B7895">
+		</plateData>
+		<plateData catchTime="34" plateNo="9280TN">
+		</plateData>
+		<plateData catchTime="36" plateNo="7413YP">
+		</plateData>
+		<plateData catchTime="36" plateNo="DO7291">
+		</plateData>
+		<plateData catchTime="38" plateNo="8099QJ">
+		</plateData>
+		<plateData catchTime="39" plateNo="4486YE">
+		</plateData>
+		<plateData catchTime="43" plateNo="9588VB">
+		</plateData>
+		<plateData catchTime="43" plateNo="7197YM">
+		</plateData>
+		<plateData catchTime="45" plateNo="GK1867">
+		</plateData>
+		<plateData catchTime="48" plateNo="1377YB">
+		</plateData>
+		<plateData catchTime="49" plateNo="5180VJ">
+		</plateData>
+		<plateData catchTime="54" plateNo="OU7953">
+		</plateData>
+		<plateData catchTime="57" plateNo="7736EM">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-52.480-M" vehNums="87">
+		<plateData catchTime="0" plateNo="3471EL">
+		</plateData>
+		<plateData catchTime="2" plateNo="6225HL">
+		</plateData>
+		<plateData catchTime="2" plateNo="JW4040">
+		</plateData>
+		<plateData catchTime="4" plateNo="CP2006">
+		</plateData>
+		<plateData catchTime="4" plateNo="8999QC">
+		</plateData>
+		<plateData catchTime="4" plateNo="2A6678">
+		</plateData>
+		<plateData catchTime="5" plateNo="5708PD">
+		</plateData>
+		<plateData catchTime="5" plateNo="6078RK">
+		</plateData>
+		<plateData catchTime="7" plateNo="5317TM">
+		</plateData>
+		<plateData catchTime="9" plateNo="7892JT">
+		</plateData>
+		<plateData catchTime="9" plateNo="9D2035">
+		</plateData>
+		<plateData catchTime="10" plateNo="5079VM">
+		</plateData>
+		<plateData catchTime="10" plateNo="RZ2305">
+		</plateData>
+		<plateData catchTime="13" plateNo="9089GX">
+		</plateData>
+		<plateData catchTime="13" plateNo="HS9755">
+		</plateData>
+		<plateData catchTime="13" plateNo="Q25397">
+		</plateData>
+		<plateData catchTime="13" plateNo="5838A9">
+		</plateData>
+		<plateData catchTime="13" plateNo="0277ZT">
+		</plateData>
+		<plateData catchTime="17" plateNo="U33547">
+		</plateData>
+		<plateData catchTime="18" plateNo="5990IG">
+		</plateData>
+		<plateData catchTime="21" plateNo="6G481 ">
+		</plateData>
+		<plateData catchTime="21" plateNo="6G4882">
+		</plateData>
+		<plateData catchTime="21" plateNo="1038KG">
+		</plateData>
+		<plateData catchTime="21" plateNo="AV6251">
+		</plateData>
+		<plateData catchTime="23" plateNo="8828JT">
+		</plateData>
+		<plateData catchTime="23" plateNo="D80965">
+		</plateData>
+		<plateData catchTime="24" plateNo="0K7702">
+		</plateData>
+		<plateData catchTime="26" plateNo="5298QD">
+		</plateData>
+		<plateData catchTime="26" plateNo="0985TJ">
+		</plateData>
+		<plateData catchTime="26" plateNo="9577YE">
+		</plateData>
+		<plateData catchTime="28" plateNo="9382MQ">
+		</plateData>
+		<plateData catchTime="28" plateNo="1921RJ">
+		</plateData>
+		<plateData catchTime="29" plateNo="JP5116">
+		</plateData>
+		<plateData catchTime="30" plateNo="9991A5">
+		</plateData>
+		<plateData catchTime="30" plateNo="2513PE">
+		</plateData>
+		<plateData catchTime="30" plateNo="2389EH">
+		</plateData>
+		<plateData catchTime="30" plateNo="627FG">
+		</plateData>
+		<plateData catchTime="31" plateNo="1823QA">
+		</plateData>
+		<plateData catchTime="31" plateNo="4060PD">
+		</plateData>
+		<plateData catchTime="33" plateNo="182722">
+		</plateData>
+		<plateData catchTime="34" plateNo="C077KF">
+		</plateData>
+		<plateData catchTime="35" plateNo="DK8407">
+		</plateData>
+		<plateData catchTime="36" plateNo="8785RK">
+		</plateData>
+		<plateData catchTime="37" plateNo="Y23215">
+		</plateData>
+		<plateData catchTime="37" plateNo="7696DF">
+		</plateData>
+		<plateData catchTime="37" plateNo="9116YR">
+		</plateData>
+		<plateData catchTime="37" plateNo="8591A2">
+		</plateData>
+		<plateData catchTime="37" plateNo="CB7945">
+		</plateData>
+		<plateData catchTime="38" plateNo="EX94Q7">
+		</plateData>
+		<plateData catchTime="38" plateNo="7C0602">
+		</plateData>
+		<plateData catchTime="39" plateNo="9058KM">
+		</plateData>
+		<plateData catchTime="39" plateNo="3G7165">
+		</plateData>
+		<plateData catchTime="39" plateNo="3G7765">
+		</plateData>
+		<plateData catchTime="39" plateNo="9339YA">
+		</plateData>
+		<plateData catchTime="40" plateNo="0425A3">
+		</plateData>
+		<plateData catchTime="41" plateNo="3761DW">
+		</plateData>
+		<plateData catchTime="41" plateNo="0461UW">
+		</plateData>
+		<plateData catchTime="42" plateNo="9288JT">
+		</plateData>
+		<plateData catchTime="43" plateNo="3635DT">
+		</plateData>
+		<plateData catchTime="43" plateNo="9E5626">
+		</plateData>
+		<plateData catchTime="44" plateNo="3205KL">
+		</plateData>
+		<plateData catchTime="45" plateNo="QB1715">
+		</plateData>
+		<plateData catchTime="45" plateNo="9770RG">
+		</plateData>
+		<plateData catchTime="46" plateNo="7959QG">
+		</plateData>
+		<plateData catchTime="46" plateNo="2755PD">
+		</plateData>
+		<plateData catchTime="46" plateNo="4517TV">
+		</plateData>
+		<plateData catchTime="47" plateNo="W77808">
+		</plateData>
+		<plateData catchTime="47" plateNo="7600RF">
+		</plateData>
+		<plateData catchTime="47" plateNo="3772VP">
+		</plateData>
+		<plateData catchTime="49" plateNo="QC0689">
+		</plateData>
+		<plateData catchTime="49" plateNo="3433ED">
+		</plateData>
+		<plateData catchTime="50" plateNo="DI3037">
+		</plateData>
+		<plateData catchTime="51" plateNo="7889JS">
+		</plateData>
+		<plateData catchTime="53" plateNo="9308ZS">
+		</plateData>
+		<plateData catchTime="53" plateNo="8P8289">
+		</plateData>
+		<plateData catchTime="54" plateNo="1557A3">
+		</plateData>
+		<plateData catchTime="54" plateNo="9536KD">
+		</plateData>
+		<plateData catchTime="55" plateNo="0722A5">
+		</plateData>
+		<plateData catchTime="56" plateNo="5997MP">
+		</plateData>
+		<plateData catchTime="57" plateNo="4116VJ">
+		</plateData>
+		<plateData catchTime="57" plateNo="1495HA">
+		</plateData>
+		<plateData catchTime="57" plateNo="3656GE">
+		</plateData>
+		<plateData catchTime="57" plateNo="QD6792">
+		</plateData>
+		<plateData catchTime="59" plateNo="8991EA">
+		</plateData>
+		<plateData catchTime="59" plateNo="5393TK">
+		</plateData>
+		<plateData catchTime="59" plateNo="HG747 ">
+		</plateData>
+		<plateData catchTime="59" plateNo="1792GV">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-61.100-M" vehNums="91">
+		<plateData catchTime="0" plateNo="99949 ">
+		</plateData>
+		<plateData catchTime="0" plateNo="CH1767">
+		</plateData>
+		<plateData catchTime="1" plateNo="L40233">
+		</plateData>
+		<plateData catchTime="2" plateNo="4281B3">
+		</plateData>
+		<plateData catchTime="2" plateNo="2892ZE">
+		</plateData>
+		<plateData catchTime="3" plateNo="7D0263">
+		</plateData>
+		<plateData catchTime="3" plateNo="913OV">
+		</plateData>
+		<plateData catchTime="4" plateNo="HM5031">
+		</plateData>
+		<plateData catchTime="4" plateNo="9190DV">
+		</plateData>
+		<plateData catchTime="6" plateNo="2C5608">
+		</plateData>
+		<plateData catchTime="6" plateNo="9260UT">
+		</plateData>
+		<plateData catchTime="29" plateNo="3278HE">
+		</plateData>
+		<plateData catchTime="30" plateNo="L66550">
+		</plateData>
+		<plateData catchTime="30" plateNo="1851MT">
+		</plateData>
+		<plateData catchTime="32" plateNo="H08397">
+		</plateData>
+		<plateData catchTime="32" plateNo="IE1582">
+		</plateData>
+		<plateData catchTime="34" plateNo="8D9698">
+		</plateData>
+		<plateData catchTime="35" plateNo="F97667">
+		</plateData>
+		<plateData catchTime="36" plateNo="8818VV">
+		</plateData>
+		<plateData catchTime="37" plateNo="3237YW">
+		</plateData>
+		<plateData catchTime="38" plateNo="3T5189">
+		</plateData>
+		<plateData catchTime="38" plateNo="8282MW">
+		</plateData>
+		<plateData catchTime="39" plateNo="3771IR">
+		</plateData>
+		<plateData catchTime="41" plateNo="DT1398">
+		</plateData>
+		<plateData catchTime="43" plateNo="4528GW">
+		</plateData>
+		<plateData catchTime="43" plateNo="9709HC">
+		</plateData>
+		<plateData catchTime="43" plateNo="823702">
+		</plateData>
+		<plateData catchTime="45" plateNo="9977PD">
+		</plateData>
+		<plateData catchTime="45" plateNo="5279MQ">
+		</plateData>
+		<plateData catchTime="56" plateNo="4652KL">
+		</plateData>
+		<plateData catchTime="56" plateNo="3603KE">
+		</plateData>
+		<plateData catchTime="57" plateNo="1136RH">
+		</plateData>
+		<plateData catchTime="57" plateNo="5N7981">
+		</plateData>
+		<plateData catchTime="58" plateNo="7832QX">
+		</plateData>
+		<plateData catchTime="59" plateNo="V24633">
+		</plateData>
+		<plateData catchTime="59" plateNo="P85153">
+		</plateData>
+		<plateData catchTime="0" plateNo="2579DE">
+		</plateData>
+		<plateData catchTime="8" plateNo="2091HC">
+		</plateData>
+		<plateData catchTime="8" plateNo="2095QU">
+		</plateData>
+		<plateData catchTime="8" plateNo="1625EF">
+		</plateData>
+		<plateData catchTime="10" plateNo="8390EY">
+		</plateData>
+		<plateData catchTime="10" plateNo="8K2038">
+		</plateData>
+		<plateData catchTime="11" plateNo="8975VK">
+		</plateData>
+		<plateData catchTime="12" plateNo="7280DK">
+		</plateData>
+		<plateData catchTime="13" plateNo="1856MR">
+		</plateData>
+		<plateData catchTime="14" plateNo="7988EL">
+		</plateData>
+		<plateData catchTime="14" plateNo="2821DC">
+		</plateData>
+		<plateData catchTime="14" plateNo="6525ES">
+		</plateData>
+		<plateData catchTime="15" plateNo="6308GX">
+		</plateData>
+		<plateData catchTime="15" plateNo="2392DP">
+		</plateData>
+		<plateData catchTime="15" plateNo="6B9567">
+		</plateData>
+		<plateData catchTime="16" plateNo="F35633">
+		</plateData>
+		<plateData catchTime="17" plateNo="7788UF">
+		</plateData>
+		<plateData catchTime="17" plateNo="8622EH">
+		</plateData>
+		<plateData catchTime="18" plateNo="6N790 ">
+		</plateData>
+		<plateData catchTime="45" plateNo="U32956">
+		</plateData>
+		<plateData catchTime="46" plateNo="7152JL">
+		</plateData>
+		<plateData catchTime="47" plateNo="8339GU">
+		</plateData>
+		<plateData catchTime="47" plateNo="5960YS">
+		</plateData>
+		<plateData catchTime="47" plateNo="2668VL">
+		</plateData>
+		<plateData catchTime="49" plateNo="0682YD">
+		</plateData>
+		<plateData catchTime="49" plateNo="5790B7">
+		</plateData>
+		<plateData catchTime="50" plateNo="1179TS">
+		</plateData>
+		<plateData catchTime="50" plateNo="7163YS">
+		</plateData>
+		<plateData catchTime="50" plateNo="9122PN">
+		</plateData>
+		<plateData catchTime="51" plateNo="8868YS">
+		</plateData>
+		<plateData catchTime="51" plateNo="1251HB">
+		</plateData>
+		<plateData catchTime="52" plateNo="8G0206">
+		</plateData>
+		<plateData catchTime="52" plateNo="3080YB">
+		</plateData>
+		<plateData catchTime="53" plateNo="8P0737">
+		</plateData>
+		<plateData catchTime="54" plateNo="7D1532">
+		</plateData>
+		<plateData catchTime="54" plateNo="1810EK">
+		</plateData>
+		<plateData catchTime="55" plateNo="6609QG">
+		</plateData>
+		<plateData catchTime="18" plateNo="Z22787">
+		</plateData>
+		<plateData catchTime="18" plateNo="0787QM">
+		</plateData>
+		<plateData catchTime="19" plateNo="2623EP">
+		</plateData>
+		<plateData catchTime="20" plateNo="0209QE">
+		</plateData>
+		<plateData catchTime="20" plateNo="P73802">
+		</plateData>
+		<plateData catchTime="22" plateNo="7066YP">
+		</plateData>
+		<plateData catchTime="23" plateNo="3699JS">
+		</plateData>
+		<plateData catchTime="23" plateNo="4080OU">
+		</plateData>
+		<plateData catchTime="25" plateNo="8608MQ">
+		</plateData>
+		<plateData catchTime="25" plateNo="3871GT">
+		</plateData>
+		<plateData catchTime="25" plateNo="6TU021">
+		</plateData>
+		<plateData catchTime="25" plateNo="4259EH">
+		</plateData>
+		<plateData catchTime="26" plateNo="8899VM">
+		</plateData>
+		<plateData catchTime="27" plateNo="BN6370">
+		</plateData>
+		<plateData catchTime="27" plateNo="EN1959">
+		</plateData>
+		<plateData catchTime="27" plateNo="HY3371">
+		</plateData>
+		<plateData catchTime="28" plateNo="7569GV">
+		</plateData>
+		<plateData catchTime="28" plateNo="1701YA">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-78.185-M" vehNums="77">
+		<plateData catchTime="0" plateNo="8557VU">
+		</plateData>
+		<plateData catchTime="0" plateNo="2611KS">
+		</plateData>
+		<plateData catchTime="4" plateNo="1025VM">
+		</plateData>
+		<plateData catchTime="7" plateNo="LH2723">
+		</plateData>
+		<plateData catchTime="8" plateNo="8683TX">
+		</plateData>
+		<plateData catchTime="8" plateNo="7197MH">
+		</plateData>
+		<plateData catchTime="9" plateNo="9C2766">
+		</plateData>
+		<plateData catchTime="9" plateNo="K66739">
+		</plateData>
+		<plateData catchTime="10" plateNo="1902KM">
+		</plateData>
+		<plateData catchTime="10" plateNo="536QQB">
+		</plateData>
+		<plateData catchTime="11" plateNo="8795D5">
+		</plateData>
+		<plateData catchTime="11" plateNo="7672EK">
+		</plateData>
+		<plateData catchTime="12" plateNo="8795Z">
+		</plateData>
+		<plateData catchTime="12" plateNo="QB1177">
+		</plateData>
+		<plateData catchTime="13" plateNo="6A6558">
+		</plateData>
+		<plateData catchTime="14" plateNo="Z30270">
+		</plateData>
+		<plateData catchTime="14" plateNo="4399EV">
+		</plateData>
+		<plateData catchTime="15" plateNo="W882Z2">
+		</plateData>
+		<plateData catchTime="15" plateNo="Z97308">
+		</plateData>
+		<plateData catchTime="16" plateNo="7203EK">
+		</plateData>
+		<plateData catchTime="16" plateNo="1369KT">
+		</plateData>
+		<plateData catchTime="16" plateNo="5G1780">
+		</plateData>
+		<plateData catchTime="17" plateNo="2468PL">
+		</plateData>
+		<plateData catchTime="19" plateNo="5N9967">
+		</plateData>
+		<plateData catchTime="19" plateNo="4268YT">
+		</plateData>
+		<plateData catchTime="20" plateNo="G94366">
+		</plateData>
+		<plateData catchTime="21" plateNo="M23828">
+		</plateData>
+		<plateData catchTime="21" plateNo="3122A7">
+		</plateData>
+		<plateData catchTime="21" plateNo="3163A9">
+		</plateData>
+		<plateData catchTime="22" plateNo="7521FG">
+		</plateData>
+		<plateData catchTime="23" plateNo="1623EX">
+		</plateData>
+		<plateData catchTime="24" plateNo="GI5489">
+		</plateData>
+		<plateData catchTime="25" plateNo="8286A5">
+		</plateData>
+		<plateData catchTime="26" plateNo="6665UY">
+		</plateData>
+		<plateData catchTime="27" plateNo="0179EP">
+		</plateData>
+		<plateData catchTime="27" plateNo="9305EX">
+		</plateData>
+		<plateData catchTime="27" plateNo="8566A6">
+		</plateData>
+		<plateData catchTime="28" plateNo="GK3087">
+		</plateData>
+		<plateData catchTime="29" plateNo="88170 ">
+		</plateData>
+		<plateData catchTime="29" plateNo="4608RM">
+		</plateData>
+		<plateData catchTime="30" plateNo="3763YH">
+		</plateData>
+		<plateData catchTime="30" plateNo="0420ZT">
+		</plateData>
+		<plateData catchTime="32" plateNo="7D9715">
+		</plateData>
+		<plateData catchTime="34" plateNo="5A7235">
+		</plateData>
+		<plateData catchTime="35" plateNo="3038YM">
+		</plateData>
+		<plateData catchTime="35" plateNo="7253ER">
+		</plateData>
+		<plateData catchTime="36" plateNo="3265VL">
+		</plateData>
+		<plateData catchTime="36" plateNo="7T6626">
+		</plateData>
+		<plateData catchTime="37" plateNo="1766VM">
+		</plateData>
+		<plateData catchTime="38" plateNo="W78055">
+		</plateData>
+		<plateData catchTime="38" plateNo="4611NH">
+		</plateData>
+		<plateData catchTime="38" plateNo="6T5861">
+		</plateData>
+		<plateData catchTime="39" plateNo="9133FN">
+		</plateData>
+		<plateData catchTime="39" plateNo="1B7NH ">
+		</plateData>
+		<plateData catchTime="39" plateNo="4592BG">
+		</plateData>
+		<plateData catchTime="41" plateNo="T80802">
+		</plateData>
+		<plateData catchTime="42" plateNo="881KH">
+		</plateData>
+		<plateData catchTime="43" plateNo="6N0261">
+		</plateData>
+		<plateData catchTime="43" plateNo="3Y8075">
+		</plateData>
+		<plateData catchTime="45" plateNo="37251H">
+		</plateData>
+		<plateData catchTime="45" plateNo="6G122J">
+		</plateData>
+		<plateData catchTime="46" plateNo="DR1245">
+		</plateData>
+		<plateData catchTime="48" plateNo="1507GX">
+		</plateData>
+		<plateData catchTime="49" plateNo="ZV2657">
+		</plateData>
+		<plateData catchTime="51" plateNo="0591YJ">
+		</plateData>
+		<plateData catchTime="51" plateNo="7780RG">
+		</plateData>
+		<plateData catchTime="52" plateNo="1537QS">
+		</plateData>
+		<plateData catchTime="52" plateNo="S59677">
+		</plateData>
+		<plateData catchTime="53" plateNo="8F3633">
+		</plateData>
+		<plateData catchTime="54" plateNo="6586DR">
+		</plateData>
+		<plateData catchTime="54" plateNo="4350KM">
+		</plateData>
+		<plateData catchTime="55" plateNo="9903EA">
+		</plateData>
+		<plateData catchTime="56" plateNo="8580QU">
+		</plateData>
+		<plateData catchTime="57" plateNo="5285MW">
+		</plateData>
+		<plateData catchTime="58" plateNo="4228UX">
+		</plateData>
+		<plateData catchTime="58" plateNo="7536E8">
+		</plateData>
+		<plateData catchTime="59" plateNo="757E8">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-S-99.300-M" vehNums="22">
+		<plateData catchTime="1" plateNo="7368VM">
+		</plateData>
+		<plateData catchTime="1" plateNo="F43012">
+		</plateData>
+		<plateData catchTime="3" plateNo="OE7227">
+		</plateData>
+		<plateData catchTime="5" plateNo="3807KE">
+		</plateData>
+		<plateData catchTime="11" plateNo="3711DY">
+		</plateData>
+		<plateData catchTime="21" plateNo="7633VY">
+		</plateData>
+		<plateData catchTime="25" plateNo="0671TJ">
+		</plateData>
+		<plateData catchTime="26" plateNo="3815QX">
+		</plateData>
+		<plateData catchTime="29" plateNo="Q30413">
+		</plateData>
+		<plateData catchTime="30" plateNo="3511Y8">
+		</plateData>
+		<plateData catchTime="33" plateNo="5759A3">
+		</plateData>
+		<plateData catchTime="34" plateNo="9896QN">
+		</plateData>
+		<plateData catchTime="40" plateNo="73291S">
+		</plateData>
+		<plateData catchTime="42" plateNo="9627KD">
+		</plateData>
+		<plateData catchTime="45" plateNo="5036KS">
+		</plateData>
+		<plateData catchTime="46" plateNo="1621A7">
+		</plateData>
+		<plateData catchTime="48" plateNo="8853YN">
+		</plateData>
+		<plateData catchTime="49" plateNo="3611KH">
+		</plateData>
+		<plateData catchTime="50" plateNo="2769QC">
+		</plateData>
+		<plateData catchTime="52" plateNo="169QW">
+		</plateData>
+		<plateData catchTime="55" plateNo="JX149 ">
+		</plateData>
+		<plateData catchTime="58" plateNo="4703VX">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-2.107-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-17.090-M" vehNums="5">
+		<plateData catchTime="21" plateNo="0718YX">
+		</plateData>
+		<plateData catchTime="40" plateNo="U47729">
+		</plateData>
+		<plateData catchTime="43" plateNo="850989">
+		</plateData>
+		<plateData catchTime="43" plateNo="3377UY">
+		</plateData>
+		<plateData catchTime="56" plateNo="2222PN">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-33.368-M" vehNums="20">
+		<plateData catchTime="0" plateNo="3310E8">
+		</plateData>
+		<plateData catchTime="1" plateNo="4968NT">
+		</plateData>
+		<plateData catchTime="2" plateNo="2077F6">
+		</plateData>
+		<plateData catchTime="3" plateNo="5197NM">
+		</plateData>
+		<plateData catchTime="7" plateNo="2162MZ">
+		</plateData>
+		<plateData catchTime="7" plateNo="4985YE">
+		</plateData>
+		<plateData catchTime="8" plateNo="F25696">
+		</plateData>
+		<plateData catchTime="11" plateNo="9229YQ">
+		</plateData>
+		<plateData catchTime="17" plateNo="3V7169">
+		</plateData>
+		<plateData catchTime="21" plateNo="1607VD">
+		</plateData>
+		<plateData catchTime="22" plateNo="353771">
+		</plateData>
+		<plateData catchTime="25" plateNo="0788YZ">
+		</plateData>
+		<plateData catchTime="27" plateNo="MI4999">
+		</plateData>
+		<plateData catchTime="30" plateNo="6075YH">
+		</plateData>
+		<plateData catchTime="36" plateNo="4213QM">
+		</plateData>
+		<plateData catchTime="46" plateNo="9053YZ">
+		</plateData>
+		<plateData catchTime="50" plateNo="EA7269">
+		</plateData>
+		<plateData catchTime="52" plateNo="0739TS">
+		</plateData>
+		<plateData catchTime="55" plateNo="3Q3158">
+		</plateData>
+		<plateData catchTime="57" plateNo="0821RK">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-43.650-M" vehNums="19">
+		<plateData catchTime="1" plateNo="0419ZF">
+		</plateData>
+		<plateData catchTime="2" plateNo="T66295">
+		</plateData>
+		<plateData catchTime="2" plateNo="6237XM">
+		</plateData>
+		<plateData catchTime="4" plateNo="7M6126">
+		</plateData>
+		<plateData catchTime="5" plateNo="7K1308">
+		</plateData>
+		<plateData catchTime="6" plateNo="55371J">
+		</plateData>
+		<plateData catchTime="7" plateNo="537HJ">
+		</plateData>
+		<plateData catchTime="12" plateNo="4011TS">
+		</plateData>
+		<plateData catchTime="16" plateNo="3360RG">
+		</plateData>
+		<plateData catchTime="22" plateNo="V84593">
+		</plateData>
+		<plateData catchTime="23" plateNo="581JJ">
+		</plateData>
+		<plateData catchTime="32" plateNo="6773DX">
+		</plateData>
+		<plateData catchTime="34" plateNo="5L7386">
+		</plateData>
+		<plateData catchTime="38" plateNo="6497VL">
+		</plateData>
+		<plateData catchTime="40" plateNo="8393KD">
+		</plateData>
+		<plateData catchTime="48" plateNo="7G7179">
+		</plateData>
+		<plateData catchTime="52" plateNo="9671NE">
+		</plateData>
+		<plateData catchTime="56" plateNo="7307VG">
+		</plateData>
+		<plateData catchTime="59" plateNo="5886TR">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-55.700-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-64.550-M" vehNums="0">
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-91.689-M" vehNums="22">
+		<plateData catchTime="0" plateNo="1775LC">
+		</plateData>
+		<plateData catchTime="2" plateNo="B32161">
+		</plateData>
+		<plateData catchTime="3" plateNo="1A18YQ">
+		</plateData>
+		<plateData catchTime="4" plateNo="3F9042">
+		</plateData>
+		<plateData catchTime="4" plateNo="303928">
+		</plateData>
+		<plateData catchTime="9" plateNo="DI8309">
+		</plateData>
+		<plateData catchTime="14" plateNo="8197QD">
+		</plateData>
+		<plateData catchTime="15" plateNo="8556HY">
+		</plateData>
+		<plateData catchTime="19" plateNo="5772PW">
+		</plateData>
+		<plateData catchTime="22" plateNo="9622PA">
+		</plateData>
+		<plateData catchTime="26" plateNo="F40088">
+		</plateData>
+		<plateData catchTime="35" plateNo="6703MA">
+		</plateData>
+		<plateData catchTime="38" plateNo="2382SG">
+		</plateData>
+		<plateData catchTime="41" plateNo="6788NJ">
+		</plateData>
+		<plateData catchTime="43" plateNo="RE753B">
+		</plateData>
+		<plateData catchTime="45" plateNo="2698D8">
+		</plateData>
+		<plateData catchTime="47" plateNo="3610YF">
+		</plateData>
+		<plateData catchTime="50" plateNo="5176PW">
+		</plateData>
+		<plateData catchTime="52" plateNo="0182NA">
+		</plateData>
+		<plateData catchTime="57" plateNo="3M7508">
+		</plateData>
+		<plateData catchTime="0" plateNo="9006UM">
+		</plateData>
+		<plateData catchTime="0" plateNo="9WWUH ">
+		</plateData>
+	</avi_data>
+	<avi_data eqId="AVI-N3-N-102.803-M" vehNums="10">
+		<plateData catchTime="18" plateNo="9618UB">
+		</plateData>
+		<plateData catchTime="22" plateNo="6573GA">
+		</plateData>
+		<plateData catchTime="23" plateNo="5490EQ">
+		</plateData>
+		<plateData catchTime="25" plateNo="8B2055">
+		</plateData>
+		<plateData catchTime="29" plateNo="665RH">
+		</plateData>
+		<plateData catchTime="30" plateNo="N70701">
+		</plateData>
+		<plateData catchTime="57" plateNo="7K011 ">
+		</plateData>
+		<plateData catchTime="57" plateNo="B01Q1 ">
+		</plateData>
+		<plateData catchTime="59" plateNo="2533H">
+		</plateData>
+		<plateData catchTime="59" plateNo="2533JK">
+		</plateData>
+	</avi_data>
+</onemin_avi_data>
+</file_attribute>
