@@ -313,6 +313,15 @@ send=flash_time(1:0-255)
 return=
 test=@cmd flash_time(0)
 
+[Command]
+cmd=0xC3
+description="Report LCS Display Status"
+class=A
+func_name="report_lcs_display_status"
+type=Report
+send=sign_cnt(1:1-255){sign_no(1:0-31)sign_status(1:0-255)}
+return=
+test=
 
 
 [Command]
@@ -358,4 +367,5 @@ test=@cmd
 
 
 
-@Signature=EF62192923DBB4E3248C72C05BEB9E85244DA20DD68B6FDC
+
+@Signature=AC8743E1B19C30E1DD98DA37192453EA4E3ED19EFECA7171

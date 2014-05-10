@@ -1,0 +1,123 @@
+[DeviceInfo]
+
+Version=1.0
+DeviceType=TEM
+IP=10.21.16.33
+port=1001
+DeviceID=0xffff
+
+
+[command]
+cmd=0x10
+description="Active Report Fire Alarm"
+class=N
+func_name="active_report_fire_alarm"
+type=Report
+send=year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)tunnel(1:0-255) place(1:0-255) div(1:0-255) status(1:0-1)
+return= 
+test=
+
+
+[command]
+cmd=0x11
+description="Active Report Air Quality"
+class=N
+func_name="active_report_air_quality"
+type=Report
+send= year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)tunnel(1:0-255) place(1:0-255) mile_k(2:0-65535) mile_m(2:0-65535) type(1:0-4) co_density_1(2:0-65535) co_level_1(1:0-2) co_odd_1(1:0-1)vi_density_2(2:0-65535) vi_level_2(1:0-2) vi_odd_2(1:0-1)no_density_3(2:0-65535) no_level_3(1:0-2) no_odd_3(1:0-1)no2_density_4(2:0-65535) no2_level_4(1:0-2) no2_odd_4(1:0-1)nox_density_5(2:0-65535) nox_level_5(1:0-2) nox_odd_5(1:0-1)
+return= 
+test=
+
+
+[command]
+cmd=0x12
+description="Active Report Lighting Event"
+class=N
+func_name="active_report_lighting_event"
+type=Report
+send=year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59) tunnel(1:0-255) place(1:0-255) div(1:0-255) start_mile_k(2:0-65535) start_mile_m(2:0-65535) stop_mile_k(2:0-65535) stop_mile_m(2:0-65535) required(2:0-65535) damaged(2:0-65535)
+return= 
+test=
+
+[command]
+cmd=0x13
+description="Active Report Distribution Event"
+class=N
+func_name="active_report_distribution_event"
+type=Report
+send= year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)tunnel(1:0-255) place(1:0-255) status(1:0-2)
+return= 
+test=
+
+
+[command]
+cmd=0x14
+description="Active Report Machine Room Event"
+class=N
+func_name="active_report_machine_room_event"
+type=Report
+send= year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)tunnel(1:0-255) place(1:0-255) card_reader(1:0-1) status(1:0-1)
+return= 
+test=
+
+
+[command]
+cmd=0x15
+description="Active Report Monitor Event"
+class=N
+func_name="active_report_monitor_event"
+type=Report
+send= year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)tunnel(1:0-255) place(1:0-255) location(1:0-1) status(1:0-1)
+return= 
+test=
+
+
+
+
+[command]
+cmd=0x20
+description="Set Date And Time"
+class=A
+func_name="set_date_and_time"
+type=Set
+send= year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59) second(1:0-59)
+return= 
+test=
+
+
+[command]
+cmd=0x21
+description="Send Vd Traffic Data"
+class=A
+func_name="send_vd_traffic_data"
+type=Set
+send=dir(1:0-3) mile_k(2:0-65535) mile_m(2:0-65535) lane_cnt(1:0-255) odd(1:0-255)land_no(0:0-2) {loopid(1:0-255) odd(1:0-255) vol_car(2:0-65535) vol_big(2:0-65535) vol_con(2:0-65535) spd_car(1:0-255) spd_big(1:0-255) spd_con(1:0-255) occupancy(1:0-255)}
+return= 
+test=@cmd dir(0) mile_k(18) mile_m(24) lane_cnt(2) odd(0) land_no(2) {loopid(0) odd(0) vol_car(50) vol_big(50) vol_con(50) spd_car(8) spd_big(8) spd_con(8) occupancy(2)}
+
+
+
+[command]
+cmd=0x23
+description="Send Visibility Event"
+class=A
+func_name="send_visibility_event"
+type=Set
+send= dir(1:0-3) mile_k(2:0-65535) mile_m(2:0-65535) status(1:0-1)
+return= 
+test=@cmd  dir(0) mile_k(34) mile_m(400) status(1)
+
+[command]
+cmd=0x26
+description="Set LCS Hw"
+class=A
+func_name="send_LCS_hw"
+type=Set
+send=tunnel(1:0-255) place(1:0-255)div(1:0-255)status(1:0-1)
+return= 
+test=@cmd tunnel(1) place(0)div(9)status(1)
+
+
+
+
+@Signature=5653D682BB85E78B719C34D63828F169053F630C667351F4

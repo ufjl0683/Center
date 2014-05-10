@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCC_CMS", "MFCC_CMS\MFCC_CMS.csproj", "{3A7646B1-E7B1-49FA-ACE9-91A6B547FE74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCC_LCS", "MFCC_LCS\MFCC_LCS.csproj", "{120DECDC-3E36-43A8-90BE-20920EF0CC94}"
@@ -54,6 +54,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2DLE", "..\..\V2DLE\V2DLE.csproj", "{759C6C3E-0C2A-456F-AC3C-42D8B9329566}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerFactory", "..\..\Host\ServerFactory\ServerFactory.csproj", "{EC3E10E8-E954-4A7B-B4DC-A750D35C6D15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCC_ETAG", "MFCC_ETAG\MFCC_ETAG.csproj", "{4326F5D6-AAD3-451A-97AF-8C10AF9237A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +171,10 @@ Global
 		{EC3E10E8-E954-4A7B-B4DC-A750D35C6D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC3E10E8-E954-4A7B-B4DC-A750D35C6D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC3E10E8-E954-4A7B-B4DC-A750D35C6D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4326F5D6-AAD3-451A-97AF-8C10AF9237A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4326F5D6-AAD3-451A-97AF-8C10AF9237A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4326F5D6-AAD3-451A-97AF-8C10AF9237A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4326F5D6-AAD3-451A-97AF-8C10AF9237A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

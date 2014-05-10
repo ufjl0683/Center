@@ -176,7 +176,8 @@ namespace Host.Event
                             RemoteInterface.Util.SysLog("evterr.log",this.EventId+","+"no outputdata and outputdata1");
                             continue;
                         }
-
+                        
+                          
 
                         Host.TC.OutPutDeviceBase dev = Program.matrix.getDeviceWrapper(devName) as Host.TC.OutPutDeviceBase;
                         qdata = new RemoteInterface.HC.OutputQueueData(devName, RemoteInterface.HC.OutputModeEnum.ResponsePlanMode, this.EventId, priority, OutObj);
@@ -186,6 +187,8 @@ namespace Host.Event
                         qdata.DevDir= dev.direction ;
                         qdata.DevLineId = dev.getLineID();
                         qdata.DevMileage = dev.getMileage();
+                      //  qdata.AlarmClass = this.m_class;
+
                         (Program.matrix.getDeviceWrapper(devName) as Host.TC.OutPutDeviceBase).SetOutput(qdata);
                     //    RemoteInterface.Util.SysLog( DateTime.Now + "," +  "evterr.log", "output " + devName + ",");
 

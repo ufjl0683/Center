@@ -2,7 +2,7 @@
 
 Version=3.0
 DeviceType=VI
-IP=192.168.3.14
+IP=192.168.26.252
 port=1001
 DeviceID=0xffff
 
@@ -35,7 +35,7 @@ func_name="set_datetime_report"
 type=Query
 send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
 return=second_diff(1:0-255)
-test=@cmd year(2009) month(2) day(20) hour(12) minute(1) second(20)
+test=@cmd year(2009) month(10) day(21) hour(16) minute(20) second(0)
 
 
 [Command]
@@ -283,8 +283,6 @@ return=response_type(1:0 "cycle_polling",1 "cycle_passive",2 "manual",4 "cycle_s
 test=
 
 
-
-
 [Command]
 cmd=0x21
 description="set degree estimate parameter"
@@ -293,7 +291,8 @@ func_name="set_degree_estimate_para"
 type=Set
 send=d0(2:0-9999) d1(2:0-9999) d2(2:0-9999) d3(2:0-9999) d4(2:0-9999) d5(2:0-9999) d6(2:0-9999)
 return=
-test=@cmd d0(0) d1(0) d2(0) d3(0) d4(0) d5(0) d6(0)
+test=@cmd d0(300) d1(220) d2(170) d3(130) d4(90) d5(60) d6(30)
+
 
 [Command]
  cmd=0x04 
@@ -314,10 +313,36 @@ class=A
 func_name="set_vi_smooth_egree_parameter"
 type=Query
 send=a0(1:1-9)a1(1:1-9)a2(1:1-9)a3(1:1-9)a4(1:1-9)
-return=response_type(1:0 "cycle_even",1 "cycle_ passive")hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=response_type(1:0 "cycle_even",1 "cycle_ passive")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
        day(1:1-31) hour(1:0-23) minute(1:0-59) vi_distance(2:0-9999) vi_degree(1:0-7)
-test=@cmd a0(1)a1(1)a2(1)a3(2)a4(5)
+test=@cmd a0(6)a1(1)a2(1)a3(1)a4(1)
 
+
+[Command]
+cmd=0x22
+description="Report VI event"
+class=N
+func_name="report_vi_event"
+type=Report
+send=
+return=response_type(1:0 "cycle_even",1 "cycle_ passive")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59) vi_distance(2:0-9999) vi_degree(1:0-7)
+test= 
+
+
+[Command]
+ cmd=0x04 
+ description="Get VI smooth egree parameter"
+ class=A
+ func_name="get_vi_smooth_egree_parameter"
+ type=Query
+ send= protocol_code(1:34-34)
+ return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:34-34)
+        a0(1:1-9)a1(1:1-9)a2(1:1-9)a3(1:1-9)a4(1:1-9)
+ test=@cmd protocol_code(34)
 
 
 [Command]
@@ -352,7 +377,7 @@ type=Query
 send=day(1:1-31) hour(1:0-23) minute(1:0-59)
 return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
        day(1:1-31) hour(1:0-23) minute(1:0-59) vi_distance(2:0-9999) vi_degree(1:0-7)
-test=@cmd day(23) hour(10) minute(30)
+test=@cmd day(21) hour(16) minute(10)
 
 [Command]
 cmd=0x26
@@ -373,4 +398,7 @@ test=@cmd action(0) data_count(70) year(2009) month(4) day(17) hour(10) minute(1
 
 
 
-@Signature=417F9A7E42FE5D2749A20E7F175FD0608D4D3B8352F0D0A1
+
+
+
+@Signature=8F39E65E7031037369A7BD5B4F30FD6FCCEEB56586A30E76

@@ -42,6 +42,7 @@ namespace Host
 
        public Event.TEM.TemManager tem_mgr;
        public Event.Redirect.RouteRedirectManager route_mgr;
+       public Event.Redirect74.RouteRedirectManagerT74 route_mgr74;
        public Event.APID.APIDManager apid_mgr;
        public CCTV.CCTV_Manager cctvmgr;
 
@@ -174,14 +175,17 @@ namespace Host
 #if DEBUG
            //Program.initRemoteInterface();
            //Console.ReadKey();
+           route_mgr74 = new Host.Event.Redirect74.RouteRedirectManagerT74();
+           route_mgr = new Host.Event.Redirect.RouteRedirectManager();
+           metro_network_mgr = new Event.MetroNetwork.MetroNetworkManager();
 #endif
 #if !DEBUG
            tem_mgr = new Host.Event.TEM.TemManager();
          
            rampctl_mgr = new Event.RampControl.RampControl_Manager();
            metro_network_mgr = new Event.MetroNetwork.MetroNetworkManager();
+          
            route_mgr = new Host.Event.Redirect.RouteRedirectManager();
-
            ltr_mgr = new Event.LTR.LTR_Manager();
 
            weather_mgr = new Host.Event.Weather.WeatherManager();
@@ -195,7 +199,10 @@ namespace Host
            {
                WebService.SendSMS("0988163835", "host is online!");
            }
-           catch { ;}
+           catch(Exception ex) {
+
+               Console.WriteLine(ex.Message + "," + ex.StackTrace);
+               ;}
 #if !DEBUG
            try
            {

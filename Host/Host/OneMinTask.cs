@@ -75,6 +75,18 @@ namespace Host
                         ConsoleServer.WriteLine(ex.Message + "," + ex.StackTrace);
                     }
 
+                    try
+                    {
+                        Program.matrix.route_mgr74.FetchTravelTime();
+                        //ConsoleServer.WriteLine("**********************************************");
+                        //ConsoleServer.WriteLine(Program.matrix.route_mgr.ToString());
+                        //ConsoleServer.WriteLine("**********************************************");
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleServer.WriteLine(ex.Message + "," + ex.StackTrace);
+                    }
+
                     // System.DateTime dt = System.DateTime.Now;
                     //  dt = System.DateTime.Now;
                     dt = DateTime.Now.AddSeconds(-DateTime.Now.Second).AddMinutes(1).AddSeconds(30);

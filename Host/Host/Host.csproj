@@ -49,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge">
@@ -60,14 +61,6 @@
     <Reference Include="AID, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\AID.dll</HintPath>
-    </Reference>
-    <Reference Include="DBConnect, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DBConnect.dll</HintPath>
-    </Reference>
-    <Reference Include="Execution, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Execution.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -113,6 +106,8 @@
     <Compile Include="Event\Range.cs" />
     <Compile Include="Event\Redirect\RouteRedirectManager.cs" />
     <Compile Include="Event\Redirect\RouteRedirectRange.cs" />
+    <Compile Include="Event\Redirect\RouteRedirectManagerT74.cs" />
+    <Compile Include="Event\Redirect\RouteRedirectRangeT74.cs" />
     <Compile Include="Event\ServiceArea\RstRange.cs" />
     <Compile Include="Event\ServiceArea\ServiceAreaManager.cs" />
     <Compile Include="Event\TEM\TemRangeData.cs" />
@@ -213,6 +208,14 @@
       <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
       <Name>RemoteInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ResponsePlan\DBConnect\DBConnect.csproj">
+      <Project>{fe70d0a0-0c4c-44d5-8310-6af36cdf000a}</Project>
+      <Name>DBConnect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ResponsePlan\Execution\Execution.csproj">
+      <Project>{f9ca4df0-4dcb-4a9b-b74b-e474508f41ff}</Project>
+      <Name>Execution</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V2DLE\V2DLE.csproj">
       <Project>{759C6C3E-0C2A-456F-AC3C-42D8B9329566}</Project>
       <Name>V2DLE</Name>
@@ -230,29 +233,65 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="AID.dll" />
-    <Content Include="DBConnect.dll" />
-    <Content Include="Execution.dll" />
-    <Content Include="Scripts\F311Z-CSLS-20091004.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Scripts\BS-20100717.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\F311Z-LSD-20090908.txt" />
-    <Content Include="Scripts\F601C-Script-PAN-LCS-.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Scripts\CMS-v3.0-20110312.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\CMSRST-v3.0-20100604.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ETTU-F537-20100531.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F311Z-AVI-20100323.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F311Z-CSLS-20091004.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F311Z-FS-20100302.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F311Z-LSD-20100408.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F331Z-Script-MAS-20100209.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F331Z-TTS-Fnail.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\F601C-IID-20090305.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\F601C-Script-PAN-RGS-20090622.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\LCS-20101207.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\RD-v3.0-20100410.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\RMS-20101018.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\SCM-20100531.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\TEM-20100722.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\VD-v3.0-20090628.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\VI-v3.0-20090628.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Scripts\VI-v3.0-20100410.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\WIS-v3.0-20090524.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Scripts\WD-v3.0-20100705.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="section_traffic_data.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -212,7 +212,12 @@ namespace Comm
                 senddata[1] = 4;
             else if (this.m_protocol.DeviceType.Trim().ToUpper() == "LCS")
                 senddata[1] = 18;
-            else if (this.m_protocol.DeviceType.Trim().ToUpper() == "CMS" || this.m_protocol.DeviceType.Trim().ToUpper()=="CMSRST")
+            else if (this.m_protocol.DeviceType.Trim().ToUpper() == "ETAG")
+            {
+                senddata[1] = 27;
+                senddata[2] = 0;
+            }
+            else if (this.m_protocol.DeviceType.Trim().ToUpper() == "CMS" || this.m_protocol.DeviceType.Trim().ToUpper() == "CMSRST")
                 senddata[1] = 11;
             else if (this.m_protocol.DeviceType.Trim().ToUpper() == "CSLS")
                 senddata[1] = 14;
@@ -236,7 +241,8 @@ namespace Comm
             {
                // if(this.m_protocol.DeviceType != "SCM")
                     this.m_device.Send(new SendPackage(CmdType.CmdSet, CmdClass.A, 0xffff, senddata));
-
+                    if(this.m_protocol.DeviceType=="ETAG")
+                        this.m_device.Send(new SendPackage(CmdType.CmdSet, CmdClass.A, 0xffff, new byte[]{0x03,0x1a,0x01,0x01,0x00} ));
                 //byte[] senddata1 = new byte[] { 0x03, 1, m_event_cycle, m_event_mode, m_hw_cycle };  //set event cycle
                 //this.m_device.Send(new SendPackage(CmdType.CmdSet, CmdClass.A, 0xffff, senddata1));
                 //byte[] senddata2 = new byte[] { 0x03, 2, m_real_cycle, m_real_mode, m_hw_cycle };  //set real cycle

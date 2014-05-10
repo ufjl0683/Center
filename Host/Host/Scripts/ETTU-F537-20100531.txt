@@ -1,0 +1,619 @@
+[DeviceInfo]
+
+Version=2.0
+DeviceType=ETTU
+IP=192.168.22.97
+port=6400
+DeviceID=0xffff
+
+
+[Command]
+cmd=0x20 0x20
+description="Grand to connect"
+class=N
+func_name="set_grand_connect"
+type=Query
+send=
+return=
+test=@cmd 
+
+[Command]
+cmd=0x27 0x00
+description="Get System Clock"
+class=N
+func_name="get_sys_clock"
+type=Query
+send=
+return=m1(1:0-1) m2(1:0-9) 
+       d1(1:0-1) d2(1:0-9)
+       y1(1:0-9) y2(1:0-9) y3(1:0-9) y4(1:0-9) 
+       h1(1:0-2) h2(1:0-9)
+       i1(1:0-5) i2(1:0-9) 
+       s1(1:0-5) s2(1:0-9)
+test=@cmd 
+
+
+
+[Command]
+cmd=0x27 0x01
+description="Set System Clock"
+class=N
+func_name="set_sys_clock"
+type=Query
+send=m1(1:0-1) m2(1:0-9) 
+     d1(1:0-1) d2(1:0-9)
+     y1(1:0-9) y2(1:0-9)
+     y3(1:0-9) y4(1:0-9) 
+     h1(1:0-2) h2(1:0-9)
+     i1(1:0-5) i2(1:0-9) 
+     s1(1:0-5) s2(1:0-9)
+return=
+test=@cmd m1(0) m2(4) 
+          d1(0) d2(1)
+          y1(2) y2(0) 
+	  y3(0) y4(9) 
+          h1(1) h2(2)
+          i1(0) i2(5) 
+          s1(2) s2(1)
+
+
+[Command]
+cmd=0x27 0x02
+description="Get Detected Time"
+class=N
+func_name="get_detected_time"
+type=Query
+send=
+return=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+test=@cmd
+
+
+[Command]
+cmd=0x27 0x03
+description="Get Light Time"
+class=N
+func_name="get_light_time"
+type=Query
+send=
+return=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+test=@cmd
+
+
+
+[Command]
+cmd=0x27 0x04
+description="Get Time to Trun off Light"
+class=N
+func_name="get_time_to_trun_off_light"
+type=Query
+send=
+return=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+test=@cmd
+
+
+
+
+[Command]
+cmd=0x27 0x05
+description="Set Detected Time"
+class=N
+func_name="set_detected_time"
+type=Query
+send=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+return=
+test=@cmd length(4) {h1(0) h2(3) i1(2) i2(3) s1(0) s2(0)}
+
+
+[Command]
+cmd=0x27 0x06
+description="Set Time to Trun on Light"
+class=N
+func_name="set_time_to_trun_on_light"
+type=Query
+send=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+return=
+test=@cmd length(4) {h1(1) h2(7) i1(3) i2(0) s1(0) s2(0)}
+
+
+
+[Command]
+cmd=0x27 0x07
+description="Set Time to Trun off Light"
+class=N
+func_name="set_time_to_trun_off_light"
+type=Query
+send=length(0:0-255) {h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9)}
+return=
+test=@cmd length(1) {h1(0) h2(6) i1(3) i2(0) s1(0) s2(0)}
+
+
+
+[Command]
+cmd=0x27 0x08
+description="Get Single Phone Response"
+class=N
+func_name="get_single_phone_resp"
+type=Set
+send=c1(1:0-9) c2(1:0-9) c3(1:0-9) c4(1:0-9) c5(1:0-9) c6(1:0-9)c7(1:0-9)c8(1:0-9)c9(1:0-9) NO(1:1-63)
+return=
+test=@cmd c1(8) c2(4) c3(2) c4(3) c5(3) c6(3)c7(3)c8(3)c9(3) NO(1)
+
+[Command]
+cmd=0x29 0x08
+description="Single Phone Response Report"
+class=N
+func_name="get_single_phone_resp Report"
+type=Report
+send=c1(1:0-255) c2(1:0-255) c3(1:0-255) c4(1:0-255) c5(1:0-255) c6(1:0-255) c7(1:0-9) c8(1:0-9) c9(1:0-9)
+       f1(1:0-255) f2(1:0-255) f3(1:0-255) 
+       m1(1:0-255) m2(1:0-255) 
+       d1(1:0-255) d2(1:0-255) 
+       y1(1:0-255) y2(1:0-255) y3(1:0-255) y4(1:0-255) 
+       h1(1:0-255) h2(1:0-255) 
+       i1(1:0-255) i2(1:0-255)
+       s1(1:0-255) s2(1:0-255) 
+       x1(1:0-255) x2(1:0-255)
+return=
+test=
+
+
+
+[Command]
+cmd=0x27 0x09
+description="Get Batch Phone Response"
+class=N
+func_name="get_batch_phone_resp"
+type=Query
+send=k1(1:0-9) k2(1:0-9) NO(1:1-63)
+return=
+test=@cmd k1(1) k2(1) NO(1)
+
+
+
+
+[Command]
+cmd=0x27 0x0A
+description="Get Local Phone Response"
+class=N
+func_name="get_local_phone_resp"
+type=Query
+send=h1(1:0-9) h2(1:0-9) NO(1:1-63)
+return=
+test=@cmd h1(1) h2(1) NO(1)
+
+
+
+[Command]
+cmd=0x27 0x0B
+description="Get All Phone Response"
+class=N
+func_name="get_all_phone_resp"
+type=Query
+send=NO(1:1-63)
+return=
+test=@cmd NO(1)
+
+
+
+
+[Command]
+cmd=0x27 0x0C
+description="Set Single Phone to Trun on Light"
+class=N
+func_name="get_single_phone_to_trun_on_light"
+type=Query
+send=c1(1:0-9) c2(1:0-9) c3(1:0-9) c4(1:0-9) c5(1:0-9) c6(1:0-9)c7(1:0-9)c8(1:0-9)c9(1:0-9) NO(1:1-63)
+return=
+test=@cmd c1(8) c2(4) c3(2) c4(1) c5(2) c6(3)c7(0)c8(0)c9(1) NO(1)
+
+
+
+[Command]
+cmd=0x27 0x0D
+description="Set Batch Phone to Trun on Light"
+class=N
+func_name="get_batch_phone_to_trun_on_light"
+type=Query
+send=k1(1:0-9) k2(1:0-9)
+return=
+test=@cmd k1(1) k2(2)
+
+
+
+[Command]
+cmd=0x27 0x0E
+description="Set Local Phone to Trun on Light"
+class=N
+func_name="get_local_phone_to_trun_on_light"
+type=Query
+send=h1(1:0-9) h2(1:0-9)
+return=
+test=@cmd h1(1) h2(2)
+
+
+
+[Command]
+cmd=0x27 0x0F
+description="Set All Phone to Trun on Light"
+class=N
+func_name="get_all_phone_to_trun_on_light"
+type=Query
+send=
+return=
+test=@cmd
+
+
+
+
+
+[Command]
+cmd=0x27 0x10
+description="Set Single Phone to Trun off Light"
+class=N
+func_name="get_single_phone_to_trun_off_light"
+type=Query
+send=c1(1:0-9) c2(1:0-9) c3(1:0-9) c4(1:0-9) c5(1:0-9) c6(1:0-9) c7(1:0-9)c8(1:0-9)c9(1:0-9) NO(1:1-63)
+return=
+test=@cmd c1(8) c2(4) c3(2) c4(1) c5(2) c6(3)c7(0)c8(0)c9(1) NO(1)
+
+
+
+[Command]
+cmd=0x27 0x11
+description="Set Batch Phone to Trun off Light"
+class=N
+func_name="get_batch_phone_to_trun_off_light"
+type=Query
+send=k1(1:0-9) k2(1:0-9)
+return=
+test=@cmd k1(1) k2(1)
+
+
+
+[Command]
+cmd=0x27 0x12
+description="Set Local Phone to Trun off Light"
+class=N
+func_name="get_local_phone_to_trun_off_light"
+type=Query
+send=h1(1:0-9) h2(1:0-9)
+return=
+test=@cmd h1(1) h2(2)
+
+
+
+[Command]
+cmd=0x27 0x13
+description="Set All Phone to Trun off Light"
+class=N
+func_name="get_all_phone_to_trun_off_light"
+type=Query
+send=
+return=
+test=@cmd
+
+
+
+
+[Command]
+cmd=0x27 0x14
+description="Get Single Phone Status"
+class=N
+func_name="get_single_phone_status"
+type=Query
+send=c1(1:0-9) c2(1:0-9) c3(1:0-9) c4(1:0-9) c5(1:0-9) c6(1:0-9)c7(1:0-9) c8(1:0-9)c9(1:0-9)
+return=c1(1:0-255) c2(1:0-255) c3(1:0-255) c4(1:0-255) c5(1:0-255) c6(1:0-255) c7(1:0-9) c8(1:0-9) c9(1:0-9)
+       f1(1:0-255) f2(1:0-255) f3(1:0-255) 
+       m1(1:0-255) m2(1:0-255) 
+       d1(1:0-255) d2(1:0-255) 
+       y1(1:0-255) y2(1:0-255) y3(1:0-255) y4(1:0-255) 
+       h1(1:0-255) h2(1:0-255) 
+       i1(1:0-255) i2(1:0-255)
+       s1(1:0-255) s2(1:0-255) 
+       x1(1:0-255) x2(1:0-255) 
+      
+test=@cmd c1(8) c2(4) c3(2) c4(1) c5(2) c6(3)c7(0)c8(0)c9(1)
+
+
+[Command]
+cmd=0x27 0x15
+description="Get Batch Phone Breakdown Status"
+class=A
+func_name="get_batch_phone_breakdown_status"
+type=Set
+send=k1(1:0-9) k2(1:0-9)
+return=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+                       f1(1:0-255)  f2(1:0-255)  f3(1:0-255)
+                       m1(1:0-255)  m2(1:0-255)
+                       d1(1:0-255)  d2(1:0-255)
+                       y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255) 
+                       h1(1:0-255)  h2(1:0-255) 
+                       i1(1:0-255)  i2(1:0-255)
+                       s1(1:0-255)  s2(1:0-255)
+test=@cmd k1(1) k2(1)
+
+
+[Command]
+cmd=0x29 0x15
+description="Get Batch Phone Breakdown Status Repot"
+class=N
+func_name="get_batch_phone_breakdown_status_report"
+type=Report
+send=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+                       f1(1:0-255)  f2(1:0-255)  f3(1:0-255)
+                       m1(1:0-255)  m2(1:0-255)
+                       d1(1:0-255)  d2(1:0-255)
+                       y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255) 
+                       h1(1:0-255)  h2(1:0-255) 
+                       i1(1:0-255)  i2(1:0-255)
+                       s1(1:0-255)  s2(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x27 0x16
+description="Get Local Phone Breakdown Status"
+class=A
+func_name="get_local_phone_breakdown_status"
+type=Query
+send=h1(1:0-9) h2(1:0-9)
+return=length(0:0-255)
+       {ET_FAIL_INFO1(1:0-255) ET_FAIL_INFO2(1:0-255) ET_FAIL_INFO3(1:0-255) ET_FAIL_INFO4(1:0-255) ET_FAIL_INFO5(1:0-255) 
+       ET_FAIL_INFO6(1:0-255) ET_FAIL_INFO7(1:0-255) ET_FAIL_INFO8(1:0-255) ET_FAIL_INFO9(1:0-255) ET_FAIL_INFO10(1:0-255) 
+       ET_FAIL_INFO11(1:0-255) ET_FAIL_INFO12(1:0-255) ET_FAIL_INFO13(1:0-255) ET_FAIL_INFO14(1:0-255) ET_FAIL_INFO15(1:0-255) 
+       ET_FAIL_INFO16(1:0-255) ET_FAIL_INFO17(1:0-255) ET_FAIL_INFO18(1:0-255) ET_FAIL_INFO19(1:0-255) ET_FAIL_INFO20(1:0-255) 
+       ET_FAIL_INFO21(1:0-255) ET_FAIL_INFO22(1:0-255) ET_FAIL_INFO23(1:0-255)ET_STATE24(1:0-255) ET_STATE25(1:0-255) ET_STATE26(1:0-255)}
+test=@cmd h1(1) h2(1)
+
+
+[Command]
+cmd=0x27 0x17
+description="Get All Phone Breakdown Status"
+class=A
+func_name="get_all_phone_breakdown_status"
+type=Set
+send=
+return=
+test=@cmd
+
+
+[Command]
+cmd=0x29 0x17
+description="All phone BreakDown Status Report"
+class=N
+func_name="all_phone_breakdown_status_report"
+type=Report
+send=  cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+                       f1(1:0-255)  f2(1:0-255)  f3(1:0-255)
+                       m1(1:0-255)  m2(1:0-255)
+                       d1(1:0-255)  d2(1:0-255)
+                       y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255) 
+                       h1(1:0-255)  h2(1:0-255) 
+                       i1(1:0-255)  i2(1:0-255)
+                       s1(1:0-255)  s2(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x27 0x18
+description="Get All Phone Status"
+class=A
+func_name="get_all_phone_status"
+type=Set
+send=
+return=
+test=@cmd
+
+[Command]
+cmd=0x29 0x18
+description="Get All Phone Status Report"
+class=N
+func_name="get_all_phone_status_report"
+type=Report
+send=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+     k1(1:0-255)  k2(1:0-255)
+     h1(1:0-255)  h2(1:0-255) 
+     a1(1:0-255)
+     u1(1:0-255)  u2(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x27 0x19
+description="Set Config Data"
+class=A
+func_name="set_config_data"
+type=Query
+send=  cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+       k1(1:0-255)  k2(1:0-255)
+       h1(1:0-255)  h2(1:0-255) 
+       a1(1:0-255)
+       u1(1:0-255)  u2(1:0-255)
+return=
+test=@cmd cO1(8) cO2(5) cO3(3) cO4(1) cO5(1)cO6(5)cO7(3)cO8(0)cO9(3)
+          k1(1)  k2(1)
+          h1(1)  h2(1) 
+          a1(0)
+          u1(0)  u2(0)
+
+
+
+
+
+[Command]
+cmd=0x27 0x1A
+description="Get to add Data"
+class=A
+func_name="get_to_add_data"
+type=Query
+send=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+       k1(1:0-255)  k2(1:0-255)
+       h1(1:0-255)  h2(1:0-255) 
+       a1(1:0-255)
+       u1(1:0-255)  u2(1:0-255)
+return=
+test=@cmd cO1(8) cO2(4) cO3(2) cO4(1) cO5(2)cO6(3)cO7(0)cO8(0)cO9(1)
+          k1(1)  k2(1)
+          h1(1)  h2(1) 
+          a1(0)
+          u1(0)  u2(0)
+
+[Command]
+cmd=0x27 0x1B
+description="Get to Delete Data"
+class=A
+func_name="get_to_del_data"
+type=Query
+send=row(0:0-255) {cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)}
+return=row(0:0-255) {cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)}
+test=@cmd row(1) {cO1(8) cO2(4) cO3(2) cO4(1) cO5(2)cO6(3)cO7(0)cO8(0)cO9(1)}
+
+
+[Command]
+cmd=0x27 0x1C
+description="Get to Add Tai-Power Data"
+class=A
+func_name="get_to_add_taipower_data"
+type=Query
+send=
+return=
+test=@cmd
+
+
+[Command]
+cmd=0x27 0x1D
+description="Get to Delete Tai-Power Data"
+class=A
+func_name="get_to_del_taipower_data"
+type=Query
+send=
+return=
+test=@cmd
+
+
+[Command]
+cmd=0x27 0x1E
+description="Get Specific Breakdown Data"
+class=A
+func_name="get_spe_brkdwn_data"
+type=Set
+send=e1(1:0-255) e2(1:0-255)
+return=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+       f1(1:0-255)  f2(1:0-255)  f3(1:0-255)
+       m1(1:0-255)  m2(1:0-255)
+       d1(1:0-255)  d2(1:0-255)
+       y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255) 
+       h1(1:0-255)  h2(1:0-255) 
+       i1(1:0-255)  i2(1:0-255)
+       s1(1:0-255)  s2(1:0-255)
+test=@cmd e1(1) e2(1)
+
+
+
+[Command]
+cmd=0x27 0x1F
+description="Get Statistic Breakdown Data"
+class=A
+func_name="get_statistic_brkdwn_data"
+type=Query
+send=
+return=m1(1:0-1) m2(1:0-9) d1(1:0-1) d2(1:0-9) y1(1:0-9) y2(1:0-9) y3(1:0-9) y4(1:0-9) h1(1:0-2) h2(1:0-9) i1(1:0-5) i2(1:0-9) s1(1:0-5) s2(1:0-9) 
+       M1(1:0-1) M2(1:0-9) D1(1:0-1) D2(1:0-9) Y1(1:0-9) Y2(1:0-9) Y3(1:0-9) Y4(1:0-9) H1(1:0-2) H2(1:0-9) I1(1:0-5) I2(1:0-9) S1(1:0-5) S2(1:0-9) 
+       F00(2:0-65535) F01(2:0-65535) F02(2:0-65535) F03(2:0-65535) F04(2:0-65535) F05(2:0-65535) F06(2:0-65535) F07(2:0-65535) F08(2:0-65535) 
+       F09(2:0-65535) F10(2:0-65535) F11(2:0-65535) F12(2:0-65535) F13(2:0-65535) F14(2:0-65535) F15(2:0-65535) F16(2:0-65535) F17(2:0-65535)
+test=@cmd
+
+
+[Command]
+cmd=0x27 0x20
+description="Get Current Status"
+class=A
+func_name="get_cur_status"
+type=Set
+send=
+return=
+test=@cmd
+
+
+[Command]
+cmd=0x29 0x20
+description="Get Current Status Report"
+class=N
+func_name="get_cur_status_report"
+type=Report
+send=x1(1:0-255) x2(1:0-255)
+       c1(1:0-255)
+       m1(1:0-255)  m2(1:0-255)
+       d1(1:0-255)  d2(1:0-255)
+       y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255)
+       h1(1:0-255)  h2(1:0-255) 
+       i1(1:0-255)  i2(1:0-255)
+       s1(1:0-255)  s2(1:0-255)
+       k1(1:0-255)  k2(1:0-255)
+       a1(1:0-255)  a2(1:0-255)
+       p1(1:0-255)  p2(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x27 0x21
+description="Get Sunshine"
+class=A
+func_name="get_sunshine"
+type=Query
+send=row(0:0-255){
+     m1(1:0-1) m2(1:0-9) d1(1:0-1) d2(1:0-9) h1(1:0-2) h2(1:0-9) 
+     i1(1:0-5) i2(1:0-9) H1(1:0-2) H2(1:0-9) I1(1:0-5) I2(1:0-9)
+     }
+return=i(1:0-255)
+test=@cmd row(1){
+     m1(1) m2(4) d1(0) d2(9) h1(1) h2(2) 
+     i1(3) i2(2) H1(0) H2(0) I1(3) I2(5)}
+
+[Command]
+cmd=0x27 0x22
+description="Get Sunshine Report"
+class=A
+func_name="get_sunshine_report"
+type=Query
+send=m1(1:0-1) m2(1:0-9) d1(1:0-3) d2(1:0-9) 
+return=m1(1:0-1) m2(1:0-9) d1(1:0-1) d2(1:0-9) h1(1:0-2) h2(1:0-9) 
+       i1(1:0-5) i2(1:0-9) H1(1:0-2) H2(1:0-9) I1(1:0-5) I2(1:0-9)
+test=@cmd m1(1) m2(1) d1(2) d2(4) 
+
+[Command]
+cmd=0x25 0x25
+description="Get Breakdown Verify Report"
+class=N
+func_name="get_brkdwn_verify_report"
+type=Report
+send=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)
+     f1(1:0-255)  f2(1:0-255)  f3(1:0-255)
+     m1(1:0-255)  m2(1:0-255)
+     d1(1:0-255)  d2(1:0-255)
+     y1(1:0-255)  y2(1:0-255)  y3(1:0-255) y4(1:0-255) 
+     h1(1:0-255)  h2(1:0-255) 
+     i1(1:0-255)  i2(1:0-255)
+     s1(1:0-255)  s2(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x42 0x01
+description="User To CC Report"
+class=N
+func_name="user_to_cc_report"
+type=Report
+send=cO1(1:0-255) cO2(1:0-255) cO3(1:0-255) cO4(1:0-255) cO5(1:0-255) cO6(1:0-255)cO7(1:0-255)cO8(1:0-255)cO9(1:0-255)c10(1:0-255)
+return=
+test=
+
+
+
+
+
+
+@Signature=546F6C236AC277E131A1EF13EBA2D301D0005735F0D72450

@@ -1,10 +1,10 @@
 [DeviceInfo]
 
-Version=3.0
-DeviceType=LS
-IP=192.192.78.1
-port=1001
-DeviceID=0xffff
+Version=2.0
+DeviceType=ETAG
+IP=10.21.231.49
+port=8888
+DeviceID=0xFFFF
 
 
 [command]
@@ -32,21 +32,20 @@ cmd=0x02
 description= "Set Date Time And Query Different"
 class=A
 func_name="set_datetime_report"
-type=Query
+type=Set
 send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
 return=second_diff(1:0-255)
-test=@cmd year(2009) month(9) day(8) hour(13) minute(20) second(20)
-
+test=@cmd year(2009) month(9) day(9) hour(15) minute(50) second(0)
 
 [Command]
-cmd=0x04 
-description="get date time"
-class=A
-func_name="get_date_time"
-type=Query
-send=protocol_code(1:2-2)
-return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
-test=@cmd protocol_code(2)
+ cmd=0x04 
+ description="get date time"
+ class=A
+ func_name="get_date_time"
+ type=Query
+ send= protocol_code(1:2-2)
+ return=  hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+ test=@cmd protocol_code(2)
  
 [Command]
 cmd=0x03
@@ -54,22 +53,21 @@ description= "Set Trasmiission cycle"
 class=A
 func_name="set_transmission_cycle"
 type=Set
-send=device_type(1:5 "5_Lsd")  transmission_cycle(1:0-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+send=device_type(1:26"26_etag_cycle",27 "27_etag_real_time") transmission_cycle(1:0"real_time",1"1_min",255"stop") transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min",255"stop")
 return=
-test=@cmd device_type(5) transmission_cycle(0) transmit_mode(1) hwcyc(1)
+test=@cmd device_type(26) transmission_cycle(1) transmit_mode(1) hwcyc(0)
      
- [Command]
- cmd=0x04 
+     
+[Command]
+cmd=0x04 
  description="Get Trasmiission cycle"
  class=A
  func_name="get_transmission_cycle"
  type=Query
- send= protocol_code(1:3-3) device_type(1:5 "5_Lsd") 
- return= hw_status_1(1:0-255)  hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3)  device_type(1:5 "5_Lsd")   transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
- test=@cmd  protocol_code(3) device_type(5)
-     
+ send= protocol_code(1:3-3) device_type(1:26"26_etag_cycle",27 "27_etag_real_time")
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3) device_type(1:10 "Other Device")  transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min",255"stop")
+ test=@cmd  protocol_code(3)  device_type(26), @Cmd  protocol_code(3)  device_type(27)
 
- 
 [Command]
 cmd=0x05
 description=" set and Get Loop Test Result"
@@ -78,7 +76,7 @@ func_name="set_loop_test_report"
 type=Query
 send=message_length(1:1-255) {message(1:1-255)}
 return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
-test=@cmd message_length(1) {message(1)}
+test=
 
 [Command]
 cmd=0x06
@@ -98,7 +96,7 @@ func_name="set_manual_mode"
 type=Set
 send=local_operation_flag(1:0 "allow",1 "reject" )
 return=
-test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+test=@cmd local_operation_flag(1),@cmd local_operation_flag(0)
 
 [command]
 cmd=0x07
@@ -125,9 +123,9 @@ description=" Get_Test_result"
 class=A
 func_name="get_test_result"
 type=Query
-send=protocol_code(1:0"00H",6"06H",12"0CH") 
+send=protocol_code(1:0-255) 
 return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
-test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+test=
 
 [Command]
 cmd=0x09
@@ -138,7 +136,6 @@ type=Set
 send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
 return=
 test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
-
 [Command]
  cmd=0x04 
  description="get daylight seg"
@@ -148,7 +145,6 @@ test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
  send= protocol_code(1:9-9) 
  return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
  test=@cmd protocol_code(9)
- 
 [Command]
 cmd=0x0A
 description="Set Bright Control Mode"
@@ -178,7 +174,6 @@ type=Report
 send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
 return=
 test=
-
 
 [Command]
 cmd=0x0B
@@ -211,7 +206,7 @@ send=
 return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
        year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
        description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
-       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+       device_type(1:1-19)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
 test=@cmd
 
 [Command]
@@ -220,9 +215,9 @@ description=" Set Local React Control Mode"
 class=A
 func_name="set_local_react_ctl_mode"
 type=Set
-send=on_off(1:0 "start",1 "stop")
+send=  on_off(1:0 "start",1 "stop")
 return=
-test=@cmd on_off(0)
+test=
 
 [Command]
 cmd=0x0F 0x00
@@ -230,8 +225,8 @@ description=" ReportLocal React Control State"
 class=N
 func_name="report_local_react_ctl_mode"
 type=Report
-send=on_off(1:0 "start",1 "stop")
-return=on_off(1:0 "start",1 "stop")
+send=  on_off(1:0 "start",1 "stop")
+return=
 test=
 
 [Command]
@@ -242,7 +237,7 @@ func_name="set_local_react_ctl"
 type=Set
 send= event(1:0-255)
 return=
-test=@cmd event(0)
+test=
 
 [Command]
 cmd=0x0F 0x01
@@ -254,116 +249,102 @@ send= event(1:0-255)
 return=
 test=
 
-
 [Command]
-cmd=0x30
-description="get cycle data"
+cmd=0x0F 0x10
+description="query device address"
 class=B
-func_name="get_cycle_data"
+func_name="query_device_address"
 type=Query
-send= request_type(1:1 "polling",2 "manual",3 "simulation")
-return=response_type(1:0 "cycle_polling",1 "cycle_passive",2 "manual",4 "cycle_simulation_polling" ,5 "cycle_simulation_passive", 20 "first_cycle_simulation_data_polling" ,21 "first_cycle_simulation_data_passive",244 "last_cycle_simulation_data_polling",245 "last_cycle_simulation_data_passive")
-       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
-       day(1:1-31) hour(1:0-23) minute(1:0-59)
-       ai_cnt(1:1-60){sensor_var(2:0-65535)acc_var(2:0-65535)} day_var(2:0-30000)mono_var(2:0-30000)
-test=@cmd request_type(1),@cmd request_type(2),@cmd request_type(3) 
-
+send=
+return=addr_H(1:0-255) addr_L(1:0-255)
+test=
 
 [Command]
-cmd=0x30
-description="report cycle Data"
-class=N
-func_name="report_cycle_data"
-type=Report
-send=
-return=response_type(1:0 "cycle_polling",1 "cycle_passive",2 "manual",4 "cycle_simulation_polling" ,5 "cycle_simulation_passive", 20 "first_cycle_simulation_data_polling" ,21 "first_cycle_simulation_data_passive",244 "last_cycle_simulation_data_polling",245 "last_cycle_simulation_data_passive")
-       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
-       day(1:1-31) hour(1:0-23) minute(1:0-59)
-       ai_cnt(1:1-60){sensor_var(2:0-65535)acc_var(2:0-65535)} day_var(2:0-30000)mono_var(2:0-30000)
+cmd=0x0F 0x11
+description="set device address"
+class=A
+func_name="set_device_address"
+type=Set
+send=addr_H(1:0-255) addr_L(1:0-255)
+return=
 test=
 
 
 
-[Command]
-cmd=0x31
-description="set degree estimate parameter"
-class=A
-func_name="set_dgr_estm_param"
-type=Set
-send=type(1:1 "daily",2 "monthly") d0(2:0-30000) d1(2:0-30000) d2(2:0-30000) d3(2:0-30000) d4(2:0-30000) d5(2:0-30000) d6(2:0-30000)
-return=
-test=@cmd type(1) d0(0) d1(0) d2(0) d3(0) d4(0) d5(0) d6(0),
-     @cmd type(2) d0(9) d1(10) d2(100) d3(99) d4(56) d5(11) d6(1999)
-
-[Command]
- cmd=0x04 
- description="get degree estimate parameter"
- class=A
- func_name="get_dgr_estm_param"
- type=Query
- send=protocol_code(1:49-49) type(1:1 "daily",2 "monthly")
- return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:49-49)
-        type(1:1 "daily",2 "monthly") d0(2:0-30000) d1(2:0-30000) d2(2:0-30000) d3(2:0-30000) d4(2:0-30000) d5(2:0-30000) d6(2:0-30000)
- test=@cmd protocol_code(49) type(1) , @cmd protocol_code(49) type(2)
 
 
 
 [Command]
-cmd=0x33
-description="set simulation input"
-class=C
-func_name="set_simulation_input"
-type=Set
-send=data_count(2:1-720) data_sno(2:1-720) ai_cnt(1:1-18) {sensor_var(2:0-65535)}
-return=
-test=@cmd data_count(1) data_sno(1) ai_cnt(1) {sensor_var(0)}
-
-
-
- 
-[Command]
-cmd=0x34
+cmd=0x3f 0x01
 description="get temp count"
-class=C
+class=B
 func_name="get_temp_count"
 type=Query
 send=
 return=response_type(1:0 "active",1 "passive")
        hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
-       data_count(2:1-720) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+       data_count(2:1-65530) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+test=@cmd
+
+[Command]
+ cmd=0x3f 0x01
+ description="get temp count"
+ class=N
+ func_name="report_temp_count"
+ type=Report
+ send=
+ return=response_type(1:0 "active",1 "passive")
+       hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       data_count(2:1-65530) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
 test=@cmd
 
 
- 
+
 [Command]
-cmd=0x35
+cmd=0x3f 0x02
 description="get a temp data"
-class=C
+class=B
 func_name="get_a_temp_data"
 type=Query
-send=month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
+send=day(1:1-31) hour(1:0-23) minute(1:0-59)
 return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
-       month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)
-       ai_cnt(1:1-60){sensor_var(2:0-65535)acc_var(2:0-65535)} day_var(2:0-30000)mono_var(2:0-30000)
-test=@cmd month(8) day(28) hour(5) minute(0)
+       day(1:1-31) hour(1:0-23) minute(1:0-59)
+       tag_acount(1:0-255) {lane_id(1:1-6) car_type(1:0-2) second(1:0-59) tag_id1(1:0-255) tag_id2(1:0-255) tag_id3(1:0-255) tag_id4(1:0-255) tag_id5(1:0-255) tag_id6(1:0-255) tag_id7(1:0-255) tag_id8(1:0-255) 
+       tag_id9(1:0-255) tag_id10(1:0-255) tag_id11(1:0-255) tag_id12(1:0-255) tag_id13(1:0-255) tag_id14(1:0-255) tag_id15(1:0-255) tag_id16(1:0-255)}
+test=@cmd day(30) hour(14) minute(0)
 
 
 [Command]
-cmd=0x36
-description="Set Cycle Simulation Input"
-class=C
-func_name="set_cycle_simulation_input"
-type=Set
-send= action(1:0 "stop simulation",1 "start_simulation", 2 "stop_time" ,3 "start_time")
-      data_count(2:1-720) year(2:0-3000) month(1:1-12) day(1:1-31) hour(1:0-23) minute(1:0-59)
-return=
-test=@cmd action(0) data_count(1) year(2009) month(2) day(20) hour(1) minute(1),
-     @cmd action(1) data_count(1) year(2009) month(2) day(20) hour(1) minute(1),
-     @cmd action(2) data_count(1) year(2009) month(2) day(20) hour(1) minute(1),
-     @cmd action(3) data_count(1) year(2009) month(2) day(20) hour(1) minute(1)
+ cmd=0x3f 0x04
+ description="Report Real time data"
+ class=N
+ func_name="report_real_time_data"
+ type=Report
+ send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59)
+       lane_id(1:1-6) car_type(1:0-2) second(1:0-59) tag_id1(1:0-255) tag_id2(1:0-255) tag_id3(1:0-255) tag_id4(1:0-255) tag_id5(1:0-255) tag_id6(1:0-255) tag_id7(1:0-255) tag_id8(1:0-255) 
+       tag_id9(1:0-255) tag_id10(1:0-255) tag_id11(1:0-255) tag_id12(1:0-255) tag_id13(1:0-255) tag_id14(1:0-255) tag_id15(1:0-255) tag_id16(1:0-255)
+ return=
+ test=
+
+[Command]
+ cmd=0x3f 0x12
+ description="Report Cycle Data"
+ class=N
+ func_name="report_cycle_data"
+ type=Report
+ send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       day(1:1-31) hour(1:0-23) minute(1:0-59) tag_amount(1:0-255){
+       lane_id(1:1-6) car_type(1:0-2) second(1:0-59) tag_id1(1:0-255) tag_id2(1:0-255) tag_id3(1:0-255) tag_id4(1:0-255) tag_id5(1:0-255) tag_id6(1:0-255) tag_id7(1:0-255) tag_id8(1:0-255) 
+       tag_id9(1:0-255) tag_id10(1:0-255) tag_id11(1:0-255) tag_id12(1:0-255) tag_id13(1:0-255) tag_id14(1:0-255) tag_id15(1:0-255) tag_id16(1:0-255)}
+ return=
+ test=
 
 
 
 
 
-@Signature=E2E3A093796C2AAC2FDF12E8EAA472B32EA06EB7A9A130E5
+
+
+
+@Signature=0768135FB49942BF64ECBC6C56384397128F87270BF7A79E

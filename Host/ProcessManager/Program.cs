@@ -68,6 +68,7 @@ namespace ProcessManager
         static void HostExecuteSQLCmd(string sql)
         {
             try{
+               // return;
                 if (rhost == null)
                 {
                     rhost = (RemoteInterface.HC.I_HC_Comm)RemoteInterface.RemoteBuilder.GetRemoteObj(
@@ -108,7 +109,7 @@ namespace ProcessManager
                                     if (!pw.bManual)
                                     {
                                         HostExecuteSQLCmd(string.Format(sqlstr, pw.PName, 2, DbCmdServer.getTimeStampString(DateTime.Now)));
-                                     //   dbserver.SendSqlCmd(string.Format(sqlstr, pw.PName, 2, DbCmdServer.getTimeStampString(DateTime.Now)));
+                                   
                                     }
                                     pw.bManual = false;
                                    // pw.Startcnt = 0;

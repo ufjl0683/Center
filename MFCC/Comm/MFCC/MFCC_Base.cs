@@ -46,7 +46,7 @@ namespace Comm.MFCC
 
             try
             {
-                if(mfccid!="MFCC_PBX")
+                if(mfccid!="MFCC_PBX"    )
                 load_protocol();
             }
             catch
@@ -676,29 +676,34 @@ namespace Comm.MFCC
           {
               tc = new Comm.TC.AVITC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
           }
+          else if (this.devType == "ETAG")
+          {
+              tc = new Comm.TC.ETAGTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
+          }
+
           else if (this.devType == "RD")
           {
-              tc = new Comm.TC.RDTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.RDTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "VI")
           {
-              tc = new Comm.TC.VITC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.VITC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "WD")
           {
-              tc = new Comm.TC.WDTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.WDTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "TTS")
           {
-              tc = new Comm.TC.TTSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.TTSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "FS")
           {
-              tc = new Comm.TC.FSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.FSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "MAS")
           {
-              tc = new Comm.TC.MASTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
+              tc = new Comm.TC.MASTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus, comm_state);
           }
           else if (this.devType == "IID")
           {
@@ -892,6 +897,8 @@ namespace Comm.MFCC
           else if (this.devType == "CSLS")
               desc = new RemoteInterface.HWStatus.CSLS_HW_StatusDesc(tc.DeviceName, tc.getHwStaus(), diff);
           else if (this.devType == "AVI")
+              desc = new RemoteInterface.HWStatus.AVI_HW_StatusDesc(tc.DeviceName, tc.getHwStaus(), diff);
+          else if (this.devType == "ETAG")
               desc = new RemoteInterface.HWStatus.AVI_HW_StatusDesc(tc.DeviceName, tc.getHwStaus(), diff);
           else if (this.devType == "RD")
               desc = new RemoteInterface.HWStatus.RD_HW_StatusDesc(tc.DeviceName, tc.getHwStaus(), diff);

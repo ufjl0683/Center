@@ -8,7 +8,7 @@
     <ProjectGuid>{BE6E305C-A021-4887-85CC-68408BF4F010}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MFCC_AVI</RootNamespace>
+    <RootNamespace>MFCC_ETAG</RootNamespace>
     <AssemblyName>MFCC_AVI</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileUpgradeFlags>

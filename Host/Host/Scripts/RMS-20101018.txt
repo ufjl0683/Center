@@ -1,0 +1,1133 @@
+[DeviceInfo]
+
+Version=3.0
+DeviceType=RMS
+IP=10.21.49.158
+port=1001
+DeviceID=0xffff
+
+
+[command]
+cmd=0x00
+description= "Restart Device"
+class=A
+func_name="set_dev_restart"
+type=Set
+send=
+return=
+test=
+
+
+
+
+[Command]
+cmd=0x01
+description= "Get Hw Status"
+class=C
+func_name="get_HW_Status"
+type=Query
+send=
+return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+test=@cmd
+
+
+
+
+[Command]
+cmd=0x02
+description= "Set Date Time And Query Different"
+class=A
+func_name="set_datetime_report"
+type=Query
+send= year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+return=second_diff(1:0-255)
+test=@cmd year(2009) month(2) day(20) hour(12) minute(1) second(20)
+
+
+[Command]
+ cmd=0x04 
+ description="get date time"
+ class=A
+ func_name="get_date_time"
+ type=Query
+ send=protocol_code(1:2-2)
+ return=hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:2-2)  year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+ test=@cmd protocol_code(2)
+ 
+
+[Command]
+cmd=0x03
+description= "Set Trasmiission cycle"
+class=A
+func_name="set_transmission_cycle"
+type=Set
+send=  device_type(1:15"RMS")transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" )hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+return=
+test=@cmd device_type(15) transmission_cycle(1) transmit_mode(1) hwcyc(0)
+
+     
+     
+[Command]
+cmd=0x04
+description="Get Trasmiission cycle"
+class=A
+func_name="get_transmission_cycle"
+type=Query
+send= protocol_code(1:3-3) device_type(1:15"RMS")
+return= hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:3-3)  device_type(1:10 "Other Device")  transmission_cycle(1:1-255) transmit_mode(1:0 "Polling",1 "Active" ) hwcyc(1: 0 "State change" ,1 "5sec",2 "10Sec",3 "20sec",4 "1min",5 "5min")
+test=@cmd  protocol_code(3)  device_type(15)
+     
+
+ 
+[Command]
+cmd=0x05
+description=" set and Get Loop Test Result"
+class=A
+func_name="set_loop_test_report"
+type=Query
+send=message_length(1:1-255) {message(1:1-255)}
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  message_length(1:1-255) { message(1:0-255) }
+test=@cmd message_length(1) {message(1)}
+
+[Command]
+cmd=0x06
+description=" set LC Self Test"
+class=A
+func_name="set_self_test"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x07
+description=" set Control's Manual Mode"
+class=A
+func_name="set_manual_mode"
+type=Set
+send=local_operation_flag(1:0 "allow",1 "reject" )
+return=
+test=@cmd local_operation_flag(0),@cmd local_operation_flag(1)
+
+[command]
+cmd=0x07
+description=" Report Manul State or Ask Manual Control"
+class=N
+func_name="report_manual_state"
+type=Report
+send=local_operation(1:1 "ask_manual_operation",2 "end_manual_mode" )
+return=
+test=
+[Command]
+ cmd=0x04 
+ description=" get Control's Manual Mode"
+ class=A
+ func_name="get_manual_mode"
+ type=Query
+ send= protocol_code(1:7-7) 
+ return=   hw_status_1(1:0-255)   hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:7-7) local_operation_flag(1:0 "allow",1 "reject" )
+ test=@cmd protocol_code(7) 
+
+[Command]
+cmd=0x08
+description=" Get_Test_result"
+class=A
+func_name="get_test_result"
+type=Query
+send=protocol_code(1:0"00H",6"06H",12"0CH") 
+return=hw_status_1(1:0-255)hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_code(1:0-255) response(1:0 "fail",1 "pass" )
+test=@cmd protocol_code(0),@cmd protocol_code(6),@cmd protocol_code(12)
+
+[Command]
+cmd=0x09
+description="Set daylight seg"
+class=B
+func_name="set_daylight_seg"
+type=Set
+send= sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+return=
+test=@cmd sunrise_hour(6)  sunrise_minute(0)  sunset_hour(18) sunset_minute(0)
+
+[Command]
+ cmd=0x04 
+ description="get daylight seg"
+ class=A
+ func_name="get_daylight_seg"
+ type=Query
+ send= protocol_code(1:9-9) 
+ return= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530)  protocol_code(1:9-9)  sunrise_hour(1:0-23)  sunrise_minute(1:0-59)  sunset_hour(1:0-23) sunset_minute(1:0-59)
+ test=@cmd protocol_code(9)
+ 
+[Command]
+cmd=0x0A
+description="Set Bright Control Mode"
+class=A
+func_name="set_bright_ctl_mode"
+type=Set
+send= bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+return=
+test=@cmd bright_ctrl_mode(1)
+
+[Command]
+ cmd=0x04 
+ description="get Bright Control Mode"
+ class=A
+ func_name="get_bright_ctl_mode"
+ type=Query
+ send=protocol_code(1:10-10) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  protocol_length(2:0-65530) protocol_code(1:10-10) bright_ctrl_mode(1:1 "local_sensor" ,2 "table_control",3 "force_day" ,4 "force_night_fall" ,5 "force_night" )
+ test=@cmd protocol_code(10) 
+
+[Command]
+cmd=0x0A
+description="Report Hw Fail"
+class=N
+func_name="report_hw_fail"
+type=Report
+send= hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0x0B
+description=" Get Device Status"
+class=B
+func_name="get_devcie_status"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)  comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+test=@cmd
+
+
+[Command]
+cmd=0x0C
+description=" Reset Communication"
+class=A
+func_name="set_comm_reset"
+type=Set
+send=
+return=
+test=
+
+[Command]
+cmd=0x0E
+description=" Get FirmwareVersion and Device id"
+class=B
+func_name="get_version_device_id"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       year(2:2000-3000) month(1:1-12) day (1:1-31) description_4(1:0-255)
+       description_3(1:0-255) description_2(1:0-255)  description_1(1:0-255) description_0(1:0-255)
+       device_type(1:1-17)  version_no(1:0-255)  addressH(1:0-255) addressL(1:0-255)
+test=@cmd
+
+[Command]
+cmd=0x0F 0x00
+description=" Set Local React Control Mode"
+class=A
+func_name="set_local_react_ctl_mode"
+type=Set
+send=on_off(1:0 "start",1 "stop")
+return=
+test=@cmd on_off(0)
+
+[Command]
+cmd=0x0F 0x00
+description=" ReportLocal React Control State"
+class=N
+func_name="report_local_react_ctl_mode"
+type=Report
+send=on_off(1:0 "start",1 "stop")
+return=on_off(1:0 "start",1 "stop")
+test=
+
+[Command]
+cmd=0x0F 0x01
+description=" Set Local React Control"
+class=A
+func_name="set_local_react_ctl"
+type=Set
+send= event(1:0-255)
+return=
+test=@cmd event(0)
+
+[Command]
+cmd=0x0F 0x01
+description=" report Local React Control"
+class=N
+func_name="report_local_react_ctl"
+type=Report
+send= event(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x0F 0x0F
+description="Scan Device LED"
+class=N
+func_name="scan_device_led"
+type=Set
+send=test_item(1:0-255)test_mode(1:0"led_on_30sec",1"by_point_scanning")
+return=
+test=@cmd test_item(1)test_mode(1)
+
+[Command]
+cmd=0x80
+description="Set Control Mode"
+class=A
+func_name="set_control_mode"
+type=Set
+send=ctl_mode(1:0 "fixed_mode" , 1 "1_local_resp_mode" , 2 "2_default_mode" , 3 "3_close" , 4 "4_intergrade_mode" , 5 "5_manual_mode" , 6 "6_terminate")
+return=
+test=@cmd ctl_mode(0), @cmd ctl_mode(1), @cmd ctl_mode(2), @cmd ctl_mode(3),@cmd ctl_mode(4)
+
+[Command]
+ cmd=0x04 
+ description="Get Control Mode"
+ class=A
+ func_name="get_control_mode"
+ type=Query
+ send=protocol_code(1:128-128)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:128-128)
+        ctl_mode(1:0 "fixed_mode" , 1 "local_resp_mode" , 2 "default_mode" , 3 "close" , 4 "intergrade_mode" , 5 "manual_mode" , 6 "terminate")
+ test=@cmd protocol_code(128)
+
+
+[Command]
+cmd=0x81
+description="Set light"
+class=A
+func_name="set_light"
+type=Set
+send=signal(1:0 "0_close", 1 "1_green", 2 "3_yellow", 3 "3_red", 4 "4_green_flash", 5 "5_yellow_flash", 6 "6_red_flash") alarm(1:0 "close" , 1 "open")
+return=
+test=@cmd signal(0) alarm(0)
+
+[Command]
+ cmd=0x04 
+ description="Get light"
+ class=A
+ func_name="get_light"
+ type=Query
+ send=protocol_code(1:129-129)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:129-129)
+        signal(1:0 "close", 1 "green", 2 "yellow", 3 "red", 4 "green_flash", 5 "yellow_flash", 6 "red_flash") alarm(1:0 "close" , 1 "open")
+ test=@cmd protocol_code(129)
+
+
+[Command]
+cmd=0x82
+description="Set Control Mode And Plan No"
+class=A
+func_name="set_ctl_mode_and_plan_no"
+type=Set
+send=ctl_mode(1:0 "fixed_mode" , 1 "local_resp_mode" , 2 "default_mode" , 3 "close" , 4 "intergrade_mode" , 5 "manual_mode" , 6 "terminate") plan_no(1:0-31)
+return=
+test=@cmd ctl_mode(0) plan_no(0)
+
+[Command]
+ cmd=0x04 
+ description="Get Control Mode And Plan No"
+ class=A
+ func_name="get_ctl_mode_and_plan_no"
+ type=Query
+ send=protocol_code(1:130-130)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:130-130)
+        ctl_mode(1:0 "fixed_mode" , 1 "local_resp_mode" , 2 "default_mode" , 3 "close" , 4 "intergrade_mode" , 5 "manual_mode" , 6 "terminate") plan_no(1:0-31)
+ test=@cmd protocol_code(130)
+
+
+[Command]
+cmd=0x83
+description="Set Control Data"
+class=A
+func_name="set_ctl_data"
+type=Set
+send=plan_no(1:0-31) rmsrate(1:1-20) vehno(1:1-5)
+return=
+test=@cmd plan_no(0) rmsrate(1) vehno(1),
+     @cmd plan_no(30) rmsrate(1) vehno(1)
+
+[Command]
+ cmd=0x04 
+ description="Get Control Data"
+ class=A
+ func_name="get_ctl_data"
+ type=Query
+ send=protocol_code(1:131-131) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:131-131)
+        plan_no(1:0-31) rmsrate(1:1-20) vehno(1:1-5)
+ test=@cmd protocol_code(131) ,
+      @cmd protocol_code(131) 
+
+
+[Command]
+cmd=0x84
+description="Set Plan"
+class=A
+func_name="set_plan"
+type=Set
+send=rmsratecnt(1:1-32) {plan_no(1:0-31) rmsrate(1:1-20) time_cycle(1:0-255) green(1:0-255) yellow(1:0-255) red(1:0-255) vehno(1:1-5) }
+return=
+test=@cmd rmsratecnt(1) {plan_no(1) rmsrate(1) time_cycle(1) green(1) yellow(1) red(2) vehno(3) },
+     @cmd rmsratecnt(1) {plan_no(2) rmsrate(1) time_cycle(1) green(1) yellow(1) red(2) vehno(3) }
+
+[Command]
+ cmd=0x04 
+ description="Get Plan"
+ class=A
+ func_name="get_plan"
+ type=Query
+ send=protocol_code(1:132-132)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:132-132)
+        rmsratecnt(1:1-32) {plan_no(1:0-31) rmsrate(1:1-20) time_cycle(1:0-255) green(1:0-255) yellow(1:0-255) red(1:0-255) vehno(1:1-5) }
+ test=@cmd protocol_code(132) 
+
+[Command]
+cmd=0x85
+description="Get Light Testing"
+class=A
+func_name="get_light_testing"
+type=Query
+send=
+return=rms_lamp_sta(1:0-1) rms_bos1_sta(1:0-1) rms_bos2_sta(1:0-1)
+test=@cmd
+
+
+[Command]
+cmd=0x86
+description="Report Now Lamp status"
+class=N
+func_name="report_now_lamp_status"
+type=Report
+send=rms_ramp(1:0"0_close",1"1_green",2"2_yallow",3"3_red",4"4_flash_yallow",5"5_flash_yallow",6"6_flash_red")lamp_maxsec(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0x87
+description="Get Hardware Monitoring"
+class=A
+func_name="get_hw_monitoring"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       comm_state(1:1 "online",2 "local",3 "offline",4 "initial" ) op_status(1:0-255) op_mode(1:0-7) 
+       ctl_mode(1:0-6) plan_no(1:0-31) rmsrate(1:1-20) rms_lamp_no(1:0-99) 
+       { rms_lamp_sta(1:0-1)} warnsetno(1:1-4) { warnset(1:1-4) bos_sta(1:0-1) warn_message_id(1:0-252)}
+test=@cmd
+
+
+[Command]
+cmd=0x88
+description="Set Traffic Response Control Parameter"
+class=C
+func_name="set_tra_resp_ctl_param"
+type=Set
+send=main_occupy_threshold(1:0-99) max_rms_rate(1:1-50) min_rms_rate(1:1-50) 
+     ramp_threshold(2:0-9999) ramp_termination_count_threshold(1:1-50) cap_down(2:0-9999)
+return=
+test=@cmd main_occupy_threshold(0) max_rms_rate(1) min_rms_rate(1) ramp_threshold(0) ramp_termination_count_threshold(1) 
+     cap_down(1000)
+
+[Command]
+ cmd=0x04 
+ description="Get Traffic Response Control Parameter"
+ class=C
+ func_name="get_tra_resp_ctl_param"
+ type=Query
+ send=protocol_code(1:136-136)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:136-136) 
+        main_occupy_threshold(1:0-99)max_rms_rate(1:1-50) min_rms_rate(1:1-50) ramp_threshold(2:0-9999) ramp_termination_count_threshold(1:1-50) cap_down(2:0-9999)
+ test=@cmd protocol_code(136)
+
+
+[Command]
+cmd=0x89
+description="Set Flexible Adjust Control Parameter"
+class=C
+func_name="set_flexible_adj_ctl_param"
+type=Set
+send=max_red_time(2:0-9999) min_red_time(1:0-99) max_green_time(2:0-9999) min_green_time(1:0-99)
+return=
+test=@cmd max_red_time(0) min_red_time(0) max_green_time(0) min_green_time(0)
+
+[Command]
+ cmd=0x04 
+ description="Get Flexible Adjust Control Parameter"
+ class=C
+ func_name="get_flexible_adj_ctl_param"
+ type=Query
+ send=protocol_code(1:137-137)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:137-137) 
+        max_red_time(2:0-9999) min_red_time(1:0-99) max_green_time(2:0-9999) min_green_time(1:0-99)
+ test=@cmd protocol_code(137)
+
+
+[Command]
+cmd=0x8A
+description="Set Occupy and Rate"
+class=C
+func_name="set_occupy_and_rate"
+type=Set
+send=rec_cnt(1:1-30) {plan_no(1:0-31) rmsrate(1:1-100) min_occupy(1:0-99) max_occupy(1:0-99)}
+return=
+test=@cmd rec_cnt(1) {plan_no(1) rmsrate(1) min_occupy(98) max_occupy(97)}
+
+[Command]
+ cmd=0x04 
+ description="Get Occupy and Rate"
+ class=C
+ func_name="get_occupy_and_rate"
+ type=Query
+ send=protocol_code(1:138-138)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:138-138) 
+        rec_cnt(1:1-30) {plan_no(1:0-31) rmsrate(1:1-100) min_occupy(1:0-99) max_occupy(1:0-99)}
+ test=@cmd protocol_code(138) 
+
+
+[Command]
+cmd=0x8B
+description="Set Delay Increase"
+class=C
+func_name="set_delay_increase"
+type=Set
+send=Delay_incr(1:0-99)
+return=
+test=@cmd Delay_incr(0)
+
+[Command]
+ cmd=0x04
+ description="Get Delay Increase"
+ class=C
+ func_name="get_delay_increase"
+ type=Query
+ send=protocol_code(1:139-139)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:139-139) 
+        Delay_incr(1:0-99)
+ test=@cmd protocol_code(139)
+
+
+[Command]
+cmd=0x8C
+description="Set Warn Message"
+class=A
+func_name="set_warn_message"
+type=Set
+send=msg_cnt(1:1-3) {warn_message_id(1:0-255) warn_message1(1:0-255) warn_message2(1:0-255) warn_message3(1:0-255) warn_message4(1:0-255) warn_message5(1:0-255) warn_message6(1:0-255) warn_message7(1:0-255) warn_message8(1:0-255) warn_message9(1:0-255) warn_message10(1:0-255) warn_message11(1:0-255) warn_message12(1:0-255) warn_message13(1:0-255) warn_message14(1:0-255) warn_message15(1:0-255) warn_message16(1:0-255) warn_message17(1:0-255) warn_message18(1:0-255) warn_message19(1:0-255) warn_message20(1:0-255) warn_message21(1:0-255) warn_message22(1:0-255) warn_message23(1:0-255) warn_message24(1:0-255) warn_message25(1:0-255) warn_message26(1:0-255) warn_message27(1:0-255) warn_message28(1:0-255) warn_message29(1:0-255) warn_message30(1:0-255) warn_message31(1:0-255) warn_message32(1:0-255) }
+return=
+test=@cmd msg_cnt(1) {warn_message_id(100) warn_message1(45) warn_message2(35) warn_message3(5) warn_message4(164) warn_message5(46) warn_message6(78) warn_message7(1) warn_message8(1) warn_message9(55) warn_message10(15) warn_message11(102) warn_message12(55) warn_message13(105) warn_message14(15) warn_message15(25) warn_message16(53) warn_message17(1) warn_message18(49) warn_message19(15) warn_message20(10) warn_message21(5) warn_message22(15) warn_message23(45) warn_message24(22) warn_message25(33) warn_message26(44) warn_message27(66) warn_message28(67) warn_message29(45) warn_message30(65) warn_message31(155) warn_message32(65) }
+
+
+[Command]
+ cmd=0x04
+ description="Get Warn Message"
+ class=A
+ func_name="get_warn_message"
+ type=Query
+ send=protocol_code(1:140-140) 
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:140-140) 
+        msg_cnt(1:1-3) {warn_message_id(1:0-252) warn_message1(1:0-255) warn_message2(1:0-255) warn_message3(1:0-255) warn_message4(1:0-255) warn_message5(1:0-255) warn_message6(1:0-255) warn_message7(1:0-255) warn_message8(1:0-255) warn_message9(1:0-255) warn_message10(1:0-255) warn_message11(1:0-255) warn_message12(1:0-255) warn_message13(1:0-255) warn_message14(1:0-255) warn_message15(1:0-255) warn_message16(1:0-255) warn_message17(1:0-255) warn_message18(1:0-255) warn_message19(1:0-255) warn_message20(1:0-255) warn_message21(1:0-255) warn_message22(1:0-255) warn_message23(1:0-255) warn_message24(1:0-255) warn_message25(1:0-255) warn_message26(1:0-255) warn_message27(1:0-255) warn_message28(1:0-255) warn_message29(1:0-255) warn_message30(1:0-255) warn_message31(1:0-255) warn_message32(1:0-255)}
+ test=@cmd protocol_code(140) 
+
+
+
+
+[Command]
+cmd=0x8D
+description="Set Delay Detection Mode"
+class=C
+func_name="set_dd_mode"
+type=Set
+send=DD_mode(1:0 "trun_off" , 1 "trun_on")
+return=
+test=@cmd DD_mode(0)
+
+[Command]
+ cmd=0x04
+ description="Get Delay Detection Mode"
+ class=C
+ func_name="get_dd_mode"
+ type=Query
+ send=protocol_code(1:141-141)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:141-141) 
+        DD_mode(1:0 "trun_off" , 1 "trun_on")
+ test=@cmd protocol_code(141)
+
+
+
+[Command]
+cmd=0x8E
+description="Set Arrive Leave Mode"
+class=C
+func_name="set_al_mode"
+type=Set
+send=al_mode(1:0 "trun_off" , 1 "trun_on")
+return=
+test=@cmd al_mode(0)
+
+[Command]
+ cmd=0x04
+ description="Get Arrive Leave Mode"
+ class=C
+ func_name="get_al_mode"
+ type=Query
+ send=protocol_code(1:142-142)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:142-142) 
+        al_mode(1:0 "trun_off" , 1 "trun_on")
+ test=@cmd protocol_code(142)
+
+[Command]
+cmd=0x8F 0x02
+description="Set device parameter"
+class=C
+func_name="set_device_parameter"
+type=Set
+send=rms_no(1:1-8)count_down_no(1:1-8)bos1_no(1:1-4)bos2_no(1:1-4)lane_no(1:1-8)
+return=
+test=@cmd rms_no(1)count_down_no(1)bos1_no(1)bos2_no(1)lane_no(1)
+
+[Command]
+ cmd=0x04
+ description="Get_device_parameter"
+ class=C
+ func_name="get_device_parameter"
+ type=Query
+ send=protocol_code(2:36610-36610)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(2:36610-36610) 
+        rms_no(1:1-8)bos1_no(1:1-4)bos2_no(1:1-4)
+ test=@cmd protocol_code(36610)
+
+[Command]
+cmd=0x8F 0x03
+description="Set Loop Mode"
+class=C
+func_name="Set_loop_mode"
+type=Set
+send=mode(1:0"0_Auto",1"1_5:5",2"2_7:3=7",3"3_7:3=3")
+return=
+test=@cmd mode(0)
+
+[Command]
+ cmd=0x04
+ description="Get Loop Mode"
+ class=C
+ func_name="Get_loop_mode"
+ type=Query
+ send=protocol_code(2:36611-36611)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(2:36611-36611) 
+        mode(1:0"0_Auto",1"1_5:5",2"2_7:3=7",3"3_7:3=3")
+ test=@cmd protocol_code(36611)
+
+[Command]
+cmd=0x8F 0x84
+description="Set New Plan_no"
+class=A
+func_name="Set_new_plan_no"
+type=Set
+send=table_id(1:0 "0_one",1 "1_two",2 "2_three",3 "3_5:5",4 "4_7:3=7",5 "5_7:3=3")
+     rmsratecnt(1:1-32){plan_no(1:0-31)rmsrate(2:0-65535)time_cycle(1:0-255)
+     green(1:0-255)yellow(1:0-255)red(1:0-255)vehno(1:0-5)}
+return=
+test=@cmd table_id(0) rmsratecnt(1){plan_no(21)rmsrate(50)time_cycle(40)green(41)yellow(3)red(6)vehno(0)}
+
+[Command]
+ cmd=0x04
+ description="Get New Plan_no"
+ class=C
+ func_name="get_new_plan_no"
+ type=Query
+ send=protocol_code(2:36740-36740)table_id(1:0 "0_one",1 "1_two",2 "2_three",3 "3_5:5",4 "4_7:3=7",5 "5_7:3=3")
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(2:36740-36740) 
+        table_id(1:0 "0_one",1 "1_two",2 "2_three",3 "3_5:5",4 "4_7:3=7",5 "5_7:3=3")
+        rmsratecnt(1:1-32){plan_no(1:0-31)rmsrate(2:0-65535)time_cycle(1:0-255)
+        green(1:0-255)yellow(1:0-255)red(1:0-255)vehno(1:1-5)}
+ test=@cmd protocol_code(36740)table_id(0)
+
+
+[Command]
+cmd=0x8F 0x87
+description="Query Rmsrate Data"
+class=A
+func_name="query_rmsrate_data"
+type=Query
+send=
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       comm_state(1:1 "online",2 "local",3 "offline",4 "initial" )  op_status(1:0-255) op_mode(1:0-7)
+       ctl_mode(1:0 "fixed_mode" , 1 "1_local_resp_mode" , 2 "2_default_mode" , 3 "3_close" , 4 "4_intergrade_mode" , 5 "5_manual_mode" , 6 "6_terminate")
+       plan_no(1:0-31)rmsrate(2:0-65535)dd_mode(1:0-2)al_mode(1:0-1)
+       rms_lamp_no(1:0-99){ rms_lamp_sta(1:0-1)} 
+       warnsetno(1:1-4) { warnset(1:1-4) bos_sta(1:0-1) warn_message_id(1:0-252)}
+       laneofnum(1:0-255)mode(1:0-255)percent1(1:0-255)percent2(1:0-255)itr_alarm(1:0 "0_lower",1 "1_raise")
+test=@cmd
+
+
+[Command]
+cmd=0x8F 0x88
+description="Set LTR mode Advanced Preferences For R21"
+class=A
+func_name="set_ltr_mode_advanced _preferences"
+type=Set
+send=ltr_sacntime_period(1:0-255) ltr_report_mode(1:0 "passive_query",1 "ltr_pattern_of_the_transmitter_after_the_initiative",2 "save_settings")
+return=
+ test=
+
+[Command]
+ cmd=0x04
+ description="Advanced parameter query command LTR mode For R21"
+ class=C
+ func_name="advanced_parameter_query_command_ltr_mode"
+ type=Query
+ send=protocol_code(2:36744-36744)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(2:36744-36744)
+	ltr_sacntime_period(1:0-255)ltr_report_mode(1:0 "passive_query",1 "ltr_pattern_of_the_transmitter_after_the_initiative",2 "save_the_settings")
+test=
+
+
+
+[Command]
+cmd=0x8F 0xA4
+description="Get New Specific Auto Control Schedule"
+class=C
+func_name="Get_new_specific_auto_ctrl_sche"
+type=Query
+send=year(2:0-3000)month(1:1-12)day(1:1-31)
+return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       year(2:0-3000)month(1:1-12)day(1:1-31)sgmcnt(1:1-24){start_hour(1:0-23)start_min(1:0-59)end_hour(1:0-23)end_min(1:0-59)plan_no(1:0-31)}
+test=@cmd year(2009)month(10)day(12)
+        
+
+[Command]
+ cmd=0x04
+ description="Query Turn loop structure status For R21"
+ class=A
+ func_name="query_turn_loop_structure_status"
+ type=Query
+ send=protocol_code(2:36850-36850)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(2:36850-36850)
+	data_len(2:3"non_turn_loop_structure",10"turn_loop_structure_model")
+	rmstc_linkmode(1:0 "non_turn_loop_structure",1 "ramp_host",2 "ring_oad_sub_machine")
+	rmstc_linkdata_connection(0:1-4){rmstc_linkdata(1:0-255)}
+	rmstc_slaveconnvdrms(1:0 "host_and_sub_machine_Connecting",1 "host_and_sub_machine_break",2 "vdq_exception")
+	two_rmstc_runtype_mode(1:0 "automatic_selection",1 "5:5_time_tab",2 "7:3_Time tab",3 "3:7_Time tab")
+	two_rmstc_runtype(1:2"5:5_time_tab",3"7:3_Time tab",4"3:7_Time tab")
+test=
+
+
+[Command]
+cmd=0xA0
+description="Set Control Warm Sign"
+class=B
+func_name="set_ctl_warm_sign"
+type=Set
+send=warnsetno(1:1-4) {warnset(1:0-255) warn_status(1:0 "off" , 1 "on" , 2 "flash") warn_message_id(1:0-255)}
+return=
+test=@cmd warnsetno(1) {warnset(8) warn_status(1) warn_message_id(55)}
+
+
+[Command]
+ cmd=0x04 
+ description="Set percentage of the capacity reduction"
+ class=A
+ func_name="set_percentage_of_the_capacity_reduction"
+ type=Query
+ send=protocol_code(1:160-160)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) protocol_length(2:0-65530) protocol_code(1:160-160) warnsetno(1:1-4) {warnset(1:0-255) warn_status(1:0 "off" , 1 "on" , 2 "flash") warn_message_id(1:0-255)} 
+ test=@cmd protocol_code(160)
+
+
+
+[Command]
+cmd=0xA1
+description="Set Flash Time"
+class=C
+func_name="set_flash_time"
+type=Set
+send=flash_time(2:0-9999)
+return=
+test=@cmd flash_time(0)
+
+[Command]
+ cmd=0x04
+ description="Get Flash Time"
+ class=C
+ func_name="get_flash_time"
+ type=Query
+ send=protocol_code(1:161-161)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:161-161) 
+        flash_time(2:0-9999)
+ test=@cmd protocol_code(161)
+
+
+
+[Command]
+cmd=0xA2
+description="Set Flash Time Parameter"
+class=B
+func_name="set_flash_time_param"
+type=Set
+send=grnfshtim(1:0-255) yelfshtim(1:0-255) redfshtim(1:0-255) grnmintim(1:0-255) yelmintim(1:0-255) redmintim(1:0-255)
+return=
+test=@cmd grnfshtim(0) yelfshtim(0) redfshtim(0) grnmintim(0) yelmintim(0) redmintim(0)
+
+[Command]
+ cmd=0x04
+ description="Get Flash Time Parameter"
+ class=B
+ func_name="get_flash_time_param"
+ type=Query
+ send=protocol_code(1:162-162)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:162-162) 
+        grnfshtim(1:0-255) yelfshtim(1:0-255) redfshtim(1:0-255) grnmintim(1:0-255) yelmintim(1:0-255) redmintim(1:0-255)
+ test=@cmd protocol_code(162)
+
+
+[Command]
+cmd=0xA3
+description="Set Daily Auto Control Schedule"
+class=B
+func_name="set_daily_auto_ctrl_sche"
+type=Set
+send=weekday(1:1-7) sgmcnt(1:1-24) {beghh(1:0-23) begmm(1:0-59) endhh(1:0-23) endmm(1:0-59) plan_no(1:0-31)}
+return=
+test=@cmd weekday(2) sgmcnt(12) {beghh(13) begmm(33) endhh(12) endmm(29) plan_no(12)}
+
+[Command]
+ cmd=0x04
+ description="Get Daily Auto Control Schedule"
+ class=B
+ func_name="get_daily_auto_ctrl_sche"
+ type=Query
+ send=protocol_code(1:163-163) weekday(1:1-7)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:163-163) 
+        weekday(1:1-7) sgmcnt(1:1-24) {beghh(1:0-23) begmm(1:0-59) endhh(1:0-23) endmm(1:0-59) plan_no(1:0-31)}
+ test=@cmd protocol_code(163) weekday(1)
+
+
+[Command]
+cmd=0xA4
+description="Set Specific Auto Control Schedule"
+class=B
+func_name="set_specific_auto_ctrl_sche"
+type=Set
+send=sgmtyp(1:1-32) sgmcnt(1:0-24)yy(2:0-3000) mo(1:1-12) dd(1:1-31) scnt(0:0-24){start_hour(1:0-23) start_min(1:0-59) end_hour(1:0-23) end_min(1:0-59) plan_no(1:0-31)}
+return=
+test=@cmd sgmtyp(1)sgmcnt(1) yy(2009) mo(1) dd(1) scnt(1){start_hour(1) start_min(1) end_hour(1) end_min(59) plan_no(12)}
+
+[Command]
+ cmd=0x04
+ description="Get Specific Auto Control Schedule"
+ class=B
+ func_name="get_specific_auto_ctrl_sche"
+ type=Query
+ send=protocol_code(1:164-164) sgmtyp(1:1-32)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:164-164) 
+        sgmtyp(1:1-32) sgmcnt(1:0-24) yy(2:0-3000) mo(1:1-12) dd(1:1-31) scnt(0:0-24){start_hour(1:0-23) start_min(1:0-59) end_hour(1:0-23) end_min(1:0-59) plan_no(1:0-31)}
+ test=@cmd protocol_code(164) sgmtyp(3)
+
+
+
+[Command]
+cmd=0xA5
+description="Set Open Close"
+class=B
+func_name="set_open_close"
+type=Set
+send=open_close(1:1 "on", 2 "off")
+return=
+test=@cmd open_close(1)
+
+
+[Command]
+cmd=0xA6
+description="Report Lane Ctrl"
+class=N
+func_name="report_lane_ctrl"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       signal(1:0 "0_close",1 "1_green",2 "3_yellow",3 "3_red",4 "4_green_flash",5 "5_yellow_flash",6 "6_red_flash")
+return=
+test=
+
+[Command]
+cmd=0xA7
+description="Report Bso Lane Ctrl"
+class=N
+func_name="report_bso_lane_ctrl"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+       plan_no(1:0-31)warnsetno(1:1-4) { warnset(1:8-15) warn_status(1:0-2) warn_message_id(1:0-255)}
+return=
+test=
+
+[Command]
+cmd=0xA8
+description="Set RMS and Warn Display"
+class=C
+func_name="set_rms_and_warn_display"
+type=Set
+send=rms_display(1:0 "off" , 1 "on" , 2 "flash") warn_display(1:0 "off" , 1 "on" , 2 "flash")
+return=
+test=@cmd rms_display(0) warn_display(0)
+
+
+[Command]
+ cmd=0x04
+ description="Get RMS and Warn Display"
+ class=C
+ func_name="get_rms_and_warn_display"
+ type=Query
+ send=protocol_code(1:168-168)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:168-168) 
+        rms_display(1:0 "off" , 1 "on" , 2 "flash") warn_display(1:0 "off" , 1 "on" , 2 "flash")
+ test=@cmd protocol_code(168)
+
+
+
+
+[Command]
+cmd=0xA9
+description="Set Result of Light Testing"
+class=C
+func_name="set_result_of_light_testing"
+type=Set
+send=
+return=
+test=@cmd
+
+[Command]
+cmd=0xAA
+description="Report RMS Status Start Or Stop"
+class=N
+func_name="report_rms_status_start_or_stop"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       open_close(1:1 "on", 2 "off")rms_status(1:1-4)active_err(1:0-255)alarm_err(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0xAB
+description="Set Capacity Decrease"
+class=C
+func_name="set_capacity_decrease"
+type=Set
+send=capacity_decrease(1:0-100) entry_per(1:0-100)
+return=
+test=@cmd capacity_decrease(0) entry_per(0)
+
+[Command]
+ cmd=0x04
+ description="Get Capacity Decrease"
+ class=C
+ func_name="get_capacity_decrease"
+ type=Query
+ send=protocol_code(1:171-171)
+ return=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255) 
+        protocol_length(2:0-65530) protocol_code(1:171-171) 
+	capacity_decrease(1:0-100) entry_per(1:0-100)
+ test=@cmd protocol_code(171)
+
+
+[Command]
+cmd=0xAC
+description="Set RMS Off"
+class=C
+func_name="set_rms_off"
+type=Set
+send=
+return=
+test=@cmd
+
+[Command]
+cmd=0xAD
+description="Get RMS Content no"
+class=A
+func_name="get_rms_content_no"
+type=Query
+send=bos_id(1:8-15)
+return=bos_id(1:8-15) frame_no(1:0-255) 
+test=@cmd bos_id(8)
+
+
+[Command]
+cmd=0xAD
+description="Get RMS Content"
+class=A
+func_name="get_rms_content"
+type=Query
+send=bos_id(1:0-255) frame_id(1:1-4)
+return=bos_id(1:1-4) frame_no(1:0-255) frame_id(1:0-255) g_width(2:0-255) g_height(2:0-255) 
+       msg1(1:0-255) msg2(1:0-255) msg3(1:0-255) msg4(1:0-255) msg5(1:0-255) msg6(1:0-255) msg7(1:0-255) msg8(1:0-255) msg9(1:0-255) msg10(1:0-255) 
+       msg11(1:0-255) msg12(1:0-255) msg13(1:0-255) msg14(1:0-255) msg15(1:0-255) msg16(1:0-255) msg17(1:0-255) msg18(1:0-255) msg19(1:0-255) msg20(1:0-255) 
+       msg21(1:0-255) msg22(1:0-255) msg23(1:0-255) msg24(1:0-255) msg25(1:0-255) msg26(1:0-255) msg27(1:0-255) msg28(1:0-255) msg29(1:0-255) msg30(1:0-255) 
+       msg31(1:0-255) msg32(1:0-255) msg33(1:0-255) msg34(1:0-255) msg35(1:0-255) msg36(1:0-255) msg37(1:0-255) msg38(1:0-255) msg39(1:0-255) msg40(1:0-255) 
+       msg41(1:0-255) msg42(1:0-255) msg43(1:0-255) msg44(1:0-255) msg45(1:0-255) msg46(1:0-255) msg47(1:0-255) msg48(1:0-255) msg49(1:0-255) msg50(1:0-255) 
+       msg51(1:0-255) msg52(1:0-255) msg53(1:0-255) msg54(1:0-255) msg55(1:0-255) msg56(1:0-255) msg57(1:0-255) msg58(1:0-255) msg59(1:0-255) msg60(1:0-255) 
+       msg61(1:0-255) msg62(1:0-255) msg63(1:0-255) msg64(1:0-255) msg65(1:0-255) msg66(1:0-255) msg67(1:0-255) msg68(1:0-255) msg69(1:0-255) msg70(1:0-255) 
+       msg71(1:0-255) msg72(1:0-255) msg73(1:0-255) msg74(1:0-255) msg75(1:0-255) msg76(1:0-255) msg77(1:0-255) msg78(1:0-255) msg79(1:0-255) msg80(1:0-255) 
+       msg81(1:0-255) msg82(1:0-255) msg83(1:0-255) msg84(1:0-255) msg85(1:0-255) msg86(1:0-255) msg87(1:0-255) msg88(1:0-255) msg89(1:0-255) msg90(1:0-255) 
+       msg91(1:0-255) msg92(1:0-255) msg93(1:0-255) msg94(1:0-255) msg95(1:0-255) msg96(1:0-255) msg97(1:0-255) msg98(1:0-255) msg99(1:0-255) msg100(1:0-255) 
+       msg101(1:0-255) msg102(1:0-255) msg103(1:0-255) msg104(1:0-255) msg105(1:0-255) msg106(1:0-255) msg107(1:0-255) msg108(1:0-255) msg109(1:0-255) msg110(1:0-255) 
+       msg111(1:0-255) msg112(1:0-255) msg113(1:0-255) msg114(1:0-255) msg115(1:0-255) msg116(1:0-255) msg117(1:0-255) msg118(1:0-255) msg119(1:0-255) msg120(1:0-255) 
+       msg121(1:0-255) msg122(1:0-255) msg123(1:0-255) msg124(1:0-255) msg125(1:0-255) msg126(1:0-255) msg127(1:0-255) msg128(1:0-255) msg129(1:0-255) msg130(1:0-255) 
+       msg131(1:0-255) msg132(1:0-255) msg133(1:0-255) msg134(1:0-255) msg135(1:0-255) msg136(1:0-255) msg137(1:0-255) msg138(1:0-255) msg139(1:0-255) msg140(1:0-255) 
+       msg141(1:0-255) msg142(1:0-255) msg143(1:0-255) msg144(1:0-255) msg145(1:0-255) msg146(1:0-255) msg147(1:0-255) msg148(1:0-255) msg149(1:0-255) msg150(1:0-255) 
+       msg151(1:0-255) msg152(1:0-255) msg153(1:0-255) msg154(1:0-255) msg155(1:0-255) msg156(1:0-255) msg157(1:0-255) msg158(1:0-255) msg159(1:0-255) msg160(1:0-255) 
+       msg161(1:0-255) msg162(1:0-255) msg163(1:0-255) msg164(1:0-255) msg165(1:0-255) msg166(1:0-255) msg167(1:0-255) msg168(1:0-255) msg169(1:0-255) msg170(1:0-255) 
+       msg171(1:0-255) msg172(1:0-255) msg173(1:0-255) msg174(1:0-255) msg175(1:0-255) msg176(1:0-255) msg177(1:0-255) msg178(1:0-255) msg179(1:0-255) msg180(1:0-255) 
+       msg181(1:0-255) msg182(1:0-255) msg183(1:0-255) msg184(1:0-255) msg185(1:0-255) msg186(1:0-255) msg187(1:0-255) msg188(1:0-255) msg189(1:0-255) msg190(1:0-255) 
+       msg191(1:0-255) msg192(1:0-255) msg193(1:0-255) msg194(1:0-255) msg195(1:0-255) msg196(1:0-255) msg197(1:0-255) msg198(1:0-255) msg199(1:0-255) msg200(1:0-255) 
+       msg201(1:0-255) msg202(1:0-255) msg203(1:0-255) msg204(1:0-255) msg205(1:0-255) msg206(1:0-255) msg207(1:0-255) msg208(1:0-255) msg209(1:0-255) msg210(1:0-255) 
+       msg211(1:0-255) msg212(1:0-255) msg213(1:0-255) msg214(1:0-255) msg215(1:0-255) msg216(1:0-255) msg217(1:0-255) msg218(1:0-255) msg219(1:0-255) msg220(1:0-255) 
+       msg221(1:0-255) msg222(1:0-255) msg223(1:0-255) msg224(1:0-255) msg225(1:0-255) msg226(1:0-255) msg227(1:0-255) msg228(1:0-255) msg229(1:0-255) msg230(1:0-255) 
+       msg231(1:0-255) msg232(1:0-255) msg233(1:0-255) msg234(1:0-255) msg235(1:0-255) msg236(1:0-255) msg237(1:0-255) msg238(1:0-255) msg239(1:0-255) msg240(1:0-255) 
+       msg241(1:0-255) msg242(1:0-255) msg243(1:0-255) msg244(1:0-255) msg245(1:0-255) msg246(1:0-255) msg247(1:0-255) msg248(1:0-255) msg249(1:0-255) msg250(1:0-255) 
+       msg251(1:0-255) msg252(1:0-255) msg253(1:0-255) msg254(1:0-255) msg255(1:0-255) msg256(1:0-255) msg257(1:0-255) msg258(1:0-255) msg259(1:0-255) msg260(1:0-255) 
+       msg261(1:0-255) msg262(1:0-255) msg263(1:0-255) msg264(1:0-255) msg265(1:0-255) msg266(1:0-255) msg267(1:0-255) msg268(1:0-255) msg269(1:0-255) msg270(1:0-255) 
+       msg271(1:0-255) msg272(1:0-255) msg273(1:0-255) msg274(1:0-255) msg275(1:0-255) msg276(1:0-255) msg277(1:0-255) msg278(1:0-255) msg279(1:0-255) msg280(1:0-255) 
+       msg281(1:0-255) msg282(1:0-255) msg283(1:0-255) msg284(1:0-255) msg285(1:0-255) msg286(1:0-255) msg287(1:0-255) msg288(1:0-255) msg289(1:0-255) msg290(1:0-255) 
+       msg291(1:0-255) msg292(1:0-255) msg293(1:0-255) msg294(1:0-255) msg295(1:0-255) msg296(1:0-255) msg297(1:0-255) msg298(1:0-255) msg299(1:0-255) msg300(1:0-255) 
+       msg301(1:0-255) msg302(1:0-255) msg303(1:0-255) msg304(1:0-255) msg305(1:0-255) msg306(1:0-255) msg307(1:0-255) msg308(1:0-255) msg309(1:0-255) msg310(1:0-255) 
+       msg311(1:0-255) msg312(1:0-255) msg313(1:0-255) msg314(1:0-255) msg315(1:0-255) msg316(1:0-255) msg317(1:0-255) msg318(1:0-255) msg319(1:0-255) msg320(1:0-255) 
+       msg321(1:0-255) msg322(1:0-255) msg323(1:0-255) msg324(1:0-255) msg325(1:0-255) msg326(1:0-255) msg327(1:0-255) msg328(1:0-255) msg329(1:0-255) msg330(1:0-255) 
+       msg331(1:0-255) msg332(1:0-255) msg333(1:0-255) msg334(1:0-255) msg335(1:0-255) msg336(1:0-255) msg337(1:0-255) msg338(1:0-255) msg339(1:0-255) msg340(1:0-255) 
+       msg341(1:0-255) msg342(1:0-255) msg343(1:0-255) msg344(1:0-255) msg345(1:0-255) msg346(1:0-255) msg347(1:0-255) msg348(1:0-255) msg349(1:0-255) msg350(1:0-255) 
+       msg351(1:0-255) msg352(1:0-255) msg353(1:0-255) msg354(1:0-255) msg355(1:0-255) msg356(1:0-255) msg357(1:0-255) msg358(1:0-255) msg359(1:0-255) msg360(1:0-255) 
+       msg361(1:0-255) msg362(1:0-255) msg363(1:0-255) msg364(1:0-255) msg365(1:0-255) msg366(1:0-255) msg367(1:0-255) msg368(1:0-255) msg369(1:0-255) msg370(1:0-255) 
+       msg371(1:0-255) msg372(1:0-255) msg373(1:0-255) msg374(1:0-255) msg375(1:0-255) msg376(1:0-255) msg377(1:0-255) msg378(1:0-255) msg379(1:0-255) msg380(1:0-255) 
+       msg381(1:0-255) msg382(1:0-255) msg383(1:0-255) msg384(1:0-255) msg385(1:0-255) msg386(1:0-255) msg387(1:0-255) msg388(1:0-255) msg389(1:0-255) msg390(1:0-255) 
+       msg391(1:0-255) msg392(1:0-255) msg393(1:0-255) msg394(1:0-255) msg395(1:0-255) msg396(1:0-255) msg397(1:0-255) msg398(1:0-255) msg399(1:0-255) msg400(1:0-255) 
+       msg401(1:0-255) msg402(1:0-255) msg403(1:0-255) msg404(1:0-255) msg405(1:0-255) msg406(1:0-255) msg407(1:0-255) msg408(1:0-255) msg409(1:0-255) msg410(1:0-255) 
+       msg411(1:0-255) msg412(1:0-255) msg413(1:0-255) msg414(1:0-255) msg415(1:0-255) msg416(1:0-255) msg417(1:0-255) msg418(1:0-255) msg419(1:0-255) msg420(1:0-255) 
+       msg421(1:0-255) msg422(1:0-255) msg423(1:0-255) msg424(1:0-255) msg425(1:0-255) msg426(1:0-255) msg427(1:0-255) msg428(1:0-255) msg429(1:0-255) msg430(1:0-255) 
+       msg431(1:0-255) msg432(1:0-255) msg433(1:0-255) msg434(1:0-255) msg435(1:0-255) msg436(1:0-255) msg437(1:0-255) msg438(1:0-255) msg439(1:0-255) msg440(1:0-255) 
+       msg441(1:0-255) msg442(1:0-255) msg443(1:0-255) msg444(1:0-255) msg445(1:0-255) msg446(1:0-255) msg447(1:0-255) msg448(1:0-255) msg449(1:0-255) msg450(1:0-255) 
+       msg451(1:0-255) msg452(1:0-255) msg453(1:0-255) msg454(1:0-255) msg455(1:0-255) msg456(1:0-255) msg457(1:0-255) msg458(1:0-255) msg459(1:0-255) msg460(1:0-255) 
+       msg461(1:0-255) msg462(1:0-255) msg463(1:0-255) msg464(1:0-255) msg465(1:0-255) msg466(1:0-255) msg467(1:0-255) msg468(1:0-255) msg469(1:0-255) msg470(1:0-255) 
+       msg471(1:0-255) msg472(1:0-255) msg473(1:0-255) msg474(1:0-255) msg475(1:0-255) msg476(1:0-255) msg477(1:0-255) msg478(1:0-255) msg479(1:0-255) msg480(1:0-255) 
+       msg481(1:0-255) msg482(1:0-255) msg483(1:0-255) msg484(1:0-255) msg485(1:0-255) msg486(1:0-255) msg487(1:0-255) msg488(1:0-255) msg489(1:0-255) msg490(1:0-255) 
+       msg491(1:0-255) msg492(1:0-255) msg493(1:0-255) msg494(1:0-255) msg495(1:0-255) msg496(1:0-255) msg497(1:0-255) msg498(1:0-255) msg499(1:0-255) msg500(1:0-255) 
+       msg501(1:0-255) msg502(1:0-255) msg503(1:0-255) msg504(1:0-255) msg505(1:0-255) msg506(1:0-255) msg507(1:0-255) msg508(1:0-255) msg509(1:0-255) msg510(1:0-255) 
+       msg511(1:0-255) msg512(1:0-255)
+test=@cmd bos_id(8) frame_id(1)
+
+
+[Command]
+cmd=0xAE
+description="Report Status Change Warng Display"
+class=N
+func_name="report_status_change_warng_display"
+type=Report
+send=bos_id(1:8-15)state(1:0"0_close",1"1_open",2"2_flash")msg_id(1:0-255)
+       msg1(1:0-255) msg2(1:0-255) msg3(1:0-255) msg4(1:0-255) msg5(1:0-255) msg6(1:0-255) msg7(1:0-255) msg8(1:0-255) msg9(1:0-255) msg10(1:0-255) 
+       msg11(1:0-255) msg12(1:0-255) msg13(1:0-255) msg14(1:0-255) msg15(1:0-255) msg16(1:0-255) msg17(1:0-255) msg18(1:0-255) msg19(1:0-255) msg20(1:0-255) 
+       msg21(1:0-255) msg22(1:0-255) msg23(1:0-255) msg24(1:0-255) msg25(1:0-255) msg26(1:0-255) msg27(1:0-255) msg28(1:0-255) msg29(1:0-255) msg30(1:0-255) 
+       msg31(1:0-255) msg32(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0xAF 0x01
+description="Report ITRmode 20Sec"
+class=N
+func_name="report_itrmode20"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+       main_occ(1:0-100)main_flow(1:0-255)vdq_occ(1:0-100)vdq_flow(1:0-255)lvd_occ(1:0-255)lvd_flow(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0xAF 0x02
+description="Report Retry Car Flow"
+class=N
+func_name="report_retry_car_flow"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)
+       lvd_flow(4:0-2100000000)l_no(1:0-255)l_mode(1:0-255)
+return=
+test=
+
+
+[Command]
+cmd=0xAF 0x03
+description="Report "
+class=N
+func_name="report "
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+       year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)
+       lvd_flow(0:0-255)state(1:0-1)
+return=
+test=
+
+[Command]
+cmd=0xAF 0x10
+description="LTR real-time calculations of active returns For R21"
+class=N
+func_name="ltr_real-time_calculations_of_active_returns"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+     year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+     
+     main_occ_5min(1:0-100) main_flow_5min(2:0-65535) vdq_occ_3min(1:0-100)vdq_flow_3min(2:0-65535)
+     ctl_mode(1:0 "fixed_mode" , 1 "local_resp_mode" , 2 "default_mode" , 3 "close" , 4 "intergrade_mode" , 5 "manual_mode" , 6 "terminate")
+     plan_no(1:0-31)
+     rms_run_vph(2:0-65535)
+     rms_run_green_Time(1:0-255)
+     rms_run_red_time(1:0-255)
+     rms_run_yellow_Time(1:0-255)
+     ltr_static_path(2:0-65535) 
+     ltr_calc_vph(2:0-65535) 
+     traffic_jam_count(1:0-255)
+     rms_start_count(1:0-255) rms_over_count(1:0-255)
+     traffic_jam_occ_th(1:0-255) cap_down(2:0-65535) capacity_decrease(1:0-100) 
+     min_rms_rate(2:0-65535) max_rms_rate(2:0-65535) ramp_threshold(2:0-65535)
+     dd_mode_enable(1:0-255) dd_mode_rms_rate_target(2:0-65535)dd_mode_rms_rate_add(2:0-65535) dd_mode_increment(1:0-255)
+return=
+test=
+
+[Command]
+cmd=0xAF 0x11
+description="Turn loop active return For R21"
+class=N
+func_name="turn_loop_active_return"
+type=Report
+send=hw_status_1(1:0-255) hw_status_2(1:0-255) hw_status_3(1:0-255) hw_status_4(1:0-255)
+     year(2:0-3000)  month(1:1-12)  day(1:1-31) hour(1:0-23) minute(1:0-59)  second(1:0-59)
+     rmstc_linkmode(1:1"ramp_host",2"ring_road_sub-machine")
+     remote_rmstc_status(1:0"normal_host_and_sub_machine_connections",1"host_and_sub_machine_break",2"vdq_exception")
+     two_rmstc_runtype_mode(1:0 "automatic_selection",1 "5:5_time_tab",2 "7:3_Time tab",3 "3:7_Time tab")
+     two_rmstc_runtype(1:2"5:5_time_tab",3"7:3_Time tab",4"3:7_Time tab")
+return=
+test=
+
+
+
+
+
+@Signature=FDC3B9BB808A52E0A37A9180520E1ED666AC8EE473A2A4C5

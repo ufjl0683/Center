@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServerFactory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Host\ServerFactory\bin\Release\ServerFactory.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -51,6 +47,10 @@
     <Compile Include="RemoteObj.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Host\ServerFactory\ServerFactory.csproj">
+      <Project>{ec3e10e8-e954-4a7b-b4dc-a750d35c6d15}</Project>
+      <Name>ServerFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\RemoteInterface\RemoteInterface.csproj">
       <Project>{1A247E62-83B0-4E0F-B813-F95E3485DEEE}</Project>
       <Name>RemoteInterface</Name>
@@ -60,7 +60,7 @@
       <Name>V2DLE</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Comm\Comm.csproj">
-      <Project>{AFDE20C8-3E0F-40C8-9A2D-E5EAB083EAED}</Project>
+      <Project>{afde20c8-3e0f-40c8-9a2d-e5eab083eaed}</Project>
       <Name>Comm</Name>
     </ProjectReference>
   </ItemGroup>

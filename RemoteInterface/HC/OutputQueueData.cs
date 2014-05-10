@@ -52,6 +52,7 @@ namespace RemoteInterface.HC
         public string DevLineId="";
         public string DevDir="";
         public int DevMileage=0;
+        public int AlarmClass = -1;
         public event EventHandler OnStatusChange;
       //  public event EventHandler OnStatusChange;
       public OutputQueueData(string devName,OutputModeEnum mode, int ruleid, int priority, object displaydata)

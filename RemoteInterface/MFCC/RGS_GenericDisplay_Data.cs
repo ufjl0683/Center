@@ -13,6 +13,10 @@ namespace RemoteInterface.MFCC
         public RGS_Generic_ICON_Data[] icons;
         public RGS_Generic_Message_Data[] msgs;
         public RGS_Generic_Section_Data[] sections;
+        public string main_display_template;// 2014/4/27  for 
+        public string opt_display_template;
+
+        public int alarm_class=-1;
 
         public RGS_GenericDisplay_Data(byte mode, byte graph_code_id, RGS_Generic_ICON_Data[] icons, RGS_Generic_Message_Data[] msgs, RGS_Generic_Section_Data[] sections)
         {

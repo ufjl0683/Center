@@ -50,8 +50,8 @@ namespace RemoteInterface
        MFCC_TEM=3220,
        MFCC_SCM=3230,
        MFCC_CMSRST=3240,
-       MFCC_BS=3250
-
+       MFCC_BS=3250,
+       MFCC_ETAG=3260
 
     }
 
@@ -101,8 +101,8 @@ namespace RemoteInterface
         MFCC_TEM = 9220,
         MFCC_SCM = 9230,
         MFCC_CMSRST = 9240,
-        MFCC_BS = 9250
-
+        MFCC_BS = 9250,
+        MFCC_ETAG=9260
       
        
 
@@ -150,7 +150,8 @@ namespace RemoteInterface
         MFCC_TEM = 8220,
         MFCC_SCM = 8230,
         MFCC_CMSRST = 8240,
-        MFCC_BS = 8250
+        MFCC_BS = 8250,
+        MFCC_ETAG=8260
 
     }
 
