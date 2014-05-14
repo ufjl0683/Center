@@ -156,7 +156,7 @@ namespace Host
                     dictPerformance["getRedirectStatusString"].InCount++;
                 }
 
-                return Program.matrix.route_mgr.ToString();
+                return Program.matrix.route_mgr.ToString()+Program.matrix.route_mgr74.ToString();
             }
             catch (Exception ex)
             {

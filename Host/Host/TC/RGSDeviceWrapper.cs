@@ -593,14 +593,14 @@ namespace Host.TC
                    try
                    {
                        int mainsec = Program.matrix.route_mgr74.GetMainRouteTravelTimes(this.deviceName);
-                       int optsec = Program.matrix.route_mgr74.GetMainRouteTravelTimes(this.deviceName);
+                       int optsec = Program.matrix.route_mgr74.GetOptRouteTravelTimes(this.deviceName);
                        string mainmsg, optmsg;
                        int maininx, optinx;
                        maininx = gnrdata.main_display_template.IndexOf("@");
                        optinx = gnrdata.opt_display_template.IndexOf("@");
 
                        mainmsg = gnrdata.main_display_template.Replace("@", ((int)Math.Ceiling(mainsec / 60.0)).ToString());
-                       optmsg = gnrdata.opt_display_template.Replace("@", ((int)Math.Ceiling(mainsec / 60.0)).ToString());
+                       optmsg = gnrdata.opt_display_template.Replace("@", ((int)Math.Ceiling(optsec / 60.0)).ToString());
                        gnrdata.msgs[0].messgae = mainmsg;
                        gnrdata.msgs[0].backcolor = new Color[mainmsg.Length];
                        gnrdata.msgs[0].forecolor = new Color[mainmsg.Length];
@@ -609,18 +609,22 @@ namespace Host.TC
                            gnrdata.msgs[0].backcolor[i] = Color.Black;
 
                        for (int i = 0; i < mainmsg.Length; i++)
-                           gnrdata.msgs[0].forecolor[i] = Color.Red;
+                           gnrdata.msgs[0].forecolor[i] = Color.Orange;
 
                        for (int i = 0; i < mainmsg.Length - gnrdata.main_display_template.Length + 1; i++)
-                           gnrdata.msgs[0].forecolor[maininx + i] = Color.Orange;
+                           gnrdata.msgs[0].forecolor[maininx + i] = Color.Red;
 
                        gnrdata.msgs[1].messgae = optmsg;
                        gnrdata.msgs[1].backcolor = new Color[optmsg.Length];
+                       gnrdata.msgs[1].forecolor = new Color[optmsg.Length];
                        for (int i = 0; i < optmsg.Length; i++)
                            gnrdata.msgs[1].backcolor[i] = Color.Black;
 
+                       for (int i = 0; i < optmsg.Length; i++)
+                           gnrdata.msgs[1].forecolor[i] = Color.Orange;
+
                        for (int i = 0; i < optmsg.Length - gnrdata.opt_display_template.Length + 1; i++)
-                           gnrdata.msgs[1].forecolor[optinx + i] = Color.Orange;
+                           gnrdata.msgs[1].forecolor[optinx + i] = Color.Red;
 
                        Util.SysLog("RedirectT74.log", DateTime.Now + "," + mainmsg + "," + optmsg);
                    }

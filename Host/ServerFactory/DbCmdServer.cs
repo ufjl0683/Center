@@ -138,6 +138,10 @@ namespace RemoteInterface
         {
 
           //  bool isInLock = false;
+
+#if DEBUG
+            return;
+#endif
             int inx = System.Convert.ToInt32(args);
             System.Data.Odbc.OdbcConnection cn;
             System.DateTime dt = System.DateTime.Now; ;

@@ -114,54 +114,81 @@ namespace Execution.Category
         /// <param name="mode">模式</param>
         /// <returns></returns>
         private RemoteInterface.MFCC.RGS_GenericDisplay_Data SetRGSDislay(string message, int isIcon, int mode)
-        {            
+        {
+            bool isAccident = false;
             if ((int)ht["INC_NAME"] == 48) //路徑轉向寫死
             {
                 mode = 1;
-                string div = string.Empty;
-                string cmd = string.Format("Select start_divName from db2inst1.TBLCOMPARETRAVELTIMEDETAIL where DeviceName = '{0}' order by order fetch first rows only;", data.DeviceName);
-                System.Data.DataTable DT = com.Select(cmd);
-                if (DT != null && DT.Rows.Count > 0)
-                {
-                    div = DT.Rows[0][0].ToString();
-                    div = div.Substring(0,2);
-                }
-                string dir = string.Empty;
-                string con = string.Empty;
-                string desc = string.Empty;
-                switch (data.Direction)
-                {
-                    case "N":
-                        dir = "北";
-                        con = "<";
-                        desc = "desc";
-                        break;
-                    case "S":
-                        dir = "南";
-                        con = ">";
-                        break;
-                    case "E":
-                        dir = "東";
-                        con = ">";
-                        break;
-                    case "W":
-                        dir = "西";
-                        con = "<";
-                        desc = "desc";
-                        break;
-                }
-                cmd = string.Format("Select from_Milepost1 from {0}.TBLIIPEVENT where Inc_Status = 3 and from_milepost1 {1} {2} order by from_milepost1 {3} fetch first 1 rows only;"
-                    , RSPGlobal.GlobaSchema, con, ht["FROM_MILEPOST1"], desc);
 
-                DT = com.Select(cmd);
-                string Mile = string.Empty;
-                if (DT != null && DT.Rows.Count > 0)
+                if (data.DeviceName == "RGS-N3-N-212.8")
                 {
-                    Mile = string.Format("{0,4:###k}", (int)DT.Rows[0][0]/1000);
-                }
+                    string cmd = string.Format("Select from_Milepost1 from {0}.TBLIIPEVENT where inc_name = 30 " //and Inc_Status = 3 " 
+                        + "AND INC_LINEID = 'N1' and INC_DIRECTION = 'N' and from_milepost1 > 174200 and from_milepost1 < 192800 order by from_milepost1 desc fetch first 1 rows only;"
+                       , RSPGlobal.GlobaSchema);
 
-                message = Mile + "　　" + div + "以" + dir + "[1]事故　　請改道";
-                //message = "　　　　" + div + "以" + dir + "[1]事故　　請改道";
+                    System.Data.DataTable DT = com.Select(cmd);
+
+                    if (DT != null && DT.Rows.Count > 0)
+                    {
+                        isAccident = true;
+                        string Mile = string.Format("{0,4:###k}", (int)DT.Rows[0][0] / 1000);
+                        message = "國1 北上[1]" + Mile + "事故[1]台中以北[1]請改道台74";
+                    }
+                    else
+                    {
+                        isAccident = false;
+                    }
+                }
+                else
+                {
+
+                    string div = string.Empty;
+                    string cmd = string.Format("Select start_divName from db2inst1.TBLCOMPARETRAVELTIMEDETAIL where DeviceName = '{0}' order by order fetch first rows only;", data.DeviceName);
+                    System.Data.DataTable DT = com.Select(cmd);
+
+
+                    if (DT != null && DT.Rows.Count > 0)
+                    {
+                        div = DT.Rows[0][0].ToString();
+                        div = div.Substring(0, 2);
+                    }
+                    string dir = string.Empty;
+                    string con = string.Empty;
+                    string desc = string.Empty;
+                    switch (data.Direction)
+                    {
+                        case "N":
+                            dir = "北";
+                            con = "<";
+                            desc = "desc";
+                            break;
+                        case "S":
+                            dir = "南";
+                            con = ">";
+                            break;
+                        case "E":
+                            dir = "東";
+                            con = ">";
+                            break;
+                        case "W":
+                            dir = "西";
+                            con = "<";
+                            desc = "desc";
+                            break;
+                    }
+                    cmd = string.Format("Select from_Milepost1 from {0}.TBLIIPEVENT where inc_name = 30 and Inc_Status = 3 and from_milepost1 {1} {2} order by from_milepost1 {3} fetch first 1 rows only;"
+                        , RSPGlobal.GlobaSchema, con, ht["FROM_MILEPOST1"], desc);
+
+                    DT = com.Select(cmd);
+                    string Mile = string.Empty;
+                    if (DT != null && DT.Rows.Count > 0)
+                    {
+                        Mile = string.Format("{0,4:###k}", (int)DT.Rows[0][0] / 1000);
+                    }
+
+                    message = Mile + "　　" + div + "以" + dir + "[1]事故　　請改道";
+                    //message = "　　　　" + div + "以" + dir + "[1]事故　　請改道";
+                }
             }
 
             this.mode = mode;
@@ -225,70 +252,53 @@ namespace Execution.Category
                 //改為4行
                 RemoteInterface.MFCC.RGS_Generic_Message_Data[] megs4 = new RemoteInterface.MFCC.RGS_Generic_Message_Data[4];
                 if (mode == 1)
-                {                    
-                    for (int i = 0; i < 4; i++)
+                {
+                    if (data.DeviceName == "RGS-N3-N-212.8" && isAccident)
                     {
-                        //RemoteInterface.MFCC.RGS_Generic_Message_Data meg1 = megs[i * 2];
-                        //RemoteInterface.MFCC.RGS_Generic_Message_Data meg2 = megs[i * 2 + 1];
-                        //int wordcount = Encoding.GetEncoding("Big5").GetByteCount(meg1.messgae);
-                        //System.Drawing.Color[] foreColor = new System.Drawing.Color[meg1.forecolor.Length + meg2.backcolor.Length + 2 + 4 - wordcount];
-                        //System.Drawing.Color[] backColor = new System.Drawing.Color[meg1.backcolor.Length + meg2.backcolor.Length + 2 + 4 - wordcount];
-                        //int k = 0;
-                        //for (int j = 0; j < meg1.forecolor.Length; j++)
-                        //{
-                        //    foreColor[k] = meg1.forecolor[j];
-                        //    backColor[k] = meg1.backcolor[j];
-                        //    k++;
-                        //}
-
-                        string msg = string.Empty;
-                        //if (wordcount == 4)
-                        //{
-                        //    msg = meg1.messgae + "　　" + meg2.messgae;
-                        //}
-                        //else
-                        //{
-                        //    msg = meg1.messgae;
-                        //    for (int x = 0; x < 4 - wordcount; x++)
-                        //    {
-                        //        msg += " ";
-                        //    }
-                        //    msg += "　　" + meg2.messgae;
-                        //    for (int j = 0; j < 4 - wordcount; j++)
-                        //    {
-                        //        foreColor[k] = System.Drawing.Color.Red;
-                        //        backColor[k] = System.Drawing.Color.Black;
-                        //        k++;
-                        //    }
-
-                        //}
-                        //for (int j = 0; j < 2; j++)
-                        //{
-                        //    foreColor[k] = System.Drawing.Color.Red;
-                        //    backColor[k] = System.Drawing.Color.Black;
-                        //    k++;
-                        //}
-
-                        //for (int j = 0; j < meg2.forecolor.Length; j++)
-                        //{
-                        //    foreColor[k] = meg2.forecolor[j];
-                        //    backColor[k] = meg2.backcolor[j];
-                        //    k++;
-                        //}
-
-                        System.Drawing.Color[] foreColor = new System.Drawing.Color[0];
-                        System.Drawing.Color[] backColor = new System.Drawing.Color[0];
-
-                        switch (i)
+                        byte g = 0;
+                        if (data != null)
+                            g = (byte)data.G_Path;
+                        string[] msgs = message.Split('\r');
+                        for (int i = 0; i < 4; i++)
                         {
-                            case 1:
-                            case 2:
-                                msg = megs[i - 1].messgae;
-                                foreColor = megs[i - 1].forecolor;
-                                backColor = megs[i - 1].backcolor;
-                                break;
+                            System.Drawing.Color[] foreColor = new System.Drawing.Color[msgs[i].Length];
+                            System.Drawing.Color[] backColor = new System.Drawing.Color[msgs[i].Length];
+                            for (int j = 0; j < msgs[i].Length; j++)
+                            {
+                                foreColor[j] = ((MessColor)messColorsHT[0]).Forecolor;
+                                backColor[j] = System.Drawing.Color.Black;
+                            }
+                            if (i == 1)
+                            {
+                                foreColor[foreColor.Length - 1] = System.Drawing.Color.Red;
+                                foreColor[foreColor.Length - 2] = System.Drawing.Color.Red;
+                            }
+                            megs4[i] = new RemoteInterface.MFCC.RGS_Generic_Message_Data(msgs[i], foreColor, backColor, 0, (ushort)(i * 64));
+                            
                         }
-                        megs4[i] = new RemoteInterface.MFCC.RGS_Generic_Message_Data(msg, foreColor, backColor, 0, (ushort)(i * 64));
+                        outputData = new RemoteInterface.MFCC.RGS_GenericDisplay_Data((byte)mode, g, new RemoteInterface.MFCC.RGS_Generic_ICON_Data[0], megs4, new RemoteInterface.MFCC.RGS_Generic_Section_Data[0]);
+                        return outputData;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            string msg = string.Empty;
+
+                            System.Drawing.Color[] foreColor = new System.Drawing.Color[0];
+                            System.Drawing.Color[] backColor = new System.Drawing.Color[0];
+
+                            switch (i)
+                            {
+                                case 1:
+                                case 2:
+                                    msg = megs[i - 1].messgae;
+                                    foreColor = megs[i - 1].forecolor;
+                                    backColor = megs[i - 1].backcolor;
+                                    break;
+                            }
+                            megs4[i] = new RemoteInterface.MFCC.RGS_Generic_Message_Data(msg, foreColor, backColor, 0, (ushort)(i * 64));
+                        }
                     }
                 }
                 if (mode == 1)
@@ -299,6 +309,19 @@ namespace Execution.Category
                   
                     //outputData = new RemoteInterface.MFCC.RGS_GenericDisplay_Data((byte)mode, g, new RemoteInterface.MFCC.RGS_Generic_ICON_Data[0], megs, new RemoteInterface.MFCC.RGS_Generic_Section_Data[0]);
                     outputData = new RemoteInterface.MFCC.RGS_GenericDisplay_Data((byte)mode, g, new RemoteInterface.MFCC.RGS_Generic_ICON_Data[0], megs4, new RemoteInterface.MFCC.RGS_Generic_Section_Data[0]);
+                    if (data.DeviceName == "RGS-N3-N-212.8" && !isAccident)
+                    {
+                        outputData.main_display_template = "        @";
+                        outputData.opt_display_template = "        @";
+                        outputData.alarm_class = 173;
+                        foreach (var msg in outputData.msgs)
+                        {
+                            msg.messgae = string.Empty;
+                            msg.backcolor = new System.Drawing.Color[0];
+                            msg.forecolor = new System.Drawing.Color[0];
+                        }
+                    }
+                
                 }
                 else
                 {

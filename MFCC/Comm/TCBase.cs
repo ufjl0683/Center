@@ -319,9 +319,9 @@ namespace Comm
                     //  ConsoleServer.WriteLine(this.DeviceName + "secdiff:" + this.TC_SetDateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second));
                     try
                     {
-                        if(mincnt==0)
+                     //   if(mincnt==0)
                         this.TC_GetHW_Status();
-                        else
+                      //  else
                         this.TC_SendCycleSettingData();
                     }
                     catch { ;}

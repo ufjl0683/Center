@@ -337,6 +337,7 @@ namespace Host.TC
 
        private  VD1MinCycleEventData getCurrent5MinAvgData()
        {
+#if! DEBUG
            if (System.DateTime.Now - this.latest5minAvgVdData.datatime > new TimeSpan(0, 5, 0))
            {
                this.jamLevel = -1;
@@ -344,6 +345,7 @@ namespace Host.TC
                return new VD1MinCycleEventData(this.deviceName, this.latest5minAvgVdData.datatime, -1, -1, -1, -1, -1, null,null,false);
            }
            else
+#endif
                return latest5minAvgVdData;
 
        }

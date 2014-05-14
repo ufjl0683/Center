@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9CA4DF0-4DCB-4A9B-B74B-E474508F41FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Execution</RootNamespace>
+    <AssemblyName>Execution</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <StartupObject>
+    </StartupObject>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RemoteInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\RemoteInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Category\AEvent.cs" />
+    <Compile Include="Category\GenEvent.cs" />
+    <Compile Include="Category\LtrEvent.cs" />
+    <Compile Include="Category\ObsEvent.cs" />
+    <Compile Include="Category\OthEvent.cs" />
+    <Compile Include="Category\ParkEvent.cs" />
+    <Compile Include="Category\ResEvent.cs" />
+    <Compile Include="Category\RgsEvent.cs" />
+    <Compile Include="Category\RmsEvent.cs" />
+    <Compile Include="Category\TunEvent.cs" />
+    <Compile Include="Category\TunFireEvent.cs" />
+    <Compile Include="Category\WeaEvent.cs" />
+    <Compile Include="Command\GetInsertCommand.cs" />
+    <Compile Include="Command\GetSelectCommand.cs" />
+    <Compile Include="Command\GetUpdateCommand.cs" />
+    <Compile Include="Device\A_DisplayBlock.cs" />
+    <Compile Include="Device\CCTV.cs" />
+    <Compile Include="Device\CMS.cs" />
+    <Compile Include="Device\ADevice.cs" />
+    <Compile Include="Device\CSLS.cs" />
+    <Compile Include="Device\FS.cs" />
+    <Compile Include="Device\LCS.cs" />
+    <Compile Include="Device\MAS.cs" />
+    <Compile Include="Device\RGS.cs" />
+    <Compile Include="Device\RMS.cs" />
+    <Compile Include="Device\WIS.cs" />
+    <Compile Include="EasyClient.cs" />
+    <Compile Include="Encapsulate\BlockMeg1.cs" />
+    <Compile Include="Encapsulate\BlockMegAndColor.cs" />
+    <Compile Include="Encapsulate\Location\Line.cs" />
+    <Compile Include="Encapsulate\Location\Location.cs" />
+    <Compile Include="Encapsulate\Location\Section.cs" />
+    <Compile Include="Encapsulate\Location\Tunnel.cs" />
+    <Compile Include="Encapsulate\Location\TunnelList.cs" />
+    <Compile Include="Encapsulate\MyList.cs" />
+    <Compile Include="Encapsulate\ExecutionObj.cs" />
+    <Compile Include="Encapsulate\I_Event.cs" />
+    <Compile Include="Encapsulate\LiaiseUnit.cs" />
+    <Compile Include="Encapsulate\RSPMegColor.cs" />
+    <Compile Include="Encapsulate\TblData.cs" />
+    <Compile Include="EvenInput.cs" />
+    <Compile Include="Execution.cs" />
+    <Compile Include="Encapsulate\MoveData.cs" />
+    <Compile Include="GlobalVariable.cs" />
+    <Compile Include="MyEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Encapsulate\MessColor.cs" />
+    <Compile Include="Encapsulate\TunnelData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\RemoteInterface.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBConnect\DBConnect.csproj">
+      <Project>{fe70d0a0-0c4c-44d5-8310-6af36cdf000a}</Project>
+      <Name>DBConnect</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

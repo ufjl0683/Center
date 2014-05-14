@@ -165,6 +165,10 @@ namespace Host.MFCC
 
               robj = (I_MFCC_BS)RemoteBuilder.GetRemoteObj(typeof(I_MFCC_BS), RemoteBuilder.getRemoteUri(hostip, remoteport, "MFCC_BS"));
           }
+          else if (mfcctype == "ETAG")
+          {
+              robj = (I_MFCC_BS)RemoteBuilder.GetRemoteObj(typeof(I_MFCC_AVI), RemoteBuilder.getRemoteUri(hostip, remoteport, "MFCC_ETAG"));
+          }
       }
 
      volatile bool IsInRemoteObjectConnectTask = false;

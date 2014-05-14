@@ -37,7 +37,7 @@ namespace MFCC_ETAG
            if (txt.Text[0] == 0x3f && txt.Text[1] == 0x04) //avi 主動回報
            {
                int day, hour, min,laneid,cartype, sec;
-               string tagid;
+              // string tagid;
                day = txt.Text[6];
                hour = txt.Text[7];
                min=txt.Text[8];

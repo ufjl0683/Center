@@ -31,7 +31,7 @@ namespace Test
         private void button6_Click(object sender, EventArgs e)
         {
             //²£¥ÍEXECUTIONTABLE
-            execution.GenerateExecutionTable(8411216);//360278)
+            execution.GenerateExecutionTable(8588733);//360278)
             //execution.GenerateExecutionTable(387436);
            
         }

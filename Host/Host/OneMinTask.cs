@@ -17,8 +17,9 @@ namespace Host
             //    m_sec = 1000;
             //System.Threading.Thread.Sleep(m_sec);
 #if !DEBUG
-            new System.Threading.Thread(OneMinTask_Elapsed).Start();
+           
 #endif
+            new System.Threading.Thread(OneMinTask_Elapsed).Start();
         }
 
         void OneMinTask_Elapsed()
@@ -38,8 +39,9 @@ namespace Host
                     {
 
 
-
+#if! DEBUG
                         TotblTrafficDataLogUnit(dt.AddSeconds(-dt.Second));
+#endif
 
                     }
                     catch(Exception ex) {
@@ -50,8 +52,9 @@ namespace Host
                     try
                     {
 
-
+#if !DEBUG
                         TotblTrafficDataLogSection(dt.AddSeconds(-dt.Second));
+#endif
 
                     }
                     catch (Exception ex)
@@ -65,7 +68,10 @@ namespace Host
 
                     try
                     {
+
+#if !DEBUG
                         Program.matrix.route_mgr.FetchTravelTime();
+#endif
                         //ConsoleServer.WriteLine("**********************************************");
                         //ConsoleServer.WriteLine(Program.matrix.route_mgr.ToString());
                         //ConsoleServer.WriteLine("**********************************************");
@@ -99,6 +105,10 @@ namespace Host
                 catch(Exception ex1)
                 {
                     ConsoleServer.WriteLine(ex1.Message + "," + ex1.StackTrace);
+                    //int m_sec = (int)((TimeSpan)(dt - DateTime.Now)).TotalMilliseconds;
+                    //if (m_sec <= 0)
+                    //    m_sec = 1000;
+                    //System.Threading.Thread.Sleep(m_sec);
                     ;
                 }
 

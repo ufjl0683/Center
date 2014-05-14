@@ -83,7 +83,7 @@ namespace Host.AVI
       {
           OdbcConnection cn = new OdbcConnection(Global.Db2ConnectionString);
 
-          OdbcCommand cmd = new OdbcCommand("select AVISectionID,Start_Devicename,End_DeviceName,upperinterval,lowerinterval,VALID_CNT_1MIN,Start_Devicename_Source,ext_lineid,ext_direction,ext_mile_m,END_DEVICENAME_SOURCE from tblAVISection");
+          OdbcCommand cmd = new OdbcCommand("select AVISectionID,Start_Devicename,End_DeviceName,upperinterval,lowerinterval,VALID_CNT_1MIN,Start_Devicename_Source,ext_lineid,ext_direction,ext_mile_m,END_DEVICENAME_SOURCE,ISETAGSECTION from tblAVISection  order by  ISETAGSECTION desc  ");
 
 
           OdbcDataReader rd;
