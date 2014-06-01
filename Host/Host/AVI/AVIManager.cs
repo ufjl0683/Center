@@ -11,8 +11,31 @@ namespace Host.AVI
 
       
        public   System.Collections.ArrayList sections = System.Collections.ArrayList.Synchronized(new System.Collections.ArrayList());
-   
-          
+    //   public static int ETagLifeTime;
+
+
+        static AVIManager()
+       {
+
+           //select VARIABLEVALUE from TBLSYSPARAMETER where VARIABLENAME = 'ETAGCOMPARTTIME'
+           FetchETagLifeTime();
+         
+
+
+       }
+
+
+       public static void FetchETagLifeTime()
+      {
+
+            OdbcConnection cn = new OdbcConnection(DbCmdServer.getDbConnectStr());
+            OdbcCommand cmd = new OdbcCommand("select VARIABLEVALUE from TBLSYSPARAMETER where VARIABLENAME = 'ETAGCOMPARTTIME'");
+            cmd.Connection = cn;
+           cn.Open();
+           TC.AVIDeviceWrapper.ETAGLiveTime  =System.Convert.ToInt32( cmd.ExecuteScalar());
+           cn.Close();
+
+      }
       public AVIManager()
       {
 
@@ -106,6 +129,7 @@ namespace Host.AVI
                   string startAviSource = rd[6].ToString().Trim();
                   string endAviSource = rd[10].ToString().Trim();
                   string ext_lineid="", ext_dir="";
+                  bool IsETagSection = ((int)rd[11]) == 1 ? true : false;
                   int ext_mile_m = 0;
                   //if (secid == "N3_S_259.114_280.905")
                   //    Console.WriteLine("tets");
@@ -148,7 +172,7 @@ namespace Host.AVI
 #if DEBUG 
             //      if (secid == "N3_S_259.114_280.905")
 #endif
-                  sections.Add(new AVISection(secid, startdev, enddev, upperinterval, lowerinterval, validcnt, startAviSource,endAviSource/*, ext_lineid, ext_dir, ext_mile_m*/));
+                  sections.Add(new AVISection(secid, startdev, enddev, upperinterval, lowerinterval, validcnt, startAviSource,endAviSource,IsETagSection/*, ext_lineid, ext_dir, ext_mile_m*/));
                  
                   }
                   catch (Exception ex)

@@ -39,9 +39,9 @@ namespace Host
                   System.Threading.Thread.Sleep(1000*30);
 
               }
-              catch
+              catch(Exception ex)
               {
-                  ;
+                  Console.WriteLine(ex.Message+","+ex.StackTrace); ;
               }
 
 

@@ -19,13 +19,14 @@ namespace Host.AVI
         private int totalcnt = 0;
         public string startDevSource;
         public string endDevSource;
+       public bool IsETAGSection;
        // private string StartDevName;
        // string ext_linid="";
        // string ext_dir="";
        // int ext_mile_m=0;
          public    System.Collections.ArrayList dataContainer = System.Collections.ArrayList.Synchronized(new System.Collections.ArrayList());
        // System.Threading.Timer tmr;
-        public AVISection(string secid, AVIDeviceWrapper startTC, AVIDeviceWrapper endTC,/* int EffectInterval,*/int upperInterval,int lowerInterval,int validcnt,string startDevSource,string endDevSource/*,string ext_linid,string ext_dir,int ext_mile_m*/)
+        public AVISection(string secid, AVIDeviceWrapper startTC, AVIDeviceWrapper endTC,/* int EffectInterval,*/int upperInterval,int lowerInterval,int validcnt,string startDevSource,string endDevSource,bool IsEtagSection/*,string ext_linid,string ext_dir,int ext_mile_m*/)
         {
             this.secid = secid;
             this.startTC = startTC;
@@ -35,6 +36,7 @@ namespace Host.AVI
             this.valid_cnt = validcnt;
             this.startDevSource = startDevSource;
             this.endDevSource = endDevSource;
+            this.IsETAGSection = IsEtagSection;
             //this.ext_linid = ext_linid;
             //this.ext_dir = ext_dir;
             //this.ext_mile_m = ext_mile_m;
@@ -206,6 +208,9 @@ namespace Host.AVI
                      /*this.Speed */, this.secid, RemoteInterface.DbCmdServer.getTimeStampString(dt), weightedTravelTime, weigthedSpd, vdtraveltime, etctraveltime, histraveltime, this.totalcnt, (totalcnt < valid_cnt) ? 1 : 0);
 #if !DEBUG
                     Program.matrix.dbServer.SendSqlCmd(sql);
+#else
+                    if (this.secid == "N1_N_190.6_173.27")
+                        Console.WriteLine("check");
 #endif
 
                 }
@@ -271,7 +276,7 @@ namespace Host.AVI
             //    return;
 
            string sql = "insert into TBLAVIDATA1MINACROSS (DeviceName,TimeStamp,Vehicle_Plate) values('{0}','{1}','{2}')";
-
+           string sql1 = "insert into tblEtagCompareLog (AviSectionId,UP_TIMESTAMP,DOWN_TIMESTAMP,TAGID) values('{0}','{1}','{2}','{3}')";
 
             if (this.startTC.deviceName == data.DevName)
             {
@@ -298,10 +303,16 @@ namespace Host.AVI
                 if (this.startTC.Match(data.plate))
                 {
 #if DEBUG
-                    if (secid == "N3_S_259.114_280.905")
-                        Console.WriteLine("check point!");
+                    //if (secid == "N3_S_259.114_280.905")
+                    //    Console.WriteLine("check point!");
 #endif
+                    if (this.startTC.IsETag())
+                    {
 
+                        Program.matrix.dbServer.SendSqlCmd(
+                        string.Format(sql1, this.secid,
+                        DbCmdServer.getTimeStampString(this.startTC.GetPlateData(data.plate).dt), DbCmdServer.getTimeStampString(data.dt), data.plate));
+                    }
 
                     TimeSpan ts = data.dt - this.startTC.GetPlateData(data.plate).dt;
 

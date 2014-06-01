@@ -102,6 +102,12 @@ namespace Host
 
                 switch (notifyConst)
                 {
+                    case DbChangeNotifyConst.ETAG_Life_Minutes_Change:
+                        if (args==null||args.Length != 1)
+                              throw new Exception("引數錯誤");
+                        int minute = System.Convert.ToInt32(args[0]);
+                        Host.TC.AVIDeviceWrapper.ETAGLiveTime = minute;
+                        break;
                     case DbChangeNotifyConst.JamEvalTable:
                         Program.matrix.vd_jam_eval.LoatTable();
                         break;

@@ -33,7 +33,14 @@ namespace test
             Console.WriteLine(data1);
         }
 
-      
+        static void NotifyEtagChangeTest()
+        {
+
+            RemoteInterface.HC.I_HC_FWIS rfiws = (I_HC_FWIS)RemoteBuilder.GetRemoteObj(typeof(I_HC_FWIS),
+           RemoteBuilder.getRemoteUri("127.0.0.1", 9010, "FWIS"));
+            rfiws.SetDbChangeNotify(DbChangeNotifyConst.ETAG_Life_Minutes_Change, 20);
+
+        }
         static void ServerPressTest()
         {
             for (int i = 0; i < 200; i++)
@@ -212,8 +219,9 @@ namespace test
            // SCM_Test();
          //   AVI_XML("AVI-N1-S-24.826-M",'N');
          //   rfiws.getTimccTravelTimeByRange("N3","N",111050,79300);
-            Microsoft.JScript.Vsa.VsaEngine eng = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
-            object res = Microsoft.JScript.Eval.JScriptEvaluate("var a=10;a+2*6+5;Math.sin(0);", eng);
+            //Microsoft.JScript.Vsa.VsaEngine eng = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
+            //object res = Microsoft.JScript.Eval.JScriptEvaluate("var a=10;a+2*6+5;Math.sin(0);", eng);
+            NotifyEtagChangeTest();
             Console.ReadKey();
 
         }

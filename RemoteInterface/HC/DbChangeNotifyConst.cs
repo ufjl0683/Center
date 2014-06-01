@@ -17,7 +17,8 @@ namespace RemoteInterface.HC
         Reload_Device_Loaction,
         Reload_Section_WeightTable,
         CMSRST_Manual_MessageChange,
-        Enable_Weather_Change
+        Enable_Weather_Change,
+        ETAG_Life_Minutes_Change
     }
 
 }

@@ -158,7 +158,7 @@ namespace Host.TC
 #if !DEBUG 
               cmd.CommandText = "select devicename from tbldeviceconfig where mfccid='"+mfccid.ToString()+"'";
 #else
-              cmd.CommandText = "select devicename from tbldeviceconfig where    (  Lineid='N3'  )   and mfccid='" + mfccid.ToString() + "'  ";
+              cmd.CommandText = "select devicename from tbldeviceconfig where    (  Lineid='N1'  )   and mfccid='" + mfccid.ToString() + "'  ";
              // cmd.CommandText = "select devicename from tbldeviceconfig where enable='Y' and mfccid='" + mfccid.ToString() + "'";
 #endif
               rd = cmd.ExecuteReader();

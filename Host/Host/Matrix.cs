@@ -125,8 +125,9 @@ namespace Host
 
        //    OneMinTask = new OneMinTask();
           // avimgr = new Host.AVI.AVIManager();
-          // etcmgr = new Host.ETC.ETC_Manager();  //2014-5-14 停用
+         //  etcmgr = new Host.ETC.ETC_Manager();  //2014-5-14 停用
 #endif
+           etcmgr = new Host.ETC.ETC_Manager();
         OneMinTask = new OneMinTask();
            avimgr = new Host.AVI.AVIManager();
            tmr1min.Start();

@@ -98,6 +98,7 @@ namespace WinConsoleClient
             this.cbPort.Items.Add(new ConsolePortItem("MFCC_SCM", 8230));
             this.cbPort.Items.Add(new ConsolePortItem("MFCC_CMSRST", 8240));
             this.cbPort.Items.Add(new ConsolePortItem("MFCC_BS", 8250));
+            this.cbPort.Items.Add(new ConsolePortItem("MFCC_ETAG", 8260));
         
             this.cbPort.SelectedIndex = 0;
 

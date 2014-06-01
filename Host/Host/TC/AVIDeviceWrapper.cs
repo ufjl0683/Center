@@ -8,6 +8,7 @@ namespace Host.TC
 {
   public   class AVIDeviceWrapper:DeviceBaseWrapper
     {
+      public static   int ETAGLiveTime;
         const int LiveMiniutes = 60;
         System.Timers.Timer tmr30min = new System.Timers.Timer(10 * 60 * 1000);
         System.Collections.Hashtable plates = System.Collections.Hashtable.Synchronized(new System.Collections.Hashtable());
@@ -57,6 +58,11 @@ namespace Host.TC
             return plates.Contains(plate);
         }
 
+        public bool IsETag()
+        {
+            return this.deviceName.ToUpper().Contains("ETAG");
+        }
+
         public int CurrDataCnt
         {
             get
@@ -73,11 +79,21 @@ namespace Host.TC
               //  System.Collections.ArrayList ary = new System.Collections.ArrayList();
                 foreach (AVIPlateData data in datas)
                 {
-                   
-                    if (System.DateTime.Now - data.dt > TimeSpan.FromMinutes(LiveMiniutes))
+                    if (this.deviceName.ToUpper().Contains("ETAG"))  //etag
                     {
-                        plates.Remove(data.plate);
+                        if (System.DateTime.Now - data.dt > TimeSpan.FromMinutes(ETAGLiveTime))
+
+                            plates.Remove(data.plate);
+
                     }
+                    else  //normal AVI
+                    {
+                        if (System.DateTime.Now - data.dt > TimeSpan.FromMinutes(LiveMiniutes))
+
+                            plates.Remove(data.plate);
+
+                    }
+                    
                        // ary.Add(data.plate);
                 }
 
