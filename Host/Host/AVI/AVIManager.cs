@@ -129,7 +129,7 @@ namespace Host.AVI
                   string startAviSource = rd[6].ToString().Trim();
                   string endAviSource = rd[10].ToString().Trim();
                   string ext_lineid="", ext_dir="";
-                  bool IsETagSection = ((int)rd[11]) == 1 ? true : false;
+                  bool IsETagSection = System.Convert.ToInt32(rd[11]) == 1 ? true : false;
                   int ext_mile_m = 0;
                   //if (secid == "N3_S_259.114_280.905")
                   //    Console.WriteLine("tets");

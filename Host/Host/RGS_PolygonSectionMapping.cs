@@ -14,7 +14,7 @@ namespace Host
   public   class RGS_PolygonSectionMapping
     {
       public event OnRGS_Metro_Jam_Change_Handler OnMetroJamChangeEvent;
-      System.Collections.Hashtable hs_g_code_id = new System.Collections.Hashtable();
+    public  System.Collections.Hashtable hs_g_code_id = new System.Collections.Hashtable();
       System.Collections.Generic.Dictionary<string,RGS_MainLineVD> hs_rgs_main_vd= new System.Collections.Generic.Dictionary<string,RGS_MainLineVD>();
       System.Threading.Thread thCheckLevel;
       public RGS_PolygonSectionMapping()
@@ -31,12 +31,12 @@ namespace Host
           {
               try
               {
-                 
+
                   foreach (RGS_MainLineVD rgsvdmaindata in hs_rgs_main_vd.Values)
                   {
                       rgsvdmaindata.ChechChange();
                   }
-                  System.Threading.Thread.Sleep(1000*30);
+                  System.Threading.Thread.Sleep(1000 * 30);
 
               }
               catch(Exception ex)
@@ -254,6 +254,12 @@ namespace Host
 
       }
 
+      public IEnumerable GetNetWorkSectionEnum()
+      {
+          foreach (NetworkSection nsec in hs_section.Values)
+              yield return nsec;
+      }
+
         internal NetworkSection getSection(int sectionid)
         {
             if (!hs_section.Contains(sectionid))
@@ -322,23 +328,37 @@ namespace Host
        }
        public int  getLevel()
        {
-             
-               if (this.VdDevs.Count == 0)
-                   return 0;
-               int validcnt = 0, jamcnt = 0;
-               foreach (Host.TC.VDDeviceWrapper vd in VdDevs)
-               {
-                  if(vd.IsConnected) validcnt++;
-                  if (vd.jamLevel > 0)
-                      jamcnt++;
+           if (!Program.matrix.rgs_polygon_section_mapping.hs_g_code_id.ContainsKey(g_code_id))
+               return 0 ;
+           SESSION_G_CODE session_g_code = (SESSION_G_CODE)Program.matrix.rgs_polygon_section_mapping.hs_g_code_id[this.g_code_id];
+          int maxlevel=0;
+           foreach (NetworkSection n in session_g_code.GetNetWorkSectionEnum())
+           {
+              int level=Program.matrix.rgs_polygon_section_mapping.getJamLevel(this.g_code_id,n.sessionId);
+               if(level==255 || level==0 )
+                   continue;
+               if(level>maxlevel)
+                   maxlevel= level;
+           }
+           return maxlevel;
+
+          // mark 2014 /6/4 for T74 擴充案   
+               //if (this.VdDevs.Count == 0)
+               //    return 0;
+               //int validcnt = 0, jamcnt = 0;
+               //foreach (Host.TC.VDDeviceWrapper vd in VdDevs)
+               //{
+               //   if(vd.IsConnected) validcnt++;
+               //   if (vd.jamLevel > 0)
+               //       jamcnt++;
 
 
-               }
+               //}
 
-               if (validcnt == 0)
-                   return 0;
+               //if (validcnt == 0)
+               //    return 0;
 
-               return (jamcnt > validcnt / 2) ? 1 : 0;
+               //return (jamcnt > validcnt / 2) ? 1 : 0;
 
       }
 

@@ -186,7 +186,7 @@ namespace Host
          
            rampctl_mgr = new Event.RampControl.RampControl_Manager();
            metro_network_mgr = new Event.MetroNetwork.MetroNetworkManager();
-          
+           route_mgr74 = new Host.Event.Redirect74.RouteRedirectManagerT74();
            route_mgr = new Host.Event.Redirect.RouteRedirectManager();
            ltr_mgr = new Event.LTR.LTR_Manager();
 

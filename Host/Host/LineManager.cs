@@ -49,7 +49,7 @@ namespace Host
 #if !DEBUG
                   System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand("select lineid,linename,direction,startmileage,endmileage from tblGroupLine where enable='Y'  ");
 #else
-                  System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand("select lineid,linename,direction,startmileage,endmileage from tblGroupLine where enable='Y'  and (  LineID='N1' ) ");
+                  System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand("select lineid,linename,direction,startmileage,endmileage from tblGroupLine where enable='Y'  ");
                  // System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand("select lineid,linename,direction,startmileage,endmileage from tblGroupLine where enable='Y' ");
   
 #endif

@@ -183,6 +183,9 @@ namespace Host
                     case DbChangeNotifyConst.RediretRoute_Change:
                         Program.matrix.route_mgr.loadAllRoutSetting();
                         break;
+                    case DbChangeNotifyConst.T74RediretRoute_Change:
+                        Program.matrix.route_mgr74.loadAllRoutSetting();
+                        break;
                     case DbChangeNotifyConst.Reload_Device_Loaction:
                         if (args == null || args.Length != 1)
                             throw new Exception("引數錯誤");

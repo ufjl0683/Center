@@ -286,7 +286,7 @@ namespace Host.AVI
 #endif
                 this.startTC.AddPlate(data);
 #if !DEBUG
-                if(startDevSource!="C")
+                if(startDevSource!="C"  && !startTC.IsETag() )
                                 Program.matrix.dbServer.SendSqlCmd(
                     string.Format(sql, data.DevName, DbCmdServer.getTimeStampString(data.dt), data.plate));
 #endif           
@@ -294,7 +294,7 @@ namespace Host.AVI
             else if (this.endTC.deviceName == data.DevName)
             {
  #if !DEBUG
-                if(endDevSource!="C")
+                if(endDevSource!="C" && !this.endTC.IsETag() )
                    
                 Program.matrix.dbServer.SendSqlCmd(
                      string.Format(sql, data.DevName, DbCmdServer.getTimeStampString(data.dt), data.plate));

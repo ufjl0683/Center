@@ -334,7 +334,7 @@ namespace Comm
                        // this.IsTcpConnected = true;
                         ConsoleServer.WriteLine(this.DeviceName + "communication keep silent over 3 min!!");
                        
-                      //  this.start_connect();
+                         this.start_connect();
                        
                     }
                 }else if (!this.IsTcpConnected && !InConnect_Task)
@@ -530,7 +530,7 @@ namespace Comm
 
         public void start_connect()
         {
-            if (InConnect_Task || IsTcpConnected)
+            if (InConnect_Task  )
                 return;
             try
             {

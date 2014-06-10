@@ -160,7 +160,9 @@ namespace Host
             }
             catch (Exception ex)
             {
-                throw new RemoteException(ex.Message);
+
+                return ex.Message + "," + ex.StackTrace;
+              //  throw new RemoteException(ex.Message);
             }
             finally
             {

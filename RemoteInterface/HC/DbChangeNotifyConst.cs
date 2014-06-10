@@ -18,7 +18,8 @@ namespace RemoteInterface.HC
         Reload_Section_WeightTable,
         CMSRST_Manual_MessageChange,
         Enable_Weather_Change,
-        ETAG_Life_Minutes_Change
+        ETAG_Life_Minutes_Change,
+        T74RediretRoute_Change
     }
 
 }
