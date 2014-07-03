@@ -286,7 +286,117 @@ namespace Comm.TC
           }
 
       }
+      public void TC_SendPrestoreDisplay(int dataType, int icon_id, int g_code_id, int hor_space, string mesgs, byte[] colors, byte[] vspaces)
+      {
+          string mesg;
+          switch (this.CrMode)
+          {
+              case 0:
+                  mesg = mesgs.Replace("\r", "");
+                  break;
+              case 2:
+                  mesg = mesgs.Replace("\r", "\r\n");
+                  break;
+              default:
+                  mesg = mesgs;
+                  break;
 
+          }
+
+
+          int ver_no = 1;
+          byte[] big5bytes;
+          //if (mesg.IndexOf('\r') == -1)  //append cr 保證 msgleng 不為零
+          //    mesg += "\r";
+
+
+          this.checkConntected();
+
+          System.Data.DataSet ds = this.m_protocol.GetSendDataSet("set_prestore_message");
+
+          ds.Tables["tblMain"].Rows[0]["data_type"] = dataType;
+
+
+
+          ds.Tables["tblMain"].Rows[0]["icon_code_id"] = icon_id;
+          ds.Tables["tblMain"].Rows[0]["g_code_id"] = g_code_id;
+          big5bytes = RemoteInterface.Util.StringToBig5Bytes(mesg);
+
+          ds.Tables["tblMain"].Rows[0]["msgcnt"] = ds.Tables["tblMain"].Rows[0]["msg_length"] = big5bytes.Length;
+          for (int i = 0; i < big5bytes.Length; i++)
+              if (big5bytes[i] == 0x0d)
+                  ver_no++;
+
+          //   ds.Tables["tblMain"].Rows[0]["ver_no"] = ver_no;
+          ds.Tables["tblMain"].Rows[0]["ver_no"] = vspaces.Length;
+          ds.Tables["tblMain"].Rows[0]["hor_space"] = hor_space;
+          //for (int i = 0; i < ver_no; i++)
+          //    ds.Tables["tblver_no"].Rows.Add(0);
+          for (int i = 0; i < vspaces.Length; i++)
+              ds.Tables["tblver_no"].Rows.Add(vspaces[i]);
+
+          for (int i = 0; i < big5bytes.Length; i++)
+              ds.Tables["tblmsgcnt"].Rows.Add(big5bytes[i]);
+
+
+
+          //byte color_code = 0;
+
+
+          //    if(colors[i]== Color.Black)
+          //        color_code = 0;
+
+          //    else if(colors[i]== Color.Green)
+          //        color_code = 1;
+
+          //    else if(colors[i]== Color.Red)
+          //        color_code = 2;
+
+          //    else if(colors[i]== Color.Red)
+          //        color_code = 3;
+          string mesg1;
+
+          mesg1 = mesg.Replace("\r", "").Replace("\n", "");
+
+
+
+
+          for (int i = 0; i < mesg1.Length; i++)
+          {
+              //if ((int)mesg1[i] <= 128)
+              ds.Tables["tblcolorcnt"].Rows.Add(colors[i]);
+              //else  //chinese char
+              //{
+              //    ds.Tables["tblcolorcnt"].Rows.Add(colors[i]);
+              //    ds.Tables["tblcolorcnt"].Rows.Add(colors[i]);
+              //}
+          }
+          ds.Tables["tblMain"].Rows[0]["colorcnt"] = ds.Tables["tblcolorcnt"].Rows.Count;
+
+          currentDisplayPackage = this.m_protocol.GetSendPackage(ds, 0xffff);
+
+          lock (currDispLockObj)
+          {
+
+              currentDispalyDataset = ds;
+              this.m_device.Send(currentDisplayPackage);
+
+          }
+          if (currentDisplayPackage.result != CmdResult.ACK)
+              throw new Exception(currentDisplayPackage.ToString() + " " + currentDisplayPackage.result.ToString());
+
+          // ds.Dispose();
+
+          if (curr_icon_id != icon_id || curr_g_code_id != g_code_id || curr_mesg != mesg)
+          {
+              curr_icon_id = icon_id;
+              curr_g_code_id = g_code_id;
+              curr_hor_space = hor_space;
+              curr_mesg = mesg;
+              this.InvokeOutPutChangeEvent(this, this.GetCurrentDisplayDecs());
+          }
+
+      }
 
       public void TC_SendDisplay(int dataType, int icon_id, int g_code_id, int hor_space, string mesgs, byte[] colors, byte[] vspaces)
       {

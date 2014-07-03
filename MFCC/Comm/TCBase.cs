@@ -327,12 +327,12 @@ namespace Comm
                     catch { ;}
 
 
-                    if (System.DateTime.Now - this.LastReceiveTime > new TimeSpan(0, 3, 0))
+                    if (System.DateTime.Now - this.LastReceiveTime > new TimeSpan(0, 10, 0))
                     {
                         this.LastReceiveTime = System.DateTime.Now;
                         this.IsConnected = false;
                        // this.IsTcpConnected = true;
-                        ConsoleServer.WriteLine(this.DeviceName + "communication keep silent over 3 min!!");
+                        ConsoleServer.WriteLine(this.DeviceName + "communication keep silent over 10 min!!");
                        
                          this.start_connect();
                        

@@ -145,6 +145,13 @@ namespace Comm
                   
                    case 0x57:
                        goto case 0x54;
+                      
+                   case 0x5e:
+                       goto case 0x54;
+                       //if (!(this.findCmditem(this.SendCmdItems, "data_type").Max == 0)) //graphic,or default msg
+                       //    return V2DLE.ToHexString(new byte[] { cmd, subCmd }).Replace(' ', '_') + this.cmdType;
+                       //else
+                       //    return V2DLE.ToHexString(new byte[] { cmd, 1 }).Replace(' ', '_') + this.cmdType;
                    case 0x54: //cms
 
                          if(!(this.findCmditem(this.SendCmdItems,"data_type").Max==0)) //graphic,or default msg
@@ -1242,7 +1249,9 @@ namespace Comm
            switch (pkg.Cmd)
            {
                case 0x5f:
-                   if (pkg.Text[1] == 0x55)
+                   
+
+                   if (pkg.Text[1] == 0x55||pkg.Text[1]==0x5e)
                         return  process_0x04_0x5f_0x57_returnDs(pkg);
                     if (pkg.Text[1] == 0x25)
                         return process_0x5f_0x25_returnDs(pkg);
@@ -1276,7 +1285,7 @@ namespace Comm
                        return process_0x04_0xA4_returnDs(pkg);
                    else if (pkg.Text[7] == 0xdf && pkg.Text[8] == 0xd0)
                        return process_0x04_0xdf_0xd0_returnDs(pkg);
-                   else if (pkg.Text[7] == 0x5f && pkg.Text[8] == 0x57)
+                   else if (pkg.Text[7] == 0x5f && (pkg.Text[8] == 0x57 || pkg.Text[8] == 0x5e))
                        return process_0x04_0x5f_0x57_returnDs(pkg);
                    else if (pkg.Text[7] == 0x5f && pkg.Text[8] == 0x27)
                        return process_0x04_0x54_returnDs(pkg);
@@ -1617,6 +1626,116 @@ namespace Comm
 
        }
 
+       //private DataSet process_0x04_0x5f_0x5e_returnDs(TextPackage pkg)
+       //{
+       //    try
+       //    {
+       //        DataSet ds = this.GetReturnCmdTemplateDs();
+       //        int msg_length = 0, CR_cnt = 0;
+
+       //        System.Collections.IEnumerator ie = this.GetReturnCmdEnum().GetEnumerator();
+
+       //        int inx = 0;
+       //        if (this.subCmd == 0xff)
+       //            inx = 1;  //no subcmd
+       //        else
+       //            inx = 2; //has sub cmd
+
+
+       //        while (ie.MoveNext())
+       //        {
+       //            CmdItem item;
+       //            ulong val = 0;
+       //            item = (CmdItem)ie.Current;
+       //            val = 0;
+       //            for (int i = 0; i < item.Bytes; i++)
+       //                val = val * 256 + pkg.Text[inx++];
+
+       //            ds.Tables["tblMain"].Rows[0][item.ItemName] = val;
+       //            //if (item.ItemName == "data_type")
+       //            //{
+       //            //    // data_type = (int)val;
+       //            //    //  for (int i = 0; i < 32 + 1; i++)
+       //            //    if (val == 0)  //text
+       //            //    {
+       //            //        ie.MoveNext(); // skip g_code_id
+       //            //        continue;
+       //            //    }
+       //            //    else
+       //            //    {
+       //            //        ie.MoveNext();
+       //            //        item = (CmdItem)ie.Current;
+       //            //        val = 0;
+       //            //        for (int i = 0; i < item.Bytes; i++)
+       //            //            val = val * 256 + pkg.Text[inx++];
+
+       //            //        ds.Tables["tblMain"].Rows[0][item.ItemName] = val;
+       //            //        break;
+       //            //    }
+       //            // }
+
+
+       //            if (item.ItemName == "msg_length")
+       //                msg_length = (int)val;
+
+       //            if (item.ItemName == "g_desc32")
+       //                break;
+
+       //            if (item.ItemName == "msgcnt")
+       //            {
+       //                val = (ulong)msg_length;
+       //                ds.Tables["tblMain"].Rows[0][item.ItemName] = msg_length;
+       //            }
+
+       //            if (item.ItemName == "colorcnt")
+       //            {
+       //                byte[] codebig5 = new byte[ds.Tables["tblmsgcnt"].Rows.Count];
+       //                for (int i = 0; i < ds.Tables["tblmsgcnt"].Rows.Count; i++)
+       //                {
+       //                    codebig5[i] = System.Convert.ToByte(ds.Tables["tblmsgcnt"].Rows[i]["message"]);
+       //                }
+       //                string s = RemoteInterface.Utils.Util.Big5BytesToString(codebig5); // System.Text.Encoding.Unicode.GetString(System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding("big5"), System.Text.Encoding.Unicode, codebig5));
+       //                val = (ulong)s.Replace("\r", "").Replace("\n", "").Length; //(ulong)(msg_length-CR_cnt);
+       //                ds.Tables["tblMain"].Rows[0][item.ItemName] = val;
+       //            }
+
+       //            if (item.HasSubItems)
+       //            {
+       //                int subval = 0;
+       //                for (int i = 0; i < (int)val; i++)  //val=repeat cnt
+       //                {
+       //                    System.Data.DataRow r = ds.Tables["tbl" + item.ItemName].NewRow();
+       //                    foreach (CmdItem subItem in item.SubItems)  // get subval field
+       //                    {
+       //                        subval = 0;
+       //                        for (int k = 0; k < subItem.Bytes; k++)
+       //                            subval = subval * 256 + pkg.Text[inx++];
+       //                        r[subItem.ItemName] = subval;
+       //                        //if (item.ItemName == "msgcnt" && subval == 0x0d)
+       //                        //    CR_cnt++;
+       //                    }
+
+       //                    ds.Tables["tbl" + item.ItemName].Rows.Add(r);
+
+       //                }
+
+
+       //                for (int i = 0; i < (int)item.SubItemsCnt; i++)
+       //                    ie.MoveNext();
+
+       //            }
+
+       //        } //while
+
+
+       //        return ds;
+       //    }
+       //    catch (Exception ex)
+       //    {
+       //        Console.WriteLine(ex.Message + ex.StackTrace + "," + pkg.ToString());
+       //        return null;
+       //    }
+       //}
 
        private DataSet process_0x04_0x5f_0x57_returnDs(TextPackage pkg)
        {

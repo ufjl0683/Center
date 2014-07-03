@@ -115,6 +115,8 @@ namespace MFCC_CMS
 
        }
 
+      
+
        public void GetCurrentTCDisplay(string devName, ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors)
        {
            byte[] vspaces=new byte[0];
@@ -295,11 +297,83 @@ namespace MFCC_CMS
            }
        }
 
-    
-
-      
 
 
 
-   }
+
+
+
+
+
+     public void SendPreStoreDisplay(string devName, int dataType, int icon_id, int g_code_id, int hor_space, string mesg, byte[] colors, byte[] v_spaces)
+     {
+         try
+         {
+             // ConsoleServer.WriteLine("from host1");
+             Comm.TC.CMSTC tc = (Comm.TC.CMSTC)Program.mfcc_cms.getTcManager()[devName];
+             checkAllowConnect(tc);
+             tc.TC_SendPrestoreDisplay(dataType, icon_id, g_code_id, hor_space, mesg, colors, v_spaces);
+             ConsoleServer.WriteLine(string.Format(devName + "icon_id:{0} g_code_id:{1} hos_space:{2} mesg:{3}", icon_id, g_code_id, hor_space, mesg));
+         }
+         catch (Exception ex)
+         {
+             ConsoleServer.WriteLine(devName + "," + ex.Message);
+             throw new RemoteInterface.RemoteException(ex.Message + "," + ex.StackTrace);
+         }
+     }
+
+     public void GetPreStoreTCDisplay(string devName, ref int dataType, ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors, ref byte[] vspaces)
+     {
+        
+         try
+         {
+             Comm.TC.CMSTC tc = (Comm.TC.CMSTC)Program.mfcc_cms.getTcManager()[devName];
+             checkAllowConnect(tc);
+
+             System.Data.DataSet ds = tc.TC_GetDisplay();
+
+             if (ds.Tables[0].Rows[0]["func_name"].ToString() == "get_prestore_message")
+             {
+                 icon_id = System.Convert.ToInt32(ds.Tables[0].Rows[0]["icon_code_id"]);
+             }
+             else if (ds.Tables[0].Rows[0]["func_name"].ToString() == "get_CMS_display")
+             {
+                 icon_id = 0;
+
+
+
+             }
+             else
+                 throw new RemoteException("unknown Display Command!");
+
+             g_code_id = (ds.Tables[0].Rows[0]["g_code_id"] == System.DBNull.Value) ? 0 : System.Convert.ToInt32(ds.Tables[0].Rows[0]["g_code_id"]);
+             hor_space = (ds.Tables[0].Rows[0]["hor_space"] == System.DBNull.Value) ? 0 : System.Convert.ToInt32(ds.Tables[0].Rows[0]["hor_space"]);
+             int msgcnt = (ds.Tables[0].Rows[0]["msgcnt"] == System.DBNull.Value) ? 0 : System.Convert.ToInt32(ds.Tables[0].Rows[0]["msgcnt"]);
+             byte[] big5_code = new byte[ds.Tables["tblmsgcnt"].Rows.Count];
+             for (int i = 0; i < big5_code.Length; i++)
+                 big5_code[i] = System.Convert.ToByte(ds.Tables["tblmsgcnt"].Rows[i]["message"]);
+
+             mesg = Util.Big5BytesToString(big5_code).Replace("\n", "");
+
+             byte[] color_code = new byte[ds.Tables["tblcolorcnt"].Rows.Count];
+             for (int i = 0; i < color_code.Length; i++)
+                 color_code[i] = System.Convert.ToByte(ds.Tables["tblcolorcnt"].Rows[i]["color"]);
+             colors = color_code;
+
+             byte[] v_spaces = new byte[ds.Tables["tblver_no"].Rows.Count];
+
+             for (int i = 0; i < v_spaces.Length; i++)
+                 v_spaces[i] = System.Convert.ToByte(ds.Tables["tblver_no"].Rows[i][0]);
+
+
+             //   tc.TC_SendDisplay(icon_id, g_code_id, hor_space, mesg, colors);
+             //   ConsoleServer.WriteLine(string.Format(devName + "icon_id:{0} g_code_id:{1} hos_space:{2} mesg:{3}", icon_id, g_code_id, hor_space, mesg));
+         }
+         catch (Exception ex)
+         {
+             ConsoleServer.WriteLine(devName + "," + ex.Message);
+             throw new RemoteInterface.RemoteException(ex.Message + "," + ex.StackTrace);
+         }
+     }
+    }
 }

@@ -18,6 +18,7 @@ namespace RemoteInterface.MFCC
         void GetCurrentTCDisplay(string devname, ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors);
         void GetCurrentTCDisplay(string devname, ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors,ref byte[] vspaces);
         void GetCurrentTCDisplay(string devname, ref int dataType,ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors, ref byte[] vspaces);
-
+        void SendPreStoreDisplay(string devName, int dataType, int icon_id, int g_code_id, int hor_space, string mesg, byte[] colors, byte[] v_spaces);
+        void GetPreStoreTCDisplay(string devname, ref int dataType, ref int icon_id, ref int g_code_id, ref int hor_space, ref string mesg, ref byte[] colors, ref byte[] vspaces);
     }
 }
