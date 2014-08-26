@@ -330,19 +330,19 @@ namespace MFCC_CMS
              Comm.TC.CMSTC tc = (Comm.TC.CMSTC)Program.mfcc_cms.getTcManager()[devName];
              checkAllowConnect(tc);
 
-             System.Data.DataSet ds = tc.TC_GetDisplay();
+             System.Data.DataSet ds = tc.TC_GetPrestoreDisplay();
 
              if (ds.Tables[0].Rows[0]["func_name"].ToString() == "get_prestore_message")
              {
                  icon_id = System.Convert.ToInt32(ds.Tables[0].Rows[0]["icon_code_id"]);
              }
-             else if (ds.Tables[0].Rows[0]["func_name"].ToString() == "get_CMS_display")
-             {
-                 icon_id = 0;
+             //else if (ds.Tables[0].Rows[0]["func_name"].ToString() == "get_CMS_display")
+             //{
+             //    icon_id = 0;
 
 
 
-             }
+             //}
              else
                  throw new RemoteException("unknown Display Command!");
 

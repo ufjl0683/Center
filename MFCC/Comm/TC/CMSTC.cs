@@ -721,6 +721,33 @@ namespace Comm.TC
 
         }
 
+
+      public System.Data.DataSet TC_GetPrestoreDisplay()
+      {
+
+          System.Data.DataSet ds = null;
+          ds = this.m_protocol.GetSendDataSet("get_prestore_message");
+          SendPackage pkg = this.m_protocol.GetSendPackage(ds, 0xffff);
+          this.Send(pkg);
+         // this.Send(pkg);
+          if (pkg.result != CmdResult.ACK)
+              throw new Exception(this.DeviceName + "," + pkg.result.ToString());
+
+
+        
+
+
+
+          //   ds.Dispose();
+          //if(this.DeviceName=="CMS-N6-E-16.3")
+          //{
+          //    Console.WriteLine("Send:" + pkg.ToString());
+          //    Console.WriteLine("return:" + pkg.ReturnTextPackage.ToString());
+
+          //    }
+          ds = m_protocol.GetReturnDsByTextPackage(pkg.ReturnTextPackage);
+          return ds;
+      }
       public  System.Data.DataSet TC_GetDisplay()
         {
 
