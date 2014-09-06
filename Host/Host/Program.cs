@@ -26,6 +26,7 @@ namespace Host
         static void Main(string[] args)
         {
 
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
  
             //CCTV.LockWindows lwnd = new Host.CCTV.LockWindows(3);
             //lwnd.setLock(1813, "ET_856122403", " ", 6);
@@ -66,6 +67,12 @@ namespace Host
            
           
              
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex=e.ExceptionObject as Exception;
+            Util.SysLog("unhandleException.log", ex.Message + "," + ex.StackTrace);
         }
 
 

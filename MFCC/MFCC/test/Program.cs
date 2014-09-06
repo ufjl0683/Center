@@ -22,6 +22,7 @@ namespace test
     {
         static void  WeatherTest()
         {
+          
             XmlWeatherManager mgr = new XmlWeatherManager();
             WeartherData data=new WeartherData();
            string filename= mgr.GetXmlFileNameByLocation("T74", "E", 12000);
@@ -31,6 +32,14 @@ namespace test
             //mgr.GetWeatherData("http://10.21.50.100/36_06.xml",data);
             if(data1.IsValid)
             Console.WriteLine(data1);
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+           // throw new NotImplementedException();
+           // e.IsTerminating = false;
+            
+            Console.WriteLine((e.ExceptionObject as Exception).StackTrace);
         }
 
         static void NotifyEtagChangeTest()
@@ -82,6 +91,8 @@ namespace test
 
         static void Main(string[] args)
         {
+            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            throw new Exception("test");
             // WeatherTest();
           //  string s = "abcdefghijk";
           //string f=   s.Substring( 13, 0);
@@ -221,7 +232,7 @@ namespace test
          //   rfiws.getTimccTravelTimeByRange("N3","N",111050,79300);
             //Microsoft.JScript.Vsa.VsaEngine eng = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
             //object res = Microsoft.JScript.Eval.JScriptEvaluate("var a=10;a+2*6+5;Math.sin(0);", eng);
-            NotifyEtagChangeTest();
+        //    NotifyEtagChangeTest();
             Console.ReadKey();
 
         }
